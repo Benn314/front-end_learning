@@ -1,0 +1,87 @@
+<html>
+  <head></head>
+  <body>
+    <!-- 
+        图片 img 
+        src source 图片的资源路径
+        src 可以是本地资源也可以是网路资源
+        因为img文件夹和05_HTML_多媒体标签.html是同一路径下的 写相对路径就ok了
+        width 和 height 分别控制 宽度 和 高度
+        title 鼠标悬停于图片之上时 显示的文字
+        alt 图片加载失败 显示的文字 图片不存在时替换图片的文字
+    -->
+    <img
+      src="img/不开心.png"
+      alt="妹妹去哪啦？"
+      width="400px"
+      height="400px"
+      title="是我可爱的妹妹啦！"
+    />
+    <img
+      src="https://img-blog.csdnimg.cn/51699ac18c6f44a780036e739508e2f5.gif#pic_center"
+      alt=""
+      title="小猫咪~"
+    />
+
+    <!-- 给图片加一个超链接 -->
+    <br />
+    <a href="https://www.jd.com/">
+      <img
+        src="img/不开心.png"
+        alt="妹妹去哪啦？"
+        width="400px"
+        height="400px"
+        title="是我可爱的妹妹啦！"
+      />
+      <img
+        src="https://img-blog.csdnimg.cn/51699ac18c6f44a780036e739508e2f5.gif#pic_center"
+        alt=""
+        title="小猫咪~"
+      />
+    </a>
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <!-- 
+        音频 
+        audio 
+        src 音频文件的路径
+        controls 页面上显示 功能控件
+        autoplay自动播放
+        loop循环播放 方向键可控制前进和后退(默认移动单位为2s) 空格可以暂停和播放
+    -->
+    <!-- 同级文件目录才能用相对路径 -->
+    <audio
+      src="audio/阳光宅男.mp3"
+      controls="controls"
+      autoplay="autoplay"
+      loop="loop"
+    ></audio>
+    <br />
+    <!-- 
+        加control才能显示控件
+        如果属性名和属性值是一样的，那么只写属性名就好了 
+        不支持文件才会显示下面文字
+    -->
+    <audio controls="controls">
+      <source src="audio/Lil Ghost小鬼 - 别叫我达芬奇 (Punk Version).mp3" />
+      你的浏览器不支持该类型文件
+    </audio>
+    <br />
+    <audio src="audio/Smyang Piano - Euphoria.mp3" controls loop></audio>
+
+    <!-- 
+        视频 video 
+        跟audio是一个道理的
+        controls和loop是键值一样的，写属性名就行
+    -->
+    <video src="video/跳舞ing.mp4" controls loop></video>
+    <video src="video/跳舞ing.mp4" width="50%" controls loop></video>
+    <!-- 
+        视频控件默认的width占比不是100%
+        多个控件都是可以同时播放进行的
+    -->
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<html>
+  <head></head>
+  <body>
+    <!-- 
+          border            边界
+          cellspacing       单元格间距
+          cellpadding       细胞（单元格）内部缝隙的距离
+          th 相当于 是自带加粗和居中效果的 td
+          thead 表头
+          tbody 表体    如果不写，浏览器会自动给我们添加
+          tfoot 表尾
+       -->
+    <table
+      align="center"
+      width="50%"
+      border="1px"
+      cellspacing="0px"
+      cellpadding="1px"
+    >
+      <thead bgcolor="greenyellow">
+        <tr>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>班级</th>
+          <th>分数</th>
+        </tr>
+      </thead>
+      <tbody bgcolor="lightgray">
+        <tr>
+          <td>陈奕迅</td>
+          <td>21</td>
+          <td>计科二班</td>
+          <td>99</td>
+        </tr>
+        <tr bgcolor="beige">
+          <td>邓子林</td>
+          <td>21</td>
+          <td>计科一班</td>
+          <td>6</td>
+        </tr>
+      </tbody>
+      <tfoot bgcolor="lightcoral">
+        <tr>
+          <td>总人数</td>
+          <td>2</td>
+          <td>总分数</td>
+          <td>105</td>
+        </tr>
+        <tr>
+          <td>及格人数</td>
+          <td>1</td>
+          <td>高分人数</td>
+          <td>1</td>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+</html>
