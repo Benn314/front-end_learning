@@ -2,13 +2,13 @@
 
 
 
-![image-20220722114325067](HTML,CSS.assets\image-20220722114325067.png)
+![image-20220722114325067](HTML,CSS.assets/image-20220722114325067.png)
 
 
 
-![image-20220722114431897](HTML,CSS.assets\image-20220722114431897.png)
+![image-20220722114431897](HTML,CSS.assets/image-20220722114431897.png)
 
-![image-20220722115523923](HTML,CSS.assets\image-20220722115523923.png)
+![image-20220722115523923](HTML,CSS.assets/image-20220722115523923.png)
 
 架构师决定用CS模式或BS模式
 
@@ -18,23 +18,23 @@
 
 # 02_HTML_互联网三大基石
 
-![image-20220722120513617](HTML,CSS.assets\image-20220722120513617.png)
+![image-20220722120513617](HTML,CSS.assets/image-20220722120513617.png)
 
 
 
-![image-20220722120455843](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722120455843.png)
+![image-20220722120455843](HTML,CSS.assets/image-20220722120455843.png)
 
-![image-20220722120530250](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722120530250.png)
+![image-20220722120530250](HTML,CSS.assets/image-20220722120530250.png)
 
-![image-20220722120535590](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722120535590.png)
+![image-20220722120535590](HTML,CSS.assets/image-20220722120535590.png)
 
-![image-20220722121743600](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722121743600.png)
+![image-20220722121743600](HTML,CSS.assets/image-20220722121743600.png)
 
 # 03_HTML_HTML简介
 
-![image-20220722122853482](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722122853482.png)
+![image-20220722122853482](HTML,CSS.assets/image-20220722122853482.png)
 
-![image-20220722122840129](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722122840129.png)
+![image-20220722122840129](HTML,CSS.assets/image-20220722122840129.png)
 
 
 
@@ -42,19 +42,19 @@
 
 
 
-![image-20220722123950364](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722123950364.png)
+![image-20220722123950364](HTML,CSS.assets/image-20220722123950364.png)
 
 用HTML语言可以做网页
 
-![image-20220722160621466](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722160621466.png)
+![image-20220722160621466](HTML,CSS.assets/image-20220722160621466.png)
 
-![image-20220722160732057](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722160732057.png)
+![image-20220722160732057](HTML,CSS.assets/image-20220722160732057.png)
 
 
 
 # 04_HTML_HTML
 
-![image-20220722163038785](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722163038785.png)
+![image-20220722163038785](HTML,CSS.assets/image-20220722163038785.png)
 
 
 
@@ -79,9 +79,9 @@
 
 
 
-![image-20220722172505449](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722172505449.png)
+![image-20220722172505449](HTML,CSS.assets/image-20220722172505449.png)
 
-![image-20220722172515603](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722172515603.png)
+![image-20220722172515603](HTML,CSS.assets/image-20220722172515603.png)
 
 
 
@@ -91,9 +91,9 @@
 
 打开协议的变化，导致了乱码
 
-![image-20220722173805620](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722173805620.png)
+![image-20220722173805620](HTML,CSS.assets/image-20220722173805620.png)
 
-![image-20220722174216997](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722174216997.png)
+![image-20220722174216997](HTML,CSS.assets/image-20220722174216997.png)
 
 GBK是国标码
 
@@ -101,7 +101,7 @@ UTF-8除了中文字符集还包括一些国际的通用字符
 
 GBK是字符集，UTF-8也是字符集，乱码产生原因就是在这
 
-![image-20220722174456595](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722174456595.png)
+![image-20220722174456595](HTML,CSS.assets/image-20220722174456595.png)
 
 使用字符集不一致是产生乱码的原因之一（编辑器使用的字符集和浏览器使用的字符集不一致）
 
@@ -204,25 +204,25 @@ charset：字符集
 
 # 00_HTML_回顾
 
-![image-20220722222547261](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722222547261.png)
+![image-20220722222547261](HTML,CSS.assets/image-20220722222547261.png)
 
 # ---
 
 # 01_HTML_专业词汇介绍
 
-![image-20220722222856681](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722222856681.png)
+![image-20220722222856681](HTML,CSS.assets/image-20220722222856681.png)
 
 标签和属性是不区分大小写的，一般都是小写
 
 
 
-![image-20220722223544526](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722223544526.png)
+![image-20220722223544526](HTML,CSS.assets/image-20220722223544526.png)
 
-![image-20220722223829436](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722223829436.png)
+![image-20220722223829436](HTML,CSS.assets/image-20220722223829436.png)
 
-![image-20220722230149085](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722230149085.png)
+![image-20220722230149085](HTML,CSS.assets/image-20220722230149085.png)
 
-![image-20220722230729140](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722230729140.png)
+![image-20220722230729140](HTML,CSS.assets/image-20220722230729140.png)
 
 元素里还包含着子元素
 
@@ -258,11 +258,11 @@ charset：字符集
 
 # 02_HTML_段落和格式化标签
 
-![image-20220723082235886](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220723082235886.png)
+![image-20220723082235886](HTML,CSS.assets/image-20220723082235886.png)
 
 标题会自己独占一行，同样HTML页面的标题最多有6级
 
-![image-20220723082320801](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220723082320801.png)
+![image-20220723082320801](HTML,CSS.assets/image-20220723082320801.png)
 
 
 
@@ -345,9 +345,9 @@ https://www.w3school.com.cn/html/html_formatting.asp
 
 > 回车会有一个空格符
 
-![image-20220723095618962](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220723095618962.png)
+![image-20220723095618962](HTML,CSS.assets/image-20220723095618962.png)
 
-![image-20220723095812731](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220723095812731.png)
+![image-20220723095812731](HTML,CSS.assets/image-20220723095812731.png)
 
 
 
@@ -355,7 +355,7 @@ https://www.w3school.com.cn/html/html_formatting.asp
 
 
 
-![image-20220723105247953](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220723105247953.png)
+![image-20220723105247953](HTML,CSS.assets/image-20220723105247953.png)
 
 图片来源：https://www.w3school.com.cn/html/html_entities.asp
 
@@ -454,13 +454,13 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 
 
 
-![image-20220724004216053](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220724004216053.png)
+![image-20220724004216053](HTML,CSS.assets/image-20220724004216053.png)
 
 上图知识点要知道！
 
 
 
-![image-20220724004252925](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220724004252925.png)
+![image-20220724004252925](HTML,CSS.assets/image-20220724004252925.png)
 
 ```html
 <html>
@@ -923,4 +923,13 @@ table包含tr包含td
 
 
 # 01_HTML_输入标签
+
+---
+
+相对路径和绝对路径的斜杆
+
+- 相对路径 /
+- 绝对路径 \
+
+---
 
