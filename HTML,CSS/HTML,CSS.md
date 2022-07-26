@@ -1,113 +1,87 @@
-# 01_HTML_CS和BS模式
+# 01_HTML_CS 和 BS 模式
 
+![image-20220722114325067](HTML,CSS.assets\image-20220722114325067.png)
 
+![image-20220722114431897](HTML,CSS.assets\image-20220722114431897.png)
 
-![image-20220722114325067](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722114325067.png)
+![image-20220722115523923](HTML,CSS.assets\image-20220722115523923.png)
 
+架构师决定用 CS 模式或 BS 模式
 
+​
 
-![image-20220722114431897](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722114431897.png)
+# 02*HTML*互联网三大基石
 
-![image-20220722115523923](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722115523923.png)
+![image-20220722120513617](HTML,CSS.assets\image-20220722120513617.png)
 
-架构师决定用CS模式或BS模式
+![image-20220722120455843](HTML,CSS.assets\image-20220722120455843.png)
 
-​	
+![image-20220722120530250](HTML,CSS.assets\image-20220722120530250.png)
 
+![image-20220722120535590](HTML,CSS.assets\image-20220722120535590.png)
 
+![image-20220722121743600](HTML,CSS.assets\image-20220722121743600.png)
 
-# 02_HTML_互联网三大基石
+# 03_HTML_HTML 简介
 
-![image-20220722120513617](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722120513617.png)
-
-
-
-![image-20220722120455843](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722120455843.png)
-
-![image-20220722120530250](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722120530250.png)
-
-![image-20220722120535590](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722120535590.png)
-
-![image-20220722121743600](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722121743600.png)
-
-# 03_HTML_HTML简介
-
-![image-20220722122853482](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722122853482.png)
+![image-20220722122853482](HTML,CSS.assets\image-20220722122853482.png)
 
 ![image-20220722122840129](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722122840129.png)
 
+安全卫士垃圾清理的上网残留垃圾清理文件的产生：浏览器从对应 URL 服务器获取的 HTML 文件下载缓存到本地的文件，可进行清理
 
+![image-20220722123950364](HTML,CSS.assets\image-20220722123950364.png)
 
-安全卫士垃圾清理的上网残留垃圾清理文件的产生：浏览器从对应URL服务器获取的HTML文件下载缓存到本地的文件，可进行清理
+用 HTML 语言可以做网页
 
-
-
-![image-20220722123950364](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722123950364.png)
-
-用HTML语言可以做网页
-
-![image-20220722160621466](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722160621466.png)
+![image-20220722160621466](HTML,CSS.assets\image-20220722160621466.png)
 
 ![image-20220722160732057](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722160732057.png)
 
-
-
 # 04_HTML_HTML
 
-![image-20220722163038785](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722163038785.png)
-
-
+![image-20220722163038785](HTML,CSS.assets\image-20220722163038785.png)
 
 ```html
 <html>
-    <!-- 最基本的标签，所有标签应该放在html标签当中 -->
-    <!-- 头标签<head></head>    体标签<body></body> -->
-    <head>
-        <!-- 不显示在网页上，但是又比较重要的信息 -->
-        <title>第一个小网页</title>
-    </head>
+  <!-- 最基本的标签，所有标签应该放在html标签当中 -->
+  <!-- 头标签<head></head>    体标签<body></body> -->
+  <head>
+    <!-- 不显示在网页上，但是又比较重要的信息 -->
+    <title>第一个小网页</title>
+  </head>
 
-    <body>
-        hello world！
-    </body>
+  <body>
+    hello world！
+  </body>
 </html>
 ```
 
+# 06_HTML_Hbuilder 的简单操作
 
-
-# 06_HTML_Hbuilder的简单操作
-
-
-
-![image-20220722172505449](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722172505449.png)
+![image-20220722172505449](HTML,CSS.assets\image-20220722172505449.png)
 
 ![image-20220722172515603](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722172515603.png)
 
-
-
-# 07_HTML_乱码问题
-
-
+# 07*HTML*乱码问题
 
 打开协议的变化，导致了乱码
 
-![image-20220722173805620](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722173805620.png)
+![image-20220722173805620](HTML,CSS.assets\image-20220722173805620.png)
 
-![image-20220722174216997](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722174216997.png)
+![image-20220722174216997](HTML,CSS.assets\image-20220722174216997.png)
 
-GBK是国标码
+GBK 是国标码
 
-UTF-8除了中文字符集还包括一些国际的通用字符
+UTF-8 除了中文字符集还包括一些国际的通用字符
 
-GBK是字符集，UTF-8也是字符集，乱码产生原因就是在这
+GBK 是字符集，UTF-8 也是字符集，乱码产生原因就是在这
 
-![image-20220722174456595](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722174456595.png)
+![image-20220722174456595](HTML,CSS.assets\image-20220722174456595.png)
 
 使用字符集不一致是产生乱码的原因之一（编辑器使用的字符集和浏览器使用的字符集不一致）
 
-
-
-单标签只有开头没有结尾 <meta charset="utf-8" /> ，告诉浏览器以UTF-8字符集解析文字
+单标签只有开头没有结尾 <meta charset="utf-8" /> ，告诉浏览器以 UTF-8 字符集解析文字
 
 ```html
 <html>
@@ -130,19 +104,19 @@ GBK是字符集，UTF-8也是字符集，乱码产生原因就是在这
 </html>
 ```
 
-HBuilder中通过指定浏览器运行文件不好使的话要改一下运行配置，确保运行配置是正确的浏览器.exe
+HBuilder 中通过指定浏览器运行文件不好使的话要改一下运行配置，确保运行配置是正确的浏览器.exe
 
-meta标签和title标签谁在前谁在后没所谓
+meta 标签和 title 标签谁在前谁在后没所谓
 
-> meta 元标签，定义一些当前网页的特殊属性，通过meta标签的属性来定义页面的特征
+> meta 元标签，定义一些当前网页的特殊属性，通过 meta 标签的属性来定义页面的特征
 >
-> <标签名 属性1=‘ ’  属性2=‘ ’></标签名>
+> <标签名 属性 1=‘ ’ 属性 2=‘ ’></标签名>
 >
-> charset属性 定义当前页面的字符集 告诉浏览器以什么字符集解析当前页面
+> charset 属性 定义当前页面的字符集 告诉浏览器以什么字符集解析当前页面
 >
-> name属性 一般用于定义当前网页的一些简单描述 便于在搜索引擎上根据描述搜索到当前网页
+> name 属性 一般用于定义当前网页的一些简单描述 便于在搜索引擎上根据描述搜索到当前网页
 
-char：字符 
+char：字符
 
 set：集合
 
@@ -161,7 +135,8 @@ charset：字符集
     <meta name="description" content="潮汕牛肉丸yyds！" />
 
     <!-- 在**秒后 对网页进行刷新 -->
-    <!-- <meta http-equiv="refresh" content="5;http://www.baidu.com" /> -->	<!-- 这个好好玩 -->
+    <!-- <meta http-equiv="refresh" content="5;http://www.baidu.com" /> -->
+    <!-- 这个好好玩 -->
 
     <!-- alt+shift+⬆/⬇，复制上一行代码到下一行 -->
     <!-- 
@@ -197,32 +172,27 @@ charset：字符集
     在vs code编辑的html文件，保存即可在已打开的浏览器中自动刷新
   </body>
 </html>
-
 ```
 
+# 00*HTML*回顾
 
-
-# 00_HTML_回顾
-
-![image-20220722222547261](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722222547261.png)
+![image-20220722222547261](HTML,CSS.assets\image-20220722222547261.png)
 
 # ---
 
-# 01_HTML_专业词汇介绍
+# 01*HTML*专业词汇介绍
 
-![image-20220722222856681](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722222856681.png)
+![image-20220722222856681](HTML,CSS.assets\image-20220722222856681.png)
 
 标签和属性是不区分大小写的，一般都是小写
 
+![image-20220722223544526](HTML,CSS.assets\image-20220722223544526.png)
 
+![image-20220722223829436](HTML,CSS.assets\image-20220722223829436.png)
 
-![image-20220722223544526](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722223544526.png)
+![image-20220722230149085](HTML,CSS.assets\image-20220722230149085.png)
 
-![image-20220722223829436](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722223829436.png)
-
-![image-20220722230149085](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722230149085.png)
-
-![image-20220722230729140](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220722230729140.png)
+![image-20220722230729140](HTML,CSS.assets\image-20220722230729140.png)
 
 元素里还包含着子元素
 
@@ -254,17 +224,13 @@ charset：字符集
 </html>
 ```
 
+# 02*HTML*段落和格式化标签
 
+![image-20220723082235886](HTML,CSS.assets\image-20220723082235886.png)
 
-# 02_HTML_段落和格式化标签
+标题会自己独占一行，同样 HTML 页面的标题最多有 6 级
 
-![image-20220723082235886](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220723082235886.png)
-
-标题会自己独占一行，同样HTML页面的标题最多有6级
-
-![image-20220723082320801](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220723082320801.png)
-
-
+![image-20220723082320801](HTML,CSS.assets\image-20220723082320801.png)
 
 **段落标签**
 
@@ -304,8 +270,6 @@ charset：字符集
 </html>
 ```
 
-
-
 格式化标签
 
 ```html
@@ -338,30 +302,25 @@ charset：字符集
     <!-- font是字体设定 -->
   </body>
 </html>
-
 ```
 
 https://www.w3school.com.cn/html/html_formatting.asp
 
 > 回车会有一个空格符
 
-![image-20220723095618962](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220723095618962.png)
+![image-20220723095618962](HTML,CSS.assets\image-20220723095618962.png)
 
-![image-20220723095812731](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220723095812731.png)
+![image-20220723095812731](HTML,CSS.assets\image-20220723095812731.png)
 
+# 03*HTML*字符实体和特殊符号
 
-
-# 03_HTML_字符实体和特殊符号
-
-
-
-![image-20220723105247953](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220723105247953.png)
+![image-20220723105247953](HTML,CSS.assets\image-20220723105247953.png)
 
 图片来源：https://www.w3school.com.cn/html/html_entities.asp
 
 特殊符号：https://www.w3school.com.cn/html/html_symbols.asp
 
-emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
+emoji 符号：https://www.w3school.com.cn/html/html_emoji.asp
 
 ```html
 <html>
@@ -404,14 +363,11 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
     <p>&#128512;</p>
   </body>
 </html>
-
 ```
 
 要打什么特殊符号可以找上面链接
 
-
-
-# 04_HTML_超链接标签
+# 04*HTML*超链接标签
 
 ```html
 <html>
@@ -443,24 +399,17 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
     <a name="bottom">底部</a> <a href="#top">跳转至顶部</a>
   </body>
 </html>
-
 ```
-
-
 
 # 05
 
-# 06_HTML_音频和视频标签
+# 06*HTML*音频和视频标签
 
-
-
-![image-20220724004216053](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220724004216053.png)
+![image-20220724004216053](HTML,CSS.assets\image-20220724004216053.png)
 
 上图知识点要知道！
 
-
-
-![image-20220724004252925](C:\Users\小楷\Desktop\前端学习\HTML,CSS\HTML,CSS.assets\image-20220724004252925.png)
+![image-20220724004252925](HTML,CSS.assets\image-20220724004252925.png)
 
 ```html
 <html>
@@ -550,16 +499,9 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
     -->
   </body>
 </html>
-
 ```
 
-
-
-
-
-# 07_HTML_有序和无序列表
-
-
+# 07*HTML*有序和无序列表
 
 ```html
 <html>
@@ -609,11 +551,7 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 </html>
 ```
 
-
-
-# 08_HTML_定义列表
-
-
+# 08*HTML*定义列表
 
 ```html
 <html>
@@ -647,15 +585,13 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 </html>
 ```
 
-
-
-# 09_HTML_table_tr_td标签
+# 09_HTML_table_tr_td 标签
 
 表格标签
 
 ![image-20220725110212766](HTML,CSS.assets/image-20220725110212766.png)
 
-table包含tr包含td
+table 包含 tr 包含 td
 
 ```html
 <html>
@@ -694,10 +630,7 @@ table包含tr包含td
     </table>
   </body>
 </html>
-
 ```
-
-
 
 # 10_HTML_thead_tfoot_tbody_th
 
@@ -762,12 +695,9 @@ table包含tr包含td
     </table>
   </body>
 </html>
-
 ```
 
-
-
-# 11_HTML_表格的跨行和跨列
+# 11*HTML*表格的跨行和跨列
 
 ![image-20220725140434557](HTML,CSS.assets/image-20220725140434557.png)
 
@@ -779,13 +709,9 @@ table包含tr包含td
 
 ![image-20220725142037063](HTML,CSS.assets/image-20220725142037063.png)
 
-
-
 <img src="HTML,CSS.assets/image-20220725142607341.png" alt="image-20220725142607341" style="zoom:50%;" />
 
 它是这么占位置的，跨行后记得删除不需要的单元格
-
-
 
 ```html
 <html>
@@ -833,12 +759,11 @@ table包含tr包含td
     </table>
   </body>
 </html>
-
 ```
 
 ![image-20220725143148069](HTML,CSS.assets/image-20220725143148069.png)
 
-# 12_HTML_表格的嵌套
+# 12*HTML*表格的嵌套
 
 ```html
 <html>
@@ -903,24 +828,14 @@ table包含tr包含td
     </table>
   </body>
 </html>
-
 ```
-
-
 
 ![image-20220725150210661](HTML,CSS.assets/image-20220725150210661.png)
 
-
-
-# 00_HTML_回顾
-
-
+# 00*HTML*回顾
 
 ![image-20220725151358695](HTML,CSS.assets/image-20220725151358695.png)
 
 ![image-20220725151627127](HTML,CSS.assets/image-20220725151627127.png)
 
-
-
-# 01_HTML_输入标签
-
+# 01*HTML*输入标签
