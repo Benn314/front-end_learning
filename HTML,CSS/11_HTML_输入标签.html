@@ -3,7 +3,8 @@
   <body>
     <!-- 
         input标签中，type属性决定了输入框的类型
-        radio 单选框的意思
+        radio 单选框
+        checkbox 复选框
         如果需要让多个单选框有互斥效果 那么需要给多个单选框添加name属性 并且name属性的值是相同的
         通过checked 属性控制其中的某一个选项被选中
         checked的属性名和属性值相同，所以属性值可以默认不写
@@ -11,7 +12,36 @@
      -->
     账号: <input type="text" /><br />
     密码: <input type="password" /> <br />
-    性别: <input type="radio" name="gender" checked />男
-    <input type="radio" name="gender" />女
+    性别:
+    <input type="radio" name="gender" checked />男
+    <input type="radio" name="gender" />女 <br />
+
+    <!-- 
+      即使添加了name属性，还是可以复选，不像radio单选框只能选择其一 
+      checked属性依旧适用
+    -->
+    爱好: <input type="checkbox" />篮球 <input type="checkbox" />足球
+    <input type="checkbox" />桌球 <input type="checkbox" />网球
+    <input type="checkbox" />羽毛球 <input type="checkbox" />玻璃球
+    <br />
+    请选择文件 <input type="file" /><br />
+    <!-- text属性只能在一行上输入文字信息（单行输入），width和height自定义不了大小 -->
+    个人简介:
+    <!-- 不能再用文本框了，要用文本域 -->
+    <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+    <textarea style="width: 40%; height: 200px">请介绍一下你自己</textarea>
+    <br />
+    籍贯:
+    <!-- 
+      下拉框 select option 
+      selected 表示它是默认最开始被选择的选项
+      multiple 下拉框全部显示 这个并不常用，了解即可
+    -->
+    <select name="" id="" multiple>
+      <option value="">吉林</option>
+      <option value="">黑龙江</option>
+      <option value="">辽宁</option>
+      <option value="" selected>-请选择省份-</option>
+    </select>
   </body>
 </html>
