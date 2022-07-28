@@ -1,0 +1,32 @@
+<html>
+  <head></head>
+  <!-- <body> -->
+  <!-- 
+        rows 例如下面是3行 
+        有frameset标签不能有body标签 不然不显示
+    -->
+  <!-- <frameset rows="100px,*,150px">
+        <frame src="top.html">
+        <frame src="https://www.taobao.com/">
+        <frame src="bottom.html">
+    </frameset> -->
+
+  <!-- 
+        有几个cols就是分成几列
+     -->
+  <!-- <frameset cols="200px,200px,*"> 
+    <frame src="13_HTML_form表单1.html">
+    <frame src="14_HTML_iframe.html">
+    <frame src="http://www.taobao.com">
+  </frameset> -->
+    <frameset rows="100px,*,150px">
+        <frame src="top.html">
+            <!-- 相当于嵌套进来 -->
+        <frameset cols="200px,*"> 
+            <frame src="left.html">
+            <frame src="http://www.taobao.com" name="right">
+        </frameset>
+        <frame src="bottom.html">
+    </frameset>
+  <!-- </body> -->
+</html>

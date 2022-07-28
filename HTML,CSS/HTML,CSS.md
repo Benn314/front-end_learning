@@ -1360,3 +1360,133 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 # 06_HTML_frameset标签
 
+
+
+**15_HTML_frameset.html**
+
+```html
+<html>
+  <head></head>
+  <!-- <body> -->
+  <!-- 
+        rows 例如下面是3行 
+        有frameset标签不能有body标签 不然不显示
+    -->
+  <!-- <frameset rows="100px,*,150px">
+        <frame src="top.html">
+        <frame src="https://www.taobao.com/">
+        <frame src="bottom.html">
+    </frameset> -->
+
+  <!-- 
+        有几个cols就是分成几列
+     -->
+  <!-- <frameset cols="200px,200px,*"> 
+    <frame src="13_HTML_form表单1.html">
+    <frame src="14_HTML_iframe.html">
+    <frame src="http://www.taobao.com">
+  </frameset> -->
+    <frameset rows="100px,*,150px">
+        <frame src="top.html">
+            <!-- 相当于嵌套进来 -->
+        <frameset cols="200px,*"> 
+            <frame src="left.html">
+            <frame src="http://www.taobao.com" name="right">
+        </frameset>
+        <frame src="bottom.html">
+    </frameset>
+  <!-- </body> -->
+</html>
+
+```
+
+
+
+**left.html**
+
+```html
+<html>
+  <head></head>
+  <body>
+    <!-- name 和 target 结合着用 -->
+    <a href="http://www.baidu.com" target="right">百度</a>
+    <a href="http://www.tianmao.com" target="right">天猫</a>
+    <a href="https://benn314.github.io/#/" target="right">Ben</a>
+  </body>
+</html>
+
+```
+
+
+
+**top.html**
+
+```html
+<html>
+  <head></head>
+  <body>
+    <img src="img/top.png" width="100%" alt="" />
+  </body>
+</html>
+
+```
+
+
+
+**bottom.html**
+
+```html
+<html>
+  <head></head>
+  <body>
+    <img src="img/bottom.png" width="100%" alt="" />
+  </body>
+</html>
+
+```
+
+
+
+![image-20220728202931859](HTML,CSS.assets/image-20220728202931859.png)
+
+
+
+
+
+# 07_HTML_span和div
+
+
+
+![image-20220728203056349](HTML,CSS.assets/image-20220728203056349.png)
+
+![image-20220728203313724](HTML,CSS.assets/image-20220728203313724.png)
+
+
+
+```html
+<html>
+  <head></head>
+  <body>
+    <p>
+      <!-- 
+        span是行内标签，加了不会换行 
+        这里代码块的回车换行，显示效果是增加一空格距离
+        table标签虽然也可以做网页布局，但没div标签灵活，
+            一小点改动可能导致全部都改动（table标签）
+        
+    -->
+      <span style="color: aqua">是陈舒舒呀！</span>
+      <span style="color: yellowgreen">是王凯茵呀！</span>
+      <span style="color: cadetblue">是王冠映呀！</span>
+    </p>
+    <div style="border: 1px red solid; width: 200px; height: 200px">
+      是我自己啦~
+    </div>
+  </body>
+</html>
+
+```
+
+
+
+![image-20220728205134547](HTML,CSS.assets/image-20220728205134547.png)
