@@ -1079,3 +1079,284 @@ table包含tr包含td
 
 
 ![image-20220728121904971](HTML,CSS.assets/image-20220728121904971.png)
+
+
+
+# 03_HTML_form表单1
+
+![image-20220728123145671](HTML,CSS.assets/image-20220728123145671.png)
+
+
+
+```html
+<html>
+  <head></head>
+  <body>
+    <!-- 
+        form标签是可以使浏览器输入的信息提交到后台的标签 
+        action放我们自己服务器的地址
+
+        1 使用 form标签 包裹数据提交的范围
+        2 通过action属性 确定数据要提交的地址
+        3 通过method属性确定提交的方式
+
+            get方式
+            1 数据通过地址栏传递 地址栏有长度限制 传递的数据量有限 
+            2 地址栏只能放文字 get方式只能提交文本类型的数据 不能上次文件
+            3 数据显示在地址栏上 数据相对不安全
+
+            post 方式提交
+            1 数据不通过地址栏 单独打成数据包发送 数据包的大小一般认为没有限制 传输的 数据量大
+            2 数据包可以放文字 也可以放文件 可以上传文件
+            3 数据不显示在地址栏上 数据相对安全
+
+        4 准备一个提交按钮 
+            不能是button button只是一个简单的按钮 不具备提交功能
+            应该用submit submit具备提交数据的功能
+            submit 必须在form表单内部 标志提交 的是当前所在的表单
+
+        5 给需要提交数据的输入框添加 name 和 value 属性
+            name属性是给数据起名字的 为了让后台区分不同数据的含义
+            一般name值起个username（用户名）/account（账号）就可以了 其他的也行
+
+     -->
+    <!-- 为了方便还是把它改成get ，把post方式注释了-->
+    <form action="https://www.baidu.com/" method="get">
+      <!-- <form action="https://www.baidu.com/" method="post"> -->
+      <!-- 
+        value属性其实就是输入框上我们实际输入的值
+        没添加name属性的话它是提交失败的
+       -->
+      账号: <input type="text" name="username" value="1234" /><br />
+      密码: <input type="password" name="pwd" /> <br />
+      性别:
+      <input type="radio" name="gender" checked />男
+      <input type="radio" name="gender" />女 <br />
+
+      爱好: <input type="checkbox" />篮球 <input type="checkbox" />足球
+      <input type="checkbox" />桌球 <input type="checkbox" />网球
+      <input type="checkbox" />羽毛球 <input type="checkbox" />玻璃球
+      <br />
+      请选择文件 <input type="file" /><br />
+      个人简介:
+      <textarea style="width: 40%; height: 200px">请介绍一下你自己</textarea>
+      <br />
+      籍贯:
+      <select name="" id="" multiple>
+        <option value="">吉林</option>
+        <option value="">黑龙江</option>
+        <option value="">辽宁</option>
+        <option value="" selected>-请选择省份-</option>
+      </select>
+      <br />
+      <br />
+      <!-- button 按钮 -->
+      <!-- <input type="button" value="提交" /> -->
+      <input type="submit" value="提交" />
+    </form>
+  </body>
+</html>
+
+```
+
+
+
+即使访问网页不存在，但仍能看post方式提交的信息
+
+![image-20220728131000535](HTML,CSS.assets/image-20220728131000535.png)
+
+
+
+
+
+# 04_HTML_form表单2
+
+地址栏结构：https://www.baidu.com/?username=1234&pwd=123&gender=on
+
+- https://www.baidu.com/	服务器地址
+- ?     代表数据的开始
+- 数据名+数据值 中间 & 连接
+
+
+
+```html
+<html>
+  <head></head>
+  <body>
+    <!-- 
+        form标签是可以使浏览器输入的信息提交到后台的标签 
+        action放我们自己服务器的地址
+
+        1 使用 form标签 包裹数据提交的范围
+        2 通过action属性 确定数据要提交的地址
+        3 通过method属性确定提交的方式
+
+            get方式
+            1 数据通过地址栏传递 地址栏有长度限制 传递的数据量有限 
+            2 地址栏只能放文字 get方式只能提交文本类型的数据 不能上次文件
+            3 数据显示在地址栏上 数据相对不安全
+
+            post 方式提交
+            1 数据不通过地址栏 单独打成数据包发送 数据包的大小一般认为没有限制 传输的 数据量大
+            2 数据包可以放文字 也可以放文件 可以上传文件
+            3 数据不显示在地址栏上 数据相对安全
+
+        4 准备一个提交按钮 
+            不能是button button只是一个简单的按钮 不具备提交功能
+            应该用submit submit具备提交数据的功能
+            submit 必须在form表单内部 标志提交 的是当前所在的表单
+
+        5 给需要提交数据的输入框添加 name 和 value 属性
+            name属性是给数据起名字的 为了让后台区分不同数据的含义
+            一般name值起个username（用户名）/account（账号）就可以了 其他的也行
+            value用于定义提交的数据
+
+            不是标签包含 name 和 value 属性就可以提交，需要是有输入框的
+            像下面的段落标签就提交不了，因为没有输入框
+
+        提交按钮需在form表单之内
+
+        
+     -->
+    <!-- 为了方便还是把它改成get ，把post方式注释了-->
+    <form action="https://www.baidu.com/" method="get">
+      <!-- <form action="https://www.baidu.com/" method="post"> -->
+      <!-- 
+        value属性其实就是输入框上我们实际输入的值
+        没添加name属性的话它是提交失败的
+       -->
+      账号: <input type="text" name="username" value="1234" /><br />
+      密码: <input type="password" name="pwd" /> <br />
+      性别:
+      <!-- 
+        后面的男和女跟前面的标签没有联系，相当于是提示而已 
+        在标签里不写value值的话，提交的gender信息都是 gender=on，
+        后台服务器无法区分是勾选男单选框还是女单选框
+        用中文可能出现乱码问题，我们也可以用 1代表男 0代表女 来代替中文
+    -->
+      <input type="radio" name="gender" value="男" checked />男
+      <input type="radio" name="gender" value="女" />女 <br />
+
+      爱好:
+      <input type="checkbox" name="hobby" value="1" />篮球
+      <input type="checkbox" name="hobby" value="2" />足球
+      <input type="checkbox" name="hobby" value="3" />桌球
+      <input type="checkbox" name="hobby" value="4" />网球
+      <input type="checkbox" name="hobby" value="5" />羽毛球
+      <input type="checkbox" name="hobby" value="6" />玻璃球
+      <br />
+
+      请选择文件
+      <!-- 
+        后续文件上传再处理 
+        某些标签需要自己指定value值，某些标签不用自己指定
+    -->
+      <input type="file" /><br />
+
+      个人简介:
+      <!-- 这里value不写是因为写在双标签中间了 -->
+      <textarea style="width: 40%; height: 200px" name="intro">
+请介绍一下你自己</textarea
+      >
+      <br />
+      籍贯:
+      <!-- 这里比较特殊，select标签中只放name属性，value值放在option标签中 -->
+      <select name="pro" multiple>
+        <option value="jl">吉林</option>
+        <option value="hlj">黑龙江</option>
+        <option value="ln">辽宁</option>
+        <option value="0" selected>-请选择省份-</option>
+      </select>
+      <br />
+      <br />
+      <p name="pname" value="pvalue">这里是一个段落</p>
+      <!-- button 按钮 -->
+      <!-- <input type="button" value="提交" /> -->
+      <input type="submit" value="提交" />
+      <input type="reset" value="清空" />
+    </form>
+  </body>
+</html>
+
+```
+
+
+
+**提交前**
+
+![image-20220728143235631](HTML,CSS.assets/image-20220728143235631.png)
+
+**提交后**
+
+![image-20220728143440059](HTML,CSS.assets/image-20220728143440059.png)
+
+地址栏上显示的数据
+
+https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&intro=%E6%98%AF%E9%99%88%E8%88%92%E8%88%92%E5%91%80%EF%BC%81&pro=hlj
+
+
+
+# 05_HTML_iframe标签
+
+框架标签
+
+> 作用：将多个不同的页面组织后显示在同一个页面上
+
+
+
+**iframe标签**
+
+可以在当前网页上引入其他的网页
+
+<img src="https://awesomescreenshot.s3.amazonaws.com/image/2366032/30746158-50a03b0179485f53af9c61803447b79e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20220728%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220728T073505Z&X-Amz-Expires=28800&X-Amz-SignedHeaders=host&X-Amz-Signature=e602ac18c0976b23f606fbf76f25f380ec35792c0b06968a7433765caf4d2cdd" alt="img"  />
+
+
+
+```html
+<html>
+  <head></head>
+  <body>
+    <!-- <iframe src="" frameborder="0"></iframe> -->
+    <!-- 
+        因为浏览器的height理论上是可以无限延伸的 
+        如果用百分比来表示height失效的话
+        用px像素点来表示就行
+        但我这里碰巧height用百分比% 可以表示
+        2022.07.28 iframe标签访问
+        https://baidu.com 和 https://jd.com
+        被拒绝访问
+
+        iframe标签可以访问网络文件和本地文件
+        iframe不会单独占一行，都调成50%一行不能俩文件的原因是
+        中间还有边线（界）什么的，加起来超过100%，调成都是49%就可以了
+    -->
+    <iframe
+      width="50%"
+      height="50%"
+      src="https://benn314.github.io/#/"
+    ></iframe>
+    <iframe
+      width="50%"
+      height="50%"
+      src="13_HTML_form表单1.html"
+      name="ifr"
+    ></iframe>
+    <!-- 注意这里写本地文件，因为同一层级才能写相对路径 -->
+    <iframe
+      width="50%"
+      height="50%"
+      src="C:\Users\小楷\Desktop\完结篇\12a04c90b5001178681e37b9d64a30d.jpg"
+    ></iframe>
+    <a href="http://www.baidu.com">百度</a>
+    <a href="http://www.taobao.com" target="ifr">淘宝</a>
+  </body>
+</html>
+
+```
+
+
+
+
+
+# 06_HTML_frameset标签
+

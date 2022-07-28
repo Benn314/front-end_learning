@@ -1,0 +1,38 @@
+<html>
+  <head></head>
+  <body>
+    <!-- <iframe src="" frameborder="0"></iframe> -->
+    <!-- 
+        因为浏览器的height理论上是可以无限延伸的 
+        如果用百分比来表示height失效的话
+        用px像素点来表示就行
+        但我这里碰巧height用百分比% 可以表示
+        2022.07.28 iframe标签访问
+        https://baidu.com 和 https://jd.com
+        被拒绝访问
+
+        iframe标签可以访问网络文件和本地文件
+        iframe不会单独占一行，都调成50%一行不能俩文件的原因是
+        中间还有边线（界）什么的，加起来超过100%，调成都是49%就可以了
+    -->
+    <iframe
+      width="50%"
+      height="50%"
+      src="https://benn314.github.io/#/"
+    ></iframe>
+    <iframe
+      width="50%"
+      height="50%"
+      src="13_HTML_form表单1.html"
+      name="ifr"
+    ></iframe>
+    <!-- 注意这里写本地文件，因为同一层级才能写相对路径 -->
+    <iframe
+      width="50%"
+      height="50%"
+      src="C:\Users\小楷\Desktop\完结篇\12a04c90b5001178681e37b9d64a30d.jpg"
+    ></iframe>
+    <a href="http://www.baidu.com">百度</a>
+    <a href="http://www.taobao.com" target="ifr">淘宝</a>
+  </body>
+</html>
