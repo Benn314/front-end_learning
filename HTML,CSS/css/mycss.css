@@ -1,0 +1,10 @@
+/* 
+    在html加style标签是为了告诉浏览器这一段是css代码 
+    现在在css文件中进行编写 自然就不用style标签啦
+*/
+
+span {
+  font-size: 20px;
+  color: rgb(131, 222, 113);
+  background-color: azure;
+}

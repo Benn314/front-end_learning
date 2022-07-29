@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+      /* 选择器 */
+      /**/
+      span {
+        font-size: 20px;
+        color: rgb(43, 255, 0);
+        background-color: azure;
+        font-family: "楷体";
+      }
+    </style>
+    <!-- 
+        stylesheet 样式表 
+        链接式
+    -->
+    <link rel="stylesheet" href="css/mycss.css" />
+  </head>
+  <body>
+    <!-- 
+        1 行内式引入
+        借助标签的style属性引入
+        style属性中的值 语法为 样式名:样式值; 样式名:样式值;......
+        
+        2 内嵌式
+        将CSS样式的代码 抽取出来 通过选择器确定样式作用的范围
+        在head标签中 使用一对style标签 定义css样式
+        在style标签中 注释写法 /*   */  写成 < !-- -- > 会报错 
+
+            优点：减少相同代码的编写量 减少代码的维护工作量
+
+        3 链接式
+        行内式只能将样式作用于当前标签
+        内嵌式可以将样式作用于多个标签 不能作用于其他网页
+        链接式可以将样式的作用范围扩大多个不同网页
+        链接式可以将CSS代码放入独立的.css文件中 可以使当前页面更加简洁
+        每一个需要引入样式的HTML 在head标签中使用link标签引入css文件即可
+    
+        4 当三种引入方式同时作用于同一个标签 如果样式有冲突 谁的优先级更高
+            优先级原则 就近原则
+            当行内式引入的优先级是最高的，因为谁也没它离目的标签更近
+
+        项目开发经常使用的是链接式的引入，把样式代码写入css文件，采用链接引入
+        避免代码冗余度高
+    -->
+
+    <span
+      style="
+        font-size: 20px;
+        color: darkgoldenrod;
+        background-color: rgb(64, 226, 226);
+      "
+    >
+      欢迎来到哈哈哈队伍
+    </span>
+    <br />
+    <span>欢迎来到哈哈哈队伍</span>
+    <br />
+    <span>欢迎来到哈哈哈队伍</span>
+    <br />
+    <span>欢迎来到哈哈哈队伍</span>
+  </body>
+</html>

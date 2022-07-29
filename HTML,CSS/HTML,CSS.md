@@ -148,6 +148,10 @@ set：集合
 
 charset：字符集
 
+
+
+**00_第一个网页.html**
+
 ```html
 <html>
   <!-- 最基本的标签，所有标签应该放在html标签当中 -->
@@ -226,6 +230,10 @@ charset：字符集
 
 元素里还包含着子元素
 
+
+
+**00_Day02_HTML.html**
+
 ```html
 <html>
   <head>
@@ -266,7 +274,7 @@ charset：字符集
 
 
 
-**段落标签**
+**01_HTML_段落标签.html**
 
 ```html
 <html>
@@ -306,7 +314,7 @@ charset：字符集
 
 
 
-格式化标签
+**02_HTML_格式化标签.html**
 
 ```html
 <html>
@@ -363,6 +371,10 @@ https://www.w3school.com.cn/html/html_formatting.asp
 
 emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 
+
+
+**03_HTML_字符实体.html**
+
 ```html
 <html>
   <head></head>
@@ -413,6 +425,10 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 
 # 04_HTML_超链接标签
 
+
+
+**04_HTML_超链接标签.html**
+
 ```html
 <html>
   <head></head>
@@ -461,6 +477,10 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 
 
 ![image-20220724004252925](HTML,CSS.assets/image-20220724004252925.png)
+
+
+
+**05_HTML_多媒体标签.html**
 
 ```html
 <html>
@@ -561,6 +581,8 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 
 
 
+**06_HTML_列表标签.html**
+
 ```html
 <html>
   <head></head>
@@ -615,6 +637,8 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 
 
 
+**07_HTML_定义列表.html**
+
 ```html
 <html>
   <head></head>
@@ -656,6 +680,10 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 ![image-20220725110212766](HTML,CSS.assets/image-20220725110212766.png)
 
 table包含tr包含td
+
+
+
+**08_HTML_表格标签.html**
 
 ```html
 <html>
@@ -702,6 +730,10 @@ table包含tr包含td
 # 10_HTML_thead_tfoot_tbody_th
 
 ![image-20220725130030114](HTML,CSS.assets/image-20220725130030114.png)
+
+
+
+**08_HTML_表格标签.html**
 
 ```html
 <html>
@@ -787,6 +819,8 @@ table包含tr包含td
 
 
 
+**09_HTML_表格的跨行和跨列.html**
+
 ```html
 <html>
   <head></head>
@@ -839,6 +873,10 @@ table包含tr包含td
 ![image-20220725143148069](HTML,CSS.assets/image-20220725143148069.png)
 
 # 12_HTML_表格的嵌套
+
+
+
+**10_HTML_表格的嵌套.html**
 
 ```html
 <html>
@@ -922,6 +960,8 @@ table包含tr包含td
 
 
 
+
+
 # 01_HTML_输入标签
 
 ---
@@ -932,6 +972,8 @@ table包含tr包含td
 - 绝对路径 \
 
 ---
+
+**11_HTML_输入标签.html**
 
 ```html
 <html>
@@ -991,6 +1033,8 @@ table包含tr包含td
 # 02_HTML_输入标签练习
 
 
+
+**12_HTML_输入标签练习.html**
 
 ```html
 <html>
@@ -1088,6 +1132,8 @@ table包含tr包含td
 
 
 
+**13_HTML_form表单1.html**
+
 ```html
 <html>
   <head></head>
@@ -1178,6 +1224,8 @@ table包含tr包含td
 - 数据名+数据值 中间 & 连接
 
 
+
+**13_HTML_form表单1.html**
 
 ```html
 <html>
@@ -1311,6 +1359,8 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 <img src="https://awesomescreenshot.s3.amazonaws.com/image/2366032/30746158-50a03b0179485f53af9c61803447b79e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20220728%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220728T073505Z&X-Amz-Expires=28800&X-Amz-SignedHeaders=host&X-Amz-Signature=e602ac18c0976b23f606fbf76f25f380ec35792c0b06968a7433765caf4d2cdd" alt="img"  />
 
 
+
+**14_HTML_iframe.html**
 
 ```html
 <html>
@@ -1463,6 +1513,8 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 
 
+**16_HTML_span和div.html**
+
 ```html
 <html>
   <head></head>
@@ -1490,3 +1542,102 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 
 ![image-20220728205134547](HTML,CSS.assets/image-20220728205134547.png)
+
+
+
+# 08_CSS_三种引入方式
+
+![image-20220728221854941](HTML,CSS.assets/image-20220728221854941.png)
+
+![CSS](HTML,CSS.assets/image-20220728221830005.png)
+
+
+
+**17_CSS_引入方式.html**
+
+```html
+<html>
+  <head>
+    <title></title>
+    <style>
+      /* 选择器 */
+      /**/
+      span {
+        font-size: 20px;
+        color: rgb(43, 255, 0);
+        background-color: azure;
+        font-family: "楷体";
+      }
+    </style>
+    <!-- 
+        stylesheet 样式表 
+        链接式
+    -->
+    <link rel="stylesheet" href="css/mycss.css" />
+  </head>
+  <body>
+    <!-- 
+        1 行内式引入
+        借助标签的style属性引入
+        style属性中的值 语法为 样式名:样式值; 样式名:样式值;......
+        
+        2 内嵌式
+        将CSS样式的代码 抽取出来 通过选择器确定样式作用的范围
+        在head标签中 使用一对style标签 定义css样式
+        在style标签中 注释写法 /*   */  写成 < !-- -- > 会报错 
+
+            优点：减少相同代码的编写量 减少代码的维护工作量
+
+        3 链接式
+        行内式只能将样式作用于当前标签
+        内嵌式可以将样式作用于多个标签 不能作用于其他网页
+        链接式可以将样式的作用范围扩大多个不同网页
+        链接式可以将CSS代码放入独立的.css文件中 可以使当前页面更加简洁
+        每一个需要引入样式的HTML 在head标签中使用link标签引入css文件即可
+    
+        4 当三种引入方式同时作用于同一个标签 如果样式有冲突 谁的优先级更高
+            优先级原则 就近原则
+            当行内式引入的优先级是最高的，因为谁也没它离目的标签更近
+
+        项目开发经常使用的是链接式的引入，把样式代码写入css文件，采用链接引入
+        避免代码冗余度高
+    -->
+
+    <span
+      style="
+        font-size: 20px;
+        color: darkgoldenrod;
+        background-color: rgb(64, 226, 226);
+      "
+    >
+      欢迎来到哈哈哈队伍
+    </span>
+    <br />
+    <span>欢迎来到哈哈哈队伍</span>
+    <br />
+    <span>欢迎来到哈哈哈队伍</span>
+    <br />
+    <span>欢迎来到哈哈哈队伍</span>
+  </body>
+</html>
+
+```
+
+
+
+**mycss.css**
+
+```css
+/* 
+    在html加style标签是为了告诉浏览器这一段是css代码 
+    现在在css文件中进行编写 自然就不用style标签啦
+*/
+
+span {
+  font-size: 20px;
+  color: rgb(131, 222, 113);
+  background-color: azure;
+}
+
+```
+
