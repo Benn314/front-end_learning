@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <style>
+      /*
+        就算是后台人员也要熟练使用的三大选择器
+        1 标签名选择器（元素选择器）
+        2 id选择器
+        3 类选择器
+        */
+
+      /*
+        标签名选择器
+            给页面所有同名的标签定义样式的选择器
+            语法 标签名(样式)
+        */
+      span {
+        background-color: skyblue;
+        font-size: 40px;
+        font-family: "楷体";
+        color: olivedrab;
+      }
+      /*
+        id选择器
+        一般body中的任何一个标签都有id属性
+        id属性的值一般在同一个网页上是不允许有重复值
+        id属性一般用于帮助我们定位到页面上唯一的一个标签
+        id属性值命名有规则
+            不能有空格和一些特殊符号 特殊符号中仅可以使用 _ 和 $
+            不推荐 $ 会和后面js框架的jQuery命名冲突
+            不能以数字为开头
+            推荐写法 英文字母开头 数字放在后面
+        
+        语法：#id值{样式}
+
+        dotted 点虚线
+      */
+      #p1 {
+        border: 1px dotted blue;
+        background-color: gray;
+        color: aqua;
+        width: 180px;
+        height: 60px;
+      }
+
+      /*
+        类选择器
+        一般body中的所有标签都有class属性
+        多个不同的标签可以有相同的class属性值
+        通过标签的class属性确定样式的作用范围
+        语法 .class属性值{样式}
+
+        超链接 href="#" 意思是访问当前网页
+            text-decoration: none; 代表什么文本装饰都没有，
+            超链接文本就会去除下划线
+      */
+      .c1 {
+        background-color: beige;
+        font-size: 50px;
+        font-family: "宋体";
+        color: black;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <span id="s1">今天心情有点不好</span>
+    <br />
+    <span id="s2">今天心情有点不好</span>
+    <p id="p1">今天心情有点不好</p>
+    <p id="p2">今天心情有点不好</p>
+    <!-- id名相同虽然也好使，但极其不推荐这么做 -->
+    <p id="p3" class="c1">今天心情有点不好</p>
+    <h1 id="ha" class="c1">今天心情有点不好</h1>
+    <!-- id名和标签名相同虽然也没事，但能不同就尽量不同吧 -->
+    <a href="#" class="c1">我跳转我自己</a>
+  </body>
+</html>
