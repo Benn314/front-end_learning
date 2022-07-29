@@ -1509,7 +1509,7 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 ![image-20220728203056349](HTML,CSS.assets/image-20220728203056349.png)
 
-![image-20220728203313724](HTML,CSS.assets/image-20220728203313724.png)
+![image-20220728203313724](HTML,CSS.assets/image-20220728203313724.png)  
 
 
 
@@ -1549,7 +1549,7 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 ![image-20220728221854941](HTML,CSS.assets/image-20220728221854941.png)
 
-![CSS](HTML,CSS.assets/image-20220728221830005.png)
+![CSS](HTML,CSS.assets/image-20220728221830005.png)  
 
 
 
