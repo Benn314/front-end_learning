@@ -1406,11 +1406,11 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 
 
-
+  
 
 # 06_HTML_frameset标签
 
-
+  
 
 **15_HTML_frameset.html**
 
@@ -1450,7 +1450,7 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 ```
 
-
+  
 
 **left.html**
 
@@ -1467,7 +1467,7 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 ```
 
-
+  
 
 **top.html**
 
@@ -1481,7 +1481,7 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 ```
 
-
+  
 
 **bottom.html**
 
@@ -1495,13 +1495,13 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 ```
 
-
+  
 
 ![image-20220728202931859](HTML,CSS.assets/image-20220728202931859.png)
 
 
 
-
+  
 
 # 07_HTML_span和div
 
@@ -1511,7 +1511,7 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 ![image-20220728203313724](HTML,CSS.assets/image-20220728203313724.png)
 
-
+  
 
 **16_HTML_span和div.html**
 
@@ -1551,7 +1551,7 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 ![CSS](HTML,CSS.assets/image-20220728221830005.png)  
 
-
+  
 
 **17_CSS_引入方式.html**
 
@@ -1623,7 +1623,7 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 ```
 
-​                       
+  
 
 **mycss.css**
 
