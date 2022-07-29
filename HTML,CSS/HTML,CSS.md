@@ -1,6 +1,6 @@
 # 01_HTML_CS和BS模式
 
-
+​	
 
 ![image-20220722114325067](HTML,CSS.assets/image-20220722114325067.png)
 
@@ -14,7 +14,7 @@
 
 ​	
 
-
+​	
 
 # 02_HTML_互联网三大基石
 
@@ -36,11 +36,11 @@
 
 ![image-20220722122840129](HTML,CSS.assets/image-20220722122840129.png)
 
-
+​	
 
 安全卫士垃圾清理的上网残留垃圾清理文件的产生：浏览器从对应URL服务器获取的HTML文件下载缓存到本地的文件，可进行清理
 
-
+​	
 
 ![image-20220722123950364](HTML,CSS.assets/image-20220722123950364.png)
 
@@ -50,13 +50,13 @@
 
 ![image-20220722160732057](HTML,CSS.assets/image-20220722160732057.png)
 
-
+​	
 
 # 04_HTML_HTML
 
 ![image-20220722163038785](HTML,CSS.assets/image-20220722163038785.png)
 
-
+​	
 
 ```html
 <html>
@@ -73,21 +73,21 @@
 </html>
 ```
 
-
+​	
 
 # 06_HTML_Hbuilder的简单操作
 
-
+​	
 
 ![image-20220722172505449](HTML,CSS.assets/image-20220722172505449.png)
 
 ![image-20220722172515603](HTML,CSS.assets/image-20220722172515603.png)
 
-
+​	
 
 # 07_HTML_乱码问题
 
-
+​	
 
 打开协议的变化，导致了乱码
 
@@ -105,7 +105,7 @@ GBK是字符集，UTF-8也是字符集，乱码产生原因就是在这
 
 使用字符集不一致是产生乱码的原因之一（编辑器使用的字符集和浏览器使用的字符集不一致）
 
-
+​	
 
 单标签只有开头没有结尾 <meta charset="utf-8" /> ，告诉浏览器以UTF-8字符集解析文字
 
@@ -148,7 +148,7 @@ set：集合
 
 charset：字符集
 
-
+​	
 
 **00_第一个网页.html**
 
@@ -204,7 +204,7 @@ charset：字符集
 
 ```
 
-
+​	
 
 # 00_HTML_回顾
 
@@ -218,7 +218,7 @@ charset：字符集
 
 标签和属性是不区分大小写的，一般都是小写
 
-
+​	
 
 ![image-20220722223544526](HTML,CSS.assets/image-20220722223544526.png)
 
@@ -230,7 +230,7 @@ charset：字符集
 
 元素里还包含着子元素
 
-
+​	
 
 **00_Day02_HTML.html**
 
@@ -262,7 +262,7 @@ charset：字符集
 </html>
 ```
 
-
+​	
 
 # 02_HTML_段落和格式化标签
 
@@ -272,7 +272,7 @@ charset：字符集
 
 ![image-20220723082320801](HTML,CSS.assets/image-20220723082320801.png)
 
-
+​	
 
 **01_HTML_段落标签.html**
 
@@ -312,7 +312,7 @@ charset：字符集
 </html>
 ```
 
-
+​	
 
 **02_HTML_格式化标签.html**
 
@@ -357,11 +357,11 @@ https://www.w3school.com.cn/html/html_formatting.asp
 
 ![image-20220723095812731](HTML,CSS.assets/image-20220723095812731.png)
 
-
+​	
 
 # 03_HTML_字符实体和特殊符号
 
-
+​	
 
 ![image-20220723105247953](HTML,CSS.assets/image-20220723105247953.png)
 
@@ -371,7 +371,7 @@ https://www.w3school.com.cn/html/html_formatting.asp
 
 emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 
-
+​	
 
 **03_HTML_字符实体.html**
 
@@ -421,11 +421,11 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 
 要打什么特殊符号可以找上面链接
 
-
+​	
 
 # 04_HTML_超链接标签
 
-
+​	
 
 **04_HTML_超链接标签.html**
 
@@ -462,7 +462,7 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 
 ```
 
-
+​	
 
 # 05
 
@@ -474,11 +474,11 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 
 上图知识点要知道！
 
-
+​	
 
 ![image-20220724004252925](HTML,CSS.assets/image-20220724004252925.png)
 
-
+​	
 
 **05_HTML_多媒体标签.html**
 
@@ -573,13 +573,13 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 
 ```
 
+​	
 
-
-
+​	
 
 # 07_HTML_有序和无序列表
 
-
+​	
 
 **06_HTML_列表标签.html**
 
@@ -631,11 +631,11 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 </html>
 ```
 
-
+​	
 
 # 08_HTML_定义列表
 
-
+​	
 
 **07_HTML_定义列表.html**
 
@@ -671,7 +671,7 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 </html>
 ```
 
-
+​	
 
 # 09_HTML_table_tr_td标签
 
@@ -681,7 +681,7 @@ emoji符号：https://www.w3school.com.cn/html/html_emoji.asp
 
 table包含tr包含td
 
-
+​	
 
 **08_HTML_表格标签.html**
 
@@ -725,13 +725,13 @@ table包含tr包含td
 
 ```
 
-
+​	
 
 # 10_HTML_thead_tfoot_tbody_th
 
 ![image-20220725130030114](HTML,CSS.assets/image-20220725130030114.png)
 
-
+​	
 
 **08_HTML_表格标签.html**
 
@@ -797,9 +797,11 @@ table包含tr包含td
 
 ```
 
-
+​	
 
 # 11_HTML_表格的跨行和跨列
+
+​	
 
 ![image-20220725140434557](HTML,CSS.assets/image-20220725140434557.png)
 
@@ -817,7 +819,7 @@ table包含tr包含td
 
 它是这么占位置的，跨行后记得删除不需要的单元格
 
-
+​	
 
 **09_HTML_表格的跨行和跨列.html**
 
@@ -874,7 +876,7 @@ table包含tr包含td
 
 # 12_HTML_表格的嵌套
 
-
+​	
 
 **10_HTML_表格的嵌套.html**
 
@@ -944,23 +946,23 @@ table包含tr包含td
 
 ```
 
-
+​	
 
 ![image-20220725150210661](HTML,CSS.assets/image-20220725150210661.png)
 
-
+​	
 
 # 00_HTML_回顾
 
-
+​	
 
 ![image-20220725151358695](HTML,CSS.assets/image-20220725151358695.png)
 
 ![image-20220725151627127](HTML,CSS.assets/image-20220725151627127.png)
 
+​	
 
-
-
+​	
 
 # 01_HTML_输入标签
 
@@ -1026,13 +1028,13 @@ table包含tr包含td
 
 ```
 
+​	
 
-
-
+​	
 
 # 02_HTML_输入标签练习
 
-
+​	
 
 **12_HTML_输入标签练习.html**
 
@@ -1120,17 +1122,17 @@ table包含tr包含td
 
 ```
 
-
+​	
 
 ![image-20220728121904971](HTML,CSS.assets/image-20220728121904971.png)
 
-
+​	
 
 # 03_HTML_form表单1
 
 ![image-20220728123145671](HTML,CSS.assets/image-20220728123145671.png)
 
-
+​	
 
 **13_HTML_form表单1.html**
 
@@ -1205,15 +1207,15 @@ table包含tr包含td
 
 ```
 
-
+​	
 
 即使访问网页不存在，但仍能看post方式提交的信息
 
 ![image-20220728131000535](HTML,CSS.assets/image-20220728131000535.png)
 
+​	
 
-
-
+​	
 
 # 04_HTML_form表单2
 
@@ -1223,7 +1225,7 @@ table包含tr包含td
 - ?     代表数据的开始
 - 数据名+数据值 中间 & 连接
 
-
+​	
 
 **13_HTML_form表单1.html**
 
@@ -1328,7 +1330,7 @@ table包含tr包含td
 
 ```
 
-
+​	
 
 **提交前**
 
@@ -1342,7 +1344,7 @@ table包含tr包含td
 
 https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&intro=%E6%98%AF%E9%99%88%E8%88%92%E8%88%92%E5%91%80%EF%BC%81&pro=hlj
 
-
+​	
 
 # 05_HTML_iframe标签
 
@@ -1350,7 +1352,7 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 > 作用：将多个不同的页面组织后显示在同一个页面上
 
-
+​	
 
 **iframe标签**
 
@@ -1358,7 +1360,7 @@ https://www.baidu.com/?username=1234&pwd=12&gender=%E7%94%B7&hobby=1&hobby=6&int
 
 <img src="https://awesomescreenshot.s3.amazonaws.com/image/2366032/30746158-50a03b0179485f53af9c61803447b79e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20220728%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220728T073505Z&X-Amz-Expires=28800&X-Amz-SignedHeaders=host&X-Amz-Signature=e602ac18c0976b23f606fbf76f25f380ec35792c0b06968a7433765caf4d2cdd" alt="img"  />
 
-
+​	
 
 **14_HTML_iframe.html**
 
@@ -1640,4 +1642,6 @@ span {
 }
 
 ```
+
+
 
