@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <style>
+      .div1 {
+        width: 200px;
+        height: 200px;
+        background-color: lightyellow;
+        border: 1px solid lightcoral;
+      }
+      .s1 {
+        /*
+            行内元素设置宽和高未必有效
+            块元素设置宽和高一定有效
+        */
+        width: 100px;
+        height: 100px;
+        background-color: greenyellow;
+        border: 1px solid blue;
+        display: block;
+        /*
+            span是行内元素
+            行内元素没有盒子模型
+            行内元素没有办法设置内边距和外边距特征
+            只有块标签才有盒子模型 才可以设置内边距和外边距
+            如果一个行内标签 非要使用盒子模型 那么可以将行内元素转换为块元素
+            display block 行内转换为块  inline 块转换为行内
+        */
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">
+      <span class="s1">舒舒</span>
+    </div>
+  </body>
+</html>

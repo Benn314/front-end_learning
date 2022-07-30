@@ -2108,3 +2108,165 @@ margin	页边空白
 
 ```
 
+​	
+
+​	
+
+# 02_CSS_盒子模型外边距
+
+> margin: 200px;	/* 验证设置当前模块上下左右四个外边距都是200px	*/
+
+![image-20220730162854025](HTML,CSS.assets/image-20220730162854025.png)
+
+![image-20220730163057614](HTML,CSS.assets/image-20220730163057614.png)
+
+​	
+
+**22_CSS_盒子模型外边距.html**
+
+```html
+<html>
+  <head>
+    <style>
+      #div1 {
+        border: 1px solid red;
+        background-color: darkcyan;
+        width: 300px;
+        height: 300px;
+        /*
+            padding 内边距
+            margin 外边距 当前块标签外部的和父级块标签之间的距离
+        */
+        margin: 200px; /*设置当前模块上下左右四个外边距都是200px 验证一下 下边距和右边距也是200px*/
+        margin: 50px 100px;
+        margin: 10px 20px 30px 40px; /*顺时针设置外边距*/
+        /*单独设置*/
+        margin-top: 10px;
+        margin-right: 20px;
+        margin-bottom: 30px;
+        margin-left: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div1"></div>
+    舒舒
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220730165018492](HTML,CSS.assets/image-20220730165018492.png)
+
+​	
+
+![image-20220730165111880](HTML,CSS.assets/image-20220730165111880.png)
+
+**23_CSS_外边距设置居中.html**
+
+```html
+<html>
+  <head>
+    <style>
+      .outerdiv {
+        width: 400px;
+        height: 400px;
+        border: 1px solid red;
+        /*调整外边盒子的内边距*/
+        /*padding-top: 20px;
+        padding-left: 20px;*/
+        /*
+            设置内边距不会侵占内部空间，而是会向外扩张
+            所以外边界大小变为420px 420px
+            auto    自动平均分配
+            左右能auto实现居中 而上下不能
+                原因：网页理论上下是无限长的 所以上下实现居中只能自己手动调整
+        */
+        /*设置横向居中*/
+        margin: 0px auto;
+      }
+      .innerdiv {
+        width: 200px;
+        height: 200px;
+        border: 1px solid green;
+        /*调整内部盒子的外边距*/
+        margin-top: 20px;
+        margin-left: 20px;
+        /*外边界大小不变 400px 400px*/
+        /*设置横向居中*/
+        margin: 0px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outerdiv">
+      <div class="innerdiv"><center>你好呀</center></div>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220730171144189](HTML,CSS.assets/image-20220730171144189.png)
+
+​	
+
+​	
+
+# 03_CSS_行内元素和块元素的转换
+
+​	
+
+**24_CSS_块元素的转换.html**
+
+```html
+<html>
+  <head>
+    <style>
+      .div1 {
+        width: 200px;
+        height: 200px;
+        background-color: lightyellow;
+        border: 1px solid lightcoral;
+      }
+      .s1 {
+        /*
+            行内元素设置宽和高未必有效
+            块元素设置宽和高一定有效
+        */
+        width: 100px;
+        height: 100px;
+        background-color: greenyellow;
+        border: 1px solid blue;
+        display: block;
+        /*
+            span是行内元素
+            行内元素没有盒子模型
+            行内元素没有办法设置内边距和外边距特征
+            只有块标签才有盒子模型 才可以设置内边距和外边距
+            如果一个行内标签 非要使用盒子模型 那么可以将行内元素转换为块元素
+            display block 行内转换为块  inline 块转换为行内
+        */
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">
+      <span class="s1">舒舒</span>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220730194538927](HTML,CSS.assets/image-20220730194538927.png)
+
+# 04_CSS_盒子模型总结
+

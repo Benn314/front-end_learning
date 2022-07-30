@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <style>
+      .outerdiv {
+        width: 400px;
+        height: 400px;
+        border: 1px solid red;
+        /*调整外边盒子的内边距*/
+        /*padding-top: 20px;
+        padding-left: 20px;*/
+        /*
+            设置内边距不会侵占内部空间，而是会向外扩张
+            所以外边界大小变为420px 420px
+            auto    自动平均分配
+            左右能auto实现居中 而上下不能
+                原因：网页理论上下是无限长的 所以上下实现居中只能自己手动调整
+        */
+        /*设置横向居中*/
+        margin: 0px auto;
+      }
+      .innerdiv {
+        width: 200px;
+        height: 200px;
+        border: 1px solid green;
+        /*调整内部盒子的外边距*/
+        margin-top: 20px;
+        margin-left: 20px;
+        /*外边界大小不变 400px 400px*/
+        /*设置横向居中*/
+        margin: 0px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outerdiv">
+      <div class="innerdiv"><center>你好呀</center></div>
+    </div>
+  </body>
+</html>
