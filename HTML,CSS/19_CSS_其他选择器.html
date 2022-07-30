@@ -4,18 +4,60 @@
       /*
         层级选择器
         通过层级关系定位样式的作用范围
+        p span{} 范围覆盖p标签中的span标签 无论第几级子标签
+        层级选择器的每个层级的确定可以是标签名 id class
       */
-      span {
+      p font span {
         color: rgb(51, 153, 237);
       }
-      /**/
-      /**/
+
+      #p1 .s1 {
+        color: rgb(1, 61, 63);
+      }
+      /*
+        属性选择器
+        根据标签的某个属性的特定属性值确定样式的作用范围
+      */
+
+      /*两种写法*/
+      input[type="password"] {
+        width: 300px;
+        height: 40px;
+      }
+      .i[type="password"] {
+        width: 300px;
+        height: 80px;
+      }
+
+      /*
+        分组选择器
+        可以将多个不同层级关系 不同class属性 id 标签名同时使用相同的样式效果
+        用 , 表示关系与 & 来建立分组信息
+      */
+      h1,
+      .ch,
+      .s2,
+      #pa {
+        color: cornflowerblue;
+      }
     </style>
   </head>
   <body>
     <span>舒舒</span>
-    <p>
-      <span>舒舒</span>
+    <p id="p1">
+      <span class="s1">舒舒</span>
+      <font><span>舒舒</span></font>
     </p>
+
+    <input class="i" type="text" />
+    <input class="i" type="password" />
+    <input class="i" type="password" />
+    <input class="i" type="password" />
+    <input type="password" />
+
+    <h1 id="ha">凯茵当然是我妹啦</h1>
+    <h2 class="ch">凯茵当然是我妹啦</h2>
+    <span class="s2">凯茵当然是我妹啦</span>
+    <p id="pa">凯茵当然是我妹啦</p>
   </body>
 </html>
