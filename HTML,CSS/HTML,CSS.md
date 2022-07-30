@@ -2057,7 +2057,7 @@ padding: 50px 100px;	/*结果大小变为 width:600px height:500px*/
 
 ![image-20220730154418733](HTML,CSS.assets/image-20220730154418733.png)
 
-padding的值设置顺序默认为：**逆时针方向**
+padding的值设置顺序默认为：**顺时针方向**
 
 ​	
 
