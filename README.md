@@ -7,15 +7,18 @@
 **学习进度汇报模板**
 
 ```apl
-X月XX日 【姓名】
-遇到的问题：
-XXXXXXX
+x月xx日 【name】
 
-今日小结：
-XXXXXX
+遇到的问题
+Xxxxxx
 
-明日计划：
-XXXXXX
+今日小结
+1.学习了xxx
+2.看到了第xx集
+3.xxx
+
+明日计划
+1.学到第xx集
 ```
 
 ​	

@@ -2270,3 +2270,56 @@ margin	页边空白
 
 # 04_CSS_盒子模型总结
 
+![image-20220730234036140](HTML,CSS.assets/image-20220730234036140.png)
+
+**25_CSS_盒子模型总结.html**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      #d1 {
+        /*
+            width   宽度 内部的容量横向为 **像素
+            height  高度 内部的容量纵向为 **像素
+            盒子模型无论是内边距还是外边距的调整都不会影响块标签内部的容量
+        */
+        width: 200px;
+        height: 200px;
+        background-color: yellow;
+        border: 20px solid green;
+        /*通过运行可知，加上边线后，总大小变成240px 240px*/
+        /*padding: 20px;*/
+      }
+      #d2 {
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        margin-top: 20px;
+        /*
+            外边距会侵占空间
+            内边距不会侵占空间
+        */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="d1">
+      <div id="d2">舒舒</div>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220730234732463](HTML,CSS.assets/image-20220730234732463.png)
+
+​	
+
+# 05_CSS_浮动
+
