@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <style>
+      /*
+        border: double    是双边线的意思
+                groove    凹槽线
+        padding 内边距
+            内边距 内部元素距离当前块元素边界的距离
+        */
+      #div1 {
+        border: 1px groove red;
+        width: 400px;
+        height: 400px;
+        padding: 100px; /*同时设置了4个上下左右的内边距都是100px*/
+        /*设置上下内边距为50px  左右内边距为100px*/
+        padding: 50px 100px; /*结果大小变为 width:600px height:500px*/
+        /*设置逆时针方向的四个内边距*/
+        padding: 10px 20px 30px 40px;
+        /*也可以分别单独设置4个内边距*/
+        padding-top: 10px;
+        padding-right: 20px;
+        padding-bottom: 30px;
+        padding-left: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- div标签内部什么标签都可以放 -->
+    <div id="div1">舒舒</div>
+  </body>
+</html>

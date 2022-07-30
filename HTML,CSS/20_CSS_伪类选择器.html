@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <style>
+      /*
+        hover   鼠标悬停链接
+        
+        除此之外，还有3个状态可以定义一下
+        link    未访问的链接
+        visited 已访问的链接
+        active  已选择的链接    鼠标悬停按住不放
+
+        伪类选择器可以四个同时使用
+        也可以单个使用
+        如果四个同时使用 要注意顺序
+
+        **注意：**`a:hover` 必须在 CSS 定义中的 `a:link` 和 `a:visited` 之后，
+        才能生效！`a:active` 必须在 CSS 定义中的 `a:hover` 之后才能生效！
+        伪类名称对大小写不敏感。
+        */
+      a:link {
+        color: black;
+        text-decoration: none;
+      }
+      a:visited {
+        color: darkgray;
+      }
+      a:hover {
+        color: yellowgreen;
+      }
+      a:active {
+        color: darkred;
+      }
+      div {
+        border: 1px double green;
+        width: 100px;
+        height: 100px;
+        background-color: lightyellow;
+      }
+      div:hover {
+        background-color: yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+        由于浏览器会记录历史信息
+        刚打开html文件时，超链接文字为蓝色，点击后无论如何刷新
+        超链接文字都会变成紫色
+        但如果鼠标点击按住超链接文字，它会变成红色，
+        鼠标悬停的话，无状态发生 所以总共有三种状态
+
+        ctrl+shift+del 清除历史记录
+            这样超链接文字就会又变回蓝色了
+    -->
+    <a href="http://www.baidu.com">百度</a>
+    <div></div>
+  </body>
+</html>

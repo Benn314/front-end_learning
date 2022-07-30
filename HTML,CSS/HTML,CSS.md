@@ -1822,3 +1822,289 @@ style属性是CSS的样式属性，所以style属性内的注释形式是 /* */
 ​	
 
 ![image-20220730134455065](HTML,CSS.assets/image-20220730134455065.png)
+
+​	
+
+​	
+
+# 11_CSS_伪类选择器
+
+> CSS 伪类用于向某些选择器添加特殊效果
+
+​	
+
+**什么是伪类？**
+
+伪类用于定义元素的特殊状态。
+
+例如，它可以用于：
+
+- 设置鼠标悬停在元素上时的样式
+- 为已访问和未访问链接设置不同的样式
+- 设置元素获得焦点时的样式
+
+​	
+
+**语法**
+
+伪类的语法：
+
+```css
+selector:pseudo-class {
+  property: value;
+}
+/*
+	property 属性
+	pseudo	 伪装;假冒
+*/
+```
+
+​	
+
+**锚伪类**
+
+链接能够以不同的方式显示：
+
+**实例**
+
+```css
+/* 未访问的链接 */
+a:link {
+  color: #FF0000;
+}
+
+/* 已访问的链接 */
+a:visited {
+  color: #00FF00;
+}
+
+/* 鼠标悬停链接 */
+a:hover {
+  color: #FF00FF;
+}
+
+/* 已选择的链接 */
+a:active {
+  color: #0000FF;
+}
+```
+
+[亲自试一试](https://www.w3school.com.cn/tiy/t.asp?f=css_link_1)
+
+**注意：**`a:hover` 必须在 CSS 定义中的 `a:link` 和 `a:visited` 之后，才能生效！`a:active` 必须在 CSS 定义中的 `a:hover` 之后才能生效！伪类名称对大小写不敏感。
+
+​	
+
+![image-20220730141916359](HTML,CSS.assets/image-20220730141916359.png)
+
+​	
+
+**20_CSS_伪类选择器.html**
+
+```html
+<html>
+  <head>
+    <style>
+      /*
+        hover   鼠标悬停链接
+        
+        除此之外，还有3个状态可以定义一下
+        link    未访问的链接
+        visited 已访问的链接
+        active  已选择的链接    鼠标悬停按住不放
+
+        伪类选择器可以四个同时使用
+        也可以单个使用
+        如果四个同时使用 要注意顺序
+
+        **注意：**`a:hover` 必须在 CSS 定义中的 `a:link` 和 `a:visited` 之后，
+        才能生效！`a:active` 必须在 CSS 定义中的 `a:hover` 之后才能生效！
+        伪类名称对大小写不敏感。
+        */
+      a:link {
+        color: black;
+        text-decoration: none;
+      }
+      a:visited {
+        color: darkgray;
+      }
+      a:hover {
+        color: yellowgreen;
+      }
+      a:active {
+        color: darkred;
+      }
+      div {
+        border: 1px double green;
+        width: 100px;
+        height: 100px;
+        background-color: lightyellow;
+      }
+      div:hover {
+        background-color: yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+        由于浏览器会记录历史信息
+        刚打开html文件时，超链接文字为蓝色，点击后无论如何刷新
+        超链接文字都会变成紫色
+        但如果鼠标点击按住超链接文字，它会变成红色，
+        鼠标悬停的话，无状态发生 所以总共有三种状态
+
+        ctrl+shift+del 清除历史记录
+            这样超链接文字就会又变回蓝色了
+    -->
+    <a href="http://www.baidu.com">百度</a>
+    <div></div>
+  </body>
+</html>
+
+```
+
+​	
+
+<img src="HTML,CSS.assets/image-20220730142833349.png" alt="image-20220730142833349" style="zoom:50%;" />
+
+​	
+
+# 00_CSS_回顾
+
+​	
+
+![image-20220730143613748](HTML,CSS.assets/image-20220730143613748.png)
+
+![image-20220730144135927](HTML,CSS.assets/image-20220730144135927.png)
+
+
+
+CSS	练习的时候可以用内嵌式 实际开发用链接
+
+![image-20220730144626083](HTML,CSS.assets/image-20220730144626083.png)
+
+![image-20220730144746336](HTML,CSS.assets/image-20220730144746336.png)
+
+​	
+
+​	
+
+# 01_CSS_盒子模型内边距
+
+
+
+什么是网页的布局
+
+房子  >>>  格局
+
+网页  >>>  格局	（网页内容的主体规划）
+
+- 所需技术
+
+  - 盒子模型	>>>	标签和标签存在包含关系时 位置的调整
+
+  - 浮动	>>>	多个块标签处于同一行的位置处理问题
+
+  - 定位	>>>	块标签在页面指定位置的处理问题
+
+​	
+
+![image-20220730151858039](HTML,CSS.assets/image-20220730151858039.png)
+
+![image-20220730151926930](HTML,CSS.assets/image-20220730151926930.png)
+
+![image-20220730152020900](HTML,CSS.assets/image-20220730152020900.png)
+
+​	
+
+```html
+<html>
+  <head>
+    <style>
+      /*
+        border: double    是双边线的意思
+                groove    凹槽线
+        padding 内边距
+            内边距 内部元素距离当前块元素边界的距离
+        */
+      #div1 {
+        border: 1px groove red;
+        width: 400px;
+        height: 400px;
+        padding: 100px; /*同时设置了4个内边距*/
+      }
+    </style>
+  </head>
+  <body>
+    <!-- div标签内部什么标签都可以放 -->
+    <div id="div1">舒舒</div>
+  </body>
+</html>
+```
+
+
+
+![image-20220730153813813](HTML,CSS.assets/image-20220730153813813.png)
+
+此时， 因为程序内部的 `width` 和 `height` 是已经写死了，所以不会占用内部空间	所以块标签会放大，向外扩展
+
+​	
+
+```css
+/*设置上下内边距为50px  左右内边距为100px*/
+padding: 50px 100px;	/*结果大小变为 width:600px height:500px*/
+```
+
+![image-20220730154418733](HTML,CSS.assets/image-20220730154418733.png)
+
+padding的值设置顺序默认为：**逆时针方向**
+
+​	
+
+可以在浏览器F12进入开发者工具中的查看器里查看
+
+![效果图](HTML,CSS.assets/image-20220730155103283.png)
+
+![image-20220730155412939](HTML,CSS.assets/image-20220730155412939.png)
+
+margin	页边空白
+
+​	
+
+**21_CSS_盒子模型.html**
+
+```html
+<html>
+  <head>
+    <style>
+      /*
+        border: double    是双边线的意思
+                groove    凹槽线
+        padding 内边距
+            内边距 内部元素距离当前块元素边界的距离
+        */
+      #div1 {
+        border: 1px groove red;
+        width: 400px;
+        height: 400px;
+        padding: 100px; /*同时设置了4个上下左右的内边距都是100px*/
+        /*设置上下内边距为50px  左右内边距为100px*/
+        padding: 50px 100px; /*结果大小变为 width:600px height:500px*/
+        /*设置逆时针方向的四个内边距*/
+        padding: 10px 20px 30px 40px;
+        /*也可以分别单独设置4个内边距*/
+        padding-top: 10px;
+        padding-right: 20px;
+        padding-bottom: 30px;
+        padding-left: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- div标签内部什么标签都可以放 -->
+    <div id="div1">舒舒</div>
+  </body>
+</html>
+
+```
+
