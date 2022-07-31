@@ -2323,3 +2323,67 @@ margin	页边空白
 
 # 05_CSS_浮动
 
+> 总结：浮动 可以让多个块标签处于同一行 不同转换成行内元素 宽和高以及盒子模型的特征得以保留
+
+​	
+
+**26_CSS_浮动.html**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      #outerdiv {
+        width: 850px;
+        height: 500px;
+        border: 1px solid black;
+        margin: auto;
+      }
+      .d1,
+      .d2,
+      .d3 {
+        width: 200px;
+        height: 200px;
+        /*display: inline;    转换成行内元素，则width和height不生效了*/
+        /*display: inline-block; /*转换成行内块就可以完美解决了*/
+        margin-right: 40px;
+      }
+      .d1 {
+        background-color: yellow;
+        float: right;
+        /*
+            块标签向右上角浮动 
+            浮动会继续保留块标签原有的特征
+            浮动 使块标签往顶漂浮
+
+            总结：浮动 可以让多个块标签处于同一行 不同转换成行内元素
+                    宽和高以及盒子模型的特征得以保留
+        */
+      }
+      .d2 {
+        background-color: green;
+        float: left;
+      }
+      .d3 {
+        background-color: aqua;
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outerdiv">
+      <div class="d1">1</div>
+      <div class="d2">2</div>
+      <div class="d3">3</div>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220731102106785](HTML,CSS.assets/image-20220731102106785.png)
