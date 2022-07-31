@@ -3036,3 +3036,162 @@ margin	页边空白
 ​	
 
 ![image-20220731192352268](HTML,CSS.assets/image-20220731192352268.png)
+
+​	
+
+# 02_CSS_12306服务栏制作
+
+​	
+
+**34_CSS_12306服务栏制作.html**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        /*border: 1px solid green;*/
+        margin: 0%;
+        padding: 0%;
+      }
+      .service_item {
+        width: 170px;
+        height: 78px;
+        /*border: 1px solid green;*/
+        float: left;
+      }
+      .service_item dt {
+        text-align: center;
+      }
+      .service_item dd {
+        text-align: center;
+      }
+      /*
+        目前已知的居中方式有两种
+            ① 行内元素 text-align: center;
+            ② 块元素 margin:auto; (水平居中)
+                    line-height = 块高 ; (上下居中)
+      */
+      .service_item a {
+        /*是a超链接产生的下划线 所以是去a的text-decoration 而不是font标签的*/
+        text-decoration: none;
+      }
+      .service_item font {
+        font-size: 14px;
+        color: rgb(94, 94, 94);
+      }
+      #service {
+        width: 1190px;
+        height: 78px;
+        margin: auto;
+        border: 1px solid green;
+        margin-top: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="service">
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon1.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>重点旅客预约</font>
+          </a>
+        </dt>
+      </dl>
+
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon2.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>遗失物品查找</font>
+          </a>
+        </dt>
+      </dl>
+
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon3.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>约车服务</font>
+          </a>
+        </dt>
+      </dl>
+
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon4.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>便民托运</font>
+          </a>
+        </dt>
+      </dl>
+
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon5.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>车站引导</font>
+          </a>
+        </dt>
+      </dl>
+
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon6.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>站车风采</font>
+          </a>
+        </dt>
+      </dl>
+
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon7.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>用户反馈</font>
+          </a>
+        </dt>
+      </dl>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220731222718659](HTML,CSS.assets/image-20220731222718659.png)
+
+# 03_CSS_网页整合
