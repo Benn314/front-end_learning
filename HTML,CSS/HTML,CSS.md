@@ -2387,3 +2387,98 @@ margin	页边空白
 ​	
 
 ![image-20220731102106785](HTML,CSS.assets/image-20220731102106785.png)
+
+​	
+
+# 06_CSS_浮动案例
+
+​	
+
+**27_CSS_12306广告栏位.html**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      /*
+        如果块内的其他标签大小超过块的边界，则不会被束缚在块里面
+        否则由块决定位置所在
+      */
+      .ad {
+        width: 1190px;
+        height: 340px;
+        /*border: 1px solid red;*/
+        margin: auto;
+      }
+      .ad_item {
+        width: 590px;
+        height: 160px;
+        /*border: 1px solid red;*/
+        float: left;
+      }
+      .ad_item img {
+        width: 590px;
+        height: 160px;
+      }
+      #ad1,
+      #ad3 {
+        margin-right: 10px;
+      }
+      #ad1,
+      #ad2 {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+        img标签是行内元素
+        图片不立即显示原因：图片如果是网络图片的话，可能需要时间加载出来
+     -->
+    <div class="ad">
+      <div id="ad1" class="ad_item">
+        <a href="https://cx.12306.cn/tlcx/index.html" target="_blank">
+          <img src="https://www.12306.cn/index/images/abanner01.jpg" alt="" />
+        </a>
+      </div>
+
+      <div id="ad2" class="ad_item">
+        <a href="https://exservice.12306.cn/excater/index.html" target="_blank">
+          <img src="https://www.12306.cn/index/images/abanner02.jpg" alt="" />
+        </a>
+      </div>
+
+      <div id="ad3" class="ad_item">
+        <a
+          href="https://kyfw.12306.cn/otn/view/my_insurance.html"
+          target="_blank"
+        >
+          <img src="https://www.12306.cn/index/images/abanner03.jpg" alt="" />
+        </a>
+      </div>
+
+      <div id="ad4" class="ad_item">
+        <a
+          href="https://kyfw.12306.cn/otn/view/commutation_index.html"
+          target="_blank"
+        >
+          <img src="https://www.12306.cn/index/images/abanner04.jpg" alt="" />
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220731125758726](HTML,CSS.assets/image-20220731125758726.png)
+
+​	
+
+# 07_CSS_定位
+
