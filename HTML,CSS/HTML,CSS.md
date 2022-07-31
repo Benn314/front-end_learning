@@ -3195,3 +3195,359 @@ margin	页边空白
 ![image-20220731222718659](HTML,CSS.assets/image-20220731222718659.png)
 
 # 03_CSS_网页整合
+
+```html
+  /* 
+    路径问题（蓝色小方块.png图片不显示问题）
+    相对路径 相对于当前文件本身的路径
+    HTML,CSS/css
+    HTML,CSS/css/img/蓝色小方块.png 该路径不存在
+    HTML,CSS/css/../img/蓝色小方块.png  路径存在 css 和 .. 相互抵消
+    HTML,CSS/img/蓝色小方块.png
+    .. 向上一层目录（文件夹）
+  */
+	list-style-image: url(../img/蓝色小方块.png);
+```
+
+​	
+
+**35_CSS_整合网页.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <!-- 引入css样式表 -->
+    <link rel="stylesheet" href="css/12306.css" />
+  </head>
+  <body>
+    <!-- 导航栏 -->
+    <div class="navi">
+      <ul>
+        <li class="navi_item1"><span>首页</span></li>
+        <li class="navi_item"><span>车票&nbsp;&nbsp;&or;</span></li>
+        <li class="navi_item"><span>团购服务&nbsp;&nbsp;&or;</span></li>
+        <li class="navi_item"><span>会员服务&nbsp;&nbsp;&or;</span></li>
+        <li class="navi_item"><span>站车服务&nbsp;&nbsp;&or;</span></li>
+        <li class="navi_item"><span>商旅服务&nbsp;&nbsp;&or;</span></li>
+        <li class="navi_item"><span>出行指南&nbsp;&nbsp;&or;</span></li>
+        <li class="navi_item"><span>信息查询&nbsp;&nbsp;&or;</span></li>
+      </ul>
+    </div>
+
+    <!-- 服务栏 -->
+    <div id="service">
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon1.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>重点旅客预约</font>
+          </a>
+        </dt>
+      </dl>
+
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon2.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>遗失物品查找</font>
+          </a>
+        </dt>
+      </dl>
+
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon3.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>约车服务</font>
+          </a>
+        </dt>
+      </dl>
+
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon4.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>便民托运</font>
+          </a>
+        </dt>
+      </dl>
+
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon5.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>车站引导</font>
+          </a>
+        </dt>
+      </dl>
+
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon6.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>站车风采</font>
+          </a>
+        </dt>
+      </dl>
+
+      <dl class="service_item">
+        <dd>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <img src="img/icon7.png" alt="" />
+          </a>
+        </dd>
+        <dt>
+          <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">
+            <font>用户反馈</font>
+          </a>
+        </dt>
+      </dl>
+    </div>
+
+    <!-- 介绍栏 -->
+    <div class="outerintroduce">
+      <div class="introduce" id="in1">
+        <h3>最新发布</h3>
+        <ul>
+          <li><a href="">铁路旅客禁止、限制携带和托运物品目录</a></li>
+          <li><a href="">公 告</a></li>
+          <li><a href="">公 告</a></li>
+          <li>
+            <a href="">中国铁路上海局集团有限公司关于2022年7月30日-2022年8月</a>
+          </li>
+          <li><a href="">中国铁路南宁局集团有限公司加开列车公告</a></li>
+        </ul>
+      </div>
+
+      <div class="introduce" id="in2">
+        <h3>最新发布</h3>
+        <ul>
+          <li><a href="">铁路旅客禁止、限制携带和托运物品目录</a></li>
+          <li><a href="">公 告</a></li>
+          <li><a href="">公 告</a></li>
+          <li>
+            <a href="">中国铁路上海局集团有限公司关于2022年7月30日-2022年8月</a>
+          </li>
+          <li><a href="">中国铁路南宁局集团有限公司加开列车公告</a></li>
+        </ul>
+      </div>
+
+      <div class="introduce">
+        <h3>最新发布</h3>
+        <ul>
+          <li><a href="">铁路旅客禁止、限制携带和托运物品目录</a></li>
+          <li><a href="">公 告</a></li>
+          <li><a href="">公 告</a></li>
+          <li>
+            <a href="">中国铁路上海局集团有限公司关于2022年7月30日-2022年8月</a>
+          </li>
+          <li><a href="">中国铁路南宁局集团有限公司加开列车公告</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 提示栏 -->
+    <div class="note">
+      <div class="note_item1">
+        <img src="img/最新发布.png" alt="" height="86px" width="50px" />
+      </div>
+      <div class="note_item1">
+        <img src="img/联系客服.png" alt="" height="86px" width="50px" />
+      </div>
+      <div class="note_item1">
+        <img src="img/APP下载.png" alt="" height="86px" width="50px" />
+      </div>
+      <div class="note_item2">
+        <img src="img/关闭.png" alt="" height:="123px" width="50px"/>
+      </div>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+**12306.css**
+
+```css
+/* -------------导航栏样式------------------ */
+* {
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+.navi {
+  /*border: 1px solid red;*/
+  height: 40px;
+  background-color: #3b99fc;
+}
+.navi .navi_item,
+.navi_item1 {
+  /*border: 1px solid green;*/
+  width: 145px;
+  height: 40px;
+  float: left;
+  list-style: none;
+  text-align: center; /*设置文本左右居中*/
+  line-height: 40px; /*设置文本行高跟外边框一样高，文本自然就上下居中了*/
+  color: white;
+}
+.navi ul {
+  width: 1160px;
+  height: 40px;
+  /*border: 1px solid yellow;*/
+  margin: auto;
+}
+.navi .navi_item:hover {
+  background-color: #3685ec;
+}
+.navi .navi_item1 {
+  background-color: #2676e3;
+}
+.navi ul li {
+  font-size: 14px;
+}
+
+/* -----------------服务栏样式-------------------- */
+/* 初始化的样式留一份就好了，在上面 */
+.service_item {
+  width: 170px;
+  height: 78px;
+  /*border: 1px solid green;*/
+  float: left;
+}
+.service_item dt {
+  text-align: center;
+}
+.service_item dd {
+  text-align: center;
+}
+/*
+    目前已知的居中方式有两种
+        ① 行内元素 text-align: center;
+        ② 块元素 margin:auto; (水平居中)
+                line-height = 块高 ; (上下居中)
+  */
+.service_item a {
+  /*是a超链接产生的下划线 所以是去a的text-decoration 而不是font标签的*/
+  text-decoration: none;
+}
+.service_item font {
+  font-size: 14px;
+  color: rgb(94, 94, 94);
+}
+#service {
+  width: 1190px;
+  height: 78px;
+  margin: auto;
+  border: 1px solid green;
+  margin-top: 300px;
+}
+
+/* ---------------介绍栏样式------------------------ */
+.introduce {
+  width: 388px;
+  height: 298px;
+  border: 1px solid rgb(59, 153, 252);
+  float: left;
+}
+.introduce h3 {
+  height: 40px;
+  background-color: rgb(59, 153, 252);
+  color: white;
+  text-align: center;
+  line-height: 40px; /*行高40个像素，这样就可以基于上下左右居中了*/
+}
+.introduce ul {
+  margin-left: 50px;
+  margin-top: 30px;
+}
+.introduce a {
+  text-decoration: none;
+  font-size: 14px;
+  color: rgb(51, 51, 51);
+}
+.introduce li {
+  height: 40px;
+  list-style: none;
+  /* 
+    路径问题（蓝色小方块.png图片不显示问题）
+    相对路径 相对于当前文件本身的路径
+    HTML,CSS/css
+    HTML,CSS/css/img/蓝色小方块.png 该路径不存在
+    HTML,CSS/css/../img/蓝色小方块.png  路径存在 css 和 .. 相互抵消
+    HTML,CSS/img/蓝色小方块.png
+    .. 向上一层目录（文件夹）
+  */
+  list-style-image: url(../img/蓝色小方块.png);
+}
+.introduce a:hover {
+  color: black;
+}
+.outerintroduce {
+  width: 1190px;
+  height: 300px;
+  /*border: 1px solid green;*/
+  margin: auto;
+  margin-top: 100px;
+}
+#in1,
+#in2 {
+  margin-right: 10px;
+}
+
+/* -------------提示栏样式--------------------------- */
+.note {
+  height: 396px;
+  width: 50px;
+  /*border: 1px solid green;*/
+  position: fixed;
+  right: 0px;
+  top: 150px;
+}
+.note_item1,
+.note_item2 {
+  width: 50px;
+  /*border: 1px solid red;*/
+}
+.note_item1 {
+  height: 86px;
+  margin-bottom: 5px;
+}
+.note_item2 {
+  height: 123px;
+}
+
+```
+
+​	
+
+![image-20220731232523084](HTML,CSS.assets/image-20220731232523084.png)
