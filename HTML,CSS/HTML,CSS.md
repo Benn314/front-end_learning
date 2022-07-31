@@ -2950,3 +2950,89 @@ margin	页边空白
 ​	
 
 # 00_CSS_回顾
+
+​	
+
+![image-20220731182942650](HTML,CSS.assets/image-20220731182942650.png)
+
+![image-20220731183829129](HTML,CSS.assets/image-20220731183829129.png)
+
+![image-20220731183850956](HTML,CSS.assets/image-20220731183850956.png)
+
+​	
+
+​	
+
+# 01_CSS_12306导航栏制作
+
+​	
+
+**33_CSS_12306导航栏制作.html**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        border: 0px;
+        margin: 0px;
+        padding: 0px;
+      }
+      .navi {
+        /*border: 1px solid red;*/
+        height: 40px;
+        background-color: #3b99fc;
+      }
+      .navi .navi_item,
+      .navi_item1 {
+        /*border: 1px solid green;*/
+        width: 145px;
+        height: 40px;
+        float: left;
+        list-style: none;
+        text-align: center; /*设置文本左右居中*/
+        line-height: 40px; /*设置文本行高跟外边框一样高，文本自然就上下居中了*/
+        color: white;
+      }
+      .navi ul {
+        width: 1160px;
+        height: 40px;
+        /*border: 1px solid yellow;*/
+        margin: auto;
+      }
+      .navi .navi_item:hover {
+        background-color: #3685ec;
+      }
+      .navi .navi_item1 {
+        background-color: #2676e3;
+      }
+      .navi ul li {
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navi 导航栏的缩写 -->
+    <div class="navi">
+      <ul>
+        <li class="navi_item1"><span>首页</span></li>
+        <li class="navi_item"><span>车票&nbsp;&nbsp;&or;</span></li>
+        <li class="navi_item"><span>团购服务&nbsp;&nbsp;&or;</span></li>
+        <li class="navi_item"><span>会员服务&nbsp;&nbsp;&or;</span></li>
+        <li class="navi_item"><span>站车服务&nbsp;&nbsp;&or;</span></li>
+        <li class="navi_item"><span>商旅服务&nbsp;&nbsp;&or;</span></li>
+        <li class="navi_item"><span>出行指南&nbsp;&nbsp;&or;</span></li>
+        <li class="navi_item"><span>信息查询&nbsp;&nbsp;&or;</span></li>
+      </ul>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220731192352268](HTML,CSS.assets/image-20220731192352268.png)
