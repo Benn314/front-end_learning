@@ -2708,9 +2708,9 @@ margin	页边空白
         background-color: gray;
         /*
             相对浏览器窗口定位
-            绝对定位是根据浏览器的点来定位的
-            相对浏览器定位是根据网页的点来定位的
-            所以绝对定位使用用来放置广告位
+            绝对定位是根据网页的点来定位的
+            相对浏览器定位是根据整个浏览器界面的点来定位的
+            所以相对浏览器定位使用用来放置广告位
         */
         position: fixed;
         /*位置值*/
@@ -2730,8 +2730,8 @@ margin	页边空白
         top: 100px;
         left: 200px;
         /*
-            除了绝对定位是根据整个浏览器窗口来定位的，
-                剩下的相对定位和相对浏览器定位都是根据网页来定位的
+            除了相对浏览器定位是根据整个浏览器窗口来定位的，
+                剩下的相对定位和绝对定位都是根据网页大小来定位的
         */
       }
     </style>
@@ -2751,4 +2751,87 @@ margin	页边空白
 ![image-20220731152233434](HTML,CSS.assets/image-20220731152233434.png)
 
 # 08_CSS_定位案例
+
+​	
+
+```html
+犯了一个小错误
+关于相对浏览器定位设置后滚轮条不出现的原因
+	把上面两段br标签误放入外面的div标签中了
+	导致 页面和外div标签范围一样大 所以滚轮条不出现
+【注】以后碰到类似问题可以检查标签的包含关系是否正确
+        除了相对浏览器定位（锁定、钉住的作用）是根据整个浏览器窗口来定位的，
+       		 剩下的相对定位和绝对定位都是根据网页大小来定位的（固定位置）
+```
+
+​	
+
+**31_CSS_12306提示栏.html**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .note {
+        height: 396px;
+        width: 50px;
+        /*border: 1px solid green;*/
+        position: fixed;
+        right: 0px;
+        top: 150px;
+      }
+      .note_item1,
+      .note_item2 {
+        width: 50px;
+        /*border: 1px solid red;*/
+      }
+      .note_item1 {
+        height: 86px;
+        margin-bottom: 5px;
+      }
+      .note_item2 {
+        height: 123px;
+      }
+    </style>
+  </head>
+  <body>
+    舒舒
+    <div class="note">
+      <div class="note_item1">
+        <img src="img/最新发布.png" alt="" height="86px" width="50px" />
+      </div>
+      <div class="note_item1">
+        <img src="img/联系客服.png" alt="" height="86px" width="50px" />
+      </div>
+      <div class="note_item1">
+        <img src="img/APP下载.png" alt="" height="86px" width="50px" />
+      </div>
+      <div class="note_item2">
+        <img src="img/关闭.png" alt="" height:="123px" width="50px"/>
+      </div>
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    舒舒
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    舒舒
+    <!-- 
+        犯了一个小错误
+        关于相对浏览器定位设置后滚轮条不出现的原因
+            把上面两段br标签误放入外面的div标签中了
+            导致 页面和外div标签范围一样大 所以滚轮条不出现
+        【注】以后碰到类似问题可以检查标签的包含关系是否正确
+     -->
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220731163214586](HTML,CSS.assets/image-20220731163214586.png)
+
+
 
