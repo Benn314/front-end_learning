@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      /*
+            定位 只改变自身位置 对其他元素无影响
+            元素位置扫描是自上而下的，第一个点被占了就到下一个点
+                没被占就定位在那里了
+        */
+      .div1 {
+        height: 200px;
+        width: 200px;
+        background-color: gray;
+        /* 
+            定位 绝对定位
+            当位置改变 该位置的坐标原点就会被释放 
+                后续的其他标签就可以占用该位置
+        */
+        position: absolute;
+        /*位置值*/
+        top: 200px;
+        left: 300px;
+      }
+      .div2 {
+        height: 200px;
+        width: 200px;
+        background-color: burlywood;
+        position: absolute;
+        /*位置值*/
+        top: 400px;
+        left: 500px;
+        /*两个块标签如果位置相同，后面的会覆盖住前面的，并不是消失了*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+  </body>
+</html>

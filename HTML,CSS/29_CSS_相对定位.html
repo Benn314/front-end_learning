@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .div1 {
+        height: 200px;
+        width: 200px;
+        background-color: gray;
+        /*
+            相对定位 相对于原来的位置
+            当位置发生改变了 不会释放原来的位置 其他标签不能占用原来的位置
+        */
+        position: relative;
+        /*位置值*/
+        top: 200px;
+        left: 300px;
+      }
+      .div2 {
+        height: 200px;
+        width: 200px;
+        background-color: burlywood;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+  </body>
+</html>

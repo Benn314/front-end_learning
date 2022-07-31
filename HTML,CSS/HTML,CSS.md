@@ -2482,3 +2482,273 @@ margin	页边空白
 
 # 07_CSS_定位
 
+​	
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      /*
+            定位 只改变自身位置 对其他元素无影响
+            元素位置扫描是自上而下的，第一个点被占了就到下一个点
+                没被占就定位在那里了
+        */
+      .div1 {
+        height: 200px;
+        width: 200px;
+        background-color: gray;
+        /* 
+            定位 绝对定位
+            当位置改变 该位置的坐标原点就会被释放 
+                后续的其他标签就可以占用该位置
+        */
+        position: absolute;
+        /*位置值*/
+        top: 200px;
+        left: 300px;
+      }
+      .div2 {
+        height: 200px;
+        width: 200px;
+        background-color: burlywood;
+        position: absolute;
+        /*位置值*/
+        top: 200px;
+        left: 300px;
+        /*两个块标签如果位置相同，后面的会覆盖住前面的，并不是消失了*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+  </body>
+</html>
+```
+
+​	
+
+![image-20220731145348643](HTML,CSS.assets/image-20220731145348643.png)
+
+​	
+
+![image-20220731145528307](HTML,CSS.assets/image-20220731145528307.png)
+
+
+
+**绝对定位**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      /*
+            定位 只改变自身位置 对其他元素无影响
+            元素位置扫描是自上而下的，第一个点被占了就到下一个点
+                没被占就定位在那里了
+        */
+      .div1 {
+        height: 200px;
+        width: 200px;
+        background-color: gray;
+        /* 
+            定位 绝对定位
+            当位置改变 该位置的坐标原点就会被释放 
+                后续的其他标签就可以占用该位置
+        */
+        position: absolute;
+        /*位置值*/
+        top: 200px;
+        left: 300px;
+      }
+      .div2 {
+        height: 200px;
+        width: 200px;
+        background-color: burlywood;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+  </body>
+</html>
+
+```
+
+![绝对定位](HTML,CSS.assets/image-20220731150006058.png)
+
+令第21行代码 `position: absolute;`	>>>	`position: relative;`	绝对定位	更换为	相对定位
+
+​	
+
+![相对定位](HTML,CSS.assets/image-20220731150221513.png)
+
+<img src="HTML,CSS.assets/image-20220731150731321.png" alt="image-20220731150731321" style="zoom:67%;" />
+
+1的方块还是在左上角，占用着位置，只不过显示的位置相对自己原来位置显示
+
+​	
+
+**源码**
+
+**28_CSS_绝对定位.html**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      /*
+            定位 只改变自身位置 对其他元素无影响
+            元素位置扫描是自上而下的，第一个点被占了就到下一个点
+                没被占就定位在那里了
+        */
+      .div1 {
+        height: 200px;
+        width: 200px;
+        background-color: gray;
+        /* 
+            定位 绝对定位
+            当位置改变 该位置的坐标原点就会被释放 
+                后续的其他标签就可以占用该位置
+        */
+        position: absolute;
+        /*位置值*/
+        top: 200px;
+        left: 300px;
+      }
+      .div2 {
+        height: 200px;
+        width: 200px;
+        background-color: burlywood;
+        position: absolute;
+        /*位置值*/
+        top: 400px;
+        left: 500px;
+        /*两个块标签如果位置相同，后面的会覆盖住前面的，并不是消失了*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220731152044264](HTML,CSS.assets/image-20220731152044264.png)
+
+​	
+
+**29_CSS_相对定位.html**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .div1 {
+        height: 200px;
+        width: 200px;
+        background-color: gray;
+        /*
+            相对定位 相对于原来的位置
+            当位置发生改变了 不会释放原来的位置 其他标签不能占用原来的位置
+        */
+        position: relative;
+        /*位置值*/
+        top: 200px;
+        left: 300px;
+      }
+      .div2 {
+        height: 200px;
+        width: 200px;
+        background-color: burlywood;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220731152148182](HTML,CSS.assets/image-20220731152148182.png)
+
+**30_CSS_相对浏览器窗口定位.html**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .div1 {
+        height: 200px;
+        width: 200px;
+        background-color: gray;
+        /*
+            相对浏览器窗口定位
+            绝对定位是根据浏览器的点来定位的
+            相对浏览器定位是根据网页的点来定位的
+            所以绝对定位使用用来放置广告位
+        */
+        position: fixed;
+        /*位置值*/
+        top: 200px;
+        left: 300px;
+      }
+      .div2 {
+        height: 200px;
+        width: 200px;
+        background-color: burlywood;
+      }
+      .div3 {
+        height: 200px;
+        width: 200px;
+        background-color: aquamarine;
+        position: relative;
+        top: 100px;
+        left: 200px;
+        /*
+            除了绝对定位是根据整个浏览器窗口来定位的，
+                剩下的相对定位和相对浏览器定位都是根据网页来定位的
+        */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+    <div class="div3">3</div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220731152233434](HTML,CSS.assets/image-20220731152233434.png)
+
+# 08_CSS_定位案例
+
