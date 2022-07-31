@@ -3196,6 +3196,10 @@ margin	页边空白
 
 # 03_CSS_网页整合
 
+​	
+
+**12306.css**
+
 ```html
   /* 
     路径问题（蓝色小方块.png图片不显示问题）
@@ -3206,6 +3210,8 @@ margin	页边空白
     HTML,CSS/img/蓝色小方块.png
     .. 向上一层目录（文件夹）
   */
+【解决】
+	原：list-style-image: url(img/蓝色小方块.png);
 	list-style-image: url(../img/蓝色小方块.png);
 ```
 
@@ -3551,3 +3557,10 @@ margin	页边空白
 ​	
 
 ![image-20220731232523084](HTML,CSS.assets/image-20220731232523084.png)
+
+​	
+
+​	
+
+# 04_CSS_12306旅游栏位制作
+
