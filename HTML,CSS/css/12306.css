@@ -68,8 +68,48 @@
   width: 1190px;
   height: 78px;
   margin: auto;
-  border: 1px solid green;
+  /*border: 1px solid green;*/
   margin-top: 300px;
+}
+
+/* --------------旅游栏样式---------------------- */
+.travel_item {
+  width: 288px;
+  height: 242px;
+  border: 1px solid gray;
+  float: left;
+  margin: 5px;
+}
+.travel_item a {
+  text-decoration: none;
+}
+.travel_item p {
+  color: black;
+  font-size: 14px;
+  line-height: 40px;
+}
+.travel_item p:hover {
+  color: rgb(59, 153, 252);
+}
+.travel_item span {
+  color: #ff8201;
+  font-size: 20px;
+}
+.travel_item font {
+  font-size: 14px;
+}
+.travel_item dt {
+  /*注意这里设置的是文字的内边距 不是设置像div块的内边距*/
+  padding-left: 10px;
+  /*margin-left: 10px;*/
+}
+#travel {
+  width: 1200px;
+  height: 508px;
+  /*border: 1px solid green;*/
+  margin: auto;
+  margin-top: 50px; /*对外div大小无影响 对外扩展*/
+  /*padding-top: 50px;*/ /*用padding会导致外div的高度变长 对内扩展*/
 }
 
 /* ---------------介绍栏样式------------------------ */
@@ -117,7 +157,7 @@
   height: 300px;
   /*border: 1px solid green;*/
   margin: auto;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 #in1,
 #in2 {
@@ -144,4 +184,34 @@
 }
 .note_item2 {
   height: 123px;
+}
+
+/* -------------广告栏样式-------------------- */
+/*
+        如果块内的其他标签大小超过块的边界，则不会被束缚在块里面
+        否则由块决定位置所在
+      */
+.ad {
+  width: 1190px;
+  height: 340px;
+  /*border: 1px solid red;*/
+  margin: auto;
+}
+.ad_item {
+  width: 590px;
+  height: 160px;
+  /*border: 1px solid red;*/
+  float: left;
+}
+.ad_item img {
+  width: 590px;
+  height: 160px;
+}
+#ad1,
+#ad3 {
+  margin-right: 10px;
+}
+#ad1,
+#ad2 {
+  margin-bottom: 20px;
 }

@@ -3212,7 +3212,7 @@ margin	页边空白
   */
 【解决】
 	原：list-style-image: url(img/蓝色小方块.png);
-	list-style-image: url(../img/蓝色小方块.png);
+	改：list-style-image: url(../img/蓝色小方块.png);
 ```
 
 ​	
@@ -3337,6 +3337,205 @@ margin	页边空白
       </dl>
     </div>
 
+    <br />
+    <br />
+    <br />
+    <br />
+    <!-- 广告栏 -->
+    <!-- 
+        img标签是行内元素
+        图片不立即显示原因：图片如果是网络图片的话，可能需要时间加载出来
+     -->
+    <div class="ad">
+      <div id="ad1" class="ad_item">
+        <a href="https://cx.12306.cn/tlcx/index.html" target="_blank">
+          <img src="https://www.12306.cn/index/images/abanner01.jpg" alt="" />
+        </a>
+      </div>
+
+      <div id="ad2" class="ad_item">
+        <a href="https://exservice.12306.cn/excater/index.html" target="_blank">
+          <img src="https://www.12306.cn/index/images/abanner02.jpg" alt="" />
+        </a>
+      </div>
+
+      <div id="ad3" class="ad_item">
+        <a
+          href="https://kyfw.12306.cn/otn/view/my_insurance.html"
+          target="_blank"
+        >
+          <img src="https://www.12306.cn/index/images/abanner03.jpg" alt="" />
+        </a>
+      </div>
+
+      <div id="ad4" class="ad_item">
+        <a
+          href="https://kyfw.12306.cn/otn/view/commutation_index.html"
+          target="_blank"
+        >
+          <img src="https://www.12306.cn/index/images/abanner04.jpg" alt="" />
+        </a>
+      </div>
+    </div>
+
+    <br />
+    <!-- 旅游栏 -->
+    <div id="travel">
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+    </div>
+
+    <br />
+    <br />
     <!-- 介绍栏 -->
     <div class="outerintroduce">
       <div class="introduce" id="in1">
@@ -3474,8 +3673,48 @@ margin	页边空白
   width: 1190px;
   height: 78px;
   margin: auto;
-  border: 1px solid green;
+  /*border: 1px solid green;*/
   margin-top: 300px;
+}
+
+/* --------------旅游栏样式---------------------- */
+.travel_item {
+  width: 288px;
+  height: 242px;
+  border: 1px solid gray;
+  float: left;
+  margin: 5px;
+}
+.travel_item a {
+  text-decoration: none;
+}
+.travel_item p {
+  color: black;
+  font-size: 14px;
+  line-height: 40px;
+}
+.travel_item p:hover {
+  color: rgb(59, 153, 252);
+}
+.travel_item span {
+  color: #ff8201;
+  font-size: 20px;
+}
+.travel_item font {
+  font-size: 14px;
+}
+.travel_item dt {
+  /*注意这里设置的是文字的内边距 不是设置像div块的内边距*/
+  padding-left: 10px;
+  /*margin-left: 10px;*/
+}
+#travel {
+  width: 1200px;
+  height: 508px;
+  /*border: 1px solid green;*/
+  margin: auto;
+  margin-top: 50px; /*对外div大小无影响 对外扩展*/
+  /*padding-top: 50px;*/ /*用padding会导致外div的高度变长 对内扩展*/
 }
 
 /* ---------------介绍栏样式------------------------ */
@@ -3523,7 +3762,7 @@ margin	页边空白
   height: 300px;
   /*border: 1px solid green;*/
   margin: auto;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 #in1,
 #in2 {
@@ -3552,6 +3791,36 @@ margin	页边空白
   height: 123px;
 }
 
+/* -------------广告栏样式-------------------- */
+/*
+        如果块内的其他标签大小超过块的边界，则不会被束缚在块里面
+        否则由块决定位置所在
+      */
+.ad {
+  width: 1190px;
+  height: 340px;
+  /*border: 1px solid red;*/
+  margin: auto;
+}
+.ad_item {
+  width: 590px;
+  height: 160px;
+  /*border: 1px solid red;*/
+  float: left;
+}
+.ad_item img {
+  width: 590px;
+  height: 160px;
+}
+#ad1,
+#ad3 {
+  margin-right: 10px;
+}
+#ad1,
+#ad2 {
+  margin-bottom: 20px;
+}
+
 ```
 
 ​	
@@ -3560,7 +3829,231 @@ margin	页边空白
 
 ​	
 
+**完整版（含12306导航栏、服务栏、介绍栏、提示栏、旅游栏）**
+
+![image-20220801110906249](HTML,CSS.assets/image-20220801110906249.png)
+
+​	
+
 ​	
 
 # 04_CSS_12306旅游栏位制作
 
+
+
+**36_CSS_旅游栏制作.html**
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        /*border: 1px solid red;*/
+        margin: 0%;
+        padding: 0%;
+      }
+      .travel_item {
+        width: 288px;
+        height: 242px;
+        border: 1px solid gray;
+        float: left;
+        margin: 5px;
+      }
+      .travel_item a {
+        text-decoration: none;
+      }
+      .travel_item p {
+        color: black;
+        font-size: 14px;
+        line-height: 40px;
+      }
+      .travel_item p:hover {
+        color: rgb(59, 153, 252);
+      }
+      .travel_item span {
+        color: #ff8201;
+        font-size: 20px;
+      }
+      .travel_item font {
+        font-size: 14px;
+      }
+      .travel_item dt {
+        /*注意这里设置的是文字的内边距 不是设置像div块的内边距*/
+        padding-left: 10px;
+        /*margin-left: 10px;*/
+      }
+      #travel {
+        width: 1200px;
+        height: 508px;
+        /*border: 1px solid green;*/
+        margin: auto;
+        margin-top: 50px; /*对外div大小无影响 对外扩展*/
+        /*padding-top: 50px;*/ /*用padding会导致外div的高度变长 对内扩展*/
+      }
+    </style>
+  </head>
+  <body>
+    <div id="travel">
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+
+      <dl class="travel_item">
+        <a
+          href="https://travel.12306.cn/portal/travel/detail/ff80808157df83c2016446ba8bc313cd"
+        >
+          <dd>
+            <img
+              src="img/12306旅游栏1.png"
+              alt=""
+              width="288px"
+              height="160px"
+            />
+          </dd>
+          <dt>
+            <p>"环西部火车游"嘉敦5日游</p>
+            <span><font>&yen;</font> 2260</span>
+          </dt>
+        </a>
+      </dl>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220801111402192](HTML,CSS.assets/image-20220801111402192.png)
