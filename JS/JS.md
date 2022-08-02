@@ -826,3 +826,104 @@ alt shift A		块注释
 
 ```
 
+​	
+
+​	
+
+# 16_JS基础_一元运算符
+
+​	
+
+**14_JS基础_一元运算符.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            一元运算符 只需要一个操作数
+
+            对于非Number类型的值
+                它会先转换成Number 然后在运算
+                可以对一个其他的数据类型使用+ 来将其转换为number
+        */
+      a = "19"; //string  19
+      a = +a; //number  19
+      a = true;
+      a = +a; //number  1
+      //   console.log(typeof a + "  " + a);
+
+      var result = 1 + "2" + 3; //string  123
+      var result = 1 + +"2" + 3; //number  6     一元运算符优先级高于二元运算符
+      //也是隐式类型转换
+      console.log(typeof result + "  " + result);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 17_JS基础_自增和自减
+
+​	
+
+![image-20220802223034542](JS.assets/image-20220802223034542.png)
+
+![image-20220802223129736](JS.assets/image-20220802223129736.png)
+
+​	
+
+**15_JS基础_自增和自减.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var d = 20;
+
+      //小练习
+      //20 + 22 + 22
+      var result = d++ + ++d + d;
+      console.log("result = " + result);
+
+      //自增自减不用变量承接赋值 直接写就行
+      d++; //等同于 d = d + 1;
+      ++d; //等同于 d = d + 1;
+
+      //自减原理跟自加相同 这里便不赘述了
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 18_JS基础_自增练习
+
+![image-20220802223620946](JS.assets/image-20220802223620946.png)
+
+![image-20220802223628191](JS.assets/image-20220802223628191.png)
+
+​	
+
+​	
+
+# 19_JS基础_逻辑运算符
+
+​	
+

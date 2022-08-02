@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            一元运算符 只需要一个操作数
+
+            对于非Number类型的值
+                它会先转换成Number 然后在运算
+                可以对一个其他的数据类型使用+ 来将其转换为number
+        */
+      a = "19"; //string  19
+      a = +a; //number  19
+      a = true;
+      a = +a; //number  1
+      //   console.log(typeof a + "  " + a);
+
+      var result = 1 + "2" + 3; //string  123
+      var result = 1 + +"2" + 3; //number  6     一元运算符优先级高于二元运算符
+      //也是隐式类型转换
+      console.log(typeof result + "  " + result);
+    </script>
+  </head>
+  <body></body>
+</html>
