@@ -927,3 +927,123 @@ alt shift A		块注释
 
 ​	
 
+**16_JS基础_逻辑运算符.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            JS中提供了3种逻辑运算
+            && 与
+                有一个false就返回false
+                JS中的"与"属于短路的与
+                    如果第一个值为false 则不会看第二个值
+
+            || 或
+                有一个true就返回true
+                JS中的"或"属于短路的与
+                如果第一个值为true 则不会看第二个值
+
+            !  非
+                对布尔值进行取反操作
+                如果对非布尔值进行取反 则会将其转换为布尔值 然后再取反
+                 所以我们可以利用该特点 来将一个其他的数据类型转换为布尔值
+                 可以为一个任意数据类型取两次反 来将其转换为布尔值
+                 原理跟Boolean()函数一样
+        */
+      var a = false;
+      a = !a; //true
+      //   console.log(a);
+
+      //第一个值为true 会检查第二个值
+      //false则直接略过
+      //   true && alert("看我出不出来！！");   //出得来
+      false && alert("看我出不出来！！"); //出不来
+
+      //第一个值为false 会检查第二个值
+      //true则直接略过
+      //   false && alert("看我出不出来！！");   //出得来
+      true || alert("看我出不出来！！"); //出不来
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 20_JS基础_非布尔值的与或运算
+
+或运算特点
+
+![image-20220802235150571](JS.assets/image-20220802235150571.png)
+
+它相当于只看一半告诉你结果 真的懒~
+
+​	
+
+**17_JS基础_非布尔值的与或运算.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            && || 非布尔值的情况
+                对于非布尔值进行与或运算时
+                    会先将其转换为布尔值 然后再运算 并且返回原值
+                与运算：
+                 如果第一个值为true 则必然返回第二个值
+                 如果第一个值为false 则必然返回第一个值
+
+                或运算：（与 与运算刚好相反 其实看的是短路与 或进行考虑的）
+                    例如或 第一个是false 甭管你后面是啥，直接给你返回第二个值
+                    它相当于只看一半告诉你结果 真的懒~
+                    如果第一个值为true 则必然返回第一个值
+                    如果第一个值为false 则必然返回第二个值
+
+
+        */
+      //true && true
+      //与运算 如果两个值都是true 则返回后边的
+      var result = 5 && 6; //返回6
+
+      //false && true
+      result = 0 && 2; //0
+      result = 2 && 0; //0
+
+      //false && false
+      //与运算 两个都是false则返回靠前的值
+      result = NaN && 0; //返回NaN
+      result = 0 && NaN; //返回0
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 21_JS基础_赋值运算符
+
+![image-20220802235947099](JS.assets/image-20220802235947099.png)
+
+​	
+
+​	
+
+# 22_JS基础_关系运算符
+

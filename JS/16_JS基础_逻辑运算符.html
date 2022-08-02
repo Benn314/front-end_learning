@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            JS中提供了3种逻辑运算
+            && 与
+                有一个false就返回false
+                JS中的"与"属于短路的与
+                    如果第一个值为false 则不会看第二个值
+
+            || 或
+                有一个true就返回true
+                JS中的"或"属于短路的与
+                如果第一个值为true 则不会看第二个值
+
+            !  非
+                对布尔值进行取反操作
+                如果对非布尔值进行取反 则会将其转换为布尔值 然后再取反
+                 所以我们可以利用该特点 来将一个其他的数据类型转换为布尔值
+                 可以为一个任意数据类型取两次反 来将其转换为布尔值
+                 原理跟Boolean()函数一样
+        */
+      var a = false;
+      a = !a; //true
+      //   console.log(a);
+
+      //第一个值为true 会检查第二个值
+      //false则直接略过
+      //   true && alert("看我出不出来！！");   //出得来
+      false && alert("看我出不出来！！"); //出不来
+
+      //第一个值为false 会检查第二个值
+      //true则直接略过
+      //   false && alert("看我出不出来！！");   //出得来
+      true || alert("看我出不出来！！"); //出不来
+    </script>
+  </head>
+  <body></body>
+</html>
