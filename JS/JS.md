@@ -319,5 +319,196 @@ alt shift A		块注释
 
 # 07_JS基础_字符串
 
+​	
+
+**05_JS基础_数据类型.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var a = 123;
+      /*
+        JS的语法跟C和JAVA像 谁跟C都像 主要是JS跟Java像
+        数据类型指的是字面量的类型
+        在JS中一共有六种数据类型
+            String      字符串
+            Number      数值
+            Boolean     布尔值
+            Null        空值
+            Underfined  未定义
+            Object      对象
+
+        除了Object属于引用数据类型 其他都是基本数据类型
+
+      */
+
+      /*
+        String字符串
+            在JS中字符串需要使用引号引起来
+            使用 双引号 单引号 都可以 但是不要混着用
+            引号不能嵌套 双引号不能放双引号 单引号不能放单引号
+
+            \" 表示 "
+            \' 表示 '
+            \n 换行
+            \t 制表符 Tab
+            \\ 表示 \
+      */
+      var str = "hello";
+      console.log(str);
+      var str1 = "我说：'舒舒小可爱'",
+        str2 = '我说："凯茵小可爱"'; //谁（单引号/双引号）嵌套谁（单引号/双引号）都可以
+
+      console.log(str1 + "\n" + str2);
+
+      /*
+        在字符串中我们可以使用 \ 作为转义字符
+            当表示一些特殊符号是可以使用 \ 进行
+      */
+      str3 = '我说："舒舒小可爱"';
+      console.log(str3);
+
+      str4 = "\\\\"; //俩 \ 表示一个\    第一个 \ 是转义
+      console.log("\n" + str4);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+![image-20220802084402460](JS.assets/image-20220802084402460.png)
+
+​	
+
+​	
+
+# 08_JS基础_Number
+
+​	
+
+**06_JS基础_Number.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            在JS中所有的数值都是Number类型
+            包括整数和浮点数
+
+            整数和浮点数都是Number类型
+        */
+      var a = 123;
+      var b = "123";
+      console.log(a);
+      console.log(b);
+      //输出结果都是123 但本质数据类型不同
+
+      /* 
+        可以使用一个运算符typeof
+            来检查一个变量的类型
+        语法：typeof 变量
+        检查字符串时 会返回String
+        检查数值时 会返回number
+      */
+      console.log(typeof a); //number
+      console.log(typeof b); //String
+
+      //   console.log(); 本身就自带换行
+      //    JS中可以表示的数字的最大值 Number.MAX_VALUE
+      //打印输出比最大值还大的值 输出到控制台的结果是 Infinity 表示正无穷
+      // -Infinity  负无穷
+      //使用typeof检查Infinity也会返回Number
+      console.log(Number.MAX_VALUE); //Number的最大值为：2^1024（1.7976931348623157e+308）
+
+      a = "abc" * "bcd";
+      console.log(a); //NaN 不是数字
+      //NaN 是一个特殊的数字 表示Not A Number
+
+      a = NaN;
+      console.log(a + "\t" + typeof a); // a的数据类型还是number
+      // 使用typeof检查NaN也会返回number
+
+      a = Number.MIN_VALUE;
+      console.log(a); //5e-324 = 2^(-1074)  表示0以上的最小值
+      //Number.MIN_VALUE 大于0的最小值
+
+      /* 
+        在JS中整数的运算基本可以保证精确
+        如果使用JS进行浮点运算 可能得到一个不精确的结果
+        所以千万不要使用JS进行对精确度要求比较高的运算
+      */
+      var c = 0.1 + 0.2;
+      console.log(c); //0.30000000000000004
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+
+
+![image-20220802105747904](JS.assets/image-20220802105747904.png)
+
+​	
+
+# 09_JS基础_布尔值
+
+![image-20220802110552180](JS.assets/image-20220802110552180.png)
+
+​	
+
+# 10_JS基础_Null和Undefined
+
+​	
+
+**08_JS基础_Null和Undefined.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        Null（空值）类型的值只有一个 就是null
+        null这个值专门用来表示一个为空的对象
+        使用typeof检查一个null值时 会返回object
+
+        Undefined（未定义）类型的值只有一个 就是undefined
+            当声明一个变量 但是并不给变量赋值时 它的值就是Undefined
+            使用typeof检查一个undefined时也会返回undefined
+        */
+      var a = null;
+      console.log(typeof a); //object
+
+      var b;
+      var c = undefined;
+      console.log(b + " " + c); //undefined undefined
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 11_JS基础_强制类型转换—String
+
 
 
