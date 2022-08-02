@@ -675,3 +675,154 @@ alt shift A		块注释
 
 ​	
 
+**11_JS基础_其他的进制的数字.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var a = 123;
+      /* 
+            在js中 如果需要表示16进制的数字 则需要以0x开头
+                8进制以0开头
+                如果要表示2进制的数字 则需要以0b开头
+                    但是 不是所有的浏览器都支持
+        */
+      //十六进制
+      a = 0x10; //16
+
+      //八进制
+      a = 070; //56
+
+      //二进制
+      a = 0b10; //2
+
+      //Google Chrome是当作10进制解析
+      //像"070"这种字符串 有些浏览器会当成8进制解析 有些当成10进制解析
+      a = "070";
+      //可以在parseInt()中传递第二个参数，来指定数字的进制
+      a = parseInt(a, 8);
+      console.log(a); //无论几进制 输出都以10进制输出
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 14_JS基础_转换成Boolean
+
+​	
+
+**12_JS基础_转换成Boolean.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            将其他的数据类型转换为Boolean
+                使用Boolea()函数
+                    数字 -->  布尔
+                        除了0和NaN是false 其余的都是true
+                        
+                    字符串 --> 布尔
+                        除了空串 其余的都是true
+
+                    null和undefined都会转换成false
+
+                    对象也会转换为true
+        */
+      a = null;
+      a = 0.1; //true
+      a = Boolean(a);
+      console.log(typeof a + "\t" + a);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 15_JS基础_算数运算符
+
+​	
+
+**13_JS基础_运算符.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            运算符也叫操作符
+                通过运算符可以对一个或多个值进行运算 并获取运算结果
+                比如：typeof就是运算符 可以来获取一个值的类型
+                    它会将该值的类型以字符串的形式返回
+                    number string boolean undefined object
+
+            算数运算符
+                当对非Number类型的值进行运算时 会将在这些值转换成Number 然后再运算
+                null转数字是0
+                任何值和NaN做运算都得NaN
+                *
+                /
+                +
+                    对number是运算 对string是连接
+                    任何值和字符串做加法运算 都会先转换为字符串 然后再和字符串做拼串连接的操作
+                -
+                %
+        */
+      var a = 123;
+      var reslut = typeof a;
+
+      console.log(typeof a + "\t" + typeof reslut); //number	string
+
+      a = true + " hello";
+      console.log(a); //true hello
+
+      //巧妙将变量变为字符串(隐式类型转换) 由浏览器自动完成 实际上它也是调用String()函数
+      var c = 123;
+      c = null; //string  null
+      c = c + "";
+
+      //小练习
+      c = 1 + 2 + "3"; //string  33  从左往右计算
+      c = "1" + 2 + 3; //string  123  从左往右计算
+
+      c = 2 * "8"; //number  16  运算会转换成Number
+      c = 2 * undefined; //number  NaN
+      c = 2 * null; //number  0
+      c = 2 * false; //number  0
+
+      /* 
+        任何值做 - * / 运算时都会自动转换成Number
+         我们可以利用这一特点做隐式的类型转换
+            可以通过为一个值 -0 *1 /1 来将其转换成Number
+            原理和Number()函数一样 使用起来更加简单
+      */
+      console.log(typeof c + "  " + c);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
