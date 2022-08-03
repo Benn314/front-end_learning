@@ -1140,3 +1140,70 @@ alt shift A		块注释
 
 # 24_JS基础_相等运算符
 
+​	
+
+**20_JS基础_相等运算符.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+            使用 == 做相等运算
+                相等返回true
+                不相等返回false
+
+            使用 == 来比较两个值 如果值的类型不同
+                则会自动进行类型转换 将其转换为相同的类型 然后再比较
+
+            != 和 == 正好相反 这里不赘述
+
+            ===
+                全等
+                    用来判断两个值是否全等 它和全等类似 不同的是它不会做自动的类型转换
+                        如果两个值的类型不同 直接返回false
+            !==
+                不全等
+                    用来判断两个值是否不全等 它和不全等类似 不同的是它不会做自动的类型转换
+                        如果两个值的类型不同 直接返回true
+
+        */
+      console.log(1 == 1); //相等符中间不能有空格
+      console.log("1" == 1); //true
+
+      console.log(null == 0); //false 这里null没转成number
+
+      /* 
+        undefined 衍生自null
+         所以这两个值做相等判断时 会返回true
+      */
+      console.log(undefined == null); //true
+
+      /* 
+        NaN不和任何值相等 包括它本身
+      */
+      console.log(NaN == NaN); //false
+      console.log(NaN == undefined); //false
+
+      var b = NaN;
+      console.log(b == NaN); //false
+      /* 
+        但我们可以通过isNaN()函数来判断一个值是否是NaN
+      */
+      console.log(isNaN(b)); //true
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 25_JS基础_条件运算符
+
