@@ -1674,7 +1674,9 @@ switch用得少 if用的多
 
 ![image-20220803231217590](JS.assets/image-20220803231217590.png)
 
-**水仙花数**
+
+
+**27_JS基础_for循环.html** (**水仙花数**)
 
 ```html
 <!DOCTYPE html>
@@ -1712,6 +1714,61 @@ switch用得少 if用的多
 
 ​	
 
-39_JS基础_质数练习
+# 39_40_JS基础_质数练习
 
-![image-20220803232512258](JS.assets/image-20220803232512258.png)
+![image-20220803233947005](JS.assets/image-20220803233947005.png)
+
+​	
+
+![image-20220803233724180](JS.assets/image-20220803233724180.png)
+
+​	
+
+**旗帜/哨兵 思想**
+
+1. 设置状态 
+
+2. 把状态放进循环事件等待变化
+
+3. 查看状态情况
+
+​	
+
+**28_JS基础_质数练习.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            判断一个数是否为质数（旗帜思想）
+        */
+      var flag = true; //默认是质数
+      var num = prompt("请输入一个数：");
+      alert(num);
+      for (var i = 2; i < num; i++) {
+        if (num % i == 0) {
+          flag = false;
+          break; //优化一下，加个break; 效率更高
+        }
+      }
+      if (flag) {
+        console.log(num + "是一个质数！");
+      } else {
+        console.log(num + "不是一个质数wwww");
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 41_JS基础_嵌套的for循环

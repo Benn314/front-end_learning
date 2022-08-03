@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            判断一个数是否为质数（旗帜思想）
+        */
+      var flag = true; //默认是质数
+      var num = prompt("请输入一个数：");
+      alert(num);
+      for (var i = 2; i < num; i++) {
+        if (num % i == 0) {
+          flag = false;
+          break; //优化一下，加个break; 效率更高
+        }
+      }
+      if (flag) {
+        console.log(num + "是一个质数！");
+      } else {
+        console.log(num + "不是一个质数wwww");
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
