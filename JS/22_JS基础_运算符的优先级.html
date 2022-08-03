@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            遇到优先级不清楚的可以通过 () 来改变优先级
+            && 的优先级比 || 高
+        */
+
+      // 一个小练习判断 && ||谁的优先级高
+      /*
+        如果 || 的优先级高 或者两个一样高 则应该返回3
+        如果 && 的优先级高 则应该返回1
+       */
+      var result = 1 || (2 && 3);
+      console.log("result = " + result); //result = 1
+
+      result = (1 || 2) && 3;
+      console.log("result = " + result); //result = 3
+    </script>
+  </head>
+  <body></body>
+</html>

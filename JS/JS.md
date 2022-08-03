@@ -1207,3 +1207,140 @@ alt shift A		块注释
 
 # 25_JS基础_条件运算符
 
+​	
+
+**21_JS基础_条件运算符.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        条件运算符也叫三元运算符
+        语法：
+            条件表达式 ? 语句1 : 语句2
+
+          执行的流程
+            条件运算符在执行时 首先对条件表达式进行求值
+                如果该值为true 则执行语句1 并返回执行结果
+                如果该值为false 则执行语句2 并返回执行结果
+
+            如果条件的表达式的求值结果是一个非布尔值
+                会将其转换成布尔值然后在运算
+        */
+
+      //利用三元运算符 求3个值中的最大值
+      var a = 10,
+        b = 200,
+        c = 30;
+      var max = a > b ? a : b;
+      max = max > c ? max : c;
+
+      //等同于这么写
+      max = a > b ? (a > c ? a : c) : b > c ? b : c; //但这样太复杂 不推荐 不方便阅读
+      console.log(max); //30
+
+      console.log("hello" ? alert("语句1") : alert("语句2")); //这里会把hello转换成布尔值 true
+      console.log("" ? alert("语句1") : alert("语句2")); //这里会把空串""转换成布尔值 false
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 26_JS基础_运算符的优先级
+
+​	![image-20220803163446495](JS.assets/image-20220803163446495.png)
+
+​	
+
+​	
+
+# 27_JS基础_代码块
+
+![image-20220803164356445](JS.assets/image-20220803164356445.png)
+
+![image-20220803164429683](JS.assets/image-20220803164429683.png)
+
+
+
+
+
+# 28_JS基础_if语句（一）
+
+![image-20220803165523408](JS.assets/image-20220803165523408.png)
+
+![image-20220803170234562](JS.assets/image-20220803170234562.png)
+
+
+
+# 29_JS基础_if语句（二）
+
+![image-20220803170432730](JS.assets/image-20220803170432730.png)
+
+![image-20220803173240434](JS.assets/image-20220803173240434.png)
+
+![image-20220803173502413](JS.assets/image-20220803173502413.png)
+
+ 写if-else if-else语句注意条件判断的执行顺序，别写成死代码（就是除了if 下面语句永远不会执行的就是死代码）
+
+
+
+# 30_JS基础_练习
+
+练习1
+
+![image-20220803174736964](JS.assets/image-20220803174736964.png)
+
+​	
+
+练习2
+
+![image-20220803175446639](JS.assets/image-20220803175446639.png)
+
+​	
+
+练习3
+
+![image-20220803175508720](JS.assets/image-20220803175508720.png)
+
+​	
+
+**23_JS基础_练习.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            prompt()可以弹出一个提示框 该提示框中会带有一个文本框
+              用户可以在文本框中输入一段内容 该函数需要一个字符串作为参数
+              该字符串将会作为提示框的提示文字
+
+            用户输入的内容将会作为函数的返回值返回 可以定义一个变量来接受该内容
+
+        */
+      var score = prompt("请输入舒舒的期末成绩: ");
+      alert(score);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
