@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style></style>
+
+    <link rel="stylesheet" href="css/极光.css" />
+    <script src="js/极光.js"></script>
+  </head>
+  <body>
+    <!-- 没懂怎么用 等以后懂了再来收拾你 -->
+    <!-- 原文链接：https://codepen.io/Chokcoco/pen/xxWdBQz -->
+    <css-doodle grid="30x30">
+      :doodle { @size: 100vw 100vmin; } :container { perspective: 500px;
+      transform-style: preserve-3d; transform: rotate3d(@r(-1.5, 1.5), @r(-1.5,
+      1.5), @r(-1.5, 1.5), @r(0, 30)deg); } position: absolute; top: 0; left: 0;
+      width: 2px; height: 2px; border-radius: 50%; top: @r(50, 50)%; left:
+      @r(50, 50)%; background: hsl(@rn(160, 170, 3), @r(90%, 99%), @rn(50%,
+      70%)); animation: move @r(5, 30)s infinite @r(-30, -15)s @p(linear,
+      ease-in, ease-in-out); transform: scale(@rn(.1, 1)) rotate(0)
+      translate3d(@r(-60vmin, 60vmin), @r(-60vmin, 60vmin), @r(-1500, -2000)px);
+      box-shadow: 0 0 0.5px #fff, 0 0 2px #fff, 0 0 5px #fff; @keyframes move {
+      100% { transform: scale(10) rotate(1080deg) translate3d(0, 0, @r(710,
+      850)px); } }
+    </css-doodle>
+  </body>
+</html>
