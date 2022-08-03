@@ -1047,3 +1047,96 @@ alt shift A		块注释
 
 # 22_JS基础_关系运算符
 
+![image-20220803102614239](JS.assets/image-20220803102614239.png)
+
+**18_JS基础_关系运算符.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            关系运算符 关系成立为true 否则为false 
+                < > = <= >=
+            任何值和NaN做任何比较 结果都是false
+
+            非数值的情况
+                对于非数值进行比较时 会将其转换为数字然后再比较
+                如果符号两侧的值都是字符串时 不会将其转换为数字进行比较
+                    而会分别比较字符串中字符的Unicode编码
+        */
+
+      //比较两个字符串时 比较的是字符串的字符编码
+      console.log("1" < "5"); //true
+      console.log("11" < "5"); //true   回到这里 我们可以知道 字符1和5先比较 5大 所以会返回true 后面不用看了
+      console.log(11 < "5"); //false
+      console.log("a" > "b"); //false
+
+      //比较字符编码时 是一位一位进行比较
+      //如果两位一样 则比较下一位 所以借用它来对英文进行排序
+      console.log("abc" < "b"); //true
+      console.log("abc" < "bcd"); //true
+      //比较中文时 没有意义
+
+      //注意：比较两个字符串型的数字 一定要转型！
+      console.log("11" < "5"); //true
+      console.log("11" < +"5"); //false
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 23_JS基础_Unicode编码表
+
+
+
+**19_JS基础_Unicode编码.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            在字符串中使用转义字符输入Unicode编码
+            \u四位编码
+        */
+      console.log("\u0054"); //T
+      console.log("\u2620"); //骷髅头☠
+    </script>
+  </head>
+  <body>
+    <!-- 
+        在网页中使用Unicode编码
+        &#编码; 这里的编码需要的是10进制的
+            由于Unicode编码是16进制的 所以需要转成10进制的
+
+     -->
+    <!-- 0x2620 对应的十进制：9760 -->
+    <h1 style="font-size: 100px">&#9760;</h1>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220803112912722](JS.assets/image-20220803112912722.png)
+
+​	
+
+​	
+
+# 24_JS基础_相等运算符
+

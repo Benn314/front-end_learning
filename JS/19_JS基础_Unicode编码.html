@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            在字符串中使用转义字符输入Unicode编码
+            \u四位编码
+        */
+      console.log("\u0054"); //T
+      console.log("\u2620"); //骷髅头☠
+    </script>
+  </head>
+  <body>
+    <!-- 
+        在网页中使用Unicode编码
+        &#编码; 这里的编码需要的是10进制的
+            由于Unicode编码是16进制的 所以需要转成10进制的
+
+     -->
+    <!-- 0x2620 对应的十进制：9760 -->
+    <h1 style="font-size: 100px">&#9760;</h1>
+  </body>
+</html>

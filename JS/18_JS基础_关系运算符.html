@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            关系运算符 关系成立为true 否则为false 
+                < > = <= >=
+            任何值和NaN做任何比较 结果都是false
+
+            非数值的情况
+                对于非数值进行比较时 会将其转换为数字然后再比较
+                如果符号两侧的值都是字符串时 不会将其转换为数字进行比较
+                    而会分别比较字符串中字符的Unicode编码
+        */
+
+      //比较两个字符串时 比较的是字符串的字符编码
+      console.log("1" < "5"); //true
+      console.log("11" < "5"); //true   回到这里 我们可以知道 字符1和5先比较 5大 所以会返回true 后面不用看了
+      console.log(11 < "5"); //false
+      console.log("a" > "b"); //false
+
+      //比较字符编码时 是一位一位进行比较
+      //如果两位一样 则比较下一位 所以借用它来对英文进行排序
+      console.log("abc" < "b"); //true
+      console.log("abc" < "bcd"); //true
+      //比较中文时 没有意义
+
+      //注意：比较两个字符串型的数字 一定要转型！
+      console.log("11" < "5"); //true
+      console.log("11" < +"5"); //false
+    </script>
+  </head>
+  <body></body>
+</html>
