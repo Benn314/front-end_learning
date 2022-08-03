@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            假如投资的年利率为5% 试求从1000块增长到5000块 需要花费多少年
+        */
+      var money = 1000,
+        count_Year = 0;
+      while (money < 5000) {
+        money *= 1.05;
+        count_Year++;
+      }
+      console.log("增长到5000块需花费 " + count_Year + " 年");
+      console.log(money);
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1262,6 +1262,39 @@ alt shift A		块注释
 
 ​	
 
+**22_JS基础_运算符的优先级.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            遇到优先级不清楚的可以通过 () 来改变优先级
+            && 的优先级比 || 高
+        */
+
+      // 一个小练习判断 && ||谁的优先级高
+      /*
+        如果 || 的优先级高 或者两个一样高 则应该返回3
+        如果 && 的优先级高 则应该返回1
+       */
+      var result = 1 || (2 && 3);
+      console.log("result = " + result); //result = 1
+
+      result = (1 || 2) && 3;
+      console.log("result = " + result); //result = 3
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
 ​	
 
 # 27_JS基础_代码块
@@ -1308,6 +1341,14 @@ alt shift A		块注释
 
 ​	
 
+在此基础 基于 `while循环` 和 `if判断` 做一个优化改进
+
+![image-20220803221509830](JS.assets/image-20220803221509830.png)
+
+用户如果输入无效数字可以重新输入并提示输入信息有误 而不是直接终止程序
+
+​	
+
 练习2
 
 ![image-20220803175446639](JS.assets/image-20220803175446639.png)
@@ -1328,11 +1369,39 @@ prompt()函数的返回值是String类型的 该题是排序比较大小 需要n
 
 ![image-20220803182718303](JS.assets/image-20220803182718303.png)
 
-需要在prompt前面加上+ 进行类型转换
+需要在prompt前面加上+ 进行类型转换  下面语句同理
 
 ![image-20220803183017146](JS.assets/image-20220803183017146.png)
 
-下面语句同理
+​	
+
+**23_JS基础_练习.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            prompt()可以弹出一个提示框 该提示框中会带有一个文本框
+              用户可以在文本框中输入一段内容 该函数需要一个字符串作为参数
+              该字符串将会作为提示框的提示文字
+
+            用户输入的内容将会作为函数的返回值返回 可以定义一个变量来接受该内容
+
+        */
+      var score = prompt("请输入舒舒的期末成绩: ");
+      alert(score);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
 
 ​	
 
@@ -1381,6 +1450,8 @@ prompt()函数的返回值是String类型的 该题是排序比较大小 需要n
 ​	
 
 # 33_JS基础_条件分支语句
+
+> 条件分支语句也叫switch语句
 
 ![image-20220803184408243](JS.assets/image-20220803184408243.png)
 
@@ -1440,3 +1511,207 @@ switch用得少 if用的多
 
 # 35_JS基础_while循环
 
+> \n 控制台里换行
+
+> </ br> 网页里的换行
+
+![image-20220803203700309](JS.assets/image-20220803203700309.png)
+
+![image-20220803203852263](JS.assets/image-20220803203852263.png)
+
+![image-20220803204520821](JS.assets/image-20220803204520821.png)
+
+![image-20220803211836878](JS.assets/image-20220803211836878.png)
+
+三个条件缺一不可
+
+​	
+
+![image-20220803214810102](JS.assets/image-20220803214810102.png)
+
+![image-20220803215545928](JS.assets/image-20220803215545928.png)
+
+​	
+
+![image-20220803215618208](JS.assets/image-20220803215618208.png)
+
+一直死循环 内存溢出就会强制关闭
+
+​	
+
+**25_JS基础_while循环.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      //   var n = 0;
+      //   while (true) {
+      //     alert(n++);
+
+      //     //判断n是否是10
+      //     if (n == 10) {
+      //       //退出循环
+      //       break;
+      //     }
+      //   }
+
+      //1.创建一个初始化变量
+      var i = 1;
+
+      //在循环中设置一个条件表达式
+      //   while (i < 10) {
+      //     //定义一个更新表达式 每次更新初始化变量
+      //     document.write(i++ + "<br />");
+      //   }
+      do {
+        document.write(i++ + "<br />");
+      } while (i <= 12);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 36_JS基础_while的练习
+
+![image-20220803220438351](JS.assets/image-20220803220438351.png)
+
+​	
+
+**26_JS基础_while循环练习.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            假如投资的年利率为5% 试求从1000块增长到5000块 需要花费多少年
+        */
+      var money = 1000,
+        count_Year = 0;
+      while (money < 5000) {
+        money *= 1.05;
+        count_Year++;
+      }
+      console.log("增长到5000块需花费 " + count_Year + " 年");
+      console.log(money);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 37_JS基础_for循环
+
+![image-20220803224934374](JS.assets/image-20220803224934374.png)
+
+​	
+
+![image-20220803225702362](JS.assets/image-20220803225702362.png)
+
+​	
+
+![image-20220803230250812](JS.assets/image-20220803230250812.png)
+
+​	
+
+打印1-100之间所有奇数之和
+
+![image-20220803230741488](JS.assets/image-20220803230741488.png)
+
+​	
+
+练习题
+
+![image-20220803230904618](JS.assets/image-20220803230904618.png)
+
+​	
+
+**27_JS基础_for循环.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        跟C、java确实一模一样
+        */
+      for (var i = 0; i < 10; i++) {
+        alert("舒舒小可爱！我已经说了 " + i + " 遍了");
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 38_JS基础_for循环练习
+
+![image-20220803231217590](JS.assets/image-20220803231217590.png)
+
+**水仙花数**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        跟C、java确实一模一样
+        */
+      //   for (var i = 0; i < 10; i++) {
+      //     alert("舒舒小可爱！我已经说了 " + i + " 遍了");
+      //   }
+
+      // 求3位数之间的水仙花数
+
+      for (var i = 100; i < 1000; i++) {
+        var bai = parseInt(i / 100);
+        var shi = parseInt(i / 10) % 10;
+        var ge = i % 10;
+
+        if (bai * bai * bai + shi * shi * shi + ge * ge * ge == i) {
+          console.log(i);
+        }
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+39_JS基础_质数练习
+
+![image-20220803232512258](JS.assets/image-20220803232512258.png)

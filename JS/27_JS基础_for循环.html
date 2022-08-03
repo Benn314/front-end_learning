@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        跟C、java确实一模一样
+        */
+      //   for (var i = 0; i < 10; i++) {
+      //     alert("舒舒小可爱！我已经说了 " + i + " 遍了");
+      //   }
+
+      // 求3位数之间的水仙花数
+
+      for (var i = 100; i < 1000; i++) {
+        var bai = parseInt(i / 100);
+        var shi = parseInt(i / 10) % 10;
+        var ge = i % 10;
+
+        if (bai * bai * bai + shi * shi * shi + ge * ge * ge == i) {
+          console.log(i);
+        }
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
