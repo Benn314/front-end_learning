@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var obj = new Object();
+      /*
+           向对象中添加属性
+           属性名:
+               对象的属性名不强制要求遵守标识符的规范
+                   什么乱七八糟的名字都可以使用
+               但是我们使用还是尽量按照标识符的规范来
+           */
+      obj.name = "舒舒";
+      obj.var = "hello";
+      //   console.log(obj.var); //hello
+
+      /*
+           如果要使用特殊的属性名 不能采用 . 的方式来操作
+            需要使用另一种方式
+               语法：对象["属性名"] = 属性值;
+            读取也需要采用这种方式
+            特殊的属性名用[]来表示
+
+            使用[]这种形式去操作属性 更加的灵活
+                在[]中可以直接传递一个变量 这样变量值是多少就会读取那个属性
+
+       */
+      //   obj.123=789;
+      //   console.log(obj.123);//Uncaught SyntaxError: Unexpected number
+      obj["123"] = 789;
+      var n = "123";
+      console.log(obj["123"]); //789
+      console.log(obj[n]); //789    同理
+
+      /*
+        属性值
+            JS对象的属性值 可以是任意的数据类型
+                甚至也可以是一个对象
+      */
+
+      obj.text = true;
+      obj["text"] = null;
+      //   obj.text = undefined;
+      console.log(obj["text"]); //null
+      console.log(obj.text); //null
+      //用[]的话 里面是字符串类型 一定要加双引号
+      //用 . 不能加引号
+
+      var obj2 = new Object();
+      obj2.name = "猪八戒";
+
+      obj.text = obj2;
+      console.log(obj);
+      /* 
+      打印结果：
+      {123: 789, name: '舒舒', var: 'hello', text: {…}}
+        123: 789
+        name: "舒舒"
+        text: {name: '猪八戒'}
+        var: "hello"
+        [[Prototype]]: Object
+      */
+      console.log(obj.text.name + "\n\n" + "hh" + "\n\n"); //猪八戒
+      /* 
+        in 运算符
+         - 通过该运算符可以检查一个对象中是否含有指定的属性
+            如果有则返回true 没有则返回false
+         - 语法：
+            “属性名” in 对象
+      */
+
+      //检查obj中是否含有test2属性
+      console.log("test2" in obj); //false
+      console.log("text" in obj); //true
+    </script>
+  </head>
+  <body></body>
+</html>

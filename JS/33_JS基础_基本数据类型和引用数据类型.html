@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        基本数据类型的两个变量是两个相互独立的地址
+        而引用数据类型的两个变量指向的是同一个地址
+
+        基本数据类型
+        String Number Boolean Null Undefined
+
+        引用数据类型
+        Object
+
+        JS中的变量都是保存到栈内存中的
+            基本数据类型的值直接在栈内存中存储 （内存直接开辟在栈内存中）
+            值与值之间是独立存在的 修改一个变量不会影响其他的变量
+
+            对象是保存到堆内存中的  此时在栈内存中的变量名保存在栈内存中的变量值是 堆内存的地址
+                每创建一个新的对象 就会在堆内存中开辟一个新的空间 
+                而变量保存的是对象的内存地址（对象的引用）
+                
+                如果两个变量保存的是同一个对象引用 当一个通过一个变量修改属性时 另一个也会受到影响
+                
+            基本数据类型保存值  引用数据类型保存地址
+        */
+
+      //基本数据类型
+      var a = 123;
+      var b = a; //b重新2开辟了一块新空间 复制了a的信息过来
+      a++;
+      console.log("b = " + b + "\t" + "a = " + a); //b = 123	a = 124
+
+      //引用数据类型
+      var obj = new Object();
+      //   var obj2 = new Object(); //再new的话是开辟一个新空间 下面var obj2 = obj;
+      //使得obj2变量保存obj变量的内存地址 导致obj2开辟的空间没用到 浪费了
+      obj.name = "舒舒";
+      var obj2 = obj;
+      console.log("obj = " + obj.name + "\t" + "obj2 = " + obj2.name); //obj = 舒舒	obj2 = 舒舒
+      obj.name = "凯茵";
+      console.log("obj = " + obj.name + "\t" + "obj2 = " + obj2.name); //obj = 凯茵	obj2 = 凯茵
+      //obj2 指向的是obj的地址
+
+      //设置obj2为null
+      obj2 = null;
+      console.log(obj); //{name: '凯茵'}
+      console.log(obj2); //null
+      //obj2 = null; 只是讲引用地址改为null obj无影响 要修改到堆内存的值才会影响到obj
+
+      var c = 10;
+      var d = 10;
+      console.log(c == d); //true
+
+      var obj3 = new Object();
+      var obj4 = new Object();
+      obj3.name = "冠映格";
+      obj4.name = "冠映格";
+
+      console.log(obj3 == obj4); //false 因为两个引用变量记录的是不同的地址
+
+      /* 
+        当比较两个基本数据类型的值时 就是比较值
+        而比较两个引用数据类型时 它是比较的对象的内存地址
+            如果两个对象是一模一样的 但是地址不同 它也会返回false
+      */
+    </script>
+  </head>
+  <body></body>
+</html>

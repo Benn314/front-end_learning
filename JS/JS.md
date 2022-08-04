@@ -1964,3 +1964,361 @@ switch用得少 if用的多
 ​	
 
 # 46_JS基础_对象的简介
+
+​	
+
+**31_JS基础_对象.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <script>
+    /* 
+        JS中的数据类型
+            String 字符串
+            Number 数值
+            Boolean 布尔值
+            Null 空值
+            Undefined 未定义
+                以上这五种类型属于基本数据类型 以后我们看到的值
+                    只要不是上边的5种 全都是对象
+            Object 对象
+
+        基本数据类型都是单一的值"hello" 123 true
+            值和值之间没有任何的联系
+
+        在JS中表示一个人的信息 （name gender age）
+            var name = "孙悟空";
+            var gender = "男";
+            var age = 18;
+        如果使用基本数据类型的数据 我们所创建的变量都是独立的 不能成为一个整体
+        把n个变量都放到同一个object对象里 那么这n个变量就有了联系
+
+        对象属于一种复合的数据类型 在对象中可以保存多个不同数据类型的属性
+
+        对象的分类
+            1.内建对象
+                由ES标准中定义的对象 在任何的ES的实现中都可以使用
+                比如：Math String Number Boolean Function Object......
+            
+            2.宿主对象
+                由JS的运行环境提供的对象 目前来讲主要指由浏览器提供的对象
+                比如：BOM DOM console document 
+
+            3.自定义对象
+                由开发人员自己创建的对象
+    */
+  </script>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 47_JS基础_对象的基本操作
+
+​	
+
+**31_JS基础_对象.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <script>
+    /* 
+        JS中的数据类型
+            String 字符串
+            Number 数值
+            Boolean 布尔值
+            Null 空值
+            Undefined 未定义
+                以上这五种类型属于基本数据类型 以后我们看到的值
+                    只要不是上边的5种 全都是对象
+            Object 对象
+
+        基本数据类型都是单一的值"hello" 123 true
+            值和值之间没有任何的联系
+
+        在JS中表示一个人的信息 （name gender age）
+            var name = "孙悟空";
+            var gender = "男";
+            var age = 18;
+        如果使用基本数据类型的数据 我们所创建的变量都是独立的 不能成为一个整体
+        把n个变量都放到同一个object对象里 那么这n个变量就有了联系
+
+        对象属于一种复合的数据类型 在对象中可以保存多个不同数据类型的属性
+
+        对象的分类
+            1.内建对象
+                由ES标准中定义的对象 在任何的ES的实现中都可以使用
+                比如：Math String Number Boolean Function Object......
+            
+            2.宿主对象
+                由JS的运行环境提供的对象 目前来讲主要指由浏览器提供的对象
+                比如：BOM DOM console document 
+
+            3.自定义对象
+                由开发人员自己创建的对象
+    */
+
+    //创建对象
+    /* 
+        使用new 关键字调用的函数 是构造函数constructor
+        构造函数是专门用来创建对象的函数
+        使用typeof 检查一个对象时 会返回object
+    */
+    var obj = new Object();
+    // console.log(typeof obj);
+
+    /* 
+        可以在对象中添加属性（在对象中添加的值叫做属性）
+        在对象中保存的值成为属性
+        向对象中添加属性
+            语法：对象.属性名 = 属性值;
+
+    */
+    //向obj中添加一个name属性
+    obj.name = "舒舒";
+    //向obj中添加一个gender属性
+    obj.gender = "女";
+    //向obj中添加一个age属性
+    obj.age = "19";
+
+    /* 
+        读取对象中的属性
+            语法：对象.属性名
+
+        如果读取对象中没有的属性 不会报错而是会返回undefined
+
+        修改对象的属性值
+            语法：对象.属性名 = 新值;
+
+    */
+    obj.name = "凯茵小可爱";
+    console.log(obj.name); //凯茵小可爱
+    console.log(obj); //{name: '凯茵小可爱', gender: '女', age: '19'}
+
+    /* 
+        删除对象的属性
+            语法：delete.属性名;
+    */
+    delete obj.age;
+    console.log(obj.age); //undefined    不会报错
+    console.log(obj); //{name: '凯茵小可爱', gender: '女'}
+
+    //对象像一个容器
+  </script>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 48_JS基础_属性名和属性值
+
+​	
+
+**32_JS基础_属性名和属性值.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var obj = new Object();
+      /*
+           向对象中添加属性
+           属性名:
+               对象的属性名不强制要求遵守标识符的规范
+                   什么乱七八糟的名字都可以使用
+               但是我们使用还是尽量按照标识符的规范来
+           */
+      obj.name = "舒舒";
+      obj.var = "hello";
+      //   console.log(obj.var); //hello
+
+      /*
+           如果要使用特殊的属性名 不能采用 . 的方式来操作
+            需要使用另一种方式
+               语法：对象["属性名"] = 属性值;
+            读取也需要采用这种方式
+            特殊的属性名用[]来表示
+
+            使用[]这种形式去操作属性 更加的灵活
+                在[]中可以直接传递一个变量 这样变量值是多少就会读取那个属性
+
+       */
+      //   obj.123=789;
+      //   console.log(obj.123);//Uncaught SyntaxError: Unexpected number
+      obj["123"] = 789;
+      var n = "123";
+      console.log(obj["123"]); //789
+      console.log(obj[n]); //789    同理
+
+      /*
+        属性值
+            JS对象的属性值 可以是任意的数据类型
+                甚至也可以是一个对象
+      */
+
+      obj.text = true;
+      obj["text"] = null;
+      //   obj.text = undefined;
+      console.log(obj["text"]); //null
+      console.log(obj.text); //null
+      //用[]的话 里面是字符串类型 一定要加双引号
+      //用 . 不能加引号
+
+      var obj2 = new Object();
+      obj2.name = "猪八戒";
+
+      obj.text = obj2;
+      console.log(obj);
+      /* 
+      打印结果：
+      {123: 789, name: '舒舒', var: 'hello', text: {…}}
+        123: 789
+        name: "舒舒"
+        text: {name: '猪八戒'}
+        var: "hello"
+        [[Prototype]]: Object
+      */
+      console.log(obj.text.name + "\n\n" + "hh" + "\n\n"); //猪八戒
+      /* 
+        in 运算符
+         - 通过该运算符可以检查一个对象中是否含有指定的属性
+            如果有则返回true 没有则返回false
+         - 语法：
+            “属性名” in 对象
+      */
+
+      //检查obj中是否含有test2属性
+      console.log("test2" in obj); //false
+      console.log("text" in obj); //true
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 49_JS基础_基本数据类型和引用数据类型
+
+> 基本数据类型的两个变量是两个相互独立的地址，而引用数据类型的两个变量指向的是同一个地址
+
+​	
+
+![image-20220804164332946](JS.assets/image-20220804164332946.png)
+
+![image-20220804170216385](JS.assets/image-20220804170216385.png)
+
+![image-20220804170342386](JS.assets/image-20220804170342386.png)
+
+![image-20220804170819818](JS.assets/image-20220804170819818.png)
+
+​	
+
+**33_JS基础_基本数据类型和引用数据类型.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        基本数据类型的两个变量是两个相互独立的地址
+        而引用数据类型的两个变量指向的是同一个地址
+
+        基本数据类型
+        String Number Boolean Null Undefined
+
+        引用数据类型
+        Object
+
+        JS中的变量都是保存到栈内存中的
+            基本数据类型的值直接在栈内存中存储 （内存直接开辟在栈内存中）
+            值与值之间是独立存在的 修改一个变量不会影响其他的变量
+
+            对象是保存到堆内存中的  此时在栈内存中的变量名保存在栈内存中的变量值是 堆内存的地址
+                每创建一个新的对象 就会在堆内存中开辟一个新的空间 
+                而变量保存的是对象的内存地址（对象的引用）
+                
+                如果两个变量保存的是同一个对象引用 当一个通过一个变量修改属性时 另一个也会受到影响
+                
+            基本数据类型保存值  引用数据类型保存地址
+        */
+
+      //基本数据类型
+      var a = 123;
+      var b = a; //b重新2开辟了一块新空间 复制了a的信息过来
+      a++;
+      console.log("b = " + b + "\t" + "a = " + a); //b = 123	a = 124
+
+      //引用数据类型
+      var obj = new Object();
+      //   var obj2 = new Object(); //再new的话是开辟一个新空间 下面var obj2 = obj;
+      //使得obj2变量保存obj变量的内存地址 导致obj2开辟的空间没用到 浪费了
+      obj.name = "舒舒";
+      var obj2 = obj;
+      console.log("obj = " + obj.name + "\t" + "obj2 = " + obj2.name); //obj = 舒舒	obj2 = 舒舒
+      obj.name = "凯茵";
+      console.log("obj = " + obj.name + "\t" + "obj2 = " + obj2.name); //obj = 凯茵	obj2 = 凯茵
+      //obj2 指向的是obj的地址
+
+      //设置obj2为null
+      obj2 = null;
+      console.log(obj); //{name: '凯茵'}
+      console.log(obj2); //null
+      //obj2 = null; 只是讲引用地址改为null obj无影响 要修改到堆内存的值才会影响到obj
+
+      var c = 10;
+      var d = 10;
+      console.log(c == d); //true
+
+      var obj3 = new Object();
+      var obj4 = new Object();
+      obj3.name = "冠映格";
+      obj4.name = "冠映格";
+
+      console.log(obj3 == obj4); //false 因为两个引用变量记录的是不同的地址
+
+      /* 
+        当比较两个基本数据类型的值时 就是比较值
+        而比较两个引用数据类型时 它是比较的对象的内存地址
+            如果两个对象是一模一样的 但是地址不同 它也会返回false
+      */
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 50_JS基础_对象字面量
+
