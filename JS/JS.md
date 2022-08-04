@@ -1772,3 +1772,195 @@ switch用得少 if用的多
 ​	
 
 # 41_JS基础_嵌套的for循环
+
+​	
+
+**29_JS基础_嵌套的for循环.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        通过程序 在页面中输出如下的图形：
+        *
+        **
+        ***
+        ****
+        *****
+
+        这里我们用到嵌套for循环
+       */
+      for (var i = 0; i < 5; i++) {
+        for (var j = 0; j <= i; j++) {
+          document.write("*&nbsp&nbsp&nbsp");
+        }
+        document.write("<br />"); //换行符也是要加双引号的
+      }
+      //外层控制高度 内层控制宽度
+      document.write("<br />");
+      document.write("<br />");
+
+      //把三角形倒过来输出
+      //方法一
+      for (var i = 5; i > 0; i--) {
+        for (var j = 1; j <= i; j++) {
+          document.write("*&nbsp&nbsp&nbsp");
+        }
+        document.write("<br />"); //换行符也是要加双引号的
+      }
+      document.write("<br />");
+      document.write("<br />");
+      //方法二（简单）  这种思想也很重要 取互余数 不用倒着写
+      for (var i = 0; i < 5; i++) {
+        for (var j = 0; j < 5 - i; j++) {
+          document.write("*&nbsp&nbsp&nbsp");
+        }
+        document.write("<br />"); //换行符也是要加双引号的
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+![image-20220804103223566](JS.assets/image-20220804103223566.png)
+
+​	
+
+# 42_JS基础_练习
+
+# 43_JS基础_for循环练习
+
+​	
+
+![image-20220804103654799](JS.assets/image-20220804103654799.png)
+
+​	
+
+**30_JS基础_for循环练习.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+            打印九九乘法表
+        */
+      for (var i = 1; i <= 9; i++) {
+        for (var j = 1; j <= i; j++) {
+          //这么写有些式子对不齐 用一个span标签来装一下
+          //   document.write(j + "*" + i + "=" + j * i + "&nbsp&nbsp&nbsp");
+          document.write("<span>" + j + "*" + i + "=" + j * i + "</span>");
+
+          /*
+            这里设置span标签设置 效果不正确显示的原因
+            span标签格式错误
+                正确写法：</span>
+                错误写法：</ span>
+
+            建议：为避免出现标签格式错误 可以先在body/head里智能提示生成 复制粘贴进去
+          */
+        }
+        document.write("<br />");
+      }
+      document.write("<br />");
+      document.write("<br />");
+      document.write("<br />");
+      /*
+        质数练习 打印出1-100之间所有质数
+      */
+      //设置哨兵
+
+      /* 
+        测试如下的程序的性能
+        再程序执行前，开启计时器
+        console.time("计时器的名字") 可以用来开启一个计时器
+          它需要一个字符串作为参数 这个字符串将会作为计时器的标识
+      */
+      console.time("test");
+
+      for (var i = 2; i <= 10000; i++) {
+        //这里的flag不能放外面 不然只会更新一次
+        //需要放到第一个循环里 每当结束一个值的质数判断后
+        //就重新更新为true进行下一个数的判断
+        //放外面的话只会显示2跟3是质数 然后就没有其他显示了
+        // 因为flag更新为false后就没有再更新了
+        var flag = true;
+
+        /* 
+          优化二 可以通过Math.sqrt()对一个数进行开方 减少循环次数
+        */
+        var result = Math.sqrt(4);
+        var result = Math.sqrt(97);
+        console.log(result);
+        for (var j = 2; j <= Math.sqrt(i); j++) {
+          if (i % j == 0) {
+            flag = false;
+            break; //优化一 添加break 提升性能
+          }
+        }
+        if (flag) {
+          document.write(i + "是一个质数");
+          document.write("<br />");
+          // console.log(i);
+        }
+      }
+      //终止计时器
+      // console.timeEnd()用来停止一个计时器 需要一个计时器的名字作为参数
+      //性能相差差不多3~6倍
+      console.timeEnd("test");
+    </script>
+    <style type="text/css">
+      span {
+        display: inline-block;
+        width: 80px;
+      }
+      body {
+        width: 2000px;
+      }
+    </style>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 44_JS基础_break和continue
+
+> break关键字可以用来退出switch或循环语句
+
+![image-20220804124618794](JS.assets/image-20220804124618794.png)
+
+![image-20220804124704550](JS.assets/image-20220804124704550.png)
+
+![image-20220804124759152](JS.assets/image-20220804124759152.png)
+
+![image-20220804125201799](JS.assets/image-20220804125201799.png)
+
+​	
+
+​	
+
+# 45_JS基础_质数练习的改进
+
+本次主要改进优化两个部分 循环次数和break终止循环
+
+详细代码已写入 **43_JS基础_for循环练习** 中的 *43_JS基础_for循环练习* 文件  可返回进行查看阅读
+
+​	
+
+​	
+
+# 46_JS基础_对象的简介

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+            打印九九乘法表
+        */
+      for (var i = 1; i <= 9; i++) {
+        for (var j = 1; j <= i; j++) {
+          //这么写有些式子对不齐 用一个span标签来装一下
+          //   document.write(j + "*" + i + "=" + j * i + "&nbsp&nbsp&nbsp");
+          document.write("<span>" + j + "*" + i + "=" + j * i + "</span>");
+
+          /*
+            这里设置span标签设置 效果不正确显示的原因
+            span标签格式错误
+                正确写法：</span>
+                错误写法：</ span>
+
+            建议：为避免出现标签格式错误 可以先在body/head里智能提示生成 复制粘贴进去
+          */
+        }
+        document.write("<br />");
+      }
+      document.write("<br />");
+      document.write("<br />");
+      document.write("<br />");
+      /*
+        质数练习 打印出1-100之间所有质数
+      */
+      //设置哨兵
+
+      /* 
+        测试如下的程序的性能
+        再程序执行前，开启计时器
+        console.time("计时器的名字") 可以用来开启一个计时器
+          它需要一个字符串作为参数 这个字符串将会作为计时器的标识
+      */
+      console.time("test");
+
+      for (var i = 2; i <= 10000; i++) {
+        //这里的flag不能放外面 不然只会更新一次
+        //需要放到第一个循环里 每当结束一个值的质数判断后
+        //就重新更新为true进行下一个数的判断
+        //放外面的话只会显示2跟3是质数 然后就没有其他显示了
+        // 因为flag更新为false后就没有再更新了
+        var flag = true;
+
+        /* 
+          优化二 可以通过Math.sqrt()对一个数进行开方 减少循环次数
+        */
+        var result = Math.sqrt(4);
+        var result = Math.sqrt(97);
+        console.log(result);
+        for (var j = 2; j <= Math.sqrt(i); j++) {
+          if (i % j == 0) {
+            flag = false;
+            break; //优化一 添加break 提升性能
+          }
+        }
+        if (flag) {
+          document.write(i + "是一个质数");
+          document.write("<br />");
+          // console.log(i);
+        }
+      }
+      //终止计时器
+      // console.timeEnd()用来停止一个计时器 需要一个计时器的名字作为参数
+      //性能相差差不多3~6倍
+      console.timeEnd("test");
+    </script>
+    <style type="text/css">
+      span {
+        display: inline-block;
+        width: 80px;
+      }
+      body {
+        width: 2000px;
+      }
+    </style>
+  </head>
+  <body></body>
+</html>

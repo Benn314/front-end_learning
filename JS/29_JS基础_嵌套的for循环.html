@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        通过程序 在页面中输出如下的图形：
+        *
+        **
+        ***
+        ****
+        *****
+
+        这里我们用到嵌套for循环
+       */
+      for (var i = 0; i < 5; i++) {
+        for (var j = 0; j <= i; j++) {
+          document.write("*&nbsp&nbsp&nbsp");
+        }
+        document.write("<br />"); //换行符也是要加双引号的
+      }
+      //外层控制高度 内层控制宽度
+      document.write("<br />");
+      document.write("<br />");
+
+      //把三角形倒过来输出
+      //方法一
+      for (var i = 5; i > 0; i--) {
+        for (var j = 1; j <= i; j++) {
+          document.write("*&nbsp&nbsp&nbsp");
+        }
+        document.write("<br />"); //换行符也是要加双引号的
+      }
+      document.write("<br />");
+      document.write("<br />");
+      //方法二（简单）  这种思想也很重要 取互余数 不用倒着写
+      for (var i = 0; i < 5; i++) {
+        for (var j = 0; j < 5 - i; j++) {
+          document.write("*&nbsp&nbsp&nbsp");
+        }
+        document.write("<br />"); //换行符也是要加双引号的
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
