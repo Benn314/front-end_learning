@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        先写一个相加函数
+        */
+      function sum(a, b) {
+        console.log("a = " + a);
+        console.log("b = " + b);
+        console.log(a + b);
+      }
+      sum(123, 456); // 579
+
+      /* 
+        调用函数时 解析器不会检查实参的类型
+            所以要注意 是否有可能会接收到非法的参数 
+            如果有可能则需要对参数进行类型的检查
+        函数的实参可以是任意的数据类型
+      */
+      sum(123, "hello"); // 123hello
+      sum(true, false); // 1
+
+      /* 
+        调用函数时 解析器也不会检查实参的数量
+            多余实参不会被赋值
+        如果实参的数量少于形参的数量 则没用对应实参的形参将是undefined
+      */
+      sum(123, 456, "hello", true, null); // 579
+
+      sum(123); //NaN
+      //   a = 123
+      //b = undefined
+      //number + undefined 确实等于NaN
+    </script>
+  </head>
+  <body></body>
+</html>

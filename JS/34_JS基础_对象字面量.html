@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      //创建一个对象
+      var obj = new Object();
+
+      /* 
+        使用对象字面量来创建一个对象
+        {}是new Object()的字面量
+      */
+      var obj1 = {}; // {} 等同于 new Object();
+      console.log(obj1); //Object
+
+      /* 
+        使用对象字面量 可以在创建对象时 直接指定对象中的属性
+            语法：{属性名:属性值,属性名:属性值,属性名:属性值,......}
+            对象字面量的属性名可以加引号也可以不加 建议不加
+            如果要使用一些特殊的名字 则必须加引号
+      */
+      var obj3 = {
+        name: "舒舒",
+        age: 18,
+        gender: "女",
+        test: { name: "凯茵" },
+      };
+      console.log(obj3); //{name: '舒舒', age: 18, gender: '女', test: {…}}
+      console.log(obj3.test); //{name: '凯茵'}
+
+      //new Object() 和 {} 这两种方式都要会用
+    </script>
+  </head>
+  <body></body>
+</html>

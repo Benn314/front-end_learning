@@ -2322,3 +2322,252 @@ switch用得少 if用的多
 
 # 50_JS基础_对象字面量
 
+​	
+
+![image-20220804173011997](JS.assets/image-20220804173011997.png)
+
+​	
+
+**34_JS基础_对象字面量.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      //创建一个对象
+      var obj = new Object();
+
+      /* 
+        使用对象字面量来创建一个对象
+        {}是new Object()的字面量
+      */
+      var obj1 = {}; // {} 等同于 new Object();
+      console.log(obj1); //Object
+
+      /* 
+        使用对象字面量 可以在创建对象时 直接指定对象中的属性
+            语法：{属性名:属性值,属性名:属性值,属性名:属性值,......}
+            对象字面量的属性名可以加引号也可以不加 建议不加
+            如果要使用一些特殊的名字 则必须加引号
+      */
+      var obj3 = {
+        name: "舒舒",
+        age: 18,
+        gender: "女",
+        test: { name: "凯茵" },
+      };
+      console.log(obj3); //{name: '舒舒', age: 18, gender: '女', test: {…}}
+      console.log(obj3.test); //{name: '凯茵'}
+
+      //new Object() 和 {} 这两种方式都要会用
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 51_JS基础_函数的简介
+
+​	
+
+**35_JS基础_函数.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        函数 function
+            函数也是一个对象  以后说啥都是对象 只要不是基本数据类型的
+            函数中可以封装一些功能（代码） 在需要时可以执行这些功能（代码）
+            函数中可以保存一些代码在需要的适合调用
+            使用typeof 检查一个函数对象时 会返回function
+        */
+
+      //我们在实际开发很少使用构造函数来创建一个函数对象
+      //创建一个函数对象
+      //可以将要封装的代码以字符串的形式传递给构造函数
+      var fun = new Function("console.log('舒舒');"); //记得 "舒舒" 记得加 ; 不然会报错 因为它是一句语句来着
+      //这种方式写函数不好
+
+      console.log(fun); //anonymous 匿名
+      console.log(typeof fun); //function
+
+      //调用函数 语法：函数对象();
+      fun();
+
+      //函数对象具有所有普通对象的功能 但是它更强大
+      fun.hello = "你好";
+      console.log(fun.hello);
+
+      /* 
+        
+        使用 函数声明 来创建一个函数
+            语法：
+                function 函数名([形参1,形参2,...形参N ]){  // [] 是可选的意思 写不写都行
+                    语句......
+                }
+      */
+      function fun2() {
+        console.log("嘿嘿！");
+      }
+      console.log(fun2);
+      fun2();
+
+      /* 
+        使用 函数表达式 来创建一个函数
+        var 函数名 = function([形参1,形参2,...,形参N]){
+            语句......
+        }
+      */
+
+      var fun3 = function () {
+        console.log("我是fun3函数中封装的代码");
+      };
+      fun3();
+
+      //匿名函数 不过没有意义
+      //   function(){
+      //     console.log("我是匿名函数中封装的代码");
+      //   }
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 52_JS基础_函数的参数
+
+![image-20220804200706095](JS.assets/image-20220804200706095.png)
+
+![image-20220804200903164](JS.assets/image-20220804200903164.png)
+
+​	
+
+**36_JS基础_函数的参数.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        先写一个相加函数
+        */
+      function sum(a, b) {
+        console.log("a = " + a);
+        console.log("b = " + b);
+        console.log(a + b);
+      }
+      sum(123, 456); // 579
+
+      /* 
+        调用函数时 解析器不会检查实参的类型
+            所以要注意 是否有可能会接收到非法的参数 
+            如果有可能则需要对参数进行类型的检查
+        函数的实参可以是任意的数据类型
+      */
+      sum(123, "hello"); // 123hello
+      sum(true, false); // 1
+
+      /* 
+        调用函数时 解析器也不会检查实参的数量
+            多余实参不会被赋值
+        如果实参的数量少于形参的数量 则没用对应实参的形参将是undefined
+      */
+      sum(123, 456, "hello", true, null); // 579
+
+      sum(123); //NaN
+      //   a = 123
+      //b = undefined
+      //number + undefined 确实等于NaN
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 53_JS基础_函数的返回值
+
+​	
+
+**37_JS基础_函数的返回值.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            创建一个函数 用来计算三个数的和
+
+            可以使用return 来设置函数的返回值
+            语法：
+                return 值;
+
+            return后的值将会作为函数的执行结果返回
+                可以定义一个变量 来接受该结果
+            在函数中 return后的语句都不会执行
+
+            return; 相当于 return undefined;
+            如果return语句后不跟任何值就相当于返回一个undefined
+            如果函数中不写return 则也会返回undefined
+
+            return后可以跟任意类型的值
+        */
+
+      var ret = alert("hello!");
+      console.log(ret); // undefined
+
+      function sum(a, b, c) {
+        var d = a + b + c;
+        return d;
+      }
+
+      //调用函数
+      //变量result的值就是函数执行结果
+      //函数返回什么result的值就是什么
+      var result = sum(1, 2, 3);
+      alert(result);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 54_JS基础_函数的返回值
+
+​	
+
+
+

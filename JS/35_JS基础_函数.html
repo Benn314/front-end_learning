@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        函数 function
+            函数也是一个对象  以后说啥都是对象 只要不是基本数据类型的
+            函数中可以封装一些功能（代码） 在需要时可以执行这些功能（代码）
+            函数中可以保存一些代码在需要的适合调用
+            使用typeof 检查一个函数对象时 会返回function
+        */
+
+      //我们在实际开发很少使用构造函数来创建一个函数对象
+      //创建一个函数对象
+      //可以将要封装的代码以字符串的形式传递给构造函数
+      var fun = new Function("console.log('舒舒');"); //记得 "舒舒" 记得加 ; 不然会报错 因为它是一句语句来着
+      //这种方式写函数不好
+
+      console.log(fun); //anonymous 匿名
+      console.log(typeof fun); //function
+
+      //调用函数 语法：函数对象();
+      fun();
+
+      //函数对象具有所有普通对象的功能 但是它更强大
+      fun.hello = "你好";
+      console.log(fun.hello);
+
+      /* 
+        
+        使用 函数声明 来创建一个函数
+            语法：
+                function 函数名([形参1,形参2,...形参N ]){  // [] 是可选的意思 写不写都行
+                    语句......
+                }
+      */
+      function fun2() {
+        console.log("嘿嘿！");
+      }
+      console.log(fun2);
+      fun2();
+
+      /* 
+        使用 函数表达式 来创建一个函数
+        var 函数名 = function([形参1,形参2,...,形参N]){
+            语句......
+        }
+      */
+
+      var fun3 = function () {
+        console.log("我是fun3函数中封装的代码");
+      };
+      fun3();
+
+      //匿名函数 不过没有意义
+      //   function(){
+      //     console.log("我是匿名函数中封装的代码");
+      //   }
+    </script>
+  </head>
+  <body></body>
+</html>
