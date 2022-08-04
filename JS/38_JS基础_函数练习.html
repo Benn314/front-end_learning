@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        定义一个函数 判断一个数字是否是偶数 如果是返回true 否则返回false
+        */
+
+      function isOu(num) {
+        //可以直接这么写
+        return num % 2 == 0;
+      }
+      console.log(isOu(20));
+
+      /* 
+        创建一个函数 可以在控制台中输出一个人的信息
+            可以输出人的name age gender address
+
+        实参可以是任意的数据类型 也可以是一个对象
+            当我们的参数过多时 可以将参数封装到一个对象中 然后通过对象传递
+      */
+      function intro(o) {
+        console.log("o = " + o);
+        console.log(
+          "我是" +
+            o.name +
+            "今年" +
+            o.age +
+            "岁啦！是一名" +
+            o.gender +
+            "！住在" +
+            o.address
+        );
+      }
+
+      //创建一个对象
+      var obj = {
+        name: "舒舒呀！",
+        age: 18,
+        gender: "美少女",
+        address: "田头圆村",
+      };
+
+      intro(obj);
+
+      /* 
+        实参可以是一个对象 也可以是一个函数 因为函数也是对象
+      */
+      function fun(a) {
+        console.log("a = " + a);
+        a(obj);
+      }
+
+      fun(intro);
+
+      //将匿名函数作为实参传递给函数这种方式在开发中也会有
+      fun(function () {
+        alert("hello!");
+      });
+      //对象能干的事 函数都能干
+
+      //类比一下可乐机
+      /* 
+        intro()
+            调用函数    把可乐机做好的可乐给你
+            相当于使用的函数的返回值
+
+        intro
+            函数对象    把可乐机直接给你
+            相当于直接使用函数对象
+      */
+    </script>
+  </head>
+  <body></body>
+</html>

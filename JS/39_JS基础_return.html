@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      function fun2() {
+        var obj = { name: "舒舒" };
+        return obj;
+      }
+      var a = fun2();
+      console.log("a = " + a.name);
+
+      function fun3() {
+        //在函数内部再声明一个函数
+        function fun4() {
+          alert("我是fun4");
+        }
+
+        //将fun4函数对象作为返回值返回
+        return fun4;
+      }
+
+      //   console.log(fun3()); //执行不了里面的fun4()
+      //函数里多嵌套几个函数 就要多写几个()来调用
+
+      //调用方法一 直接调用
+      //   console.log(fun3()()); //执行不了里面的fun4()
+      //   fun3()();
+
+      //调用方法二 间接调用
+      a = fun3();
+      //   a();
+    </script>
+  </head>
+  <body></body>
+</html>

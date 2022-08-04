@@ -2569,5 +2569,329 @@ switch用得少 if用的多
 
 ​	
 
+**38_JS基础_函数练习.html**
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        定义一个函数 判断一个数字是否是偶数 如果是返回true 否则返回false
+        */
+
+      function isOu(num) {
+        //可以直接这么写
+        return num % 2 == 0;
+      }
+      console.log(isOu(20));
+
+      /* 
+        创建一个函数 可以在控制台中输出一个人的信息
+            可以输出人的name age gender address
+
+        实参可以是任意的数据类型 也可以是一个对象
+            当我们的参数过多时 可以将参数封装到一个对象中 然后通过对象传递
+      */
+      function intro(o) {
+        console.log("o = " + o);
+        console.log(
+          "我是" +
+            o.name +
+            "今年" +
+            o.age +
+            "岁啦！是一名" +
+            o.gender +
+            "！住在" +
+            o.address
+        );
+      }
+
+      //创建一个对象
+      var obj = {
+        name: "舒舒呀！",
+        age: 18,
+        gender: "美少女",
+        address: "田头圆村",
+      };
+
+      intro(obj);
+
+      /* 
+        实参可以是一个对象 也可以是一个函数 因为函数也是对象
+      */
+      function fun(a) {
+        console.log("a = " + a);
+        a(obj);
+      }
+
+      fun(intro);
+
+      //将匿名函数作为实参传递给函数这种方式在开发中也会有
+      fun(function () {
+        alert("hello!");
+      });
+      //对象能干的事 函数都能干
+
+      //类比一下可乐机
+      /* 
+        intro()
+            调用函数    把可乐机做好的可乐给你
+            相当于使用的函数的返回值
+
+        intro
+            函数对象    把可乐机直接给你
+            相当于直接使用函数对象
+      */
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 55_JS基础_返回值的类型
+
+![image-20220804215620234](JS.assets/image-20220804215620234.png)
+
+![image-20220804220127545](JS.assets/image-20220804220127545.png)
+
+​	
+
+![image-20220804220155650](JS.assets/image-20220804220155650.png)
+
+![image-20220804220159541](JS.assets/image-20220804220159541.png)
+
+![image-20220804220332437](JS.assets/image-20220804220332437.png)
+
+fun3()() 和 a() 是一样的 看下面 ***39_JS基础_return.html*** 代码块说明
+
+​	
+
+**39_JS基础_return.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      function fun2() {
+        var obj = { name: "舒舒" };
+        return obj;
+      }
+      var a = fun2();
+      console.log("a = " + a.name);
+
+      function fun3() {
+        //在函数内部再声明一个函数
+        function fun4() {
+          alert("我是fun4");
+        }
+
+        //将fun4函数对象作为返回值返回
+        return fun4;
+      }
+
+      //   console.log(fun3()); //执行不了里面的fun4()
+      //函数里多嵌套几个函数 就要多写几个()来调用
+
+      //调用方法一 直接调用
+      //   console.log(fun3()()); //执行不了里面的fun4()
+      //   fun3()();
+
+      //调用方法二 间接调用
+      a = fun3();
+      //   a();
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 56_JS基础_立即执行函数
+
+​	
+
+**40_JS基础_立即执行函数.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      //单写匿名函数会报错 需要用一对()括起来 表明它是一个整体才不会报错
+      //在匿名函数后面多加一对()即可执行调用
+
+      /* 
+        函数对象()
+        立即执行函数
+            函数定义完 立即被调用
+            立即执行函数往往只会执行一次
+      */
+      //调用方法一 立即执行函数
+      //   (function () {
+      //     alert("我是一个匿名函数~");
+      //   })();
+
+      //调用方法二 间接调用
+      //   var value = function () {
+      //     alert("我是一个匿名函数hh~");
+      //   };
+      //   value();
+
+      //带参数的匿名函数立即执行
+      (function (a, b) {
+        console.log("a = " + a);
+        console.log("b = " + b);
+      })(123, 456);
+      //执行结果
+      //a = 123
+      //b = 456
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 57_JS基础_方法
+
+​	
+
+**41_JS基础_对象.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        创建一个对象
+        */
+      var obj = new Object();
+
+      //向对象中添加属性
+      obj.name = "舒舒";
+      obj.age = 19;
+
+      //对象的属性值可以是任何的数据类型 也可以是个函数
+      obj.sayName = function () {
+        //把函数对象赋值给sayName属性
+        console.log(obj.name);
+      };
+      console.log(obj.sayName);
+      //执行结果
+      /*
+        ƒ () {
+        //把函数对象赋值给sayName属性
+        console.log(obj.name);
+      }
+      */
+      obj.sayName(); //舒舒
+
+      /*
+        函数也可以称为对象的属性
+          如果一个函数作为一个对象的属性保存
+          那么我们称这个函数是这个对象的方法
+          调用这个函数就说调用对象的方法（method）
+
+          但是它只是名称上的区别 没用其他的区别
+      */
+
+      function fun() {
+        console.log(obj.name);
+      }
+      //调方法
+      obj.sayName(); //舒舒
+      //调函数
+      fun(); //舒舒
+      //只是名称上的区分 本质上是一样的
+
+      var obj2 = {
+        name: "凯茵",
+        age: 18,
+        sayName: function () {
+          console.log(obj2.name);
+        },
+      };
+
+      obj2.sayName(); //凯茵
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+**42_JS基础_枚举对象中的属性.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var obj = {
+        name: "凯茵",
+        age: 18,
+        gender: "美少女",
+        address: "陆丰",
+      };
+
+      //枚举对象中的属性
+      //使用for ... in 语句
+      /*
+        语法：
+            for(var 变量 in 对象){
+
+            }
+
+        for ... in 语句 对象中有几个属性 循环体就会执行几次
+        每次执行时 会将对象中的一个属性的名字赋值给变量
+      */
+
+      for (var n in obj) {
+        // console.log("属性名"+n);
+        // console.log(obj.n); //不能用这样 因为没有n的属性 而且传递的变量作为属性名的话 要用[]
+        console.log(obj[n]);
+      }
+      //   for (var n in document) {
+      //     console.log(n);
+      //   }
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 58_JS基础_全局作用域
 

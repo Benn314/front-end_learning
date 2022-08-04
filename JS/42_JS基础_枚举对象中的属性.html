@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var obj = {
+        name: "凯茵",
+        age: 18,
+        gender: "美少女",
+        address: "陆丰",
+      };
+
+      //枚举对象中的属性
+      //使用for ... in 语句
+      /*
+        语法：
+            for(var 变量 in 对象){
+
+            }
+
+        for ... in 语句 对象中有几个属性 循环体就会执行几次
+        每次执行时 会将对象中的一个属性的名字赋值给变量
+      */
+
+      for (var n in obj) {
+        // console.log("属性名"+n);
+        // console.log(obj.n); //不能用这样 因为没有n的属性 而且传递的变量作为属性名的话 要用[]
+        console.log(obj[n]);
+      }
+      //   for (var n in document) {
+      //     console.log(n);
+      //   }
+    </script>
+  </head>
+  <body></body>
+</html>
