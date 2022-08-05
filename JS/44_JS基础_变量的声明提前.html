@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        变量的声明提前
+            使用var关键字声明的变量 会在所有的代码执行之前被声明（但是不会赋值）
+                但是如果声明变量时不适用var关键字 则变量不会被声明提前
+
+        函数的声明提前   
+            使用函数声明形式创建的函数function函数(){}
+                它会在所有的代码执行之前就被创建  优先级比较高
+                    所以我们可以在函数声明前来调用函数
+            使用函数表达式创建的函数 不会被声明提前 所以不能在声明前调用
+
+            全局作用域中的变量都是全局变量
+                在页面的任意的部分都可以访问到
+        */
+      console.log("a = " + a); //a = undefined 相当于var a; 被提到12行前面去了
+      var a = 123;
+      a = 123; //不写var 的话 12行直接报错
+
+      fun(); //我是一个fun函数
+      fun2(); //Uncaught TypeError: fun2 is not a function
+
+      //函数声明 会被提前创建
+      function fun() {
+        console.log("我是一个fun函数");
+      }
+
+      //函数表达式声明 使用函数表达式创建的函数
+      //函数表达式 不会被提前创建
+      var fun2 = function () {
+        console.log("我是一个fun2函数");
+      };
+    </script>
+  </head>
+  <body></body>
+</html>

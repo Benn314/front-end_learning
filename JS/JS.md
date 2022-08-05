@@ -2895,3 +2895,262 @@ fun3()() 和 a() 是一样的 看下面 ***39_JS基础_return.html*** 代码块�
 
 # 58_JS基础_全局作用域
 
+> Scope 作用域
+
+**43_JS基础_作用域(Scope).html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        作用域
+            作用域指一个变量的作用的范围
+            在JS中一共有两种作用域：
+                1.全局作用域
+                    直接编写在script标签中的JS代码 都在全局作用域
+                    全局作用域在页面打开时创建 在页面关闭时销毁
+                    在全局作用域中有一个全局对象window
+                        它代表的是一个浏览器的窗口 它由浏览器创建我们可以直接使用
+                    在全局作用域中
+                        创建的变量都会作为window对象的属性保存
+                        创建的函数都会作为window对象的方法保存
+
+                2.函数作用域（局部作用域）
+        */
+
+      function fun() {
+        var a = 123;
+        console.log("我是window的fun方法");
+      }
+      //   console.log(a); //Uncaught ReferenceError: a is not defined
+
+      console.log(window);
+
+      //   在全局作用域中
+      //   创建的变量都会作为window对象的属性保存
+      var a = 10;
+      console.log(window.a);
+
+      //   在全局作用域中创建的函数都会作为window对象的方法保存
+      window.fun();
+      fun();
+
+      //所谓的函数就是window下的方法 它俩其实没区别
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+**44_JS基础_变量的声明提前.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        变量的声明提前
+            使用var关键字声明的变量 会在所有的代码执行之前被声明（但是不会赋值）
+                但是如果声明变量时不适用var关键字 则变量不会被声明提前
+
+        函数的声明提前   
+            使用函数声明形式创建的函数function函数(){}
+                它会在所有的代码执行之前就被创建  优先级比较高
+                    所以我们可以在函数声明前来调用函数
+            使用函数表达式创建的函数 不会被声明提前 所以不能在声明前调用
+
+            全局作用域中的变量都是全局变量
+                在页面的任意的部分都可以访问到
+        */
+      console.log("a = " + a); //a = undefined 相当于var a; 被提到12行前面去了
+      var a = 123;
+      a = 123; //不写var 的话 12行直接报错
+
+      fun(); //我是一个fun函数
+      fun2(); //Uncaught TypeError: fun2 is not a function
+
+      //函数声明 会被提前创建
+      function fun() {
+        console.log("我是一个fun函数");
+      }
+
+      //函数表达式声明 使用函数表达式创建的函数
+      //函数表达式 不会被提前创建
+      var fun2 = function () {
+        console.log("我是一个fun2函数");
+      };
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 59_JS基础_函数作用域
+
+​	
+
+**45_JS基础_函数作用域.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        函数作用域
+            调用函数时创建函数作用域 函数执行完毕以后 函数作用域销毁
+            每调用一次函数就会创建一个新的函数作用域 他们之间是互相独立的
+            在函数作用域中可以访问到全局作用域的变量
+                在全局作用域中无法访问到函数作用域的变量
+            当在函数作用域操作一个变量时 它会先在自身作用域中寻找 如果有就直接使用
+                如果没有则向上一次作用域中寻找 直到找到全局作用域
+                如果全局作用域中依然没有找到 则会报错ReferenceError
+            在函数中要访问全局变量可以使用window对象
+        */
+      //创建一个全局变量
+      var a = 10;
+
+      function fun() {
+        var a = "我是fun函数中的变量a";
+        var b = 20;
+
+        function fun2() {
+          console.log("a = " + a); //一级一级往上找
+          console.log("a = " + window.a);
+        }
+
+        fun2();
+      }
+
+      //   console.log(b); //Uncaught ReferenceError: b is not defined
+
+      //三个独立函数作用域
+      //   fun();
+      //   fun();
+      //   fun();
+
+      fun();
+
+      /* 
+        在函数作用域也有声明提前的特性
+            使用var关键字声明的变量 会在函数中所有的代码执行之前被声明
+            函数声明也会在函数中所有的代码执行之前执行
+      */
+
+      function fun3() {
+        console.log(a);
+        var a = 35;
+
+        fun4();
+
+        function fun4() {
+          alert("Im fun4");
+        }
+      }
+
+      //   fun3(); //undefined
+
+      var c = 33;
+
+      /* 
+        在函数中 不使用var声明的变量都会成为全局变量
+      */
+      function fun5() {
+        console.log("c = " + c);
+        // var c = 10;
+        c = 10;
+
+        //d没有使用var关键字 则会设置为全局变量
+        d = 100; //相当于 window.d = 100;
+      }
+
+      fun5(); //undefined
+      console.log("c = " + c);
+      console.log("d = " + d);
+
+      var e = 23;
+      /* 
+        定义形参就相当于在函数作用域中声明了变量
+            注意 形参就相当于在函数中声明了变量 只是未赋初值
+      */
+      function fun6(e) {
+        //相当于给形参e声明了 var e;
+        alert(e);
+      }
+
+      fun6(); //undefined 没有给形参赋实参的话
+
+      //小练习
+      var a1 = 123;
+      function funA(a1) {
+        //形参相当于在函数里声明变量 var a1;
+        alert(a1);
+        a1 = 456;
+      }
+      funA(123);
+      alert(a1);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 60_JS基础_debug
+
+​	
+
+**46_JS基础_debug.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        谷歌调试右击变量没有 Add to watch？
+            系统语言设置为中文后 
+            debug右击变量的 `添加到监视选项(Add to watch)` 位置下移了 
+            同时选项文本变更为 `将所选文本添加至监视表达式`
+      */
+
+      alert(d);
+      var a = 10;
+      var b = "hello";
+      c = true;
+
+      function fun() {
+        alert("hello");
+      }
+
+      var d = 35;
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
