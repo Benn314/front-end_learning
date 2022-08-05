@@ -3600,3 +3600,302 @@ prototype保存的是原型对象的地址
 ​	
 
 # 67_JS基础_原型对象
+
+![image-20220805212707993](JS.assets/image-20220805212707993.png)
+
+在原型对象中查找不到，则会去原型的原型对象中查找 逐级往上
+
+​	
+
+**53_JS基础_原型.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        创建一个构造函数
+        */
+      function MyClass() {}
+
+      //向MyClass的原型中添加一个name属性
+      MyClass.prototype.name = "我是原型中的名字";
+
+      var mc = new MyClass();
+
+      console.log(mc.name);
+
+      //使用in检查对象中是否含有某个属性时 如果对象中没有但是原型中有 也会返回true
+      console.log("name" in mc); //true
+
+      //可以使用对象的hasOwnProperty()来检查对象自身中是否含有该属性
+      //使用该方法只有当对象自身中含有属性时 才会返回true
+      console.log(mc.hasOwnProperty("name")); //false
+      console.log(mc.hasOwnProperty("hasOwnProperty")); //false
+
+      /* 
+        原型对象也是对象 所以它也有原型
+            当我们使用一个对象的属性或方法时 会先在自身中寻找
+                自身中如果有 则直接使用
+                如果没有则去原型对象中寻找 如果原型对象中有 则使用
+                如果没有则去原型的原型中寻找 直到找到Object对象的原型
+                Object对象的原型没有原型（下边的null） 如果在Object中依然没有找到 则返回undefined
+      */
+
+      console.log(mc.__proto__.hasOwnProperty("hasOwnProperty")); //false
+      console.log(mc.__proto__.__proto__); //true
+      console.log(mc.__proto__.__proto__.hasOwnProperty("hasOwnProperty")); //true
+      console.log(mc.__proto__.__proto__.__proto__); //null 到头了
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 68_JS基础_toString()
+
+```html
+    <script>
+      function Person(name, age, gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+      }
+      var per = new Person("孙悟空", 18, "男");
+
+      console.log(per);
+    </script>
+```
+
+![image-20220805221629911](JS.assets/image-20220805221629911.png)
+
+谷歌浏览器一直以来就是有打印原型对象和原型的原型对象，不知道而已啦
+
+​	
+
+**54_JS基础_toString().html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      function Person(name, age, gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+      }
+      var per = new Person("孙悟空", 18, "男");
+      var per2 = new Person("猪八戒", 38, "男");
+
+      //修改原型对象的toString方法
+      Person.prototype.toString = function () {
+        return (
+          "Person[name=" +
+          this.name +
+          ",age=" +
+          this.age +
+          ",gender=" +
+          this.gender +
+          "]"
+        );
+      };
+
+      //当我们直接在页面中打印一个对象时 事实上是输出的对象的toString()方法的返回值
+      //如果我们希望在输出对象时不输出[object Object] 可以为对象添加一个toString()方法
+
+      //单修改per对象的toString方法
+      per.toString = function () {
+        // return "我是一个快乐的小Person";
+        //也可以这样
+        return (
+          "Person[name=" +
+          this.name +
+          ",age=" +
+          this.age +
+          ",gender=" +
+          this.gender +
+          "]"
+        );
+      };
+
+      //单写per返回的也是toString()的返回值
+      console.log(per);
+      console.log(per.toString());
+
+      //toString在原型的原型对象中
+      console.log(per.__proto__.__proto__.hasOwnProperty("toString")); //true
+
+      console.log(per2);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 69_JS基础_垃圾回收
+
+​	
+
+**55_JS基础_垃圾回收.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+       垃圾回收（GC：Garbage Collection）
+        就像人生活的时间长了会产生垃圾一样 程序运行过程中也会产生垃圾
+            这些垃圾积攒过多以后 会导致程序运行的速度过慢
+            所以我们需要一个垃圾回收的机制 来处理程序运行过程中产生的垃圾
+        当一个对象没有任何的变量或属性对它进行引用 此时我们将永远无法操作该对象
+            此时这种对象就是一个垃圾 这种对象过多会占用大量的内存空间 导致程序运行变慢
+            所以这种垃圾必须进行清理
+            在JS中拥有自动的垃圾回收机制 会自动将这些垃圾对象从内存中销毁
+                我们不需要也不能进行垃圾回收的操作 浏览器会自己去处理
+            我们需要做的只是要将不再使用的对象设置为null即可
+      */
+
+      var obj = new Object();
+
+      //将obj设置null，即断开跟堆内存开辟空间的链接 从此变为垃圾 等待被GC回收
+      obj = null;
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 70_JS基础_数组简介
+
+对象使用属性名 数组使用索引
+
+![image-20220805230153362](JS.assets/image-20220805230153362.png)
+
+​	
+
+**56_JS基础_数组.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+       大多时间在研究自定义对象 日常开发中自定义对象并不是我们主要用的对象 
+        主要用的还是内建对象和宿主对象 高级开发用自定义对象多
+            内建对象和宿主对象也是从自定义对象来的 只不过不是我们定的
+
+       内建对象
+       宿主对象
+       自定义对象
+
+       数组（Array）
+        数组也是一个对象
+        它和我们普通对象功能类似 也是用来存储一些值的
+        不同的是普通对象是使用字符串作为属性名的
+            而数组是使用数字来作为索引操作元素
+
+        索引 
+            从0开始的整数
+        对象使用属性名 数组使用索引
+        数组的存储性能比普通对象要好 在开发中我们经常使用数组来存储一些数据
+
+      */
+
+      //创建数组对象
+      var arr = new Array();
+
+      console.log(arr);
+
+      //使用typeof检查一个数组时 会返回object
+      console.log(typeof arr); //object
+
+      /* 
+        向数组中添加元素
+        语法：数组[索引] = 值;
+      */
+      arr[0] = 10;
+      arr[1] = 33;
+      console.log(arr); //(2) [10, 33]
+
+      /* 
+        读取数组中的元素
+        语法：数组[索引]
+            如果读取不存在的索引 它不会报错而是返回undefined
+      */
+
+      console.log(arr[1]);
+
+      /* 
+        获取数组的长度
+        可以使用length属性来获取数组的长度
+            语法：数组.length
+
+        对于连续的数组 使用length可以获取到数组的长度(元素的个数)
+        对于非连续的数组 使用length 会获取到数组的最大的索引+1
+            尽量不要创建非连续的数组
+      */
+      console.log(arr.length); //不是length()喔 c++写多了
+
+      arr[10] = 66;
+      console.log(arr.length); // 11
+      console.log(arr); //[10, 33, 空属性 × 8, 66]
+
+      /* 
+        修改length
+            如果修改的length大于原长度 则多出部分会空出来
+            如果修改的length小于原长度 则多出部分会被删除
+      */
+      arr.length = 10;
+
+      console.log(arr.length);
+      console.log(arr);
+
+      /* 
+        向数组的最后一个位置添加元素
+            语法：数组[数组.length] = 值;
+      */
+      arr[arr.length] = 70;
+      arr[arr.length] = 80;
+      arr[arr.length] = 90;
+
+      console.log(arr.length);
+      console.log(arr);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 71_JS基础_数组字面量
