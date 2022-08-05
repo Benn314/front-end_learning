@@ -21,16 +21,26 @@
         this.age = age;
         this.gender = gender;
         //向对象中添加一个方法
-        this.sayName = fun;
+        // this.sayName = fun;  //学习了原型后 这里不用写了 把方法写进prototype属性里
         // 这样会造成构造函数每执行一次就会创建一个新的sayName方法 没必要
-        //可以在全局作用域去定义这么一个function方法 让所有构造函数对象共享同一个fun对象
+        //可以在全局作用域去定义这么一个function方法(这么做有弊端 后面会有解释的) 让所有构造函数对象共享同一个fun对象
         // 减少内存空间的开支
       }
 
       //将sayName方法在全局作用域中定义
-      function fun() {
+      /* 
+        将函数定义在全局作用域 污染了全局域的命名空间
+            而且定义在全局作用域中也很不安全
+            如何改进呢？看下一节html 原型.html
+      */
+      //学习了原型后 这里不用写了 把方法写进prototype属性里
+      //   function fun() {
+      //     alert("Hello大家好！我是" + this.name);
+      //   }
+      //向原型中添加sayName方法
+      Person.prototype.sayName = function () {
         alert("Hello大家好！我是" + this.name);
-      }
+      };
 
       var per = new Person("舒舒");
       var per2 = new Person("凯茵");

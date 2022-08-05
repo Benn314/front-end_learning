@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+       proto 原型
+       原型模式 prototype
+
+        我们所创建的每一个函数（普通函数也有） 解析器都会向函数中添加一个属性 prototype
+            这个属性对应着一个对象 这个对象就是我们所谓的原型对象
+        如果函数作为普通的函数调用prototype没有任何作用
+        当函数以构造函数的形式调用时 它所创建的对象中都会有一个隐含的属性(__proto__)
+            指向该构造函数的原型对象 我们可以通过__proto__来访问该属性
+
+        原型对象就相当于一个公共的区域 所有同一个类的实例都可以访问到这个原型对象
+            我们可以将对象中共有的内容 统一设置都原型对象中
+
+        当我们访问对象的一个属性或方法时 它会先在对象自身中寻找 如果有则直接使用
+            如果没有则会去原型对象中寻找 如果找到则直接使用
+
+        以后创建构造函数时 可以将这些对象共有的属性和方法 统一添加到构造函数的原型对象中
+            这样不用分别为每一个对象添加 也不会影响到全局作用域 
+                就可以使每个对象都具有这些属性和方法了
+
+        如果以后发现有些属性没有但却可以用？那么说明它在原型属性里
+      */
+
+      function Person() {}
+
+      function MyClass() {}
+
+      console.log(MyClass.prototype == Person.prototype); //false
+      //每一个函数都有它自己的prototype
+
+      var mc = new MyClass();
+      //   console.log(MyClass.prototype);
+      console.log(mc.__proto__);
+      console.log(mc.__proto__ == MyClass.prototype); //true
+
+      //向MyClass的原型中添加属性a
+      MyClass.prototype.a = 123;
+
+      console.log(mc.a); //123 写成mc.a 而不是mc.proto.a  proto可以省略
+      mc.a = "我是mc中的a";
+      console.log(mc.a); //我是mc中的a 如果在mc本身属性里找得到a 则不用去proto原型里找了
+
+      //向MyClass的原型中添加一个方法
+      MyClass.prototype.sayHello = function () {
+        alert("Hello！我是原型的sayHello方法");
+      };
+
+      //   mc.sayHello();
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -3473,16 +3473,26 @@ fun3()() 和 a() 是一样的 看下面 ***39_JS基础_return.html*** 代码块�
         this.age = age;
         this.gender = gender;
         //向对象中添加一个方法
-        this.sayName = fun;
+        // this.sayName = fun;  //学习了原型后 这里不用写了 把方法写进prototype属性里
         // 这样会造成构造函数每执行一次就会创建一个新的sayName方法 没必要
-        //可以在全局作用域去定义这么一个function方法 让所有构造函数对象共享同一个fun对象
+        //可以在全局作用域去定义这么一个function方法(这么做有弊端 后面会有解释的) 让所有构造函数对象共享同一个fun对象
         // 减少内存空间的开支
       }
 
       //将sayName方法在全局作用域中定义
-      function fun() {
+      /* 
+        将函数定义在全局作用域 污染了全局域的命名空间
+            而且定义在全局作用域中也很不安全
+            如何改进呢？看下一节html 原型.html
+      */
+      //学习了原型后 这里不用写了 把方法写进prototype属性里
+      //   function fun() {
+      //     alert("Hello大家好！我是" + this.name);
+      //   }
+      //向原型中添加sayName方法
+      Person.prototype.sayName = function () {
         alert("Hello大家好！我是" + this.name);
-      }
+      };
 
       var per = new Person("舒舒");
       var per2 = new Person("凯茵");
@@ -3498,6 +3508,7 @@ fun3()() 和 a() 是一样的 看下面 ***39_JS基础_return.html*** 代码块�
   <body></body>
 </html>
 
+
 ```
 
 ​	
@@ -3506,3 +3517,86 @@ fun3()() 和 a() 是一样的 看下面 ***39_JS基础_return.html*** 代码块�
 
 # 66_JS基础_原型对象
 
+![image-20220805174426214](JS.assets/image-20220805174426214.png)
+
+prototype保存的是原型对象的地址
+
+![image-20220805174934680](JS.assets/image-20220805174934680.png)
+
+![image-20220805175302108](JS.assets/image-20220805175302108.png)
+
+![image-20220805175723541](JS.assets/image-20220805175723541.png)
+
+![image-20220805180709006](JS.assets/image-20220805180709006.png)
+
+​	
+
+**52_JS基础_原型.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+       proto 原型
+       原型模式 prototype
+
+        我们所创建的每一个函数（普通函数也有） 解析器都会向函数中添加一个属性 prototype
+            这个属性对应着一个对象 这个对象就是我们所谓的原型对象
+        如果函数作为普通的函数调用prototype没有任何作用
+        当函数以构造函数的形式调用时 它所创建的对象中都会有一个隐含的属性(__proto__)
+            指向该构造函数的原型对象 我们可以通过__proto__来访问该属性
+
+        原型对象就相当于一个公共的区域 所有同一个类的实例都可以访问到这个原型对象
+            我们可以将对象中共有的内容 统一设置都原型对象中
+
+        当我们访问对象的一个属性或方法时 它会先在对象自身中寻找 如果有则直接使用
+            如果没有则会去原型对象中寻找 如果找到则直接使用
+
+        以后创建构造函数时 可以将这些对象共有的属性和方法 统一添加到构造函数的原型对象中
+            这样不用分别为每一个对象添加 也不会影响到全局作用域 
+                就可以使每个对象都具有这些属性和方法了
+
+        如果以后发现有些属性没有但却可以用？那么说明它在原型属性里
+      */
+
+      function Person() {}
+
+      function MyClass() {}
+
+      console.log(MyClass.prototype == Person.prototype); //false
+      //每一个函数都有它自己的prototype
+
+      var mc = new MyClass();
+      //   console.log(MyClass.prototype);
+      console.log(mc.__proto__);
+      console.log(mc.__proto__ == MyClass.prototype); //true
+
+      //向MyClass的原型中添加属性a
+      MyClass.prototype.a = 123;
+
+      console.log(mc.a); //123 写成mc.a 而不是mc.proto.a  proto可以省略
+      mc.a = "我是mc中的a";
+      console.log(mc.a); //我是mc中的a 如果在mc本身属性里找得到a 则不用去proto原型里找了
+
+      //向MyClass的原型中添加一个方法
+      MyClass.prototype.sayHello = function () {
+        alert("Hello！我是原型的sayHello方法");
+      };
+
+      //   mc.sayHello();
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 67_JS基础_原型对象
