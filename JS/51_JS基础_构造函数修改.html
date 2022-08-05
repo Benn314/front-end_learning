@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        创建一个Person构造函数
+            在Person构造函数重 每一个对象都添加了一个sayName方法
+                目前我们的方法是在构造函数内部创建的
+                    也就是构造函数每执行一次就会创建一个新的sayName方法
+                也是所有实例的sayName都是唯一的
+                这样就会导致了构造函数执行一次就会创建一个新的方法
+                    执行10000次就会创建10000个新的方法 而10000个方法都是一模一样的
+                    这是完全没有必要的 完全可以使所有的对象共享同一个方法
+                        避免内存的大量浪费
+      */
+
+      function Person(name, age, gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        //向对象中添加一个方法
+        this.sayName = fun;
+        // 这样会造成构造函数每执行一次就会创建一个新的sayName方法 没必要
+        //可以在全局作用域去定义这么一个function方法 让所有构造函数对象共享同一个fun对象
+        // 减少内存空间的开支
+      }
+
+      //将sayName方法在全局作用域中定义
+      function fun() {
+        alert("Hello大家好！我是" + this.name);
+      }
+
+      var per = new Person("舒舒");
+      var per2 = new Person("凯茵");
+      console.log(per.sayName == per2.sayName); //true
+      //如果fun定义在构造函数里面的话 per.sayName == per2.sayName 的结果是false
+
+      per.sayName();
+      per2.sayName();
+
+      //这样对空间是一个非常大的节省
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -3330,6 +3330,14 @@ fun3()() 和 a() 是一样的 看下面 ***39_JS基础_return.html*** 代码块�
       console.log(obj5); //{name: '陈奕迅', age: 20, gender: '男', sayName: ƒ}
 
       obj5.sayName();
+
+      /* 
+        使用工厂方法创建的对象 使用构造函数都是Object
+            所以创建的对象都是Object这个类型
+            就导致我们无法区分出多种不同类型的对象
+      */
+
+      //人狗不分 都是new Object() 来的
     </script>
   </head>
   <body></body>
@@ -3342,4 +3350,159 @@ fun3()() 和 a() 是一样的 看下面 ***39_JS基础_return.html*** 代码块�
 ​	
 
 # 64_JS基础_构造函数
+
+​	
+
+**50_JS基础_构造函数.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        创建一个构造函数 专门用来创建Person对象的
+            构造函数就是一个普通的函数 创建方式和普通函数没有区别
+            不同的是构造函数习惯上首字母大写
+
+        构造函数和普通函数的区别就是调用方式的不同
+            普通函数就是直接调用 而构造函数需要使用new关键字来调用
+
+        构造函数的执行流程
+            1.立刻创建一个新的对象
+            2.将新建的对象设置为函数中this 在构造函数中可以使用this来引用新建的对象
+            3.逐行执行函数中的代码
+            4.将新建的对象作为返回值返回
+
+        使用同一个构造函数创建的对象 我们称为一类对象 也将一个构造函数称为一个类
+            我们通过一个构造函数创建的对象 称为是该类的实例
+
+        this的情况：
+            1.当以函数的形式调用时 this是window
+            2.当以方法的形式调用时 谁调用方法 this就是谁
+            3.当以构造函数的形式调用时 this就是新创建的那个对象
+
+      */
+
+      function Person(name, age, gender) {
+        // alert(this); //this就是新建的对象
+        // alert("666");
+        // this.name ="孙悟空";
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+
+        //全局变量
+        // name = "789"; //不会赋值给per对象作为name属性 没意义 变成全局的了
+      }
+
+      //   var per = Person();
+      //   console.log(per); //undefined
+
+      var per = new Person("孙悟空", 18, "男");
+      console.log(per); //括号里代码会依次执行 如果想给per添加属性值的话 必须通过this对象来引用才能实现
+      //因为this对象就是要作为返回值赋值给per变量的对象
+      //   console.log(per.name); //Person {}
+      //函数本身就是对象 object
+
+      //   console.log(window.name);
+
+      function Dog() {}
+
+      var dog = new Dog();
+      console.log(dog);
+
+      /* 
+        instanceof 实例
+
+        使用instanceof可以检查一个对象是否是一个类的实例
+            语法：
+                对象 instanceof 构造函数
+                如果是则返回true 否则返回false
+      */
+      console.log(per instanceof Person); //true
+      console.log(dog instanceof Person); //false
+
+      /* 
+        所有的对象都是Object的后代
+            所以任何对象和Object做instanceof检查时都会返回true
+      */
+      console.log(dog instanceof Object); //true
+
+      //加new就是构造函数 不加就是普通函数
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 65_JS基础_构造函数修改
+
+​	
+
+**51_JS基础_构造函数修改.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        创建一个Person构造函数
+            在Person构造函数重 每一个对象都添加了一个sayName方法
+                目前我们的方法是在构造函数内部创建的
+                    也就是构造函数每执行一次就会创建一个新的sayName方法
+                也是所有实例的sayName都是唯一的
+                这样就会导致了构造函数执行一次就会创建一个新的方法
+                    执行10000次就会创建10000个新的方法 而10000个方法都是一模一样的
+                    这是完全没有必要的 完全可以使所有的对象共享同一个方法
+                        避免内存的大量浪费
+      */
+
+      function Person(name, age, gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        //向对象中添加一个方法
+        this.sayName = fun;
+        // 这样会造成构造函数每执行一次就会创建一个新的sayName方法 没必要
+        //可以在全局作用域去定义这么一个function方法 让所有构造函数对象共享同一个fun对象
+        // 减少内存空间的开支
+      }
+
+      //将sayName方法在全局作用域中定义
+      function fun() {
+        alert("Hello大家好！我是" + this.name);
+      }
+
+      var per = new Person("舒舒");
+      var per2 = new Person("凯茵");
+      console.log(per.sayName == per2.sayName); //true
+      //如果fun定义在构造函数里面的话 per.sayName == per2.sayName 的结果是false
+
+      per.sayName();
+      per2.sayName();
+
+      //这样对空间是一个非常大的节省
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 66_JS基础_原型对象
 
