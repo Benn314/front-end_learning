@@ -3154,3 +3154,192 @@ fun3()() 和 a() 是一样的 看下面 ***39_JS基础_return.html*** 代码块�
 
 ```
 
+​	
+
+​	
+
+# 61_JS基础_this
+
+​	
+
+**47_JS基础_this.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        解析器在调用函数每次都会向函数内部传递进一个隐含的参数
+            这个隐含的参数就是this this指向的是一个对象
+            这个对象我们称为函数执行的 上下文对象
+            根据函数的调用方式的不同 this会指向不同的对象
+                1.以函数的形式调用时 this永远都是window
+                2.以方法的形式调用时 this就是调用方法的那个对象
+        */
+
+      function fun() {
+        // console.log(a, b);
+        console.log(this.name); //Window 确实有
+      }
+
+      //   fun(123, 456);
+
+      //创建一个对象
+      var obj = {
+        name: "舒舒",
+        sayName: fun,
+      };
+
+      //obj.sayName() 等同于 fun()
+      //   console.log(obj.sayName == fun); //true
+
+      obj.sayName(); //Object
+      fun(); ////Window
+
+      //以上的两个方法等同 但调用方式不同 this指向不同的对象
+
+      var name = "全局的name属性";
+      //以函数形式调用 this是window
+      fun();
+      //   等同于window.fun();
+
+      //以方法的形式调用 this是调用方法的对象
+      obj.sayName();
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 62_JS基础_this补充
+
+​	
+
+**48_JS基础_this补充.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      //创建一个name变量
+      var name = "全局";
+
+      //创建一个fun()函数
+      function fun() {
+        console.log(this.name);
+        //这里的this是至关重要的 只写name会永远锁定全局的name属性
+      }
+
+      //创建两个对象
+      var obj = {
+        name: "舒舒",
+        sayName: fun,
+      };
+
+      var obj2 = {
+        name: "凯茵",
+        sayName: fun,
+      };
+
+      fun(); //全局
+      obj.sayName(); //舒舒
+      obj2.sayName(); //凯茵
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 63_JS基础_使用工厂方法创建对象
+
+​	
+
+**49_JS基础_使用工厂方法创建对象.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        创建一个对象
+      */
+      var obj = {
+        name: "舒舒",
+        age: 19,
+        gender: "女",
+        sayName: function () {
+          alert(this.name);
+        },
+      };
+      var obj2 = {
+        name: "凯茵",
+        age: 18,
+        gender: "女",
+        sayName: function () {
+          alert(this.name);
+        },
+      };
+
+      //   obj2.sayName();
+
+      /* 
+        使用工厂方法创建对象
+            通过该方法可以大批量的创建对象 
+            利用函数封装的方法来创建对象明显比单个单个创建对象要快得多 同时减少冗余代码
+      */
+      function createPerson(name, age, gender) {
+        //创建一个新的对象
+        var obj = new Object();
+
+        //向对象中添加属性
+        obj.name = name;
+        obj.age = age;
+        obj.gender = gender;
+        obj.sayName = function () {
+          alert(this.name);
+        };
+
+        //将新的对象返回
+        return obj;
+      }
+      var obj3 = createPerson("赵楷迪", 20, "男");
+      var obj4 = createPerson("邓子林", 20, "男");
+      var obj5 = createPerson("陈奕迅", 20, "男");
+
+      console.log(obj3); //{name: '赵楷迪', age: 20, gender: '男', sayName: ƒ}
+      console.log(obj4); //{name: '邓子林', age: 20, gender: '男', sayName: ƒ}
+      console.log(obj5); //{name: '陈奕迅', age: 20, gender: '男', sayName: ƒ}
+
+      obj5.sayName();
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 64_JS基础_构造函数
+

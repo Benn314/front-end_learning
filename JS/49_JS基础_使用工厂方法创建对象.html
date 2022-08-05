@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        创建一个对象
+      */
+      var obj = {
+        name: "舒舒",
+        age: 19,
+        gender: "女",
+        sayName: function () {
+          alert(this.name);
+        },
+      };
+      var obj2 = {
+        name: "凯茵",
+        age: 18,
+        gender: "女",
+        sayName: function () {
+          alert(this.name);
+        },
+      };
+
+      //   obj2.sayName();
+
+      /* 
+        使用工厂方法创建对象
+            通过该方法可以大批量的创建对象 
+            利用函数封装的方法来创建对象明显比单个单个创建对象要快得多 同时减少冗余代码
+      */
+      function createPerson(name, age, gender) {
+        //创建一个新的对象
+        var obj = new Object();
+
+        //向对象中添加属性
+        obj.name = name;
+        obj.age = age;
+        obj.gender = gender;
+        obj.sayName = function () {
+          alert(this.name);
+        };
+
+        //将新的对象返回
+        return obj;
+      }
+      var obj3 = createPerson("赵楷迪", 20, "男");
+      var obj4 = createPerson("邓子林", 20, "男");
+      var obj5 = createPerson("陈奕迅", 20, "男");
+
+      console.log(obj3); //{name: '赵楷迪', age: 20, gender: '男', sayName: ƒ}
+      console.log(obj4); //{name: '邓子林', age: 20, gender: '男', sayName: ƒ}
+      console.log(obj5); //{name: '陈奕迅', age: 20, gender: '男', sayName: ƒ}
+
+      obj5.sayName();
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      //创建一个name变量
+      var name = "全局";
+
+      //创建一个fun()函数
+      function fun() {
+        console.log(this.name);
+        //这里的this是至关重要的 只写name会永远锁定全局的name属性
+      }
+
+      //创建两个对象
+      var obj = {
+        name: "舒舒",
+        sayName: fun,
+      };
+
+      var obj2 = {
+        name: "凯茵",
+        sayName: fun,
+      };
+
+      fun(); //全局
+      obj.sayName(); //舒舒
+      obj2.sayName(); //凯茵
+    </script>
+  </head>
+  <body></body>
+</html>
