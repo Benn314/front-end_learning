@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        Math
+            Math和其他的对象不同 它不是一个构造函数
+                它属于一个工具类 不用创建对象 它里边封装了数学运算相关的属性和方法
+            比如：
+                Math.PI 表示的圆周率
+        */
+      console.log(Date); //ƒ Date() { [native code] } 是一个函数
+      console.log(Math); //Object Math是一个对象
+      console.log(Math.PI); //3.141592653589793
+
+      /*
+        abs()可以用来计算一个数的绝对值
+      */
+      console.log(Math.abs(-1)); // 1
+
+      /*
+        Math.ceil()
+            可以对一个数进行向上取整 小数位只要有值就自动进1
+        Math.floor()
+            可以对一个数进行向上取整
+        Math.round()
+            可以对一个数进行四舍五入取整
+      */
+      console.log(Math.ceil(1.4)); // 2
+      console.log(Math.ceil(1.0)); // 1
+
+      console.log(Math.floor(1.999)); // 1
+      //floor()性能比parseInt()快得多 parseInt是对字符串 floor是对数字
+      //   console.log(Math.floor(1.99px)); // Uncaught SyntaxError 只能对数字
+      console.log("----------");
+      console.log(Math.round(1.4)); //1
+      console.log(Math.round(1.5)); //2
+
+      /*    
+        Math.random()
+            可以用来生成一个0-1之间的随机数 两边都是开区间 不会出现0和1
+            
+            生成一个0-10之间的随机数
+            生成一个0-x之间的随机数
+                Math.round(Math.random()*x)
+
+            生成一个1-10之间的随机数
+            生成一个x-y之间的随机数
+            Math.round(Math.random() * (y-x) + x) 
+            
+      */
+      Math.random;
+      console.log(Math.random());
+
+      //生成0-10的随机数
+      console.log(Math.random() * 10);
+
+      //如果想取到0和10 可以加个round()方法
+      console.log(Math.round(Math.random() * 10));
+
+      //打印1-10
+      console.log("----------");
+      //   for (var i = 0; i < 20; i++) {
+      //     console.log(Math.round(Math.random() * 9 + 1));
+      //   }
+
+      /* 
+        max() 可以获取多个数中的最大值
+        min() 可以获取多个数中的最小值
+      */
+      var max = Math.max(10, 20, 30);
+      console.log(max);
+      max = Math.max(10, 20, 30, "a");
+      max = Math.max("a", "b", "c");
+      //max() 只能用于number
+      console.log(max); //NaN
+
+      var min = Math.min(10, 20, 30);
+      console.log(min);
+
+      /* 
+        Math.pow(x,y)
+            返回x的y次幂
+      */
+
+      console.log(Math.pow(2, 2));
+
+      /* 
+        Math.sqrt()
+            用于对一个数进行开方运算
+      */
+      console.log(Math.sqrt(4));
+      console.log(Math.sqrt(2));
+    </script>
+  </head>
+  <body></body>
+</html>

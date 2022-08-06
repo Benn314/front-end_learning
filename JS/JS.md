@@ -4627,3 +4627,305 @@ prototype保存的是原型对象的地址
 
 # 81_JS基础_Date对象
 
+时间戳的单位是 毫秒 ms
+
+**66_JS基础_Date.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        在JS中使用Date对象来表示一个时间
+      */
+
+      //创建一个Date对象
+      //如果直接使用构造函数创建一个Date对象 则会封装为当前代码执行的时间
+      var d = new Date();
+
+      console.log(d); //Sat Aug 06 2022 16:42:37 GMT+0800 (中国标准时间)
+
+      //创建一个指定的时间对象
+      //需要在构造函数中传递一个表示时间的字符串作为参数
+      //日期的格式 月份/日/年 时:分:秒
+      // 年份写完整 避免歧义 16 可以是2016 可以是1916
+      var d2 = new Date("12/03/2016 11:10:30");
+      console.log(d2); //Sat Dec 03 2016 11:10:30 GMT+0800 (中国标准时间)
+
+      /* 
+        getDate()
+            获取当前日期对象是几号
+      */
+      var date = d.getDate();
+      console.log("date = " + date); //date = 6 今天是8月6号咯
+
+      /* 
+        getDay()
+            获取当前日期对象是周几
+            会返回一个0-6的值
+                0表示周日
+                1表示周一
+                ......
+      */
+      var day = d.getDay();
+      console.log("day = " + day); //day = 6 星期六嘛
+
+      /* 
+        getMonth()
+        Sat Aug 06 2022 16:58:50 GMT+0800 (中国标准时间)
+            获取当前时间对象的月份
+            会返回一个0-11的值
+                0表示1月
+                1表示2月
+                7表示8月
+            所以下面的console.log写成month+1 才是对应的月份
+      */
+      var month = d.getMonth();
+
+      //可以这么写
+      //   month = parseInt(month);
+      //   //   console.log(typeof month);
+      //   console.log("month = " + (month + 1)); // month = 8
+
+      //也可以这么写来获取月份
+      month = parseInt(month) + 1;
+      //   console.log(typeof month);
+      console.log("month = " + month); //month = 8
+
+      /* 
+        getFullYear()
+            获取当前日期对象的年份
+      */
+      var year = d.getFullYear();
+
+      console.log("year = " + year); //year = 2022
+
+      /* 
+        getTime()
+            获取当前日期对象的时间戳
+            时间戳 指的是格林威治标准时间的1970年1月1日, 0时0分0秒
+                到当前日期所花费的毫秒数(1秒 == 1000毫秒)
+            计算机底层在保存时间时使用都是时间戳
+      */
+
+      var time = d.getTime();
+      console.log("time = " + time); //time = 1659777182884 （单位是毫秒）
+      console.log("time = " + time / 1000 / 60 / 60 / 24 / 365); //time = 52.631199408263576
+
+      var d3 = new Date("1/1/1970 0:0:0");
+      time = d3.getTime();
+      console.log(time); //-28800000 为什么是负数而不是0呢？因为是外国人定的 有时区差 这里显示的是中国标准时间
+      console.log(time / 1000 / 3600); //-8 美国人定的 中国和美国 时区相差8小时
+
+      //利用时间戳来测试代码的执行的性能
+      //获取当前的时间戳
+      var start = Date.now(); //获取的是第90行代码执行时的时间戳
+      //   console.log(time);
+      for (var i = 0; i < 100; i++) {
+        console.log(i);
+      }
+      var end = Date.now();
+
+      console.log("执行了" + (end - start) + "毫秒");
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 82_JS基础_Math
+
+​	
+
+**67_JS基础_Math.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        Math
+            Math和其他的对象不同 它不是一个构造函数
+                它属于一个工具类 不用创建对象 它里边封装了数学运算相关的属性和方法
+            比如：
+                Math.PI 表示的圆周率
+        */
+      console.log(Date); //ƒ Date() { [native code] } 是一个函数
+      console.log(Math); //Object Math是一个对象
+      console.log(Math.PI); //3.141592653589793
+
+      /*
+        abs()可以用来计算一个数的绝对值
+      */
+      console.log(Math.abs(-1)); // 1
+
+      /*
+        Math.ceil()
+            可以对一个数进行向上取整 小数位只要有值就自动进1
+        Math.floor()
+            可以对一个数进行向上取整
+        Math.round()
+            可以对一个数进行四舍五入取整
+      */
+      console.log(Math.ceil(1.4)); // 2
+      console.log(Math.ceil(1.0)); // 1
+
+      console.log(Math.floor(1.999)); // 1
+      //floor()性能比parseInt()快得多 parseInt是对字符串 floor是对数字
+      //   console.log(Math.floor(1.99px)); // Uncaught SyntaxError 只能对数字
+      console.log("----------");
+      console.log(Math.round(1.4)); //1
+      console.log(Math.round(1.5)); //2
+
+      /*    
+        Math.random()
+            可以用来生成一个0-1之间的随机数 两边都是开区间 不会出现0和1
+            
+            生成一个0-10之间的随机数
+            生成一个0-x之间的随机数
+                Math.round(Math.random()*x)
+
+            生成一个1-10之间的随机数
+            生成一个x-y之间的随机数
+            Math.round(Math.random() * (y-x) + x) 
+            
+      */
+      Math.random;
+      console.log(Math.random());
+
+      //生成0-10的随机数
+      console.log(Math.random() * 10);
+
+      //如果想取到0和10 可以加个round()方法
+      console.log(Math.round(Math.random() * 10));
+
+      //打印1-10
+      console.log("----------");
+      //   for (var i = 0; i < 20; i++) {
+      //     console.log(Math.round(Math.random() * 9 + 1));
+      //   }
+
+      /* 
+        max() 可以获取多个数中的最大值
+        min() 可以获取多个数中的最小值
+      */
+      var max = Math.max(10, 20, 30);
+      console.log(max);
+      max = Math.max(10, 20, 30, "a");
+      max = Math.max("a", "b", "c");
+      //max() 只能用于number
+      console.log(max); //NaN
+
+      var min = Math.min(10, 20, 30);
+      console.log(min);
+
+      /* 
+        Math.pow(x,y)
+            返回x的y次幂
+      */
+
+      console.log(Math.pow(2, 2));
+
+      /* 
+        Math.sqrt()
+            用于对一个数进行开方运算
+      */
+      console.log(Math.sqrt(4));
+      console.log(Math.sqrt(2));
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 83_JS基础_包装类
+
+​	
+
+**68_JS基础_包装类.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        基本数据类型
+            String Number Boolean Null Undefined
+        引用数据类型
+            Object
+
+        在JS中为我们提供了三个包装类 通过这三个包装类可以将基本数据类型的数据转换为对象
+        String()
+                可以将基本数据类型字符串转换为String对象
+        Number()
+                可以将基本数据类型字符串转换为Number对象
+        Boolean()
+                可以将基本数据类型字符串转换为Boolean对象
+        但是注意：我们在实际应用中不会使用基本数据类型的对象
+            如果使用基本数据类型的对象 在做一些比较时可能会带来一些不可预期的结果 如38行代码
+        */
+
+      //创建一个Number类型的对象
+      var num = new Number(3);
+      var str = new String("hello");
+      var bool = new Number(true);
+
+      console.log(typeof bool);
+
+      //两个对象 内存地址肯定是不同了 都是new的对象
+      var num2 = new Number(3);
+      console.log(num == num2); //false
+
+      //对象转成布尔值都是true
+      var b = new Boolean(false); //b是一个对象
+
+      //   if (b) {
+      //     alert("我运行了~");
+      //   }
+
+      /* 
+        方法和属性只能添加给对象 不能添加给基本数据类型
+            当我们对一些基本数据类型的值去调用属性和方法时
+                浏览器会临时使用包装类将其转换为对象 然后在调用对象的属性和方法
+                调用完以后 在将其转换为基本数据类型
+      */
+      var s = 123;
+      s = s.toString();
+
+      //   s.hello = "你好";
+      //   console.log(s.hello); //undefined 转换成的对象已经被销毁了，又将其转换为基本数据类型
+
+      console.log(s);
+      console.log(typeof s); //string
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 84_JS基础_字符串的方法
+
