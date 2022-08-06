@@ -3899,3 +3899,484 @@ prototype保存的是原型对象的地址
 ​	
 
 # 71_JS基础_数组字面量
+
+​	
+
+**57_JS基础_数组字面量.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      //创建一个数组
+      //   var arr = new Array();
+
+      //使用字面量来创建数组
+      //语法 []
+      //   var arr = [];
+
+      //   console.log(typeof arr); //object
+
+      //使用字面量创建数组时 可以在创建时就指定数组中的元素
+      var arr = [1, 2, 3, 4, 5, 10];
+      console.log(arr.length);
+      console.log(arr);
+
+      //使用构造函数创建数组时 也可以同时添加元素 将要添加的元素作为构造函数的参数传递
+      //元素之间使用 , 隔开
+      var arr2 = new Array(10, 20, 30);
+      console.log(arr2);
+
+      //创建一个数组 数组中只有一个元素10
+      arr = [10];
+
+      //创建一个长度为10的数组
+      arr2 = new Array(10);
+
+      console.log(arr2.length);
+      console.log(arr2);
+
+      //数组中的元素可以是任意的数据类型
+      arr = ["hello", 1, true, null, undefined];
+      console.log(arr); //(5) ['hello', 1, true, null, undefined]
+
+      //也可以是对象
+      var obj = { name: "孙悟空" };
+      arr[arr.length] = obj;
+
+      console.log(arr[arr.length - 1].name); //孙悟空
+
+      arr = [{ name: "孙悟空" }, { name: "沙和尚" }, { name: "猪八戒" }];
+      console.log(arr[1].name);
+
+      //   也可以是一个函数
+      arr = [
+        function () {
+          alert(1);
+        },
+        function () {
+          alert(2);
+        },
+      ];
+      //   arr[0]();
+
+      console.log(arr);
+
+      //数组中也可以放数组 如下这种数组称为二位数组
+      arr = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+      ];
+      console.log(arr[1]);
+      console.log(arr[1][1]); //5
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 72_JS基础_数组的四个方法
+
+​	
+
+**58_JS基础_数组的方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      //以下四种数组方法平常用的多
+
+      //创建一个数组
+      var arr = ["孙悟空", "猪八戒", "沙和尚"];
+
+      /* 
+            push()
+                该方法可以向数组的末尾添加一个或多个元素 并返回数组的新的长度
+                可以将要添加的元素作为方法的参数传递
+                    这样这些元素将会自动添加到数组的末尾
+        */
+
+      var result = arr.push("唐僧", "蜘蛛精", "白骨精");
+
+      console.log(arr);
+      console.log(result); //新的长度
+
+      /* 
+        pop()
+            该方法可以删除数组的最后一个元素并返回最后一个元素
+      */
+
+      result = arr.pop();
+      console.log(arr);
+      console.log(result);
+
+      /* 
+        unshift()
+            向数组开头添加一个或多个元素 并返回新的数组长度
+            向前边插入元素以后 其他的元素索引会依次调整
+      */
+      result = arr.unshift("牛魔王", "二郎神");
+
+      console.log(arr);
+      console.log(result);
+
+      /* 
+        shift()
+            可以删除数组的第一个元素 并将被删除的元素作为返回值返回
+      */
+      result = arr.shift();
+
+      console.log(arr);
+      console.log(result);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 73_JS基础_数组的遍历
+
+​	
+
+**59_JS基础_数组的遍历.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      //   var arr = ["舒舒", "凯茵", "冠映"];
+      //   for (var i = 0; i < arr.length; i++) {
+      //     console.log(arr[i]);
+      //   }
+
+      function Person(name, age, gender) {
+        this.name = name;
+        this.age = age;
+      }
+
+      //修改Person原型的toString
+      Person.prototype.toString = function () {
+        return "Person[name=" + this.name + ",age=" + this.age + "]";
+      };
+
+      //创建一个Person对象
+      var per = new Person("孙悟空", 18);
+      var per2 = new Person("猪八戒", 28);
+      var per3 = new Person("红孩儿", 8);
+      var per4 = new Person("蜘蛛精", 16);
+      var per5 = new Person("二郎神", 38);
+
+      /* 
+        将这些person对象放入到一个数组中
+      */
+      var perArr = [per, per2, per3, per4, per5];
+
+      /* 
+      创建一个函数 可以将perArr中满18岁的Person提取出来
+        然后封装到一个新的数组中并返回
+     */
+
+      console.log(perArr[1].toString());
+
+      function getAdult(arr) {
+        //创建一个新的数组
+        var newArr = [];
+
+        //遍历arr 获取arr中Person对象
+        for (var i = 0; i < arr.length; i++) {
+          //判断Person对象的age是否大于等于18
+          if (arr[i].age >= 18) {
+            //如果大于等于18 则将这个对象添加到newArr中
+            newArr.push(arr[i]);
+          }
+        }
+        // 将新的数组返回
+        return newArr;
+      }
+
+      var result = getAdult(perArr);
+      console.log(result);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 74_JS_数组练习
+
+​	
+
+**59_JS基础_数组的遍历.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      //   var arr = ["舒舒", "凯茵", "冠映"];
+      //   for (var i = 0; i < arr.length; i++) {
+      //     console.log(arr[i]);
+      //   }
+
+      function Person(name, age, gender) {
+        this.name = name;
+        this.age = age;
+      }
+
+      //修改Person原型的toString
+      Person.prototype.toString = function () {
+        return "Person[name=" + this.name + ",age=" + this.age + "]";
+      };
+
+      //创建一个Person对象
+      var per = new Person("孙悟空", 18);
+      var per2 = new Person("猪八戒", 28);
+      var per3 = new Person("红孩儿", 8);
+      var per4 = new Person("蜘蛛精", 16);
+      var per5 = new Person("二郎神", 38);
+
+      /* 
+        将这些person对象放入到一个数组中
+      */
+      var perArr = [per, per2, per3, per4, per5];
+
+      /* 
+      创建一个函数 可以将perArr中满18岁的Person提取出来
+        然后封装到一个新的数组中并返回
+     */
+
+      console.log(perArr[1].toString());
+
+      function getAdult(arr) {
+        //创建一个新的数组
+        var newArr = [];
+
+        //遍历arr 获取arr中Person对象
+        for (var i = 0; i < arr.length; i++) {
+          //判断Person对象的age是否大于等于18
+          if (arr[i].age >= 18) {
+            //如果大于等于18 则将这个对象添加到newArr中
+            newArr.push(arr[i]);
+          }
+        }
+        // 将新的数组返回
+        return newArr;
+      }
+
+      var result = getAdult(perArr);
+      console.log(result);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 75_JS基础_forEach
+
+​	
+
+**60_JS基础_forEach.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        一般我们都是使用for循环去遍历数组
+            JS中还为我们提供了一个方法 用来遍历数组
+            forEach()
+                这个方法只支持IE8以上的浏览器
+                    IE8及以下的浏览器均不支持该方法 所以如果需要兼容IE8 则不要使用forEach
+                    还是使用for循环来遍历
+      */
+
+      //创建一个数组
+      var arr = ["孙悟空", "猪八戒", "沙和尚", "唐僧", "蜘蛛精", "白骨精"];
+
+      function fun() {}
+
+      /* 
+        forEach()方法需要一个函数作为参数
+            不用去其他地方定义 直接在参数里头传一个匿名函数并定义
+            像这种函数 由我们创建但是不由我们调用的 我们称为回调函数（浏览器自己去调）
+            数组中有几个元素就会执行几次 每次执行时 浏览器会将遍历到的元素
+                以实参的形式传递进来 我们可以来定义形参 来读取这些内容
+            浏览器会在回调函数中传递三个参数
+                第一个参数 就是当前正在遍历的元素 value
+                第二个参数 就是当前正在遍历的元素的索引 index
+                第三个参数 就是正在遍历的数组   obj（arr）
+      */
+      arr.forEach(function (value, index, obj) {
+        console.log("obj = " + obj);
+        // console.log(obj == arr); //true
+      });
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 76_JS基础_slice和splice
+
+​	
+
+**61_JS基础_slice和splice.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var arr = ["孙悟空", "猪八戒", "沙和尚", "唐僧", "蜘蛛精", "白骨精"];
+
+      /* 
+        slice()
+            可以用来从数组提取指定元素
+            该方法不会改变元素数组 而是将截取到的元素封装到一个新数组中返回
+            参数：
+                1.截取开始的位置的索引  包含开始索引
+                2.截取结束的位置的索引  不包含结束索引
+                    第二个参数可以省略不写 此时会截取从开始索引往后的所有元素
+                索引可以传递一个负值 如果传递一个负值 则从后往前计算
+                    -1 倒数第一
+                    -2 倒数第二 
+        */
+
+      var result = arr.slice(0, 2); //slice(start,end) end是开区间
+      console.log(result);
+
+      result = arr.slice(1);
+      console.log(result);
+
+      result = arr.slice(1, -2);
+      console.log(result); //(3) ['猪八戒', '沙和尚', '唐僧']
+      //还是从左往后的走，相当于一个元素拥有两个索引 一个正索引 一个负索引
+      //负索引从左往右数
+
+      /* 
+        splice()
+            可以用于删除数组中的指定元素
+            使用splice()会影响到原数组 会将指定元素从原数组中删除
+                并将被删除的元素作为返回值返回
+            参数
+                第一个 表示开始位置的索引
+                第二个 表示删除的数量
+                第三个及以后
+                    可以传递一些新的元素 这些元素将会自动插入到开始位置索引前边
+      */
+      var result = arr.splice(0, 2); //参数2表示删除两个
+      console.log(arr);
+      console.log(result);
+
+      arr = ["孙悟空", "猪八戒", "沙和尚", "唐僧", "蜘蛛精", "白骨精"];
+      result = arr.splice(0, 1, "牛魔王");
+
+      console.log(arr); //['牛魔王', '猪八戒', '沙和尚', '唐僧', '蜘蛛精', '白骨精']
+      console.log(result); //['孙悟空']
+
+      arr = ["孙悟空", "猪八戒", "沙和尚", "唐僧", "蜘蛛精", "白骨精"];
+      result = arr.splice(1, 1, "牛魔王", "铁扇公主");
+      console.log(arr); //['孙悟空', '牛魔王', '铁扇公主', '沙和尚', '唐僧', '蜘蛛精', '白骨精']
+      console.log(result); //['猪八戒']
+
+      //如果不想删除元素 单纯插入元素到指定位置也是ok的
+      arr = ["孙悟空", "猪八戒", "沙和尚", "唐僧", "蜘蛛精", "白骨精"];
+      result = arr.splice(1, 0, "牛魔王", "铁扇公主");
+      console.log(arr); //['孙悟空', '牛魔王', '铁扇公主', '猪八戒', '沙和尚', '唐僧', '蜘蛛精', '白骨精']
+      console.log(result); //[]
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 77_JS基础_数组去重练习
+
+![image-20220806110715779](JS.assets/image-20220806110715779.png)
+
+**62_JS基础_数组去重练习.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      //创建一个数组
+      var arr = [1, 2, 3, 2, 2, 1, 3, 4, 2, 5];
+
+      //去除数组中重复的数字
+      for (var i = 0; i < arr.length; i++) {
+        for (var j = i + 1; j < arr.length; j++) {
+          if (arr[i] == arr[j]) {
+            arr.splice(j, 1);
+            //当删除了当前j所在的元素以后 后边的元素会自动补位
+            //此时将不会在比较这个元素 我需要在比较一次j所在的位置
+            //使j自减 便可以再比一次
+            j--;
+          }
+        }
+      }
+      console.log(arr); //[1, 2, 3, 4, 5]
+    </script>
+  </head>
+  <body></body>
+</html>
+	
+```
+
+​	
+
+​	
+
+# 78_JS基础_数组的剩余方法
+
