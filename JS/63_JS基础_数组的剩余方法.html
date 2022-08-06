@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var arr = ["孙悟空", "猪八戒", "沙和尚"];
+      var arr2 = ["白骨精", "玉兔精", "蜘蛛精"];
+
+      /* 
+        concat()可以连接两个或多个数组 并将新的数组返回
+            该方法不会对原数组产生影响
+      */
+
+      var result = arr.concat(arr2);
+      console.log(result); // ['孙悟空', '猪八戒', '沙和尚', '白骨精', '玉兔精', '蜘蛛精']
+      var arr3 = ["二郎神", "太上老君", "玉皇大帝"];
+      result = arr.concat(arr2, arr3);
+      console.log(result);
+      //(9) ['孙悟空', '猪八戒', '沙和尚', '白骨精', '玉兔精', '蜘蛛精', '二郎神', '太上老君', '玉皇大帝']
+      result = arr.concat(arr2, arr3, "牛魔王", "铁扇公主");
+      console.log(result);
+      //['孙悟空', '猪八戒', '沙和尚', '白骨精', '玉兔精', '蜘蛛精', '二郎神', '太上老君', '玉皇大帝', '牛魔王', '铁扇公主']
+
+      /* 
+        join()
+            该方法可以将数组转换为一个字符串
+            该方法不会对原数组产生影响 而是将转换后的字符串作为结果返回
+            在join()中可以指定一个字符串作为参数 这个字符串将会成为数组中元素的连接符
+                如果不指定连接符 则默认使用 , 作为连接符
+      */
+
+      result = arr.join();
+      console.log(result); //孙悟空,猪八戒,沙和尚
+      console.log(typeof result); //string
+
+      result = arr.join("hello! ");
+      console.log(result); //孙悟空hello! 猪八戒hello! 沙和尚
+
+      /* 
+        reverse()
+            该方法用来反转数组（前边的去后边 后边的去前边）
+            该方法直接修改原数组
+      */
+
+      console.log(arr); //['孙悟空', '猪八戒', '沙和尚']
+      arr.reverse();
+
+      console.log(arr); //['沙和尚', '猪八戒', '孙悟空']
+
+      arr = ["b", "d", "e", "a", "c"];
+
+      /* 
+        sort()
+            可以用来对数组中的元素进行排序
+            也会影响原数组 默认会按照Unicode编码进行排序
+      */
+
+      arr.sort();
+      console.log(arr); //['a', 'b', 'c', 'd', 'e']
+      arr.reverse(); //从大到小排序
+      console.log(arr); //['e', 'd', 'c', 'b', 'a']
+
+      /* 
+        即使对于纯数字的数组 使用sort()排序时 也会按照Unicode编码来排序
+            所以对数字进行排序时 可能会得到错误的结果
+
+        我们可以自己来指定排序的规则
+            我们可以在sort()添加一个回调函数 来指定排序规则
+                回调函数中需要定义两个形参
+                浏览器将会分别使用数组中的元素作为实参去调用回调函数
+                使用哪个元素调用不确定 但是肯定的是在数组中a一定在b前边
+              浏览器会根据回调函数的返回值来决定元素的顺序
+                如果返回一个大于0的值 则元素会交换位置
+                如果返回一个小于0的值 则元素位置不变
+                如果返回一个0 则认为两个元素相等 也不交换位置
+
+            sort的回调函数(a,b)
+                如果需要升序排序 则返回a-b (a比b大的话 return一个大于0的数 不就是交换位置了嘛 
+                    交换的话不就是以升序的方式排列嘛)
+                如果需要降序排序 则返回b-a
+      */
+      arr = [3, 4, 11, 2, 5];
+      //   arr.sort(); //这么调 可能导致结果出错 因为是按Unicode编码 可以使用回调函数来解决这个问题
+
+      arr.sort(function (a, b) {
+        //前边的大
+        if (a < b) {
+          return -1;
+        } else if (a > b) {
+          return 1;
+        } else {
+          return 0;
+        }
+        //上面那么写麻烦 可以这么来写
+
+        //升序排列
+        return a - b; //[2, 3, 4, 5, 11]
+
+        //降序排列
+        // return b - a; //[11, 5, 4, 3, 2]
+      });
+
+      console.log(arr); //[11, 2, 3, 4, 5]
+    </script>
+  </head>
+  <body></body>
+</html>

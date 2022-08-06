@@ -4380,3 +4380,250 @@ prototype保存的是原型对象的地址
 
 # 78_JS基础_数组的剩余方法
 
+​	
+
+**63_JS基础_数组的剩余方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var arr = ["孙悟空", "猪八戒", "沙和尚"];
+      var arr2 = ["白骨精", "玉兔精", "蜘蛛精"];
+
+      /* 
+        concat()可以连接两个或多个数组 并将新的数组返回
+            该方法不会对原数组产生影响
+      */
+
+      var result = arr.concat(arr2);
+      console.log(result); // ['孙悟空', '猪八戒', '沙和尚', '白骨精', '玉兔精', '蜘蛛精']
+      var arr3 = ["二郎神", "太上老君", "玉皇大帝"];
+      result = arr.concat(arr2, arr3);
+      console.log(result);
+      //(9) ['孙悟空', '猪八戒', '沙和尚', '白骨精', '玉兔精', '蜘蛛精', '二郎神', '太上老君', '玉皇大帝']
+      result = arr.concat(arr2, arr3, "牛魔王", "铁扇公主");
+      console.log(result);
+      //['孙悟空', '猪八戒', '沙和尚', '白骨精', '玉兔精', '蜘蛛精', '二郎神', '太上老君', '玉皇大帝', '牛魔王', '铁扇公主']
+
+      /* 
+        join()
+            该方法可以将数组转换为一个字符串
+            该方法不会对原数组产生影响 而是将转换后的字符串作为结果返回
+            在join()中可以指定一个字符串作为参数 这个字符串将会成为数组中元素的连接符
+                如果不指定连接符 则默认使用 , 作为连接符
+      */
+
+      result = arr.join();
+      console.log(result); //孙悟空,猪八戒,沙和尚
+      console.log(typeof result); //string
+
+      result = arr.join("hello! ");
+      console.log(result); //孙悟空hello! 猪八戒hello! 沙和尚
+
+      /* 
+        reverse()
+            该方法用来反转数组（前边的去后边 后边的去前边）
+            该方法直接修改原数组
+      */
+
+      console.log(arr); //['孙悟空', '猪八戒', '沙和尚']
+      arr.reverse();
+
+      console.log(arr); //['沙和尚', '猪八戒', '孙悟空']
+
+      arr = ["b", "d", "e", "a", "c"];
+
+      /* 
+        sort()
+            可以用来对数组中的元素进行排序
+            也会影响原数组 默认会按照Unicode编码进行排序
+      */
+
+      arr.sort();
+      console.log(arr); //['a', 'b', 'c', 'd', 'e']
+      arr.reverse(); //从大到小排序
+      console.log(arr); //['e', 'd', 'c', 'b', 'a']
+
+      /* 
+        即使对于纯数字的数组 使用sort()排序时 也会按照Unicode编码来排序
+            所以对数字进行排序时 可能会得到错误的结果
+
+        我们可以自己来指定排序的规则
+            我们可以在sort()添加一个回调函数 来指定排序规则
+                回调函数中需要定义两个形参
+                浏览器将会分别使用数组中的元素作为实参去调用回调函数
+                使用哪个元素调用不确定 但是肯定的是在数组中a一定在b前边
+              浏览器会根据回调函数的返回值来决定元素的顺序
+                如果返回一个大于0的值 则元素会交换位置
+                如果返回一个小于0的值 则元素位置不变
+                如果返回一个0 则认为两个元素相等 也不交换位置
+
+            sort的回调函数(a,b)
+                如果需要升序排序 则返回a-b (a比b大的话 return一个大于0的数 不就是交换位置了嘛 
+                    交换的话不就是以升序的方式排列嘛)
+                如果需要降序排序 则返回b-a
+      */
+      arr = [3, 4, 11, 2, 5];
+      //   arr.sort(); //这么调 可能导致结果出错 因为是按Unicode编码 可以使用回调函数来解决这个问题
+
+      arr.sort(function (a, b) {
+        //前边的大
+        if (a < b) {
+          return -1;
+        } else if (a > b) {
+          return 1;
+        } else {
+          return 0;
+        }
+        //上面那么写麻烦 可以这么来写
+
+        //升序排列
+        return a - b; //[2, 3, 4, 5, 11]
+
+        //降序排列
+        // return b - a; //[11, 5, 4, 3, 2]
+      });
+
+      console.log(arr); //[11, 2, 3, 4, 5]
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 79_JS基础_call和apply
+
+​	
+
+**64_JS基础_函数的方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      function fun(a, b) {
+        console.log("a = " + a);
+        console.log("b = " + b);
+        // alert(this.name);
+      }
+      /*  
+        call()和apply()  
+            这两个方法都是函数对象的方法  需要通过函数对象来调用
+            当对函数调用call()和apply()都会调用函数执行
+            在调用call()和apply()可以将一个对象指定为第一个参数
+                此时这个对象将会成为函数执行时的this
+            call()方法可以将实参在对象之后依次传递
+            apply()方法需要将实参封装到一个数组中统一传递
+
+            call()和apply()都是用来指定this的
+                call()的实参是一个一个传的
+                apply()的实参需要封装成一个数组传递
+                就这么一个区别
+
+        this的情况：
+            1.以函数形式调用时 this永远都是window
+            2.以方法的形式调用时 this是调用方法的对象
+            3.以构造函数的形式调用时 this是新创建的那个对象
+            4.使用call和apply调用时 this是指定的那个对象
+        */
+
+      var obj = {
+        name: "obj",
+        sayName: function () {
+          alert(this.name);
+        },
+      };
+
+      fun.call(obj, 2, 3); //a = 2   b = 3
+      //   fun.apply(obj, 2, 3); //error
+      fun.apply(obj, [2, 3]);
+
+      var obj2 = { name: "obj2" };
+
+      //无参数调用三个的效果一样
+      //   fun.apply();
+      //   fun.call();
+      //   fun();
+
+      //   fun(); //[object Window]
+
+      //   fun.call(obj);//[object Object]
+      //   fun.apply(obj); //[object Object]
+
+      obj.sayName.apply(obj2);
+      //obj2 用apply、call这两种方法可以指定调用哪一个对象this
+      //参数是谁 this就是谁
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 80_JS基础_arguments
+
+​	
+
+**65_JS基础_arguments.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        在调用函数 浏览器每次都会传递进两个隐含的参数
+            1.函数的上下文对象 this
+            2.封装实参的对象 arguments
+                arguments是一个类数组对象 它也可以通过索引来操作数据 也可以获取长度
+                在调用函数时 我们所传递的实参都会在arguments中保存
+                arguments.length可以用来获取实参的长度
+                我们即使不定义形参 也可以通过arguments来使用实参
+                    只不过比较麻烦
+                    arguments[0] 表示第一个实参
+                    arguments[1] 表示第二个实参
+                它里边有一个属性叫做callee
+                    这个属性对于一个函数对象 就是当前正在指向的函数的对象
+        */
+
+      function fun(a, b) {
+        // console.log(arguments);
+        console.log(arguments.length);
+        console.log(Array.isArray(arguments)); //false
+        console.log(arguments instanceof Array); //false
+        console.log(arguments[0]); //hello
+        console.log(arguments.callee);
+        console.log(arguments.callee == fun); //true
+      }
+      fun("hello", true); // arguments.length == 2
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 81_JS基础_Date对象
+
