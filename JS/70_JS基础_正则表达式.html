@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        正则表达式
+            admin@qq.com
+            admin@.com      adminqq.com
+            邮件的规则：
+                1.前边可以是XXXX乱七八糟
+                2.跟着一个@
+                3.后端可以是XXXX乱七八糟
+                4. .com或者其他的乱七八糟
+
+            正则表达式用于定义一些字符串的规则
+                计算机可以根据正则表达式 来检查一个字符串是否符合规则
+                或者将字符串中符合规则的内容提取出来
+        */
+
+      /* 
+            语法：
+                var 变量 = new RegExp("正则表达式","匹配模式");
+                使用typeof检查正则对象，会返回object
+                在构造函数中可以传递一个匹配模式作为第二个参数
+                    可以是
+                        i 忽略大小写
+                        g 全局匹配模式
+        */
+      var reg = new RegExp("a"); //这个正则表达式可以来检查一个字符串是否含有a
+
+      console.log(reg); // /a/
+
+      var str = "a";
+
+      /* 
+            正则表达式的方法
+                test()
+                    使用这个方法可以用来检查一个字符串是否符合正则表达式的规则
+                        如果符合则返回true 否则返回false
+       */
+      var result = reg.test(str);
+      console.log(result); //true
+      console.log(reg.test("bcabd")); //true
+      console.log(reg.test("bcd")); //false
+      console.log(reg.test("A")); //false 不写匹配模式默认是严格区分大小写
+
+      var reg2 = new RegExp("a", "i"); // 第二个参数也要写成字符串的形式
+      console.log(reg2.test("A")); //true
+      //全局匹配模式：查找所有匹配而非在找到第一个匹配后停止
+    </script>
+  </head>
+  <body></body>
+</html>

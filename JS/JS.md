@@ -5098,3 +5098,315 @@ prototype保存的是原型对象的地址
 ​	
 
 # 85_JS基础_正则表达式的简介
+
+​	
+
+**70_JS基础_正则表达式.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        正则表达式
+            admin@qq.com
+            admin@.com      adminqq.com
+            邮件的规则：
+                1.前边可以是XXXX乱七八糟
+                2.跟着一个@
+                3.后端可以是XXXX乱七八糟
+                4. .com或者其他的乱七八糟
+
+            正则表达式用于定义一些字符串的规则
+                计算机可以根据正则表达式 来检查一个字符串是否符合规则
+                或者将字符串中符合规则的内容提取出来
+        */
+
+      /* 
+            语法：
+                var 变量 = new RegExp("正则表达式","匹配模式");
+                使用typeof检查正则对象，会返回object
+                在构造函数中可以传递一个匹配模式作为第二个参数
+                    可以是
+                        i 忽略大小写
+                        g 全局匹配模式
+        */
+      var reg = new RegExp("a"); //这个正则表达式可以来检查一个字符串是否含有a
+
+      console.log(reg); // /a/
+
+      var str = "a";
+
+      /* 
+            正则表达式的方法
+                test()
+                    使用这个方法可以用来检查一个字符串是否符合正则表达式的规则
+                        如果符合则返回true 否则返回false
+       */
+      var result = reg.test(str);
+      console.log(result); //true
+      console.log(reg.test("bcabd")); //true
+      console.log(reg.test("bcd")); //false
+      console.log(reg.test("A")); //false 不写匹配模式默认是严格区分大小写
+
+      var reg2 = new RegExp("a", "i"); // 第二个参数也要写成字符串的形式
+      console.log(reg2.test("A")); //true
+      //全局匹配模式：查找所有匹配而非在找到第一个匹配后停止
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 86_JS基础_正则语法
+
+​	
+
+**71_JS基础_正则表达式.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        使用字面量来创建正则表达式
+            语法：var 变量 = /正则表达式/匹配模式
+        使用字面量的方式创建更加简单
+            使用构造函数创建更加灵活
+        */
+
+      //   var reg = new RegExp("a", "i");
+      var reg = /a/i;
+      //   console.log(reg.test("abc")); //true
+
+      /* 
+        创建一个正则表达式 检查一个字符串中是否有a或b
+        | 表示或
+      */
+      reg = /a|b/;
+      //   console.log(reg.test("bacd"));
+
+      /* 
+        创建一个正则表达式检查一个字符串是否有字母
+        []里的内容也是或的关系
+        [ab] == a|b
+        [a-z] 任意小写字母
+        [A-Z] 任意大写字母
+        [A-z] 任意字母 根据Unicode编码规则来
+        [0-9] 任意数字
+      */
+      reg = /[abcdefg]/;
+      reg = /[a-z]/; //这样更快！
+      //   console.log(reg.test("de"));
+
+      //检查一个字符串中是否含有abc 或adc 或aec
+      reg = /a[bde]c/;
+
+      /* 
+        [^ ] 除了
+      */
+      reg = /[^ab]/;
+
+      console.log(reg.test("abc")); //true 除了 a b ab 其他都是true
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 87_JS基础_字符串和正则相关的方法
+
+​	
+
+**72_JS基础_字符串和正则相关的方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var str = "1a2b3c4d5e6f7";
+      /* 
+            split()
+                可以将一个字符串拆分为一个数组
+                方法中可以传递一个正则表达式作为参数 这样方法将会根据正则表达式去拆分字符串
+                这个方法即使不指定全局匹配 也会全部拆分
+        */
+
+      /* 
+            根据任意字母来讲字符串拆分
+        */
+      var result = str.split(/[A-z]/); //正则表达式里的都是字符串，简写了而已
+      console.log(result); //(7) ['1', '2', '3', '4', '5', '6', '7']
+
+      /* 
+        search()
+            可以搜索字符串中是否含有指定内容
+            如果搜索到指定内容，则会返回第一次出现的索引 如果没有搜索 则到返回-1
+            它可以接受一个正则表达式作为参数 然后会根据正则表达式去检索字符串
+            search()只会查找第一个 即使设置全局匹配也没用
+      */
+      str = "hello abc hello aec afc";
+
+      result = str.search("abc");
+      console.log(result); //6
+
+      result = str.search("abcd");
+      console.log(result); //-1
+
+      result = str.search(/a[bef]c/);
+      console.log(result); //
+
+      /* 
+        match()
+            可以根据正则表达式 从一个字符串中将符合条件的内容提取出来
+            默认情况下我们的match只会找到第一个符合要求的内容 找到以后就停止检索
+                我们可以设置正则表达式为全局匹配模式 这样就会匹配到所有的内容
+                可以为一个正则表达式设置多个匹配模式 且顺序没所谓
+            match()会将匹配到的内容封装到一个数组中返回 即使只查询到一个结果
+      */
+      str = "1a2b3c4d5e6f7";
+      result = str.match(/[A-z]/g);
+
+      console.log(result); //(6) ['a', 'b', 'c', 'd', 'e', 'f']
+
+      str = "1a2b3c4d5e6f7A8B9C10";
+      //   result = str.match(/[A-z]/g);
+      result = str.match(/[a-z]/gi); //可以多个匹配模式同时使用
+      console.log(result);
+      console.log(result[2]);
+      console.log(Array.isArray(result)); //true
+
+      /* 
+        replace()
+            可以将字符串中指定内容替换为新的内容
+            参数：
+                1.被替换的内容 可以接受正则表达式作为参数
+                2.新的内容
+            默认只会替换第一个
+      */
+      //   result = str.replace("a", "@_@");
+      console.log(result); //1@_@2b3c4d5e6f7A8B9C10
+
+      str = "1a2b3c4d5e6f7Aa8B9Ca10";
+      result = str.replace(/a/gi, "@_@");
+      result = str.replace(/[a-z]/gi, ""); //纯数字
+      console.log(result);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 88_JS基础_正则表达式语法
+
+> 如果在正则表达式中同时使用 ^ $ 则要求字符串必须完全符合正则表达式
+
+**73_JS基础_正则表达式语法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        创建一个正则表达式检查一个字符串中是否含有aaa
+        */
+
+      /* 
+            量词
+                通过量词可以设置一个内容出现的次数
+                叠词只对它前边的一个内容起作用
+                {n} 正好出现n次
+                {m,n} 出现m-n次
+                {m,}  出现m及m次以上
+                + 至少一个  相当于{1,}
+                * 0个或多个 相当于{0,}
+                ? 0个或1个  相当于{0,1}
+        */
+      var reg = /a{3}/;
+      console.log(reg.test("aaabc"));
+      reg = /ab{3}/;
+      console.log(reg.test("abbb")); //true
+      reg = /(ab){3}/;
+      console.log(reg.test("ababab")); //true
+
+      reg = /ab{1,3}c/;
+      console.log(reg.test("abbc")); //true
+
+      /* 
+        检查一个字符串中是否以a开头
+            ^ 表示开头
+                如果 ^ 在 [] 里就表示除...以外
+            $ 表示结尾
+      */
+      reg = /^a/; //匹配开头的a
+      console.log(reg.test("abcabc"));
+
+      reg = /a$/; //匹配结尾的a
+      console.log(reg.test("abcabca"));
+
+      /* 
+        如果在正则表达式中同时使用 ^ $ 则要求字符串必须完全符合正则表达式
+      */
+
+      reg = /^a|a$/;
+
+      /* 
+        创建一个正则表达式 用来检查一个字符串是否是一个合法的手机号
+
+        手机号的规则：
+            1 3 567890123（11位）
+
+            1.以1开头
+            2.第二位3-9任意数字
+            3.三位以后任意数字9个
+
+            ^1  [3-9] [0-9]{9}$
+      */
+      var phoneStr = "13567890123";
+
+      var phoneReg = /^1[3-9][0-9]{9}$/;
+
+      console.log("----------");
+      console.log(phoneReg.test(phoneStr)); //true
+
+      phoneStr = "11067890123";
+      console.log(phoneReg.test(phoneStr)); //false
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 89_JS基础_正则表达式语法
