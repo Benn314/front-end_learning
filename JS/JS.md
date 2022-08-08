@@ -5410,3 +5410,132 @@ prototype保存的是原型对象的地址
 ​	
 
 # 89_JS基础_正则表达式语法
+
+​	
+
+**74_JS基础_正则表达式语法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        检查一个字符串是否含有 .
+        . 查找单个字符 除了换行和结束符
+        在正则表达式中使用 \ 作为转义字符
+        \. 来表示 .
+        \\ 表示 \
+
+        注意：使用构造函数时 由于它的参数是一个字符串 而\是字符串中转义字符
+            如果要使用\则需要使用\\来代替
+        */
+      var reg = /./;
+      console.log(reg.test("b")); //true
+
+      reg = /\./;
+      console.log(reg.test("b")); //false
+      console.log(reg.test("b.")); //true
+
+      console.log("\\");
+      console.log("/n");
+
+      /* 
+        \w
+            任意字母、数字、_（下划线）     [A-z0-9_]
+        \W
+            除了 任意字母、数字、_（下划线） [^A-z0-9_]
+        \d
+            任意的数字[0-9]
+        \D
+            除了数字[^0-9]
+        \s
+            空格
+        \S
+            除了空格
+        \b
+            单词边界
+        \B
+            除了单词边界
+      */
+
+      /* 
+        创建一个正则表达式检查一个字符串是否含有单词child
+      */
+
+      reg = /\bchild\b/;
+      console.log(reg.test("hello children")); //false
+      console.log(reg.test("hello child ren")); //true 需要是一个独立的单词才会true
+
+      var str = "    hel   lo    ";
+
+      //去除字符串中的空格
+      //去除空格就是用""来替换空格
+      console.log(str);
+
+      str = str.replace(/\s/g, "");
+      console.log(str);
+      //但这有一个局限性 就是字母中间的空格也会被去除 如果不想去除 应该这么做
+
+      str = "    hel   lo    ";
+      //去除开头的空格
+      //   str=str.replace(/^\s*/,"");
+      //去除结尾的空格
+      //   str=str.replace(/\s*$/,"");
+      //整合一下
+      str = str.replace(/^\s*|\s*$/g, ""); //记得开全局模式
+
+      console.log(str);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 90_JS基础_邮件的正则
+
+​	
+
+**75_JS基础_邮件的正则.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+        电子邮件
+            hello   .nihao  @   abc     .com    .cn
+            任意字母数字下划线  .任意字母数字下划线 @   任意字母数字    .任意字母(2-5位) .任意字母(2-5位)
+            \w{3,}              (\. \w+)*       @    [A-z0-9]+      (\.[A-z{2,5}]){1,2}
+      */
+
+      var emailReg = /\w{3,}(\. \w+)*@[A-z0-9]+(\.[A-z{2,5}]){1,2}/;
+      var email = "abc@abc.com.123";
+      console.log(emailReg.test(email)); //true
+
+      //如果要求是完全邮件格式 必须用^ $
+      emailReg = /^\w{3,}(\. \w+)*@[A-z0-9]+(\.[A-z{2,5}]){1,2}$/;
+      console.log(emailReg.test(email)); //false
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 91_JS基础_DOM简介
+
