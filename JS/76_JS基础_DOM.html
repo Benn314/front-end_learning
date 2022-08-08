@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">我是一个按钮</button>
+    <script>
+      /* 
+        浏览器以及为我们提供 文档节点对象 这个对象是window属性
+            可以在页面中直接使用 文档节点代表的是整个网页
+        */
+      //   console.log(document);
+
+      //获取到button对象
+      var btn = document.getElementById("btn");
+
+      //   console.log(btn);
+
+      //修改按钮的文字 btn.innerHTML 意思是修改btn内部的(inner)的HTML代码
+      console.log(btn.innerHTML); //我是一个按钮
+      btn.innerHTML = "舒舒回来啦！";
+      console.log(btn.innerHTML); //舒舒回来啦！
+
+      //所以DOM就做两件事 找对象 搞对象
+      //js需要获取html 才能随心所欲
+    </script>
+  </body>
+</html>

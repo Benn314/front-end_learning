@@ -5539,3 +5539,267 @@ prototype保存的是原型对象的地址
 
 # 91_JS基础_DOM简介
 
+在此之前学的都是内建对象，从这一集开始学宿主对象，我们先看DOM（由浏览器和运行环境为我们提供的对象），后面还有一个BOM
+
+![image-20220808165007805](JS.assets/image-20220808165007805.png)
+
+把网页的每一个部分转换为面向对象的，就可以用纯面向对象的方式来处理网页的每一个部分
+
+对象太多用模型来找对象
+
+![image-20220808165433161](JS.assets/image-20220808165433161.png)
+
+画圈部分便是所说的模型
+
+​	
+
+![image-20220808165656607](JS.assets/image-20220808165656607.png)
+
+![image-20220808165715887](JS.assets/image-20220808165715887.png)
+
+![image-20220808170017963](JS.assets/image-20220808170017963.png)
+
+​	
+
+**76_JS基础_DOM.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">我是一个按钮</button>
+    <script>
+      /* 
+        浏览器以及为我们提供 文档节点对象 这个对象是window属性
+            可以在页面中直接使用 文档节点代表的是整个网页
+        */
+      //   console.log(document);
+
+      //获取到button对象
+      var btn = document.getElementById("btn");
+
+      //   console.log(btn);
+
+      //修改按钮的文字 btn.innerHTML 意思是修改btn内部的(inner)的HTML代码
+      console.log(btn.innerHTML); //我是一个按钮
+      btn.innerHTML = "舒舒回来啦！";
+      console.log(btn.innerHTML); //舒舒回来啦！
+
+      //所以DOM就做两件事 找对象 搞对象
+      //js需要获取html 才能随心所欲
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 92_JS基础_事件的简介
+
+![image-20220808171630714](JS.assets/image-20220808171630714.png)
+
+​	
+
+**77_JS基础_事件.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        我们可以在事件对应的属性中设置一些js代码
+            这样当事件被触发时 这些代码将会执行
+
+        这种写法我们称为 结构和行为耦合 不方便维护 不推荐使用
+     -->
+    <!-- 
+        onclick = "alert('舒舒呀！'); 单击触发事件
+        ondblclick = "alert('舒舒呀！'); 双击触发事件
+        onmousemove = "alert('舒舒呀！'); 鼠标移动触发事件
+      -->
+    <!-- <button id="btn" onmousemove="alert('舒舒呀！');">我是一个按钮</button> -->
+    <button id="btn">我是一个按钮</button>
+    <script>
+      /*
+        事件 就是用户和浏览器之间的交互行为
+            比如：点击按钮 鼠标移动 关闭窗口
+      */
+
+      /* 
+        可以为按钮的对应事件绑定处理函数的形式来响应事件
+            这样当事件被触发时 其对应的函数将会被调用
+      */
+
+      //获取到button对象
+      var btn = document.getElementById("btn");
+
+      //绑定一个单击事件
+      //像这种为单击事件绑定的函数 我们称为单击响应函数
+      btn.onclick = function () {
+        alert("凯茵呀！");
+      };
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 93_JS基础_文档的加载
+
+​	
+
+**78_JS基础_文档的加载.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+          浏览器在加载一个页面时 是按照自上向下的顺序加载的
+              读取到一行就运行一行 （解释型语言都是这样）
+              如果将script标签写到页面的上边 在代码执行时 页面还没有加载
+              而页面没有加载 DOM对象也就没有加载 会导致无法获取到DOM对象
+
+            关于写在上边head里还是写在body里下边各有优点
+            写head里 
+                优点 好管理 
+                缺点 script标签内容加载完又不执行 性能没有比写body里 影响浏览器加载页面的速度
+            写body里  
+                优缺点与head相反
+        */
+
+      /* 
+          将js代码编写到页面的下部就是为了 可以在页面加载完毕以后再执行js代码
+        */
+
+      /* 
+          onload事件会在整个页面加载完成之后才触发
+          为window绑定一个onload事件
+            该事件对应的响应函数将会在页面加载完成之后执行
+            这样可以确保我们的代码执行时所有的DOM对象已经加载完毕了
+
+            如果要把js代码写在head标签里 一定要先写onload 统一把js代码都写在里面
+            写在最底下就没所谓
+        */
+      window.onload = function () {
+        //获取id为btn的按钮
+        var btn = document.getElementById("btn");
+        //为按钮绑定一个单击响应函数
+        btn.onclick = function () {
+          alert("hello!");
+        };
+        alert("hello");
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn">点我一下</button>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 94_JS基础_DOM查询
+
+![image-20220808181302991](JS.assets/image-20220808181302991.png)
+
+​	
+
+**79_JS基础_DOM查询.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        //为id为btn01的按钮绑定一个单击响应函数
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          //查找#bj节点
+          var bj = document.getElementById("bj");
+          //打印bj
+          //innerHTML 通过这个属性可以获取到元素内部的html代码
+          alert(bj.innerHTML);
+        };
+
+        //为id为btn02的按钮绑定一个单击响应函数
+        var btn02 = document.getElementById("btn02");
+        btn02.onclick = function () {
+          //查找所有li节点
+          //getElementByTagName()可以根据标签名来获取一组元素节点对象
+          //这个方法会给我们返回一个类数组对象 所有查询到的元素都会封装到对象中
+          //即使查询到的元素只有一个 也会封装到数组中返回
+          var lis = document.getElementsByTagName("li");
+
+          //打印lis
+          //alert(lis.length);
+
+          //遍历lis
+          for (var i = 0; i < lis.length; i++) {
+            alert(lis[i].innerHTML);
+          }
+        };
+
+        //为id为btn03的按钮绑定一个单击响应函数
+        var btn03 = document.getElementById("btn03");
+        btn03.onclick = function () {
+          //查找name=gender的所有节点
+          var inputs = document.getElementsByClassName("gender");
+          alert(inputs.length);
+
+          for (var i = 0; i < inputs.length; i++) {
+            /* 
+                innerHTML用于获取元素内部的HTML代码的
+                    对于自结束标签 这个属性没有意义
+             */
+            // alert(inputs[i].innerHTML);
+            /* 
+                如果需要读取元素节点属性 
+                    直接使用 元素.属性名
+                        例子：元素.id 元素.name 元素.value
+                        注意：class属性不能采用这种方式
+                            读取class属性时需要使用 元素.className
+            */
+            alert(inputs[i].value);
+            alert(inputs[i].className);
+          }
+        };
+      };
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 95_JS基础_图片切换的练习
+
