@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+       previous 前一个
+       定义一个函数 专门用来为指定元素绑定单击响应函数
+        参数：
+            idStr 要绑定单击响应函数的对象的id属性值
+            fun 事件的回调函数 当单击元素时 该函数将会被触发
+      */
+      function myClick(idStr, fun) {
+        var btn = document.getElementById(idStr);
+        btn.onclick = fun;
+      }
+
+      //为id为btn07的按钮绑定一个单击响应函数
+      myClick("btn07", function () {
+        //获取id为bj的节点
+        var bj = document.getElementById("bj");
+
+        //返回#bj的父节点
+        var pn = bj.parentNode;
+
+        alert(pn.innerHTML);
+
+        /*
+            innerText
+                该属性可以获取到元素内部的文本内容
+                它和innerHTML类似 不同的是它会自动将html去除
+        */
+        // alert(pn.innerText);
+      });
+
+      //为id为btn08的按钮绑定一个单击响应函数
+      myClick("btn08", function () {
+        //获取id为android的节点
+        var and = document.getElementById("android");
+
+        //返回#android的前一个兄弟节点(也可能获取到空白文本)
+        var ps = and.previousSibling;
+        alert(ps);
+
+        //previousElementSibling获取前一个兄弟元素 IE8及以下不支持
+        var pe = and.previousElementSibling;
+        alert(pe);
+      });
+
+      //读取#username的value属性值
+      myClick("btn09", function () {
+        //获取id为username的元素
+        var um = document.getElementById("username");
+        //读取um的value属性值
+        //文本框的value属性值 就是文本框中填写的内容
+        alert(um.value);
+      });
+
+      //设置#username的value属性值
+      myClick("btn10", function () {
+        //获取id为username的元素
+        var um = document.getElementById("username");
+
+        um.value = "很晚睡觉咯！";
+      });
+
+      //返回#bj的文本值
+      myClick("btn11", function () {
+        //获取id为bj的元素
+        var bj = document.getElementById("bj");
+        // alert(bj.innerHTML);
+        alert(bj.innerText);
+
+        //获取bj中的文本节点
+        // var fc = bj.firstChild;
+        // alert(fc.nodeValue);
+
+        alert(bj.firstChild.nodeValue);
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

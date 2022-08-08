@@ -5935,3 +5935,190 @@ prototype保存的是原型对象的地址
 
 # 96_JS基础_DOM查询
 
+![image-20220808232940162](JS.assets/image-20220808232940162.png)
+
+![image-20220808232902066](JS.assets/image-20220808232902066.png)
+
+​	
+
+**81_JS基础_DOM查询.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        //为id为btn04的按钮绑定一个单击响应函数
+        var btn04 = document.getElementById("btn04");
+        btn04.onclick = function () {
+          //获取id为city的元素
+          var city = document.getElementById("city");
+
+          //查找#city下所有li节点
+          var lis = city.getElementsByTagName("li");
+
+          for (var i = 0; i < lis.length; i++) {
+            alert(lis[i].innerHTML);
+          }
+        };
+
+        //为id为btn05的按钮绑定一个单击响应函数
+        var btn05 = document.getElementById("btn05");
+        btn05.onclick = function () {
+          //获取id为city的元素
+          var city = document.getElementById("city");
+          //返回#city的所有子节点
+
+          /*
+            childNodes属性会获取包括文本节点在内的所有节点
+            根据DOM标签 标签间空白也会当成文本节点
+            注意：在IE8及以下的浏览器中 不会将空白文本当成子节点
+                所以该属性在IE8中会返回4个子元素 而其他浏览器是9个
+          */
+          var cns = city.childNodes;
+
+          alert(cns.length);
+
+          for (var i = 0; i < cns.length; i++) {
+            alert(cns[i]);
+          }
+
+          /*
+            children属性可以获取当前元素的所有子元素 (子元素 及不包括空白文本节点) 推荐使用这个
+          */
+          var cns2 = city.children;
+          alert(cns2.length);
+        };
+
+        //为id为btn06的按钮绑定一个单击响应函数
+        var btn06 = document.getElementById("btn06");
+        btn06.onclick = function () {
+          //获取id为phone的元素
+          var phone = document.getElementById("phone");
+          //返回#phone的第一个子节点  说节点就包括空白文本节点 说元素便不包括
+          //firstChild可以获取到当前元素的第一个子节点（包括空白文本节点）
+          var fir = phone.firstChild;
+          //firstElementChild可以获取到当前元素的第一个子元素
+          /* 
+            firstElementChild不支持IE8及以下的浏览器
+                如果需要兼容他们尽量不要使用
+          */
+          fir = phone.firstElementChild;
+          alert(fir);
+        };
+      };
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 97_JS基础_DOM查询
+
+![image-20220808235906995](JS.assets/image-20220808235906995.png)
+
+​	
+
+**82_JS基础_DOM查询.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /*
+       previous 前一个
+       定义一个函数 专门用来为指定元素绑定单击响应函数
+        参数：
+            idStr 要绑定单击响应函数的对象的id属性值
+            fun 事件的回调函数 当单击元素时 该函数将会被触发
+      */
+      function myClick(idStr, fun) {
+        var btn = document.getElementById(idStr);
+        btn.onclick = fun;
+      }
+
+      //为id为btn07的按钮绑定一个单击响应函数
+      myClick("btn07", function () {
+        //获取id为bj的节点
+        var bj = document.getElementById("bj");
+
+        //返回#bj的父节点
+        var pn = bj.parentNode;
+
+        alert(pn.innerHTML);
+
+        /*
+            innerText
+                该属性可以获取到元素内部的文本内容
+                它和innerHTML类似 不同的是它会自动将html去除
+        */
+        // alert(pn.innerText);
+      });
+
+      //为id为btn08的按钮绑定一个单击响应函数
+      myClick("btn08", function () {
+        //获取id为android的节点
+        var and = document.getElementById("android");
+
+        //返回#android的前一个兄弟节点(也可能获取到空白文本)
+        var ps = and.previousSibling;
+        alert(ps);
+
+        //previousElementSibling获取前一个兄弟元素 IE8及以下不支持
+        var pe = and.previousElementSibling;
+        alert(pe);
+      });
+
+      //读取#username的value属性值
+      myClick("btn09", function () {
+        //获取id为username的元素
+        var um = document.getElementById("username");
+        //读取um的value属性值
+        //文本框的value属性值 就是文本框中填写的内容
+        alert(um.value);
+      });
+
+      //设置#username的value属性值
+      myClick("btn10", function () {
+        //获取id为username的元素
+        var um = document.getElementById("username");
+
+        um.value = "很晚睡觉咯！";
+      });
+
+      //返回#bj的文本值
+      myClick("btn11", function () {
+        //获取id为bj的元素
+        var bj = document.getElementById("bj");
+        // alert(bj.innerHTML);
+        alert(bj.innerText);
+
+        //获取bj中的文本节点
+        // var fc = bj.firstChild;
+        // alert(fc.nodeValue);
+
+        alert(bj.firstChild.nodeValue);
+      });
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 98_JS基础_全选练习（一）

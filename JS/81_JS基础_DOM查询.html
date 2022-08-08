@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        //为id为btn04的按钮绑定一个单击响应函数
+        var btn04 = document.getElementById("btn04");
+        btn04.onclick = function () {
+          //获取id为city的元素
+          var city = document.getElementById("city");
+
+          //查找#city下所有li节点
+          var lis = city.getElementsByTagName("li");
+
+          for (var i = 0; i < lis.length; i++) {
+            alert(lis[i].innerHTML);
+          }
+        };
+
+        //为id为btn05的按钮绑定一个单击响应函数
+        var btn05 = document.getElementById("btn05");
+        btn05.onclick = function () {
+          //获取id为city的元素
+          var city = document.getElementById("city");
+          //返回#city的所有子节点
+
+          /*
+            childNodes属性会获取包括文本节点在内的所有节点
+            根据DOM标签 标签间空白也会当成文本节点
+            注意：在IE8及以下的浏览器中 不会将空白文本当成子节点
+                所以该属性在IE8中会返回4个子元素 而其他浏览器是9个
+          */
+          var cns = city.childNodes;
+
+          alert(cns.length);
+
+          for (var i = 0; i < cns.length; i++) {
+            alert(cns[i]);
+          }
+
+          /*
+            children属性可以获取当前元素的所有子元素 (子元素 及不包括空白文本节点) 推荐使用这个
+          */
+          var cns2 = city.children;
+          alert(cns2.length);
+        };
+
+        //为id为btn06的按钮绑定一个单击响应函数
+        var btn06 = document.getElementById("btn06");
+        btn06.onclick = function () {
+          //获取id为phone的元素
+          var phone = document.getElementById("phone");
+          //返回#phone的第一个子节点  说节点就包括空白文本节点 说元素便不包括
+          //firstChild可以获取到当前元素的第一个子节点（包括空白文本节点）
+          var fir = phone.firstChild;
+          //firstElementChild可以获取到当前元素的第一个子元素
+          /* 
+            firstElementChild不支持IE8及以下的浏览器
+                如果需要兼容他们尽量不要使用
+          */
+          fir = phone.firstElementChild;
+          alert(fir);
+        };
+      };
+    </script>
+  </head>
+  <body></body>
+</html>
