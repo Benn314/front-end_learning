@@ -6314,3 +6314,312 @@ prototype保存的是原型对象的地址
 
 # 101_JS基础_DOM查询的剩余方法
 
+​	
+
+**84_JS基础_dom查询其他的方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        //获取body标签
+        // var body = document.getElementsByTagName("body");
+        //HTMLCollection 获取的是数组 只获取body加索引值
+        // var body = document.getElementsByTagName("body")[0];
+
+        /* 
+            在document中有一个属性body 它保存的是body的引用
+        */
+        var body = document.body;
+
+        /* 
+            document.documentElement保存的是html根标签
+        */
+        var html = document.documentElement;
+
+        // console.log(body);
+        // console.log(html);
+
+        /* 
+            document.all代表页面中所有的元素
+        */
+        var all = document.all;
+        // console.log(all.length);// 32
+        // for (var i = 0; i < all.length; i++) {
+        //   console.log(all[i]);
+        // }
+
+        all = document.getElementsByTagName("*");
+        // console.log(all.length); //32 跟上面的一样
+
+        /* 
+            根据元素的class属性值查询一组元素节点对象
+            getElementsByClassName()可以根据class属性值获取一组元素节点对象
+                但是该方法不支持IE8及以下的浏览器
+        */
+        var box1 = document.getElementsByClassName("box1");
+
+        // console.log(box1.length);
+
+        //获取页面中的所有的div
+        var divs = document.getElementsByTagName("div");
+        // console.log(divs.length);
+
+        //获取class为box1的所有的div
+        //CSS中 .box1 div
+        /* 
+            document.querySelector()    很强大
+                需要一个选择器的字符串作为参数 可以根据一个CSS选择器来查询一个元素节点对象
+                虽然IE8中没有getElementByClassName()但是可以使用querySelector()代替
+                使用该方法总会返回唯一的一个元素 如果满足条件的元素有多个 那么它只会返回第一个
+        */
+        var div = document.querySelector(".box1 div");
+        // console.log(div.innerHTML);
+
+        var box1 = document.querySelector(".box1");
+        // console.log(box1.innerHTML);
+
+        /* 
+            document.querySelectorAll();
+                该方法和querySelector()用法类似 不同的是它会将符合条件的元素封装到一个数组中返回
+                即使符合条件的元素只有一个 它也会返回数组
+        */
+        box1 = document.querySelectorAll(".box1");
+        console.log(box1.length); //3
+
+        box2 = document.querySelectorAll("#box2");
+        console.log(box2.length); //还是一个数组 NodeList
+        console.log(box2);
+        console.log(box2[0].innerHTML); //还是一个数组 NodeList
+      };
+    </script>
+  </head>
+  <body>
+    <div id="box2">舒舒</div>
+    <div class="box1">
+      <div>1 我是box1中的div</div>
+    </div>
+    <div class="box1">
+      <div>2 我是box1中的div</div>
+    </div>
+    <div class="box1">
+      <div>3 我是box1中的div</div>
+    </div>
+
+    <div></div>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 102_JS基础_DOM增删改
+
+​	
+
+在调试的时候发现代码正确但功能没有实现，查看控制台发现自己犯了一个小错误，导致**Uncaught TypeError: Cannot set property 'onclick' of null**
+
+原因是script标签写在body标签前面，但粗心没有把一段js函数代码写入 `window.onload`，导致无法调用html对象
+
+**85_JS基础_dom增删改.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        //创建一个"广州"节点 添加到#city下
+        myClick("btn01", function () {
+          //创建广州节点 <li>广州</li>
+          //创建li元素节点
+          /* 
+            document.createElement()
+            可以用于创建一个元素节点对象
+            它需要一个标签名作为参数 将会根据该标签名创建元素节点对象
+            并将创建好的对象作为返回值返回
+          */
+          var li = document.createElement("li");
+          //   alert(li);
+          //创建广州文本节点
+          /* 
+            document.createTextNode()
+                可以用来创建一个文本节点对象
+                需要一个文本内容作为参数 将会根据该内容创建文本节点 并将新的节点返回
+          */
+          var gzText = document.createTextNode("广州");
+          //   alert(gzText);
+
+          // 将gzText设置为li的子节点
+          /* 
+            applendChild()
+                向一个父节点中添加一个新的子节点
+                用法：父节点.appendChild(子节点);
+        */
+          li.appendChild(gzText);
+
+          //    获取id为city的节点
+          var city = document.getElementById("city");
+
+          //将广州添加到city下
+          city.appendChild(li); // 注意这里的li是我们自己定义 不是body的那些li
+        });
+
+        //将 "广州"节点插入到#bj前面
+        myClick("btn02", function () {
+          // 创建一个广州
+          var li = document.createElement("li");
+          var gzText = document.createTextNode("广州");
+          li.appendChild(gzText);
+
+          //获取id为bj的节点
+          var bj = document.getElementById("bj");
+
+          //获取city
+          var city = document.getElementById("city");
+
+          /* 
+                insertBefore()
+                    可以在指定的子节点前插入新的子节点
+                    语法：
+                        父节点.insertBefore(新节点,旧节点);
+            */
+          city.insertBefore(li, bj);
+        });
+
+        //使用 "广州"节点替换#bj节点
+        myClick("btn03", function () {
+          // 创建一个广州
+          var li = document.createElement("li");
+          var gzText = document.createTextNode("广州");
+          li.appendChild(gzText);
+
+          //获取id为bj的节点
+          var bj = document.getElementById("bj");
+
+          //获取city
+          var city = document.getElementById("city");
+          city.replaceChild(li, bj);
+
+          /* 
+            replaceChild()
+                可以使用指定的子节点替换已有的子节点
+                语法: 父节点.replaceChild(新节点,旧节点)
+          */
+        });
+
+        //删除#bj节点
+        myClick("btn04", function () {
+          // 创建一个广州
+          var li = document.createElement("li");
+          var gzText = document.createTextNode("广州");
+          li.appendChild(gzText);
+
+          //获取id为bj的节点
+          var bj = document.getElementById("bj");
+
+          //获取city
+          var city = document.getElementById("city"); //可以注释
+
+          //   city.removeChild(bj);
+
+          bj.parentNode.removeChild(bj); //这么写的好处是不用知道bj的父元素是谁 直接就能删除
+
+          /* 
+            removeChild()
+                可以删除一个子节点
+                语法: 父节点.removeChild(子节点);（他杀）
+
+            子节点.parentNode.removeChild(子节点);（自杀）
+
+
+          */
+        });
+
+        //读取#city内的HTML代码
+        myClick("btn05", function () {
+          //获取city
+          var city = document.getElementById("city");
+
+          alert(city.innerHTML);
+        });
+
+        //设置#bj内的HTML代码
+        myClick("btn06", function () {
+          //获取bj
+          var bj = document.getElementById("bj");
+          bj.innerHTML = "深圳";
+        });
+
+        myClick("btn07", function () {
+          //向city添加广州
+          var city = document.getElementById("city");
+
+          /* 
+            使用innerHTML也可以完成DOM的增删改的相关操作
+            一般我们会两种方式结合使用
+        */
+          //   city.innerHTML += "<li>广州</li>";   //这种写法是所有内容删除重新加载 不适合大内容 但方便
+
+          //两者结合着来 myClick("btn01") 和 myClick("btn07")
+          //创建一个li
+          var li = document.createElement("li");
+          //向li中设置文本
+          li.innerHTML = "广州";
+          //将li添加到city中
+          city.appendChild(li); //这种是追加更新内容 原本的内容不会改动 比较稳定
+        });
+
+        function myClick(idStr, fun) {
+          var btn = document.getElementById(idStr);
+          btn.onclick = fun;
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div id="total">
+      <div class="inner">
+        <p>你喜欢哪个城市?</p>
+
+        <ul id="city">
+          <li id="bj">北京</li>
+          <li>上海</li>
+          <li>东京</li>
+          <li>首尔</li>
+        </ul>
+      </div>
+    </div>
+    <div id="btnList">
+      <div><button id="btn01">创建一个"广州"节点，添加到#city下</button></div>
+      <div><button id="btn02">将 "广州"节点插入到#bj前面</button></div>
+      <div><button id="btn03">使用 "广州"节点替换#bj节点</button></div>
+      <div><button id="btn04">删除#bj节点</button></div>
+      <div><button id="btn05">读取#city内的HTML代码</button></div>
+      <div><button id="btn06">设置#bj内的HTML代码</button></div>
+      <div><button id="btn07">创建一个"广州"节点，添加到#city下</button></div>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+![DOM增删改](JS.assets/DOM增删改.gif)
+
+​	
+
+​	
+
+# 103_JS基础_添加删除记录-删除
+
