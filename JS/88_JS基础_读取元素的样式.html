@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        //点击按钮以后读取box1的样式
+        var box1 = document.getElementById("box1");
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          /* 
+                获取元素的当前显示的样式
+                    语法：元素.currentStyle.样式名
+                它可以用来读取当前元素正在显示的样式
+             */
+
+          //   alert(box1.style.width); //只能读内联样式 当前结果为空
+          alert(box1.currentStyle.width);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01">哈哈</button>
+    <br /><br />
+    <div id="box1"></div>
+  </body>
+</html>

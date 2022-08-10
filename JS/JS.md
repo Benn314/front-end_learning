@@ -6623,3 +6623,328 @@ prototype保存的是原型对象的地址
 
 # 103_JS基础_添加删除记录-删除
 
+# 104_JS基础_添加删除记录-添加
+
+# 105_JS基础_添加删除记录-修改
+
+​	
+
+**86_JS基础_添加删除记录-删除.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>添加删除记录练习</title>
+    <script>
+      /* 
+            删除tr的响应函数
+        */
+      function delA() {
+        // alert("hello");
+
+        //点击超链接以后需要删除超链接所在的那行
+        //这里我们点击那个超链接this就是谁
+        //获取当前tr
+        var tr = this.parentNode.parentNode;
+
+        //获取要删除的员工的名字
+        // var name = tr.getElementsByTagName("td")[0].innerHTML;
+        var name = tr.children[0].innerHTML;
+
+        //删除之前弹出一个提示框
+        // alert("确认删除吗?");
+        /*
+                confirm()用于弹出一个带有确认和取消按钮的提示框
+                  需要一个字符串作为参数 该字符串会作为提示文字显示出来
+                如果用户点击确认则会返回true 如果点击取消则会返回false
+            */
+        var flag = confirm("确认删除" + name + "吗?");
+
+        //如果用户点击确认
+        if (flag) {
+          //删除tr
+          tr.parentNode.removeChild(tr);
+        }
+
+        /*
+            点击超链接以后 超链接会跳转页面 这个是超链接的默认行为
+                但是此时我们不希望出现默认行为 可以通过在响应函数的最后return false来取消默认行为
+                */
+        return false;
+      }
+      window.onload = function () {
+        /*
+            点击超链接 删除一个员工的信息
+            */
+
+        //获取所有超链接
+        var allA = document.getElementsByTagName("a");
+
+        //为每个超链接都绑定一个单击响应函数
+        for (var i = 0; i < allA.length; i++) {
+          allA[i].onclick = delA;
+        }
+
+        /*
+            添加员工的功能
+                点击按钮以后，将员工的信息添加到表格中
+        */
+        //为提交按钮绑定单击响应函数
+        var addEmpButton = document.getElementById("addEmpButton");
+        addEmpButton.onclick = function () {
+          //获取用户添加的员工信息
+          //获取员工的名字
+          var name = document.getElementById("empName").value;
+          //获取员工的email和salary
+          var email = document.getElementById("email").value;
+          var salary = document.getElementById("salary").value;
+
+          //   alert(name + "," + email + "," + salary);
+          /* 
+            <tr>
+                <td>Jerry</td>
+                <td>jerry@sohu.com</td>
+                <td>8000</td>
+                <td><a href="deleteEmp?id=002">Delete</a></td>
+            </tr>
+            需要将获取的消息保存到tr中
+        */
+          //创建一个tr
+          var tr = document.createElement("tr");
+
+          /*    
+          --- 设置tr中的内容（笨方法 纯appendChild）---开始符
+          
+          //创建四个td
+          var nameTd = document.createElement("td");
+          var emailTd = document.createElement("td");
+          var salaryTd = document.createElement("td");
+          var aTd = document.createElement("td");
+
+          //创建一个a元素
+          var a = document.createElement("a");
+
+          //创建文本节点
+          var nameText = document.createTextNode(name);
+          var emailText = document.createTextNode(email);
+          var salaryText = document.createTextNode(salary);
+          var delText = document.createTextNode("Delete");
+
+          //将文本条件到td中
+          nameTd.appendChild(nameText);
+          emailTd.appendChild(emailText);
+          salaryTd.appendChild(salaryText);
+
+          //向a中添加文本
+          a.appendChild(delText);
+          //将a添加到td中
+          aTd.appendChild(a);
+
+          //将td添加到tr中
+          tr.appendChild(nameTd);
+          tr.appendChild(emailTd);
+          tr.appendChild(salaryTd);
+          tr.appendChild(aTd);
+
+          //向a中添加href属性
+          a.href = "javascript:;";
+
+          //为新添加的a再绑定依次单击响应函数
+          a.onclick = delA;
+
+          --- 设置tr中的内容（笨方法 纯appendChild）---结束符
+        */
+
+          //设置tr中的内容（appendChild+innerHTML 混合方法）
+          tr.innerHTML =
+            "<td>" +
+            name +
+            "</td>" +
+            "<td>" +
+            email +
+            "</td>" +
+            "<td>" +
+            salary +
+            "</td>" +
+            "<td><a href='javascript:;'>Delete</a></td>";
+
+          //获取刚刚添加的a元素 并为其绑定单击响应函数
+          var a = tr.getElementsByTagName("a")[0];
+          a.onclick = delA;
+
+          //获取table
+          var employeeTable = document.getElementById("employeeTable");
+          //获取employeeTable中的tbody
+          var tbody = employeeTable.getElementsByTagName("tbody")[0];
+          //将tr添加到tbody中
+          tbody.appendChild(tr);
+
+          //不要直接添加tbody.innerHTML=tr;
+          //这样里面的所有内容都是覆盖更新 性能不高，和appendChild混合着来
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <table id="employeeTable">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <td>Tom</td>
+        <td>tom@tom.com</td>
+        <td>5000</td>
+        <!-- <td><a href="deleteEmp?id=001">Delete</a></td> -->
+        <!-- href="javascript:;" 也能关闭超链接默认行为 -->
+        <td><a href="javascript:;">Delete</a></td>
+      </tr>
+      <tr>
+        <td>Jerry</td>
+        <td>jerry@sohu.com</td>
+        <td>8000</td>
+        <td><a href="deleteEmp?id=002">Delete</a></td>
+      </tr>
+      <tr>
+        <td>Bob</td>
+        <td>bob@tom.com</td>
+        <td>8000</td>
+        <td><a href="deleteEmp?id=003">Delete</a></td>
+      </tr>
+    </table>
+
+    <div id="formDiv">
+      <h4>添加新员工</h4>
+
+      <table>
+        <tr>
+          <td class="word">name:</td>
+          <td class="inp">
+            <input type="text" name="empName" id="empName" />
+          </td>
+        </tr>
+        <tr>
+          <td class="word">email:</td>
+          <td class="inp">
+            <input type="text" name="email" id="email" />
+          </td>
+        </tr>
+        <tr>
+          <td class="word">salary:</td>
+          <td class="inp">
+            <input type="text" name="salary" id="salary" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <button id="addEmpButton">Submit</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 106_JS基础_a的索引问题
+
+![image-20220810214209241](JS.assets/image-20220810214209241.png)
+
+![image-20220810214221738](JS.assets/image-20220810214221738.png)
+
+​	
+
+​	
+
+# 107_JS基础_操作内联样式
+
+​	
+
+**87_JS基础_使用DOM操作CSS.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 200px;
+        height: 200px;
+        background-color: red !important;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        /*
+                点击按钮以后 修改box1的大小
+            */
+        //获取box1
+        var box1 = document.getElementById("box1");
+        //为按钮绑定单击响应函数
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          //修改box1的宽度
+          /*
+                通过JS修改元素的样式
+                    语法：元素.style.样式名 = 样式值
+
+                注意：如果CSS的样式名中含有-
+                    这种名称在JS中是不合法的 比如background-color
+                    需要将这种样式名修改为驼峰命名法
+                    去掉- 如何将 - 后的字母大写
+
+                我们通过style属性设置的样式都是内联样式
+                    而内联样式有较高的优先级 所以JS修改的样式往往会立即显示
+
+                但是如果在样式中写了!important 则此时样式会有最高的优先级
+                    即使通过JS也不能覆盖该样式 此时将会导致JS修改样式失效
+                    所以尽量不要为样式添加!important
+            */
+          box1.style.width = "300px"; //这里的样式值需要以字符串的形式
+          box1.style.height = "300px";
+          box1.style.backgroundColor = "yellow";
+        };
+
+        //点击按钮2以后 读取元素的样式
+        var btn02 = document.getElementById("btn02");
+        btn02.onclick = function () {
+          /* 
+                读取box1的样式
+                语法：元素.style.样式名
+
+                通过style属性设置和读取的都是内联样式
+                    无法读取样式表中的样式
+            */
+          alert(box1.style.backgroundColor);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01">点我一下</button>
+    <button id="btn02">点我一下</button>
+    <br />
+    <br />
+    <div id="box1"></div>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 108_JS基础_获取元素的样式
+
