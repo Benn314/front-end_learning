@@ -6948,3 +6948,287 @@ prototype保存的是原型对象的地址
 
 # 108_JS基础_获取元素的样式
 
+​	
+
+**88_JS基础_读取元素的样式.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        //点击按钮以后读取box1的样式
+        var box1 = document.getElementById("box1");
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          /* 
+                获取元素的当前显示的样式
+                    语法：元素.currentStyle.样式名
+                它可以用来读取当前元素正在显示的样式
+                    如果当前元素没有设置该样式 则获取它的默认值
+
+                currentStyle只有IE浏览器支持 其他的浏览器都不支持
+                在其他浏览器中可以使用
+                    getComputedStyle()这个方法来获取元素当前的样式
+                    这个方法是window的方法 可以直接使用
+                需要两个参数
+                    第一个 要获取样式的元素
+                    第二个 可以传递一个伪元素 一般都传null
+
+                该方法会返回一个对象 对象中封装了当前元素对应的样式
+                    可以通过对象.样式名来读取样式
+                    如果获取的样式没有设置 则会获取到真实的值 而不是默认值
+                    比如 没有设置width 它不会获取到auto 而是一个长度
+
+                但是该方法不支持IE8及以下的浏览器
+
+                通过currentStyle和getComputedStyle()读取到的样式都是只读的 不能修改
+                    如果要修改 必须通过style属性
+             */
+
+          //   alert(box1.style.width); //只能读内联样式 当前结果为空
+          //   alert(box1.style.backgroundColor);
+          //下面两行只适合IE8浏览器
+          //   alert(box1.currentStyle.width);
+          //   alert(box1.currentStyle.backgroundColor);
+
+          //正常浏览器的方式
+          //   alert(getComputedStyle(box1, null).width);
+          //   alert(getComputedStyle(box1, null).backgroundColor);
+          var obj = getComputedStyle(box1, null);
+          //   alert(obj.width);
+          //   alert(obj.backgroundColor);
+
+          alert(getStyle(box1, "width"));
+        };
+      };
+
+      /* 
+        定义一个函数 用来获取指定元素的当前的样式
+        参数：
+            obj 要获取的样式的元素
+            name 要获取的样式名
+      */
+      function getStyle(obj, name) {
+        /* 
+            这里存在一个问题，该方法要怎么修改才能兼容两种浏览器（兼容性处理）
+
+            其实只需要判断有没有getComputedStyle方法就行了 有则调用
+        */
+
+        if (window.getComputedStyle) {
+          //没加window. 是变量 加了是方法/属性
+          //正常浏览器的方式
+          // return getComputedStyle(obj, null).name;//不是name 这样写死了 虽然和形参同名 用[]来表示
+          return getComputedStyle(obj, null)[name]; //不是name 这样写死了 虽然和形参同名 用[]来表示
+        } else {
+          //IE8的方式
+          return obj.currentStyle[name];
+        }
+
+        //也可以用三元运算符
+        // return window.getComputedStyle
+        //   ? getComputedStyle(obj, null)[name]
+        //   : obj.currentStyle[name];
+
+        //这么用会优先使用currentStyle 跟上面的没区别 只是我们希望优先使用getComputedStyle
+        // if(obj.currentStyle){
+        //     return obj.currentStyle[name];
+        // }else{
+        //     return getComputedStyle(obj, null)[name];
+        // }
+      }
+
+    </script>
+  </head>
+  <body>
+    <button id="btn01">哈哈</button>
+    <br /><br />
+    <div id="box1" style="width: 200px; background-color: green"></div>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 109_JS基础_getStyle()方法
+
+- 兼容性处理
+
+**88_JS基础_读取元素的样式.html**
+
+```html
+      /* 
+        定义一个函数 用来获取指定元素的当前的样式
+        参数：
+            obj 要获取的样式的元素
+            name 要获取的样式名
+      */
+      function getStyle(obj, name) {
+        /* 
+            这里存在一个问题，该方法要怎么修改才能兼容两种浏览器（兼容性处理）
+
+            其实只需要判断有没有getComputedStyle方法就行了 有则调用
+        */
+
+        if (window.getComputedStyle) {
+          //没加window. 是变量 加了是方法/属性
+          //正常浏览器的方式
+          // return getComputedStyle(obj, null).name;//不是name 这样写死了 虽然和形参同名 用[]来表示
+          return getComputedStyle(obj, null)[name]; //不是name 这样写死了 虽然和形参同名 用[]来表示
+        } else {
+          //IE8的方式
+          return obj.currentStyle[name];
+        }
+
+        //也可以用三元运算符
+        // return window.getComputedStyle
+        //   ? getComputedStyle(obj, null)[name]
+        //   : obj.currentStyle[name];
+
+        //这么用会优先使用currentStyle 跟上面的没区别 只是我们希望优先使用getComputedStyle
+        // if(obj.currentStyle){
+        //     return obj.currentStyle[name];
+        // }else{
+        //     return getComputedStyle(obj, null)[name];
+        // }
+      }
+
+```
+
+​	
+
+​	
+
+# 110_JS基础_其他样式相关的属性
+
+![image-20220811083503966](JS.assets/image-20220811083503966.png)
+
+​	
+
+**90_JS基础_阅读协议滚动至底部.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      #info {
+        width: 300px;
+        height: 500px;
+        background-color: cadetblue;
+        overflow: auto;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        /* 
+                当垂直滚动条滚动到底时使表单项可用
+                onscroll
+                    该事件会在元素的滚动条滚动时触发
+            */
+
+        //获取id为info的p元素
+        var info = document.getElementById("info");
+        //获取两个表单项
+        var inputs = document.getElementsByTagName("input");
+        //为info绑定一个滚动条滚动的事件
+        info.onscroll = function () {
+          //检查垂直滚动条是否滚动到底
+          if (info.scrollHeight - info.scrollTop == info.clientHeight) {
+            //滚动条滚动到底 使表单项可用
+            /* 
+                disabled属性可以设置一个元素是否禁用
+                    如果设置为true 则元素禁用
+                    如果设置为false 则元素可用
+            */
+
+            inputs[0].disabled = false;
+            inputs[1].disabled = false;
+          }
+        };
+
+        //获取id为submit的input元素
+        var submit = document.getElementById("submit");
+        submit.onclick = function () {
+          alert("触发按钮");
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <h3 style="text-align: center">欢迎亲爱的用户注册</h3>
+    <center>
+      <p id="info">
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+        协议内容 协议内容 <br />
+      </p>
+
+      <!-- 如果为表单项添加disabled="disabled" 则表单项将变成不可用的状态-->
+      <input type="checkbox" disabled />我已仔细阅读协议，一定遵守
+      <input id="submit" type="submit" value="注册" disabled />
+    </center>
+  </body>
+</html>
+
+```
+
+​	
+
+<img src="JS.assets/阅读协议滚动至底部.gif" alt="阅读协议滚动至底部" style="zoom: 50%;" />
+
+​	
+
+​	
+
+# 111_JS基础_事件对象
+
