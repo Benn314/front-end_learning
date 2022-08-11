@@ -7232,3 +7232,365 @@ prototype保存的是原型对象的地址
 
 # 111_JS基础_事件对象
 
+​	
+
+**91_JS基础_事件对象.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      #areaDiv {
+        border: 1px solid green;
+        width: 600px;
+        height: 50px;
+      }
+      #showMsg {
+        border: 1px solid rgb(167, 76, 237);
+        width: 200px;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <script>
+    window.onload = function () {
+      /* 
+            当鼠标在areaDiv中移动时 在showMsg中显示鼠标的坐标
+        */
+      //获取两个div
+      var areaDiv = document.getElementById("areaDiv");
+      var showMsg = document.getElementById("showMsg");
+
+      /* 
+        onmousemove
+            该事件将会在鼠标在元素中移动时被触发
+
+        事件对象
+            当事件的响应函数被触发时 浏览器每次都会将一个事件对象作为实参传递进响应函数
+              在事件对象中封装了当前事件相关的一切信息 比如 鼠标的坐标 键盘哪个按键被按下 鼠标滚动的方向...
+      */
+
+      /* 
+        在IE8中 响应函数被触发时 浏览器不会传递事件对象
+          在IE8及以下的浏览中 是将事件对象作为window对象的属性保存的
+          浏览器中 火狐浏览器的传递的实参不是在window对象中的，所以没有window.event
+      */
+
+      areaDiv.onmousemove = function (event) {
+        //兼容性
+
+        // if (!event) {
+        //   event = window.event;
+        // }
+
+        // 也可以这么写
+        event = event || window.event; //如果event为true直接第一个，如果event为false，则令event等于window.event
+
+        // var x = event.pageX;
+        // var y = event.pageY;
+        var x = event.clientX;
+        var y = event.clientY;
+        //在showMsg中显示鼠标的坐标
+        showMsg.innerHTML = "x=" + x + " y=" + y;
+      };
+    };
+  </script>
+  <body>
+    <div id="areaDiv"></div>
+    <div id="showMsg"></div>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 112_JS基础_div跟随鼠标移动
+
+​	
+
+<img src="JS.assets/image-20220811125950254.png" alt="image-20220811125950254" style="zoom:50%;" />
+
+​	相对于可见区域来算顶点
+
+![image-20220811130155927](JS.assets/image-20220811130155927.png)
+
+![image-20220811130301289](JS.assets/image-20220811130301289.png)
+
+相差的距离正好是滚动条的距离
+
+![image-20220811132947953](JS.assets/image-20220811132947953.png)
+
+​	
+
+**92_JS基础_div跟随鼠标移动.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        /* 
+            开启box1的绝对定位
+        */
+        position: absolute;
+        /* position: relative; */
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        /* 
+                使div可以跟随鼠标移动
+            */
+
+        //获取box1
+        var box1 = document.getElementById("box1");
+        //绑定鼠标移动事件
+        document.onmousemove = function (event) {
+          //这里是document.onmousemove不是box1.onmousemove
+
+          //解决兼容问题
+          event = event || window.event;
+
+          //获取滚动条滚动的距离
+          /* 
+            chrome认为浏览器的滚动条是body的 可以通过body.scrollTop来获取
+            火狐等浏览器认为浏览器的滚动条是html的
+          */
+          //   var st = document.body.scrollTop;
+          //   var st = document.documentElement.scrollTop;
+
+          var st =
+            document.body.scrollTop || document.documentElement.scrollTop;
+          console.log(st);
+          var sl =
+            document.body.scrollLeft || document.documentElement.scrollLeft;
+          console.log(sl);
+
+          //获取鼠标的坐标
+          /* 
+            clientX和clientY
+                用于获取鼠标当前的可见窗口的坐标
+            div的偏移量 是相对于整个页面的
+
+            pageX和pageY可以获取鼠标相对于当前页面的坐标
+              但是这两个属性在IE8中不支持 所以如果需要兼容IE8 则不要使用
+          */
+          var left = event.clientX; //client是相对当前可见窗口
+          var top = event.clientY;
+          //   var left = event.pageX; //page是相对整个页面
+          //   var top = event.pageY;
+
+          //设置div的偏移量
+          box1.style.left = left + sl + "px";
+          box1.style.top = top + st + "px";
+          //需要开启绝对定位 不然div无法跟随鼠标
+        };
+
+        //如果没有事件冒泡 box1无法进入box2 因为box2中断了box2区域的document.onmousemove事件
+        //  导致box1无法在box2区域冒泡连接document祖先
+        //默认冒泡是很有用的
+        var box2 = document.getElementById("box2");
+        box2.onmousemove = function (event) {
+          event = event || window.event;
+          event.cancelBubble = true;
+        };
+      };
+    </script>
+  </head>
+  <body style="height: 1000px; width: 2000px">
+    <div
+      id="box2"
+      style="width: 500px; height: 500px; background-color: #bfa"
+    ></div>
+    <div id="box1"></div>
+  </body>
+</html>
+
+```
+
+![image-20220811155142974](JS.assets/image-20220811155142974.png)
+
+​	
+
+​	
+
+# 113_JS基础_事件的冒泡
+
+​	
+
+**93_JS基础_事件的冒泡.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 200px;
+        height: 200px;
+        background-color: yellowgreen;
+      }
+      #s1 {
+        background-color: rgb(244, 156, 68);
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        /* 
+            事件的冒泡（Bubble）
+                所谓的冒泡指的就是事件的向上传导 当后代元素上的事件被触发时 其祖先元素的相同事件也会被触发
+                在开发中大部分情况冒泡都是有用的 如果不希望发生事件冒泡可以通过事件对象来取消冒泡
+        */
+
+        //为s1绑定一个单击响应函数
+        var s1 = document.getElementById("s1");
+        s1.onclick = function (event) {
+          event = event || window.event;
+          alert("我是span的单击响应函数");
+
+          //取消冒泡
+          //可以将事件对象的cancelBubble设置为true 即可取消冒泡
+          event.cancelBubble = true;
+        };
+
+        //为box1绑定一个单击响应函数
+        var box1 = document.getElementById("box1");
+        box1.onclick = function (event) {
+          event = event || window.event;
+          alert("我是div的单击响应函数");
+          event.cancelBubble = true;
+        };
+
+        //为body绑定一个单击响应函数
+        document.body.onclick = function () {
+          alert("我是body的单击响应函数");
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div id="box1">
+      我是box1
+      <span id="s1">我是span</span>
+    </div>
+  </body>
+</html>
+
+```
+
+![image-20220811155211830](JS.assets/image-20220811155211830.png)
+
+​	
+
+# 114_JS基础_事件的委派
+
+​	
+
+**94_JS基础_事件的委派.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var u1 = document.getElementById("u1");
+
+        //点击按钮以后添加超链接
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          //   alert("添加一个超链接");
+          //创建一个li
+          var li = document.createElement("li");
+
+          //构建自己用innerHTML，传递给爸爸用appendChild，保证其他儿子不受影响，不被覆盖
+          li.innerHTML = "<a href='javascript:;' class='link'>新添加超链接</a>";
+
+          //将li添加到u1中
+          u1.appendChild(li);
+        };
+
+        /* 
+            为每一个超链接都绑定一个单击响应函数
+            这里我们为每一个超链接都绑定了一个单击响应函数，这种操作比较麻烦
+              而且这些操作只能为已有的超链接设置事件 而新添加的超链接必须重新绑定
+            */
+        //获取所有的a
+        var allA = document.getElementsByTagName("a");
+        //遍历
+        // for (var i = 0; i < allA.length; i++) {
+        //   allA[i].onclick = function () {
+        //     alert("我是a的单击响应函数");
+        //   };
+        // }
+
+        /* 
+            我们希望 只绑定一次事件 即可应用到多个的元素上 即使元素是后添加的
+            我们可以尝试将其绑定给元素的共同的祖先元素
+
+            事件的委派
+                指将事件统一绑定给元素的共同的祖先元素，这样当后代元素上的事件被触发时 会一直冒泡到祖先元素
+                    从而通过祖先元素的响应函数来处理事件
+                事件委派是利用了冒泡 通过委派可以减少事件绑定的次数 提高程序的性能
+        */
+
+        //为ul绑定一个单击响应函数
+        u1.onclick = function (event) {
+          event = event || window.event;
+
+          /* 
+                target
+                    event中的target表示的触发事件的对象
+            */
+          //如果触发事件的对象是我们期望的元素 则执行 否则不执行
+          if (event.target.className == "link") {
+            //注意超链接的class 在js中要写成className 因为js中有同名class关键字
+            alert("我是ul的单击响应函数");
+          }
+
+          //   alert("我是ul的单击响应函数");
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01">添加超链接</button>
+    <ul id="u1" style="background-color: #bfa">
+      <li>
+        <p>我是p元素</p>
+      </li>
+      <li><a href="javascript:;" class="link">超链接一</a></li>
+      <li><a href="javascript:;" class="link">超链接二</a></li>
+      <li><a href="javascript:;" class="link">超链接三</a></li>
+    </ul>
+  </body>
+</html>
+
+```
+
+​	
+
+![事件的委派](JS.assets/事件的委派.gif)
+
+
+
+​	
+
+# 115_JS基础_事件的绑定
+
