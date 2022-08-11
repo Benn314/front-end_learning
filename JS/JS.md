@@ -7594,3 +7594,280 @@ prototype保存的是原型对象的地址
 
 # 115_JS基础_事件的绑定
 
+# 116_JS基础_完成bind函数
+
+​	
+
+**95_JS基础_事件的绑定.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        /* 
+                点击按钮以后弹出一个内容
+            */
+        //获取按钮对象
+        var btn01 = document.getElementById("btn01");
+
+        /* 
+            使用对象.事件 = 函数的形式绑定响应函数
+              它只能同时为一个元素的一个事件绑定一个响应函数
+              不能绑定多个 如果绑定了多个 则后边会覆盖掉前边的
+        */
+
+        //为btn01绑定一个单击响应函数
+        // btn01.onclick = function () {
+        //   alert(1);
+        // };
+
+        //为btn01绑定第二个单击响应函数
+        // btn01.onclick = function () {
+        //   alert(2);
+        // };
+        //这么写 alert(1)会被覆盖
+
+        /* 
+            addEventListener()
+                通过这个方法也可以为元素绑定响应函数
+                参数：
+                    1.事件的字符串 不要on
+                    2.回调函数 当事件触发时 该函数会被调用
+                    3.是否在捕获阶段触发事件 需要一个布尔值 一般都传false
+
+            使用addEventListener()可以同时为一个元素的相同事件绑定多个响应函数
+              这样当事件被触发时 响应函数将会按照函数的绑定顺序执行
+
+            这个方法不支持IE8及以下的浏览器
+        */
+        // btn01.addEventListener(
+        //   "click",
+        //   function () {
+        //     alert(1);
+        //   },
+        //   false
+        // );
+        // btn01.addEventListener(
+        //   "click",
+        //   function () {
+        //     alert(2);
+        //   },
+        //   false
+        // );
+        // btn01.addEventListener(
+        //   "click",
+        //   function () {
+        //     alert(3);
+        //   },
+        //   false
+        // );
+
+        /* 
+            attachEvent()
+                在IE8中可以使用attachEvent()来绑定事件
+                参数：
+                    1.事件的字符串 要on
+                    2.回调函数
+
+            这个方法也可以同时为一个事件绑定多个处理函数
+                不同的是它是后绑定先执行 执行顺序和addEventListener()相反
+            
+            但其实谁先执行谁后执行一般都没所谓，如果有你就写在同一个函数不就好了
+        */
+        // btn01.attachEvent("onclick", function () {
+        //   alert(1);
+        // });
+        // btn01.attachEvent("onclick", function () {
+        //   alert(2);
+        // });
+        // btn01.attachEvent("onclick", function () {
+        //   alert(3);
+        // });
+
+        btn01.addEventListener(
+          "click",
+          function () {
+            alert(this); //btn01
+          },
+          false
+        );
+
+        // btn01.attachEvent("onclick", function () {
+        //   alert(this); //window
+        // });
+
+        // bind(btn01, "click", function () {
+        //   alert(1);
+        // });
+        // bind(btn01, "click", function () {
+        //   alert(2);
+        // });
+        // bind(btn01, "click", function () {
+        //   alert(this);
+        // });
+
+        //定义一个函数 用来指定元素绑定响应函数
+        /* 
+            addEventListener()中的this 是绑定事件的对象
+            attachEvent()中的this 是window
+              需要统一两个方法this
+        */
+
+        /* 
+            参数：
+                obj 要绑定事件的对象
+                eventStr 事件的字符串(不要on)
+                callback 回调函数
+
+            选择用什么方法 IE8还是其他浏览器的方法 其实很简单 判断对象有没有相应的方法就可以了 没有就是false
+        */
+        function bind(obj, eventStr, callback) {
+          if (obj.addEventListener) {
+            //大部分浏览器兼容的方式
+            obj.addEventListener(eventStr, callback, false);
+          } else {
+            /* 
+                this是谁由调用方式决定
+                callback.call(obj)
+            */
+
+            //IE8及以下
+            obj.attachEvent("on" + eventStr, function () {
+              //在匿名函数中调用回调函数
+              callback.call(obj);
+            });
+          }
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01">点我一下</button>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+![image-20220811201123358](JS.assets/image-20220811201123358.png)
+
+![image-20220811201333464](JS.assets/image-20220811201333464.png)
+
+点击中间的方法，由最外层向最内层传播，我们称之为捕获阶段    捕获不会触发
+
+![image-20220811201803982](JS.assets/image-20220811201803982.png)
+
+**96_JS基础_事件的传播.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 300px;
+        height: 300px;
+        background-color: yellowgreen;
+      }
+      #box2 {
+        width: 200px;
+        height: 200px;
+        background-color: yellow;
+      }
+      #box3 {
+        width: 150px;
+        height: 150px;
+        background-color: skyblue;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        /* 
+                分别为三个div绑定单击响应函数
+            */
+        var box1 = document.getElementById("box1");
+        var box2 = document.getElementById("box2");
+        var box3 = document.getElementById("box3");
+
+        /* 
+        事件的传播
+            关于事件的传播网景公司和微软公司由不同的理解
+            微软公司认为事件应该是由内向外传播 也就是当事件触发时 应该先触发当前元素上的事件
+                然后再向当前元素的祖先元素上传播 也就说事件应该在冒泡阶段执行
+            网景公司认为事件应该是由外向内传播 也就是当前事件触发时 应该先触发当前元素的最外层的祖先元素的事件
+                然后在向内传播给后代元素
+            W3C综合了两个公司的方案 将事件传播分成了三个阶段
+                1.捕获阶段
+                    在捕获阶段时从最外层的祖先元素 向目标元素进行事件的捕获 但是默认此时不会触发事件
+                2.目标阶段
+                    事件捕获到目标元素 捕获结束开始在目标元素上触发事件
+                3.冒泡阶段
+                    事件在目标元素向他的祖先元素传递 依次触发祖先元素上的事件
+
+                如果希望在捕获阶段就触发事件 可以将addEventListener()的第三个参数设置为true
+                    一般情况下我们不会希望在捕获阶段触发事件 所以这个参数一般都是false
+
+            以上注释内容将的是IE9及以上的浏览器
+
+            IE8及以下的浏览器没有捕获阶段
+
+
+      */
+
+        bind(box1, "click", function () {
+          alert("我是box1的响应函数");
+        });
+        bind(box2, "click", function () {
+          alert("我是box2的响应函数");
+        });
+        bind(box3, "click", function () {
+          alert("我是box3的响应函数");
+        });
+      };
+
+      function bind(obj, eventStr, callback) {
+        if (obj.addEventListener) {
+          //大部分浏览器兼容的方式
+          obj.addEventListener(eventStr, callback, false);
+        } else {
+          /* 
+                this是谁由调用方式决定
+                callback.call(obj)
+            */
+
+          //IE8及以下
+          obj.attachEvent("on" + eventStr, function () {
+            //在匿名函数中调用回调函数
+            callback.call(obj);
+          });
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="box1">
+      <div id="box2">
+        <div id="box3"></div>
+      </div>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+![事件的传播](JS.assets/事件的传播.gif)
+
+为三个嵌套div元素设置了三个click监听，使其引发事件冒泡
+
+同时DOM元素：addEventListener() 可以为同个对象设置多个监听
