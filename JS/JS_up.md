@@ -834,3 +834,510 @@ userAgent等价于浏览器
 
 ```
 
+​	
+
+​	
+
+# 125_JS基础_History
+
+​	
+
+**105_JS基础_History.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            History
+                对象可以用来操作浏览器向前或向后翻页
+        */
+
+      window.onload = function () {
+        //获取按钮对象
+        var btn = document.getElementById("btn");
+
+        btn.onclick = function () {
+          /* 
+            length
+                属性 可以获取到当前访问的链接数量
+                因为当前网页 如果有超链接跳转至此页面的话 
+                    我们是可以后退的 所以当前页面是有记录先前跳转前链接的记录
+                    那么也就有记录链接数量（即链接长度）
+             */
+          //   alert(history.length);
+          /* 
+            back()
+                可以用来回退到上一个页面 作用和浏览器的回退按钮一样
+          */
+          //   history.back();
+          /* 
+            forward()
+                可以跳转下一个页面 作用和浏览器的前进按钮一样
+            */
+          //   history.forward();
+          /* 
+            go()
+                可以用来跳转到指定的页面
+                它需要一个整数作为参数
+                  1 表示向前跳转一个页面 相对于forward
+                  2 表示向前跳转两个页面
+                  -1 表示向后跳转一个页面 相对于back
+                  -2 表示向后跳转两个页面
+                  
+        */
+          history.go();
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn">点我一下</button>
+    <h1>History</h1>
+    <a href="106_JS基础_History_test01.html">去 History_test01</a>
+  </body>
+</html>
+
+```
+
+​	
+
+**106_JS基础_History_test01.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>TEST01</h1>
+    <a href="107_JS基础_History_test02.html">去 History_test02</a>
+  </body>
+</html>
+
+```
+
+​	
+
+**107_JS基础_History_test02.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>TEST02</h1>
+    <a href="105_JS基础_History.html">去 History.html</a>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 126_JS基础_Location
+
+​	
+
+**108_JS基础_Location.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+        Location
+            该对象封装了浏览器地址栏的信息
+        */
+
+      window.onload = function () {
+        //获取按钮对象
+        var btn = document.getElementById("btn");
+
+        btn.onclick = function () {
+          //如果直接打印location 则可以获取到地址栏的信息(当前页面的完整路径)
+          //   alert(location);
+          /* 
+            如果直接将location属性修改为一个完整的路径 或相对路径
+              则我们页面会自动跳转到该路径 并且会生成相应的历史记录
+          */
+          //   location = "http://www.baidu.com";
+          //   location = "106_JS基础_History_test01.html";
+          /* 
+            assign()
+                用来跳转到其他的页面 作用和直接修改location一样
+        */
+          //   location.assign("http://www.baidu.com");
+          /* 
+            reload()
+                用于重新加载当前页面 作用和刷新按钮一样
+                如果在方法中传递一个true 作为参数 则会强制清空缓存刷新页面
+        */
+          //   location.reload(true);
+          /* 
+            replace()
+                可以使用一个新的页面替换当前页面 调用完毕也会跳转页面
+        */
+          location.replace("106_JS基础_History_test01.html");
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn">点我一下</button>
+    <h1>Location</h1>
+    <input type="text" />
+    <a href="106_JS基础_History_test01.html">去 History_test01</a>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 127_JS基础_定时器简介
+
+​	
+
+**109_JS基础_定时调用.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        //获取count
+        var count = document.getElementById("count");
+
+        //使count中的内容 自动切换
+        /* 
+                JS的程序的执行速度是非常非常快的
+                    如果希望一段程序 可以每间隔一段时间执行一次 可以使用定时调用
+            */
+        // for (var i = 0; i < 10000; i++) {
+        //   count.innerHTML = i;
+        //   alert("hello");
+        // }
+
+        /* 
+            setInterval()  (翻译：设置间隔)
+                定时调用
+                可以将一个函数 每隔一段时间执行一次
+                参数：
+                    1.回调函数 该函数会每隔一段时间被调用一次
+                    2.每次调用间隔的时间 单位是毫秒
+        */
+        var num = 1;
+        var timer = setInterval(function () {
+          count.innerHTML = num++;
+
+          if (num == 11) {
+            //关闭定时器
+            clearInterval(timer);
+          }
+
+          //因为赋值是num++ 所以先赋值后++ 最多就到10就停止了
+        }, 1000);
+
+        console.log(timer); //返回一个number 该定时器的唯一标识（身份证）
+
+        //clearInterval()可以用来关闭一个定时器
+        //方法中需要一个定时器的标识作为参数 这样将关闭标识对应的定时器
+        // clearInterval(timer);
+      };
+    </script>
+  </head>
+  <body>
+    <h1 id="count">1</h1>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 128_JS基础_切换图片练习
+
+定时器可以说是慢倍速的for循环
+
+​	
+
+**110_JS基础_切换图片练习.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        /* 
+                使图片可以自动转换
+            */
+
+        //获取img标签
+        var img1 = document.getElementById("img1");
+
+        //创建一个数组来保存图片的路径
+        var imgArr = [
+          "img/1.jpg",
+          "img/2.jpg",
+          "img/3.jpg",
+          "img/4.jpg",
+          "img/5.jpg",
+        ];
+
+        //创建一个变量 用来保存当前图片的索引
+        var index = 0;
+
+        //定义一个变量 用来保存定时器的标识 （放在btn01中无法被btn02获取）
+        var timer;
+        //为btn01绑定一个单击响应函数
+        var btn01 = document.getElementById("btn01");
+        btn01.onclick = function () {
+          /* 
+                目前 我们每点击一次按钮 就会开启一个定时器
+                （为什么开始按钮点多了停止不了呢因为timer只能关闭最后的一个）
+                    点击多次就会开启多个定时器 这就导致图片的切换速度过快
+                    并且我们只能关闭最后一次开启的定时器
+
+            */
+
+          //在开启定时器之前 需要将当前元素上的其他定时器关闭
+          clearInterval(timer);
+
+          /* 
+            开启一个定时器 来自动切换图片
+            */
+          timer = setInterval(function () {
+            //索引自增
+            index++;
+
+            //判断索引是否超过最大索引
+            //   if (index >= imgArr.length) {
+            //     //则将index设置为0
+            //     index = 0;
+            //   }
+            // index = index % imgArr.length;
+            index %= imgArr.length;
+
+            //修改img1的src属性
+            img1.src = imgArr[index];
+          }, 1000);
+        };
+
+        //为btn02绑定一个单击响应函数
+        var btn02 = document.getElementById("btn02");
+        btn02.onclick = function () {
+          //点击按钮以后 停止图片的自动切换 关闭定时器
+          /* 
+            clearInterval()可以接收任意参数
+              如果参数是一个有效的定时器的标识 则停止对应的定时器
+              如果参数不是一个有效的标识 则什么也不做
+          */
+          clearInterval(timer);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <img src="img/1.JPG" alt="" id="img1" />
+    <br /><br />
+    <button id="btn01">开始</button>
+    <button id="btn02">停止</button>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 129_JS基础_修改div移动练习
+
+之前开头不连贯是因为一个函数既要控制方向又要控制速度 现在写成两个（主要还是有防误触的设置，现在用一个定时器来控制移动的时间，覆盖掉防误触的设置）
+
+速度用定时器去控制 方向按键只控制方向
+
+​	
+
+**123和129的div移动对比**
+
+- 123：按下方向键后 立即触发onclick函数立刻执行一次操作 然后等待防误触时长后 按照系统默认的连续按下间隔时长 连续执行onclick函数
+
+- 129：按下方向键后 立即触发onclick函数立刻执行一次操作 然后根据设置的定时器时间间隔 执行函数
+
+​	
+
+**111_JS基础_键盘移动div练习.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(165, 62, 234);
+        position: absolute;
+      }
+    </style>
+    <script>
+      //使div可以根据不同的方向键向不同的方向移动
+      /* 
+        按上键 div向上移
+        按下键 div向下移
+        按左键 div向左移
+        按右键 div向右移
+
+        */
+
+      window.onload = function () {
+        //定义一个变量 来表示移动的速度
+        var speed = 10;
+
+        // 创建一个变量表示方向
+        //通过修改dir来影响移动的方向
+        var dir = 0;
+
+        //开启一个定时器 来控制div的移动
+        setInterval(function () {
+          /* 
+                    37 左
+                    38 上
+                    39 右
+                    40 下
+                */
+          //   console.log(event.keyCode);
+
+          switch (dir) {
+            case 37:
+              //   alert("向左"); left值减小
+              box1.style.left = box1.offsetLeft - speed + "px";
+              break;
+            case 38:
+              //   alert("向上");
+              box1.style.top = box1.offsetTop - speed + "px";
+
+              break;
+            case 39:
+              //   alert("向右");
+              box1.style.left = box1.offsetLeft + speed + "px";
+
+              break;
+            case 40:
+              //   alert("向下");
+              box1.style.top = box1.offsetTop + speed + "px";
+              break;
+          }
+        }, 10);
+
+        //document绑定一个按键按下的事件
+        document.onkeydown = function (event) {
+          event = event || window.event;
+
+          //当用户按了ctrl以后 速度加快
+          if (event.ctrlKey) {
+            speed = 50;
+          } else {
+            speed = 10;
+          }
+
+          //使dir等于按键的值
+          dir = event.keyCode;
+        };
+
+        //当按键松开时 div不再移动
+        document.onkeyup = function () {
+          //设置方向为0
+          dir = 0;
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div id="box1"></div>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 130_JS基础_延时调用
+
+​	
+
+**112_JS基础_延时调用.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var num = 1;
+
+      //开启一个定时器
+      var timer1 = setInterval(function () {
+        console.log(num++);
+      }, 1000);
+
+      /* 
+            延时调用
+                延时调用一个函数不马上执行 而是隔一段时间以后在执行 而且只会执行一次
+
+            延时调用和定时调用的区别
+                定时调用会执行多次
+                而延时调用只会执行一次
+
+            延时调用和定时调用实际上是可以相互代替的 在开发中根据自己需要去选择
+        */
+      var timer2 = setTimeout(function () {
+        console.log(num++);
+      }, 1000);
+
+      //   //使用clearTimeout()来关闭一个延时调用
+      clearTimeout(timer1);
+      //   clearTimeout(timer2);
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 131_JS基础_定时器的应用（一）
+
