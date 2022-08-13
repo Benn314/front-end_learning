@@ -2282,5 +2282,202 @@ hover效果没有消失 这里写错了 只是点击一次后全部变成了红�
 
 # 137_JS基础_类的操作
 
+JS是行为，CSS是表现
+
+![image-20220813200319801](JS_up.assets/image-20220813200319801.png)
+
+class属性可以写两个 中间用空格隔开 便可以同时拥有两个样式
+
+判断字符串是否包含其内容 我们可以用正则表达式来判断
+
 ​	
+
+```js
+JavaScript RegExp \b 元字符 匹配单词边界
+
+//令cn = b2
+
+var reg = new RegExp("\\b" + cn + "\\b");
+alert(reg);
+
+var reg1 = /\bb2\b/;
+alert(reg1);
+
+var reg2 = new RegExp("\b" + cn + "\b");
+alert(reg2);
+
+var reg3 = new RegExp("\b");
+alert(reg3);
+
+输出结果：
+reg = /\bb2\b/
+reg1 = /\bb2\b/
+reg2 = /b2/
+reg3 = //
+
+所以 当我们的正则表达式是拼接起来的话（有变量参与）那么我们需要对其 \ 进行转义 不然正则的内容不会是我们想要的
+```
+
+​	
+
+**117_JS基础_类的操作.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .b1 {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+      }
+      .b2 {
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+        /* 直接将具有b1属性的样式修改赋值为b2 */
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        //获取box
+        var box = document.getElementById("box");
+        //获取btn01
+        var btn01 = document.getElementById("btn01");
+
+        //为btn01绑定单击响应函数
+        btn01.onclick = function () {
+          //修改box的样式
+          /*
+             在js中通过style属性来修改元素的样式 每修改一个样式 浏览器就需要重新渲染一次页面
+               这样的执行的性能是比较差的 而且这种形式当我们要修改多个样式时 也不太方便
+                 像这里修改了三个样式 浏览器要重新渲染3次样式
+           */
+          //   box.style.width = "200px";
+          //   box.style.height = "200px";
+          //   box.style.backgroundColor = "skyblue";
+          //在js中修改css 二者就耦合了
+          /*
+             我希望一行代码 可以同时修改多个样式
+           */
+
+          //修改box的class属性
+          /*
+             我们可以通过修改元素的class属性来间接的修改样式
+             这样一来 我们只需要修改一次 即可同时修改多个样式
+                 浏览器只需要重新渲染页面一次 性能比较好
+                 并且这种方式 可以使表现和行为进一步的分离
+
+             这样JS跟CSS耦合度低 且性能高 可复用性强
+           */
+          //   box.className = "b2";
+          /*
+             有一个问题 有时候我们想要在b1的基础上加上b2的属性
+                 可以这么做
+         */
+          //   box.className += " b2";
+          //注意b2前要加空格 不然b1和b2的样式黏在一起 样式效果都不见了
+          //下面我们将其封装成函数
+          //   addClass(box, "b2");
+          //   alert(hasClass(box, "b2"));
+          //   removeClass(box, "b2");
+          toggleClass(box, "b2");
+        };
+      };
+
+      //定义一个函数u用来向一个元素中添加指定的class属性值
+      /*
+         参数：
+             obj 要添加class属性的元素
+             cn 要添加的class值
+       */
+      function addClass(obj, cn) {
+        //检查obj中是否含有cn
+        if (!hasClass(obj, cn)) {
+          obj.className += " " + cn;
+        }
+
+        /*
+             单纯写 obj.className += " " + cn; 我们会发现一个问题
+               id为box的div标签的内联样式中的class属性值会不断添加b2字符串 当我们不断点击添加时
+                 虽然显示效果没影响 但这样的代码会很奇怪 我们需要封装了函数
+                   来对添加时判断所要添加的标签是否已经含有了所要添加的class属性值
+                     判断字符串是否包含其内容 我们可以用正则表达式来判断
+         */
+      }
+
+      /*
+         判断一个元素中是否含有指定的class属性值
+             如果有该class 则返回true 没有则返回false
+       */
+      function hasClass(obj, cn) {
+        //判断obj中的class属性有没有包含 cn样式
+
+        //创建一个正则表达式
+        // var reg1 = /\bb2\b/;
+        //但这样正则表达式的内容就写死了无法传cn进去
+        // 用构造函数来解决该问题
+
+        var reg = new RegExp("\\b" + cn + "\\b");
+
+        // var reg = new RegExp("\\b" + cn + "\\b");
+        // alert(reg);
+
+        // var reg1 = /\bb2\b/;
+        // alert(reg1);
+
+        // var reg2 = new RegExp("\b" + cn + "\b");
+        // alert(reg2);
+
+        // var reg3 = new RegExp("\b");
+        // alert(reg3);
+        return reg.test(obj.className);
+      }
+
+      /* 
+        删除一个元素中的指定的class属性
+      */
+      function removeClass(obj, cn) {
+        //创建一个正则表达式
+        var reg = new RegExp("\\b" + cn + "\\b");
+
+        //删除class
+        obj.className = obj.className.replace(reg, "");
+        //replace() 用空串"" 来替换reg
+      }
+
+      /* 
+        toggleClass可以用来切换一个类
+            如果元素中具有该类 则删除
+            如果元素中没有该类 则添加
+      */
+      function toggleClass(obj, cn) {
+        //判断obj中是否含有cn
+        if (hasClass(obj, cn)) {
+          //有 则删除
+          removeClass(obj, cn);
+        } else {
+          //没有 则添加
+          addClass(obj, cn);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btn01">点击按钮以后修改box的样式</button>
+    <br /><br />
+    <div id="box" class="b1"></div>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 138_JS基础_二级菜单-完成基本功能
 
