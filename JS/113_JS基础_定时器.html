@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        left: 0;
+        /* 这里没指定left的话 IE是默认left为auto */
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        //获取box1
+        var box1 = document.getElementById("box1");
+        //获取btn01
+        var btn01 = document.getElementById("btn01");
+        //点击按钮以后 使box1向右移动（left值增大）
+
+        //定义一个变量 用来保存定时器的标识
+        var timer;
+
+        btn01.onclick = function () {
+          //关闭上一个定时器 禁止在未达到终点之前启动多个定时器
+          clearInterval(timer);
+
+          //开启一个定时器 用来执行动画效果
+          timer = setInterval(function () {
+            //获取box1的原来的left值
+            var oldValue = parseInt(getStyle(box1, "left")); //getStyle返回的值带px 我们只需要整数的部分方便下面加减
+            //而且用自定义的getStyle()的好处是方向不会写死 可以任意改变哪一个方向上的值
+
+            //在旧值的基础上增加
+            var newValue = oldValue + 10;
+
+            //判断newValue是否大于800
+            //我们需要每次运行都能达到800px的位置
+            //叠加的值不同可能无法精准达到800px，需要我们这里需要判断修改一下
+            if (newValue > 800) {
+              newValue = 800;
+            }
+
+            //将新值设置给box1
+            box1.style.left = newValue + "px";
+
+            //当元素移动到800px时 使其停止执行动画
+            if (newValue === 800) {
+              //达到目标 关闭定时器
+              clearInterval(timer);
+            }
+          }, 22);
+        };
+      };
+
+      /* 
+        定义一个函数 用来获取指定元素的当前的样式
+        参数：
+            obj 要获取的样式的元素
+            name 要获取的样式名
+      */
+      function getStyle(obj, name) {
+        /* 
+            这里存在一个问题，该方法要怎么修改才能兼容两种浏览器（兼容性处理）
+
+            其实只需要判断有没有getComputedStyle方法就行了 有则调用
+        */
+
+        if (window.getComputedStyle) {
+          //没加window. 是变量 加了是方法/属性
+          //正常浏览器的方式
+          // return getComputedStyle(obj, null).name;//不是name 这样写死了 虽然和形参同名 用[]来表示
+          return getComputedStyle(obj, null)[name]; //不是name 这样写死了 虽然和形参同名 用[]来表示
+        } else {
+          //IE8的方式
+          return obj.currentStyle[name];
+        }
+
+        //也可以用三元运算符
+        // return window.getComputedStyle
+        //   ? getComputedStyle(obj, null)[name]
+        //   : obj.currentStyle[name];
+
+        //这么用会优先使用currentStyle 跟上面的没区别 只是我们希望优先使用getComputedStyle
+        // if(obj.currentStyle){
+        //     return obj.currentStyle[name];
+        // }else{
+        //     return getComputedStyle(obj, null)[name];
+        // }
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btn01">点击按钮以后box1向右移动</button>
+    <br /><br />
+    <div id="box1"></div>
+    <div
+      style="
+        width: 0px;
+        height: 1000px;
+        border-left: 1px black solid;
+        position: absolute;
+        left: 800px;
+        top: 0px;
+      "
+    ></div>
+  </body>
+</html>

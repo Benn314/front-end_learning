@@ -1341,3 +1341,946 @@ userAgent等价于浏览器
 
 # 131_JS基础_定时器的应用（一）
 
+​	
+
+**113_JS基础_定时器.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        left: 0;
+        /* 这里没指定left的话 IE是默认left为auto */
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        //获取box1
+        var box1 = document.getElementById("box1");
+        //获取btn01
+        var btn01 = document.getElementById("btn01");
+        //点击按钮以后 使box1向右移动（left值增大）
+
+        //定义一个变量 用来保存定时器的标识
+        var timer;
+
+        btn01.onclick = function () {
+          //关闭上一个定时器 禁止在未达到终点之前启动多个定时器
+          clearInterval(timer);
+
+          //开启一个定时器 用来执行动画效果
+          timer = setInterval(function () {
+            //获取box1的原来的left值
+            var oldValue = parseInt(getStyle(box1, "left")); //getStyle返回的值带px 我们只需要整数的部分方便下面加减
+            //而且用自定义的getStyle()的好处是方向不会写死 可以任意改变哪一个方向上的值
+
+            //在旧值的基础上增加
+            var newValue = oldValue + 10;
+
+            //判断newValue是否大于800
+            //我们需要每次运行都能达到800px的位置
+            //叠加的值不同可能无法精准达到800px，需要我们这里需要判断修改一下
+            if (newValue > 800) {
+              newValue = 800;
+            }
+
+            //将新值设置给box1
+            box1.style.left = newValue + "px";
+
+            //当元素移动到800px时 使其停止执行动画
+            if (newValue === 800) {
+              //达到目标 关闭定时器
+              clearInterval(timer);
+            }
+          }, 22);
+        };
+      };
+
+      /* 
+        定义一个函数 用来获取指定元素的当前的样式
+        参数：
+            obj 要获取的样式的元素
+            name 要获取的样式名
+      */
+      function getStyle(obj, name) {
+        /* 
+            这里存在一个问题，该方法要怎么修改才能兼容两种浏览器（兼容性处理）
+
+            其实只需要判断有没有getComputedStyle方法就行了 有则调用
+        */
+
+        if (window.getComputedStyle) {
+          //没加window. 是变量 加了是方法/属性
+          //正常浏览器的方式
+          // return getComputedStyle(obj, null).name;//不是name 这样写死了 虽然和形参同名 用[]来表示
+          return getComputedStyle(obj, null)[name]; //不是name 这样写死了 虽然和形参同名 用[]来表示
+        } else {
+          //IE8的方式
+          return obj.currentStyle[name];
+        }
+
+        //也可以用三元运算符
+        // return window.getComputedStyle
+        //   ? getComputedStyle(obj, null)[name]
+        //   : obj.currentStyle[name];
+
+        //这么用会优先使用currentStyle 跟上面的没区别 只是我们希望优先使用getComputedStyle
+        // if(obj.currentStyle){
+        //     return obj.currentStyle[name];
+        // }else{
+        //     return getComputedStyle(obj, null)[name];
+        // }
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btn01">点击按钮以后box1向右移动</button>
+    <br /><br />
+    <div id="box1"></div>
+    <div
+      style="
+        width: 0px;
+        height: 1000px;
+        border-left: 1px black solid;
+        position: absolute;
+        left: 800px;
+        top: 0px;
+      "
+    ></div>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 132_JS基础_定时器的应用（二）
+
+​	
+
+**114_JS基础_定时器2.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        left: 0;
+        /* 这里没指定left的话 IE是默认left为auto */
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        //获取box1
+        var box1 = document.getElementById("box1");
+        //获取btn01
+        var btn01 = document.getElementById("btn01");
+        //点击按钮以后 使box1向右移动（left值增大）
+
+        //获取btn02
+        var btn02 = document.getElementById("btn02");
+
+        btn01.onclick = function () {
+          move(box1, 800, 10);
+        };
+
+        //点击按钮以后 使box1向左移动（left值减小）
+        btn02.onclick = function () {
+          move(box1, 0, 10);
+        };
+      };
+
+      /*
+              定义一个函数 用来获取指定元素的当前的样式
+              参数：
+                  obj 要获取的样式的元素
+                  name 要获取的样式名
+            */
+      function getStyle(obj, name) {
+        /*
+                  这里存在一个问题，该方法要怎么修改才能兼容两种浏览器（兼容性处理）
+
+                  其实只需要判断有没有getComputedStyle方法就行了 有则调用
+              */
+
+        if (window.getComputedStyle) {
+          //没加window. 是变量 加了是方法/属性
+          //正常浏览器的方式
+          // return getComputedStyle(obj, null).name;//不是name 这样写死了 虽然和形参同名 用[]来表示
+          return getComputedStyle(obj, null)[name]; //不是name 这样写死了 虽然和形参同名 用[]来表示
+        } else {
+          //IE8的方式
+          return obj.currentStyle[name];
+        }
+
+        //也可以用三元运算符
+        // return window.getComputedStyle
+        //   ? getComputedStyle(obj, null)[name]
+        //   : obj.currentStyle[name];
+
+        //这么用会优先使用currentStyle 跟上面的没区别 只是我们希望优先使用getComputedStyle
+        // if(obj.currentStyle){
+        //     return obj.currentStyle[name];
+        // }else{
+        //     return getComputedStyle(obj, null)[name];
+        // }
+      }
+
+      //定义一个变量 用来保存定时器的标识
+      var timer;
+
+      //尝试创建一个可以执行简单动画的函数
+      /* 
+        参数
+          obj 要执行动画的对象
+          target 执行动画的目标位置
+          speed 移动的速度（正数向右移动 负数向左移动）
+      */
+      function move(obj, target, speed) {
+        //关闭上一个定时器 禁止在未达到终点之前启动多个定时器
+        clearInterval(timer);
+
+        //获取元素目前的位置
+        var current = parseInt(getStyle(obj, "left"));
+
+        //判断速度的正负值 这一步应由函数内部判断
+        //  因为到实际应用中我们往往不清楚obj的位置跟我们target位置的关系
+        //    统一传入正数的speed 再让函数内部去判断正负号
+
+        //如果从0向800移动 则speed为正
+        //如果从800向0移动 则speed为负
+        if (current > target) {
+          //此时速度应为负值
+          speed = -speed;
+        }
+
+        //开启一个定时器 用来执行动画效果
+        timer = setInterval(function () {
+          //获取box1的原来的left值
+          var oldValue = parseInt(getStyle(obj, "left")); //getStyle返回的值带px 我们只需要整数的部分方便下面加减
+          //而且用自定义的getStyle()的好处是方向不会写死 可以任意改变哪一个方向上的值
+
+          //在旧值的基础上增加
+          var newValue = oldValue + speed;
+
+          //判断newValue是否大于800
+          //从800向0移动
+          //向左移动时 需要判断newValue是否小于target
+          //向右移动时 需要判断newValue是否大于target
+          if (
+            (speed < 0 && newValue < target) ||
+            (speed > 0 && newValue > target)
+          ) {
+            newValue = target;
+          }
+
+          //将新值设置给box1
+          obj.style.left = newValue + "px";
+
+          //当元素移动到0px时 使其停止执行动画
+          if (newValue === target) {
+            //达到目标 关闭定时器
+            clearInterval(timer);
+          }
+        }, 22);
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btn01">点击按钮以后box1向右移动</button>
+    <button id="btn02">点击按钮以后box1向左移动</button>
+    <br /><br />
+    <div id="box1"></div>
+    <div
+      style="
+        width: 0px;
+        height: 1000px;
+        border-left: 1px black solid;
+        position: absolute;
+        left: 800px;
+        top: 0px;
+      "
+    ></div>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 133_JS基础_定时器的应用（三）
+
+​	
+
+**115_JS基础_定时器3.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+        position: absolute;
+        left: 0;
+        /* 这里没指定left的话 IE是默认left为auto */
+      }
+
+      #box2 {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+        position: absolute;
+        left: 0;
+        top: 200px;
+        /* 这里没指定left的话 IE是默认left为auto */
+      }
+    </style>
+
+    <script src="js/tools.js"></script>
+
+    <script>
+      window.onload = function () {
+        //获取box1
+        var box1 = document.getElementById("box1");
+        //获取btn01
+        var btn01 = document.getElementById("btn01");
+        //点击按钮以后 使box1向右移动（left值增大）
+
+        //获取btn02
+        var btn02 = document.getElementById("btn02");
+
+        btn01.onclick = function () {
+          move(box1, "left", 800, 20);
+        };
+
+        //点击按钮以后 使box1向左移动（left值减小）
+        btn02.onclick = function () {
+          move(box1, "left", 0, 10);
+        };
+
+        //获取btn03
+        var btn03 = document.getElementById("btn03");
+        btn03.onclick = function () {
+          move(box2, "left", 800, 10);
+        };
+
+        //测试按钮
+        var btn04 = document.getElementById("btn04");
+        btn04.onclick = function () {
+          // move(box2, "width", 800, 10);
+          // move(box2, "top", 800, 10);
+          // move(box2, "height", 800, 10);
+          move(box2, "width", 800, 10, function () {
+            // alert("动画执行完毕~~~");
+            move(box2, "height", 400, 10, function () {
+              move(box2, "top", 0, 10, function () {
+                move(box2, "width", 100, 10, function () {});
+              });
+            });
+          });
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn01">点击按钮以后box1向右移动</button>
+    <button id="btn02">点击按钮以后box1向左移动</button>
+    <button id="btn03">点击按钮以后box2向右移动</button>
+    <button id="btn04">测试按钮</button>
+    <br /><br />
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div
+      style="
+        width: 0px;
+        height: 1000px;
+        border-left: 1px black solid;
+        position: absolute;
+        left: 800px;
+        top: 0px;
+      "
+    ></div>
+  </body>
+</html>
+
+```
+
+​	
+
+方法封装进js文件里
+
+**tools.js**
+
+```js
+/*
+    定义一个函数 用来获取指定元素的当前的样式
+    参数：
+        obj 要获取的样式的元素
+        name 要获取的样式名
+    */
+function getStyle(obj, name) {
+  /*
+    这里存在一个问题，该方法要怎么修改才能兼容两种浏览器（兼容性处理）
+
+    其实只需要判断有没有getComputedStyle方法就行了 有则调用
+    */
+
+  if (window.getComputedStyle) {
+    //没加window. 是变量 加了是方法/属性
+    //正常浏览器的方式
+    // return getComputedStyle(obj, null).name;//不是name 这样写死了 虽然和形参同名 用[]来表示
+    return getComputedStyle(obj, null)[name]; //不是name 这样写死了 虽然和形参同名 用[]来表示
+  } else {
+    //IE8的方式
+    return obj.currentStyle[name];
+  }
+
+  //也可以用三元运算符
+  // return window.getComputedStyle
+  //   ? getComputedStyle(obj, null)[name]
+  //   : obj.currentStyle[name];
+
+  //这么用会优先使用currentStyle 跟上面的没区别 只是我们希望优先使用getComputedStyle
+  // if(obj.currentStyle){
+  //     return obj.currentStyle[name];
+  // }else{
+  //     return getComputedStyle(obj, null)[name];
+  // }
+}
+
+//定义一个变量 用来保存定时器的标识
+/* 
+    目前我们的定时器的标识由全局变量timer保存
+        所有的执行正在执行的定时器都在这个变量中保存
+    */
+// var timer;
+
+//尝试创建一个可以执行简单动画的函数
+/* 
+    参数
+        obj 要执行动画的对象
+        attr 要执行动画的样式 比如：left top width height
+        target 执行动画的目标位置
+        speed 移动的速度（正数向右移动 负数向左移动）
+        callback 回调函数 这个函数将会在动画执行完毕以后执行
+    */
+function move(obj, attr, target, speed, callback) {
+  //关闭上一个定时器 禁止在未达到终点之前启动多个定时器
+  clearInterval(obj.timer);
+
+  //获取元素目前的位置
+  var current = parseInt(getStyle(obj, attr));
+
+  //判断速度的正负值 这一步应由函数内部判断
+  //  因为到实际应用中我们往往不清楚obj的位置跟我们target位置的关系
+  //    统一传入正数的speed 再让函数内部去判断正负号
+
+  //如果从0向800移动 则speed为正
+  //如果从800向0移动 则speed为负
+  if (current > target) {
+    //此时速度应为负值
+    speed = -speed;
+  }
+
+  //开启一个定时器 用来执行动画效果
+  //向执行动画的对象中添加一个timer属性 用来保存它自己的定时器的标识
+  obj.timer = setInterval(function () {
+    //获取box1的原来的left值
+    var oldValue = parseInt(getStyle(obj, attr)); //getStyle返回的值带px 我们只需要整数的部分方便下面加减
+    //而且用自定义的getStyle()的好处是方向不会写死 可以任意改变哪一个方向上的值
+
+    //在旧值的基础上增加
+    var newValue = oldValue + speed;
+
+    //判断newValue是否大于800
+    //从800向0移动
+    //向左移动时 需要判断newValue是否小于target
+    //向右移动时 需要判断newValue是否大于target
+    if ((speed < 0 && newValue < target) || (speed > 0 && newValue > target)) {
+      newValue = target;
+    }
+
+    //将新值设置给box1
+    obj.style[attr] = newValue + "px";
+    /* 
+        传入的如果是一个变量的话 要用[] 来接收
+        而不能使用 . 不然会误以为是自定义对象属性
+        */
+
+    //当元素移动到0px时 使其停止执行动画
+    if (newValue === target) {
+      //达到目标 关闭定时器
+      clearInterval(obj.timer);
+      //动画执行完毕 调用回调函数
+      callback && callback();
+      //有传回调函数你就执行 没有就不执行
+    }
+  }, 22);
+}
+
+```
+
+​	
+
+​	
+
+# 134_JS基础_完成轮播图界面
+
+​	
+
+**116_JS基础_完成轮播图界面.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* 
+            设置outer的样式
+        */
+      #outer {
+        /* 设置宽和高 */
+        width: 520px;
+        height: 333px;
+        /* 居中 */
+        margin: 50px auto;
+        /* 设置背景颜色 */
+        background-color: yellowgreen;
+        /* 设置padding */
+        padding: 10px 0;
+        /* 开启相对定位 */
+        position: relative;
+        /* 裁剪溢出的内容 */
+        overflow: hidden;
+      }
+
+      /* 设置imgList */
+      #imgList {
+        /* 去除项目符号 */
+        list-style: none;
+        /* 设置ul的宽度 */
+        width: 2600px;
+        /* 
+            开启绝对定位 
+            想要移动位置需要开启绝对定位
+        */
+        position: absolute;
+        /* 设置偏移量 */
+        /* 
+            每向左移动520px 就会显示到下一张图片
+        */
+        left: 0px;
+      }
+
+      /* 设置图片中的li */
+      #imgList li {
+        /* 设置浮动 */
+        float: left;
+        /* 设置左右外边距 */
+        margin: 0 10px;
+      }
+
+      /* 设置图片统一大小 */
+      #imgList li img {
+        width: 500px;
+        height: 333px;
+      }
+
+      /* 设置导航按钮 */
+      #navDiv {
+        /* 开启绝对定位 */
+        position: absolute;
+        /* 设置位置 */
+        bottom: 15px;
+        /* 设置left值 
+                outer宽度 520
+                navDiv宽度 25*5 = 125
+                    520 - 125 = 395/2 197.5
+        */
+        /* left: 197px; */
+        /*left写死了不灵活 无法根据数量动态更改*/
+      }
+
+      #navDiv a {
+        /* 设置超链接浮动 */
+        float: left;
+        /* 设置超链接的宽和高 */
+        width: 15px;
+        height: 15px;
+        /* 设置背景颜色 */
+        background-color: red;
+        /* 设置左右外边距 */
+        margin: 0 5px;
+        /* 设置透明 */
+        opacity: 0.5;
+        /* 兼容IE8透明 */
+        filter: alpha(opacity=50);
+      }
+
+      /* 设置鼠标移入的效果 */
+      #navDiv a:hover {
+        background-color: black;
+        /* #navDiv a被设置为半透明 所以没有那么黑 */
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        /* 
+                因为添加或删除图片的时候 outer都要改变大小 不然定义一个函数去动态更改
+            */
+        //获取imgList
+        var imgList = document.getElementById("imgList");
+
+        //获取页面中所有的img标签
+        var imgArr = document.getElementsByTagName("img");
+
+        //设置imgList的宽度
+        imgList.style.width = 520 * imgArr.length + "px";
+
+        //设置导航按钮居中
+        //获取navDiv
+        var navDiv = document.getElementById("navDiv");
+        //获取outer
+        var outer = document.getElementById("outer");
+        //设置navDiv的left值
+        navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+
+        //默认显示图片的索引
+        var index = 0;
+        //获取所有的a
+        var allA = document.getElementsByTagName("a");
+        //设置默认选中的效果
+        allA[index].style.backgroundColor = "black";
+      };
+    </script>
+  </head>
+  <body>
+    <!-- 创建一个外部的div 来作为大的容器 -->
+    <div id="outer">
+      <!-- 创建一个ul 用于防止图片 -->
+      <ul id="imgList">
+        <li>
+          <img src="img/1.JPG" alt="" />
+        </li>
+        <li>
+          <img src="img/2.JPG" alt="" />
+        </li>
+        <li>
+          <img src="img/3.JPG" alt="" />
+        </li>
+        <li>
+          <img src="img/4.JPG" alt="" />
+        </li>
+        <li>
+          <img src="img/5.JPG" alt="" />
+        </li>
+      </ul>
+      <!-- 创建导航按钮 -->
+      <div id="navDiv">
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+      </div>
+    </div>
+  </body>
+</html>
+
+```
+
+\#imgList中的left写死为0 点击按钮跳转图片的功能还没实现 下一个视频开始学习~
+
+
+
+
+
+# 135_JS基础_完成点击按钮切换图片
+
+# 136_JS基础_完成轮播图
+
+自定义function setA() for循环遍历出现的问题
+
+> JS设置的background-color都是内联样式 优先级比style样式表高 导致一次onclick后 所以超链接的背景颜色均变为红色
+>
+> 解决：不设置内联样式 也就是让其等于"" 也就是把它的内联样式给去掉了 那么效果就还是样式表里的样式
+
+hover效果没有消失 这里写错了 只是点击一次后全部变成了红色
+
+​	
+
+**116_JS基础_完成轮播图界面.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* 
+            设置outer的样式
+        */
+      #outer {
+        /* 设置宽和高 */
+        width: 520px;
+        height: 333px;
+        /* 居中 */
+        margin: 50px auto;
+        /* 设置背景颜色 */
+        background-color: yellowgreen;
+        /* 设置padding */
+        padding: 10px 0;
+        /* 开启相对定位 */
+        position: relative;
+        /* 裁剪溢出的内容 */
+        overflow: hidden;
+      }
+
+      /* 设置imgList */
+      #imgList {
+        /* 去除项目符号 */
+        list-style: none;
+        /* 设置ul的宽度 */
+        width: 2600px;
+        /* 
+            开启绝对定位 
+            想要移动位置需要开启绝对定位
+        */
+        position: absolute;
+        /* 设置偏移量 */
+        /* 
+            每向左移动520px 就会显示到下一张图片
+        */
+        left: 0px;
+      }
+
+      /* 设置图片中的li */
+      #imgList li {
+        /* 设置浮动 */
+        float: left;
+        /* 设置左右外边距 */
+        margin: 0 10px;
+      }
+
+      /* 设置图片统一大小 */
+      #imgList li img {
+        width: 500px;
+        height: 333px;
+      }
+
+      /* 设置导航按钮 */
+      #navDiv {
+        /* 开启绝对定位 */
+        position: absolute;
+        /* 设置位置 */
+        bottom: 15px;
+        /* 设置left值 
+                outer宽度 520
+                navDiv宽度 25*5 = 125
+                    520 - 125 = 395/2 197.5
+        */
+        /* left: 197px; */
+        /*left写死了不灵活 无法根据数量动态更改*/
+      }
+
+      #navDiv a {
+        /* 设置超链接浮动 */
+        float: left;
+        /* 设置超链接的宽和高 */
+        width: 15px;
+        height: 15px;
+        /* 设置背景颜色 */
+        background-color: red;
+        /* 设置左右外边距 */
+        margin: 0 5px;
+        /* 设置透明 */
+        opacity: 0.5;
+        /* 兼容IE8透明 */
+        filter: alpha(opacity=50);
+      }
+
+      /* 设置鼠标移入的效果 */
+      #navDiv a:hover {
+        background-color: black;
+        /* #navDiv a被设置为半透明 所以没有那么黑 */
+      }
+    </style>
+    <!-- 引用工具 -->
+    <script src="js/tools.js"></script>
+    <script>
+      window.onload = function () {
+        /* 
+                因为添加或删除图片的时候 outer都要改变大小 不然定义一个函数去动态更改
+            */
+        //获取imgList
+        var imgList = document.getElementById("imgList");
+
+        //获取页面中所有的img标签
+        var imgArr = document.getElementsByTagName("img");
+
+        //设置imgList的宽度
+        imgList.style.width = 520 * imgArr.length + "px";
+
+        //设置导航按钮居中
+        //获取navDiv
+        var navDiv = document.getElementById("navDiv");
+        //获取outer
+        var outer = document.getElementById("outer");
+        //设置navDiv的left值
+        navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+
+        //默认显示图片的索引
+        var index = 0;
+        //获取所有的a
+        var allA = document.getElementsByTagName("a");
+        //设置默认选中的效果
+        allA[index].style.backgroundColor = "black";
+
+        /* 
+            点击超链接切换到指定的图片
+                点击第一个超链接 显示第一个图片
+                点击第二个超链接 显示第二个图片
+
+        */
+
+        //为所有的超链接都绑定单击响应函数
+        for (var i = 0; i < allA.length; i++) {
+          //为每一个超链接都添加一个num属性
+          allA[i].num = i;
+          // alert("hello!");
+
+          //因为for循环在加载页面后立刻执行 不会等onclick
+          // 这里需要自定义一个nuj来保存各个超链接的索引值
+
+          //为超链接绑定单击响应函数
+          allA[i].onclick = function () {
+            // alert(this.num);
+            //获取点击超链接的索引
+            index = this.num;
+
+            //切换图片
+            /* 
+                      索引 距离
+                第一张  0   0
+                第二张  1   -520
+                第三张  2   -1040
+            */
+            // imgList.style.left = -520 * index + "px";//这里我们来引入js文件 该句就不用了
+            //设置选中的a
+            setA(index);
+
+            //使用move函数切换图片
+            move(imgList, "left", -520 * index, 35, function () {});
+          };
+        }
+
+        //创建一个方法用来设置选中的a
+        function setA(index) {
+          //遍历所有a 并将它们的背景颜色设置为红色
+          for (var i = 0; i < allA.length; i++) {
+            allA[i].style.backgroundColor = "";
+          }
+
+          //将选中的a设置为黑色
+          allA[index].style.backgroundColor = "black";
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <!-- 创建一个外部的div 来作为大的容器 -->
+    <div id="outer">
+      <!-- 创建一个ul 用于防止图片 -->
+      <ul id="imgList">
+        <li>
+          <img src="img/1.JPG" alt="" />
+        </li>
+        <li>
+          <img src="img/2.JPG" alt="" />
+        </li>
+        <li>
+          <img src="img/3.JPG" alt="" />
+        </li>
+        <li>
+          <img src="img/4.JPG" alt="" />
+        </li>
+        <li>
+          <img src="img/5.JPG" alt="" />
+        </li>
+      </ul>
+      <!-- 创建导航按钮 -->
+      <div id="navDiv">
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+      </div>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+![轮播图练习](JS_up.assets/轮播图练习.gif)
+
+​	
+
+# 137_JS基础_类的操作
+
+​	
+
