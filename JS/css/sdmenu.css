@@ -7,7 +7,7 @@ div.sdmenu {
   font-size: 12px;
   padding-bottom: 10px;
   background-color: url(bottom.gif) no-repeat right bottom;
-  color: #fff;
+  color: rgb(80, 236, 229);
 }
 
 div.sdmenu div {
@@ -29,8 +29,14 @@ div.sdmenu div span {
   overflow: hidden;
   padding: 5px 25px;
   font-weight: bold;
-  color: white;
+  color: rgb(110, 56, 56);
   background-color: url(expanded.gif) no-repeat 10px center;
   cursor: pointer;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgb(241, 133, 194);
+  text-align: center;
+}
+
+#my_menu a {
+  display: block;
+  text-align: center;
 }

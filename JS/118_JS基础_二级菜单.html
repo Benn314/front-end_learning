@@ -23,9 +23,76 @@
     <script>
       window.onload = function () {
         /* 
-                
+            我们的每一个菜单都是一个div
+              当div具有collapsed这个类时 div就是折叠的状态
+              当div没有这个类是 div就是展开的状态
             */
+        /* 
+            点击菜单 切换菜单的显示状态
+            */
+
+        //获取所有的class为menuSpan的元素
+        var menuSpan = document.querySelectorAll(".menuSpan");
+
+        //定义一个变量 来保存当前打开的菜单
+        var openDiv = menuSpan[0].parentNode;
+
+        //为span绑定单击响应函数
+        for (var i = 0; i < menuSpan.length; i++) {
+          menuSpan[i].onclick = function () {
+            // alert("hello");
+
+            //this代表我当前点击的span
+            //获取当前span的父元素
+            var parentDiv = this.parentNode;
+
+            //切换菜单的显示状态
+            toggleMenu(parentDiv);
+
+            //判断openDiv和parentDiv是否相同
+            if (openDiv != parentDiv && !hasClass(openDiv, "collapsed")) {
+              //打开菜单以后 应该关闭之前打开的菜单
+              //为了可以统一处理动画过渡效果 我们希望在这将addClass改为toggleClass
+              //   addClass(openDiv, "collapsed");
+              //此处toggleClass不需要有移除的功能
+              //   toggleClass(openDiv, "collapsed");
+
+              //切换菜单的显示状态
+              toggleMenu(openDiv);
+            }
+
+            //修改openDiv为当前打开的菜单
+            openDiv = parentDiv;
+          };
+        }
       };
+
+      /* 
+        用来切换菜单折叠和显示状态
+      */
+      function toggleMenu(obj) {
+        //在切换类之前 获取元素的高度
+        var begin = obj.offsetHeight;
+
+        //切换parentDiv的显示
+        // addClass(parentDiv,"collapsed");
+        toggleClass(obj, "collapsed");
+
+        //在切换类之后获取一个高度
+        var end = obj.offsetHeight;
+
+        // console.log(begin + " " + end);
+        //动画效果就是将高度从begin向end过渡
+        //将元素的高度重置为begin
+        obj.style.height = begin + "px";
+
+        //执行动画 从begin向end过渡
+        move(obj, "height", end, 1, function () {
+          //动画过程清晰明了
+          //动画执行完毕 内联样式已经没有存在的意义了 删除之
+          obj.style.height = "";
+        });
+      }
     </script>
   </head>
   <body>

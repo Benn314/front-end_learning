@@ -2481,3 +2481,479 @@ reg3 = //
 
 # 138_JS基础_二级菜单-完成基本功能
 
+​	
+
+![image-20220813235203825](JS_up.assets/image-20220813235203825.png)
+
+```css
+
+div.sdmenu div {
+  background-color: url(title.gif) repeat-x;
+  overflow: hidden;
+  /*让文字隐藏*/
+}
+```
+
+​	
+
+![image-20220813235138675](JS_up.assets/image-20220813235138675.png)
+
+**118_JS基础_二级菜单.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>二级菜单</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+      a,
+      img {
+        border: 0;
+        text-decoration: none;
+      }
+      body {
+        font: 12px/180% Arial, Helvetica, sans-serif, "新宋体";
+      }
+    </style>
+    <link rel="stylesheet" href="css/sdmenu.css" />
+    <script src="js/tools.js"></script>
+    <script>
+      window.onload = function () {
+        /* 
+            我们的每一个菜单都是一个div
+              当div具有collapsed这个类时 div就是折叠的状态
+              当div没有这个类是 div就是展开的状态
+            */
+        /* 
+            点击菜单 切换菜单的显示状态
+            */
+
+        //获取所有的class为menuSpan的元素
+        var menuSpan = document.querySelectorAll(".menuSpan");
+
+        //定义一个变量 来保存当前打开的菜单
+        var openDiv = menuSpan[0].parentNode;
+
+        //为span绑定单击响应函数
+        for (var i = 0; i < menuSpan.length; i++) {
+          menuSpan[i].onclick = function () {
+            // alert("hello");
+
+            //this代表我当前点击的span
+            //获取当前span的父元素
+            var parentDiv = this.parentNode;
+
+            //关闭parentDiv
+            // addClass(parentDiv,"collapsed");
+            toggleClass(parentDiv, "collapsed");
+
+            //判断openDiv和parentDiv是否相同
+            if (openDiv != parentDiv && !hasClass(openDiv, "collapsed")) {
+              //打开菜单以后 应该关闭之前打开的菜单
+              //为了可以统一处理动画过渡效果 我们希望在这将addClass改为toggleClass
+              //   addClass(openDiv, "collapsed");
+              //此处toggleClass不需要有移除的功能
+              toggleClass(openDiv, "collapsed");
+            }
+
+            //修改openDiv为当前打开的菜单
+            openDiv = parentDiv;
+          };
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div id="my_menu" class="sdmenu">
+      <div>
+        <span class="menuSpan">在线工具</span>
+        <a href="#">图像优化</a>
+        <a href="#">收藏夹图标生成器</a>
+        <a href="#">邮件</a>
+        <a href="#">htaccess密码</a>
+        <a href="#">梯度图像</a>
+        <a href="#">按钮生成器</a>
+      </div>
+      <div class="collapsed">
+        <span class="menuSpan">支持我们</span>
+        <a href="#">推荐我们</a>
+        <a href="#">链接我们</a>
+        <a href="#">网络资源</a>
+      </div>
+      <div class="collapsed">
+        <span class="menuSpan">合作伙伴</span>
+        <a href="#">JavaScript工具包</a>
+        <a href="#">CSS驱动</a>
+        <a href="#">CodingForums</a>
+        <a href="#">CSS例子</a>
+      </div>
+      <div class="collapsed">
+        <span class="menuSpan">测试电流</span>
+        <a href="#">Current or not</a>
+        <a href="#">Current or not</a>
+        <a href="#">Current or not</a>
+        <a href="#">Current or not</a>
+      </div>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+**sdmenu.css**
+
+```css
+/* sdmenu */
+
+div.sdmenu {
+  width: 150px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  padding-bottom: 10px;
+  background-color: url(bottom.gif) no-repeat right bottom;
+  color: rgb(80, 236, 229);
+}
+
+div.sdmenu div {
+  background-color: url(title.gif) repeat-x;
+  overflow: hidden;
+}
+
+div.sdmenu div:first-child {
+  background-color: url(toptitle.gif) no-repeat;
+}
+
+div.sdmenu div.collapsed {
+  height: 25px;
+}
+div.sdmenu div span {
+  display: block;
+  height: 15px;
+  line-height: 15px;
+  overflow: hidden;
+  padding: 5px 25px;
+  font-weight: bold;
+  color: rgb(110, 56, 56);
+  background-color: url(expanded.gif) no-repeat 10px center;
+  cursor: pointer;
+  border-bottom: 1px solid rgb(241, 133, 194);
+  text-align: center;
+}
+
+#my_menu a {
+  display: block;
+  text-align: center;
+}
+
+```
+
+​	
+
+​	
+
+# 139_JS基础_二级菜单-过渡效果
+
+​	
+
+![image-20220814003844343](JS_up.assets/image-20220814003844343.png)
+
+​	
+
+**118_JS基础_二级菜单.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>二级菜单</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+      a,
+      img {
+        border: 0;
+        text-decoration: none;
+      }
+      body {
+        font: 12px/180% Arial, Helvetica, sans-serif, "新宋体";
+      }
+    </style>
+    <link rel="stylesheet" href="css/sdmenu.css" />
+    <script src="js/tools.js"></script>
+    <script>
+      window.onload = function () {
+        /* 
+            我们的每一个菜单都是一个div
+              当div具有collapsed这个类时 div就是折叠的状态
+              当div没有这个类是 div就是展开的状态
+            */
+        /* 
+            点击菜单 切换菜单的显示状态
+            */
+
+        //获取所有的class为menuSpan的元素
+        var menuSpan = document.querySelectorAll(".menuSpan");
+
+        //定义一个变量 来保存当前打开的菜单
+        var openDiv = menuSpan[0].parentNode;
+
+        //为span绑定单击响应函数
+        for (var i = 0; i < menuSpan.length; i++) {
+          menuSpan[i].onclick = function () {
+            // alert("hello");
+
+            //this代表我当前点击的span
+            //获取当前span的父元素
+            var parentDiv = this.parentNode;
+
+            //切换菜单的显示状态
+            toggleMenu(parentDiv);
+
+            //判断openDiv和parentDiv是否相同
+            if (openDiv != parentDiv && !hasClass(openDiv, "collapsed")) {
+              //打开菜单以后 应该关闭之前打开的菜单
+              //为了可以统一处理动画过渡效果 我们希望在这将addClass改为toggleClass
+              //   addClass(openDiv, "collapsed");
+              //此处toggleClass不需要有移除的功能
+              //   toggleClass(openDiv, "collapsed");
+
+              //切换菜单的显示状态
+              toggleMenu(openDiv);
+            }
+
+            //修改openDiv为当前打开的菜单
+            openDiv = parentDiv;
+          };
+        }
+      };
+
+      /* 
+        用来切换菜单折叠和显示状态
+      */
+      function toggleMenu(obj) {
+        //在切换类之前 获取元素的高度
+        var begin = obj.offsetHeight;
+
+        //切换parentDiv的显示
+        // addClass(parentDiv,"collapsed");
+        toggleClass(obj, "collapsed");
+
+        //在切换类之后获取一个高度
+        var end = obj.offsetHeight;
+
+        // console.log(begin + " " + end);
+        //动画效果就是将高度从begin向end过渡
+        //将元素的高度重置为begin
+        obj.style.height = begin + "px";
+
+        //执行动画 从begin向end过渡
+        move(obj, "height", end, 1, function () {
+          //动画过程清晰明了
+          //动画执行完毕 内联样式已经没有存在的意义了 删除之
+          obj.style.height = "";
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="my_menu" class="sdmenu">
+      <div>
+        <span class="menuSpan">在线工具</span>
+        <a href="#">图像优化</a>
+        <a href="#">收藏夹图标生成器</a>
+        <a href="#">邮件</a>
+        <a href="#">htaccess密码</a>
+        <a href="#">梯度图像</a>
+        <a href="#">按钮生成器</a>
+      </div>
+      <div class="collapsed">
+        <span class="menuSpan">支持我们</span>
+        <a href="#">推荐我们</a>
+        <a href="#">链接我们</a>
+        <a href="#">网络资源</a>
+      </div>
+      <div class="collapsed">
+        <span class="menuSpan">合作伙伴</span>
+        <a href="#">JavaScript工具包</a>
+        <a href="#">CSS驱动</a>
+        <a href="#">CodingForums</a>
+        <a href="#">CSS例子</a>
+      </div>
+      <div class="collapsed">
+        <span class="menuSpan">测试电流</span>
+        <a href="#">Current or not</a>
+        <a href="#">Current or not</a>
+        <a href="#">Current or not</a>
+        <a href="#">Current or not</a>
+      </div>
+    </div>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 140_JS基础_JSON
+
+JS中，对象的属性加不加双引号都行（例如：框框里的name）
+
+但JSON中 对象的属性名必须加双引号 也不能是单引号
+
+![image-20220814004312686](JS_up.assets/image-20220814004312686.png)
+
+​	
+
+若要兼容IE7及以下的浏览器环境的话 需要上网查找一下兼容的js文件，然后进行引入
+
+IE8及其以下用不了 console.log( );  IE8以上的没了解
+
+​	
+
+![image-20220814014542423](JS_up.assets/image-20220814014542423.png)
+
+​	
+
+**119_JS基础_JSON.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      /* 
+            JSON
+                JS中的对象只有JS自己认识 其他的语言都不认识
+                JSON就是一个特殊格式的字符串 这个字符串可以被任意的语言所识别
+                  并且可以转换为任意语言中的对象（因为JSON的东西是所有语言公共的东西 说tm这么高大上） 
+                    JSON在开发中主要用来数据的交互
+                    例如 前后端要数据交互 由于前后端所使用语言不一致 所以用JSON来进行交互传输
+
+                JSON
+                    JavaScript Object Notation JS对象表示法
+                    JSON和JS对象的格式一样 只不过JSON字符串的属性名必须加双引号
+                        其他的和JS语法一致
+                
+                JSON的分类：
+                    1.对象 {}
+                    2.数组 []
+
+                JSON中允许的值
+                    1.字符串
+                    2.数值
+                    3.布尔值
+                    4.null
+                    5.对象（只能说普通对象 不能是函数对象 因为函数每种编程语言的函数语法命名不同，只有自己可以识别自己）
+                    6.数组
+        */
+      //创建一个对象
+      var obj = '{"name":"孙悟空","age":18,"gender":"男"}'; //JSON对象
+      //   console.log(typeof obj); //string
+
+      var arr = '[1, 2, 3, "hello", true]'; //JSON数组
+
+      var obj2 = '{"arr":[1,2,3]}';
+
+      var arr2 =
+        '[{"name":"孙悟空","age":18,"gender":"男"},{"name":"孙悟空","age":18,"gender":"男"}]';
+
+      /* 
+        将JSON字符串转换为JS中的对象
+          在JS中 为我们提供了一个工具类 就叫JSON
+          这个对象可以帮助我们将一个JSON转换为JS对象 也可以将一个JS对象转换为JSON
+    */
+      //   console.log(JSON);
+      var json = '{"name":"孙悟空","age":18,"gender":"男"}'; //JSON对象
+      console.log(typeof json); //string
+      /* 
+        json --> js对象
+            JSON.parse()
+                可以将JSON字符串转换为js对象
+                它需要一个JSON字符串作为参数 会将字符串转换为JS对象并返回
+    */
+      var o = JSON.parse(json);
+      //   console.log(typeof o); //object
+      //   console.log(o.name); //孙悟空
+
+      var o2 = JSON.parse(arr);
+      //   console.log(o2[1]);
+
+      var obj3 = { name: "猪八戒", age: 28, gender: "男" };
+
+      /* 
+        JS对象 ---> JSON
+          JSON.stringify()
+            可以将一个JS对象转换为JSON字符串
+            需要一个js对象作为参数 会返回一个JSON字符串
+    */
+      var str = JSON.stringify(obj3);
+      console.log(str); //{"name":"猪八戒","age":28,"gender":"男"}
+      console.log(typeof str); //string
+
+      /* 
+        JSON这个对象在IE7及以下的浏览器中不支持 所以在这些浏览器中调用时会报错
+      */
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
+​	
+
+**120_JS基础_JSON.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <!-- 
+        如果需要兼容IE7及以下的JSON操作 则可以通过引入一个外部的js文件来处理
+        有需要的话网上查找 将别人写好的兼容IE7及以下的js文件 引用进来即可解决兼容性问题 
+    -->
+    <scriptsrc></scripts>
+
+    <script>
+      var str = '{"name":"孙悟空","age":18,"gender":"男"}';
+
+      /* 
+        eval()
+            这个函数可以用来执行一段字符串形式的JS代码 并将执行结果返回
+            如果使用eval()执行的字符串中含有{} 它会将{}当成代码块
+                如果不希望将其当成代码块解析 则需要在字符串前后各加一个()
+
+            eval()这个函数的功能很强大 可以直接执行一个字符串中的js代码
+                但是在开发中尽量不要使用 首先它的执行性能比较差 然后它还具有安全隐患
+      */
+      var str2 = 'alert("hello");';
+      eval(str2);
+      var obj = eval("(" + str + ")");
+      //   console.log(obj);
+      alert(obj); //object
+    </script>
+  </head>
+  <body></body>
+</html>
+
+```
+
