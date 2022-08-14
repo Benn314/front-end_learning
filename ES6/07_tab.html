@@ -4,6 +4,20 @@
     <meta charset="UTF-8" />
     <title>面向对象 Tab</title>
     <style>
+      /* * {
+        border: 1px solid yellowgreen;
+      } */
+      /* .icon-guanbi {
+        border: 1px solid rgb(255, 0, 0);
+        width: 8px;
+        height: 10px;
+        background-color: red;
+        display: block;
+        margin-right: 0px;
+      } */
+      body {
+        width: 1180px;
+      }
       .tabsbox {
         border: 1px solid red;
         height: 400px;
@@ -20,36 +34,56 @@
         margin-right: 20px;
         border: 1px solid red;
         line-height: 40px;
-        width: 50px;
+        width: 60px;
         height: 40px;
         text-align: center;
+      }
+      .tabadd {
+        float: right;
+        width: 25px;
+        height: 23px;
+        border: 5px solid peachpuff;
+        margin-right: 20px;
+      }
+      .tabadd:hover {
+        background-color: rgb(157, 215, 242);
       }
       .tabadd span {
         display: block;
         float: right;
-        /* margin-right: 20px; */
+        margin-right: 6px;
+        /* border: 5px solid peachpuff; */
+        line-height: 23px;
+      }
+      .tabscon {
+        margin-top: 80px;
+        height: 65px;
+        border: 7px pink solid;
+        overflow: hidden;
       }
       .conactive {
         /* margin-left: 0;
         margin-top: 0; */
         /* position: absolute; */
+
         border: 10px rgb(25, 148, 25) solid;
-        /* overflow: hidden; */
+        overflow: hidden;
       }
       section {
         border: 10px rgb(189, 115, 238) solid;
-        display: block;
-        margin: 20px;
+        display: inline-block;
+        margin: 30px;
       }
-      .tabscon {
-        margin-top: 80px;
-        height: 65px;
-        border: 10px pink solid;
-        /* overflow: hidden; */
-      }
+
       .liactive {
         background-color: skyblue;
       }
+      /* .liactive span {
+        display: block;
+        width: 50px;
+        border: 1px solid rgb(255, 0, 0);
+        margin-left: 0px;
+      } */
     </style>
   </head>
   <body>
