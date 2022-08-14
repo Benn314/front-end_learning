@@ -10,15 +10,26 @@
           this.uname = uname;
           this.age = age;
         }
+
+        //在类中创建方法 不需要加 function
+        sing(song) {
+          // console.log('sing a song');
+          console.log(this.uname + " 教你唱 " + song);
+        }
       }
 
       //2.利用类创建对象 new
       var ldh = new Star("刘德华", 18);
       var zxy = new Star("张学友", 20);
-      console.log(ldh.uname);
-      console.log(zxy.uname);
-      console.log(ldh);
-      console.log(zxy);
+      //   console.log(ldh.uname);
+      //   console.log(zxy.uname);
+      //   console.log(ldh);
+      //   console.log(zxy);
+
+      // 1 我们类里面所有的函数不需要写function
+      // 2 多个函数方法之间不需要添加逗号分隔
+      ldh.sing("不得不爱");
+      zxy.sing("这就是爱");
 
       /* 
         1 通过class 关键字创建类 类名我们还是习惯性定义首字母大写

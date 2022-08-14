@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>点击</button>
+    <script>
+      var that, _that;
+      class Star {
+        constructor(uname, age) {
+          that = this;
+          console.log(this);
+          this.uname = uname;
+          this.age = age;
+          //   this.sing();
+          /* 
+              同样构造函数里面也没有sing()参数
+              所以要用this.sing() 标注是下面定义的sing()
+            */
+
+          this.btn = document.querySelector("button");
+          this.btn.onclick = this.sing;
+          /* 
+            这里不是this.sing() 
+              是因为我们想要点击后再执行 加了()会立刻执行
+          */
+        }
+        sing() {
+          //   console.log(uname);    //sing()里面没有uname 要写成this.name 才是正确的
+          //   console.log(this.uname); //而button是没有uname这个属性的 所以结果是undefined
+
+          //这个sing方法里面的this 指向的是btn 这个按钮 因为这个按钮调用了这个函数
+          console.log("sing()结果来啦：" + this); //输出的是btn
+          console.log(that.uname); //that里面存储的是constructor里面的this  sing()存储的是btn的this
+          /* 
+            先将ldh的this变量赋值给一个全局变量
+            当我们调用button按钮时 即使this对象已经改变
+            我们也还是可以输出ldh的this对象值
+          */
+        }
+        dance() {
+          //这个dance里面的this 指向的是实例对象 ldh 因为ldh 调用了这个函数
+          _that = this;
+          console.log(this);
+        }
+      }
+
+      var ldh = new Star("刘德华");
+      console.log(that === ldh);
+      ldh.dance();
+      console.log(_that === ldh);
+      //   ldh.sing();
+
+      /* 
+              1 在ES6中 类没有变量提升（即按上往下一次执行代码）所以必须先定义类 才能通过类实例化对象
+  
+              2 类里面的共有的属性和方法一定要加this使用
+          */
+    </script>
+  </body>
+</html>

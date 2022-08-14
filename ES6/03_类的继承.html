@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      // 1 类的继承
+      // class Father {
+      //   constructor() {}
+      //   money() {
+      //     console.log(100);
+      //   }
+      // }
+      // class Son extends Father {}
+      // var son = new Son();
+      // son.money();
+
+      class Father {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+        }
+        sum() {
+          console.log(this.x + this.y);
+        }
+      }
+      class Son extends Father {
+        constructor(x, y) {
+          // this.x = x;
+          // this.y = y;
+
+          super(x, y); //调用了父类中的构造函数
+        }
+      }
+      var son = new Son(11, 2);
+      son.sum();
+      /*       
+      如果Son类里有自己的构造函数
+      那么new对象传入参数就不会去到父类Father那里了 son执行sum()也就得不到想要的结果
+      因为sum相加的是传入Father父类的参数 通过son调取的是子类的参数
+
+      【解决】调用super()方法 本可以使传入子类构造函数的参数传入到父类的构造函数
+      */
+    </script>
+  </head>
+  <body></body>
+</html>
