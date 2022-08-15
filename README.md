@@ -53,5 +53,9 @@ Xxxxxx
    2. 在 `源代码管理` 中通过 `GitLens` 提供的 `COMMITS` gitpush 暂存的文件到 gituhb仓库
    3. 【原因】vscode 自带的推送还有同步更改等等 不止是单单推送 加上网络原因会减少push的成功率
 
+10. `snipaste` 【贴图】+ `有道网易词典` 【`Alt+C`自定义截图翻译，双击`Ctrl`翻译】强推 🔥🔥🔥
+
+   
+
    
 
