@@ -789,9 +789,537 @@ new Tab("#tab");
 
 # 01 构造函数和原型学习目标
 
+![image-20220816110104475](ES6.assets/image-20220816110104475.png)
+
+![image-20220816110127495](ES6.assets/image-20220816110127495.png)
+
+​	
+
+​	
+
+# 02 构造函数和原型概述
+
+![image-20220816111703747](ES6.assets/image-20220816111703747.png)
+
+![image-20220816112206030](ES6.assets/image-20220816112206030.png)
+
+​	
+
+**08_利用构造函数创建对象.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    //1.利用 new Object() 创建对象
+    var obj1 = new Object();
+
+    //2.利用 对象字面量 创建对象
+    var obj2 = {};
+
+    //3 利用构造函数创建对象
+    function Star(uname, age) {
+      this.uname = uname;
+      this.age = age;
+      this.sing = function () {
+        console.log("我会唱歌");
+      };
+    }
+
+    var ldh = new Star("刘德华", 18);
+    var zxy = new Star("张学友", 19);
+    console.log(ldh);
+    ldh.sing();
+  </script>
+  <body></body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 03 构造函数
+
+![image-20220816113326622](ES6.assets/image-20220816113326622.png)
+
+​	
+
+**09_静态成员和实例成员.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //构造函数中的属性和方法我们成为成员 成员可以添加
+      function Star(uname, age) {
+        this.uname = uname;
+        this.age = age;
+        this.sing = function () {
+          console.log("我会唱歌");
+        };
+      }
+      var ldh = new Star("刘德华", 18);
+      //1.实例成员就是构造函数内部通过this添加的成员 uname age sing 就是实例成员
+      // 实例成员只能通过实例化对象来访问
+      console.log(ldh.uname);
+      ldh.sing();
+      console.log(Star.uname); //不可以通过构造函数来访问实例成员
+
+      //2.静态成员 再构造函数本身上添加的成员 sex 就是静态成员
+      Star.sex = "男";
+      //静态成员只能通过构造函数来访问
+      console.log(Star.sex);
+      console.log(ldh.sex); //不能通过对象来访问
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 04 原型
+
+![image-20220816120108166](ES6.assets/image-20220816120108166.png)
+
+![image-20220816120119444](ES6.assets/image-20220816120119444.png)
+
+​	
+
+**10_原型.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1 构造函数的问题
+      function Star(uname, age) {
+        this.uname = uname;
+        this.age = age;
+        // this.sing = function () {
+        //   console.log("我会唱歌");
+        // };
+      }
+      Star.prototype.sing = function () {
+        console.log("我会唱歌");
+      };
+
+      var ldh = new Star("刘德华", 18);
+      var zxy = new Star("张学友", 19);
+      console.log(ldh.sing === zxy.sing);
+
+      console.dir(Star);
+      //   console.dir()是在控制台中查看指定 JavaScript 对象的所有属性的方法，开发人员可以通过它轻松获取对象的属性。
+      console.log(Star);
+
+      ldh.sing();
+      zxy.sing();
+      //2 一般情况下 我们的公共属性定义到构造函数里面 公共的方法我们放到原型对象身上
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 05 对象原型
+
+![image-20220816122325863](ES6.assets/image-20220816122325863.png)
+
+​	
+
+**11_对象原型__proto__.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Star(uname, age) {
+        this.uname = uname;
+        this.age = age;
+      }
+      Star.prototype.sing = function () {
+        console.log("我会唱歌");
+      };
+
+      var ldh = new Star("刘德华", 18);
+      var zxy = new Star("张学友", 19);
+      ldh.sing();
+      console.log(ldh); //对象身上系统自己添加一个__proto__ 指向我们构造函数的原型对象 prototype
+      console.log(ldh.__proto__ === Star.prototype); //true
+
+      /* 
+        方法的查找规则：首先，先看ldh对象身上是否有sing方法 如果有就执行这个对象上的sing
+        如果没有sing这个方法 因为有__proto__ 的存在 就去构造函数原型对象prototype身上去查找sing这个方法
+      */
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 06 constructor构造函数
+
+![image-20220816124758758](ES6.assets/image-20220816124758758.png)
+
+​	
+
+```html
+    <script>
+      function Star(uname, age) {
+        this.uname = uname;
+        this.age = age;
+      }
+      Star.prototype.sing = function () {
+        console.log("我会唱歌");
+      };
+
+      var ldh = new Star("刘德华", 18);//{sing: ƒ, constructor: ƒ}
+      var zxy = new Star("张学友", 19);//{sing: ƒ, constructor: ƒ}
+      console.log(Star.prototype);
+      console.log(ldh.__proto__);
+    </script>
+```
+
+​	
+
+![image-20220816125140571](ES6.assets/image-20220816125140571.png)
+
+可以看出 prototype 和 __ proto__ 都没什么属性方法 最开始只有一个constructor属性 所以给它俩用字面量赋值的话 再重新手动添加后constructor也就圆满了
+
+​	
+
+```html
+console.log(Star.prototype.constructor);
+console.log(ldh.__proto__.constructor);
+```
 
 
 
+![image-20220816125511243](ES6.assets/image-20220816125511243.png)
 
+​	
 
+**12_对象原型constructor.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Star(uname, age) {
+        this.uname = uname;
+        this.age = age;
+      }
+
+      //很多情况下 我们需要手动的利用constructor这个属性指回 原来的构造函数
+      //   Star.prototype.sing = function () {
+      //     console.log("我会唱歌");
+      //   };
+      //   Star.prototype.movie = function () {
+      //     console.log("我会演电影");
+      //   };
+      Star.prototype = {
+        /* 
+        用一个字面量重新赋值prototype
+            这么写的好处是 比较方便观看
+            但有一个注意点
+                这里将prototype重新赋值了 会把原有的constructor属性覆盖掉
+                只剩下赋值的东西了 如果我们要这么写 需要手动添加constructor属性回去
+
+            属性. 中的 . 是访问或添加新属性/方法
+        */
+
+        /* 
+        如果我们修改了原来的原型对象 给原型对象赋值的是一个对象 
+        则必须手动的利用constructor 指回原来的构造函数
+       */
+        constructor: Star,
+
+        sing: function () {
+          console.log("我会唱歌");
+        },
+        movie: function () {
+          console.log("我会演电影");
+        },
+      };
+
+      var ldh = new Star("刘德华", 18);
+      var zxy = new Star("张学友", 19);
+      console.log(Star.prototype); //{sing: ƒ, constructor: ƒ}
+      console.log(ldh.__proto__); //{sing: ƒ, constructor: ƒ}
+      console.log(Star.prototype.constructor);
+      console.log(ldh.__proto__.constructor);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 07 构造函数、实例、原型对象的关系
+
+![image-20220816142535513](ES6.assets/image-20220816142535513.png)
+
+ldh.__ proto__ 指向Star原型对象prototype
+
+​	
+
+​	
+
+# 08 原型链
+
+![image-20220816143251429](ES6.assets/image-20220816143251429.png)
+
+![image-20220816143256217](ES6.assets/image-20220816143256217.png)
+
+看__ proto__是谁的 看他对应的constructor指向谁
+
+​	
+
+**13_原型链.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Star(uname, age) {
+        this.uname = uname;
+        this.age = age;
+      }
+      Star.prototype.sing = function () {
+        console.log("我会唱歌");
+      };
+
+      var ldh = new Star("刘德华", 18);
+      // 1.只要是对象有__proto__ 原型 指向原型对象
+      console.log(Star.prototype);
+      console.log(Star.prototype.__proto__); //constructor: ƒ Object() 控制台消息可知 指向大写的Object
+      //我们可以来对此做一个比较判断
+      // 看__proto__是谁的 看他对应的constructor指向谁
+      console.log(Star.prototype.__proto__ === Object.prototype); // true
+      // 2.我们Star原型对象里面的__proto__ 原型指向的是 Object.prototype
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 09 js的成员查找机制
+
+![image-20220816144837406](ES6.assets/image-20220816144837406.png)
+
+​	
+
+​	
+
+# 10 原型对象this指向
+
+不管是构造函数中的this还是原型对象中的this  指向的都是实例对象
+
+​	
+
+**15_原型对象中this指向.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Star(uname, age) {
+        this.uname = uname;
+        this.age = age;
+      }
+      var that;
+      Star.prototype.sing = function () {
+        console.log("我会唱歌");
+        that = this;
+      };
+      var ldh = new Star("刘德华", 18);
+      // 1.在构造函数中 里面this指向的是对象实例 ldh
+      ldh.sing();
+      console.log(that === ldh); // true
+
+      // 2.原型对象函数里面的this 指向的是 实例对象 ldh
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 11 扩展内置对象
+
+> js不允许对Array构造函数的 prototype属性进行赋值覆盖
+
+![image-20220816151302987](ES6.assets/image-20220816151302987.png)
+
+​	
+
+**16_扩展内置对象方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 原型对象的应用 扩展内置对象方法
+      console.log(Array.prototype);
+      Array.prototype.sum = function () {
+        var sum = 0;
+        for (var i = 0; i < this.length; i++) {
+          sum += this[i];
+        }
+        return sum;
+      };
+      //   Array.prototype = {
+      //     sum: function () {
+      //       for (var i = 0; i < this.length; i++) {
+      //         sum += this[i];
+      //       }
+      //       return sum;
+      //       //输出结果
+      //       //16_扩展内置对象方法.html:29 Uncaught TypeError
+      //       //   : arr.sum is not a function
+      //     },
+      //   };
+
+      /* 
+        js不允许对Array构造函数的prototype属性进行赋值覆盖
+    */
+      var arr = [1, 2, 3];
+      console.log(arr.sum());
+      //   console.log(Array.prototype);
+      var arr1 = new Array(11, 22, 33);
+      console.log(arr1.sum());
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 12 继承call()
+
+![image-20220816174552143](ES6.assets/image-20220816174552143.png)
+
+​	
+
+**17_call方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // call 方法
+      function fn(x, y) {
+        console.log("我想喝手磨咖啡");
+        console.log(this);
+        console.log(x + y);
+      }
+      var o = {
+        name: "andy",
+      };
+
+      // 1.call() 可以调用函数
+      fn();
+      fn.call();
+
+      // 2.call() 可以改变这个函数的this指向 此时这个函数的this 就指向了o这个对象
+      //   fn.call(o);
+      fn.call(o, 1, 2);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 13 借用构造函数继承父类型属性
 
