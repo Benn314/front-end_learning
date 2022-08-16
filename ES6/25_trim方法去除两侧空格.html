@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" /><button>点击</button>
+    <div></div>
+    <script>
+      // trim 方法去除字符串两侧空格
+      var str = "    an  dy    ";
+      console.log(str);
+      var str1 = str.trim();
+      console.log(str1);
+      var input = document.querySelector("input");
+      var btn = document.querySelector("button");
+      var div = document.querySelector("div");
+      btn.onclick = function () {
+        // if (input.value.trim() === "") {
+        //   alert("请输入内容");
+        // } else {
+        //   //就是来到else里 为什么下面语句要加trim()呢？
+        //   //因为if只是排除掉空串 还有另一种可能是非空串但开头或结尾有空格
+        //   //   这种空格可能是无效的 不小心输入的 但也会被计入输入字符串的总长度里
+        //   console.log(input.value.trim()); //完美剔除掉前后的空格符
+        //   console.log(input.value.trim().length);
+
+        //   div.innerHTML = input.value;
+        // }
+
+        //我们可以用一个变量来承接
+        var str = input.value.trim();
+        if (str === "") {
+          alert("请输入内容");
+        } else {
+          console.log(str); //完美剔除掉前后的空格符
+          console.log(str.length);
+
+          div.innerHTML = str;
+        }
+      };
+    </script>
+  </body>
+</html>

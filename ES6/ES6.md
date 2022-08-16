@@ -1323,3 +1323,586 @@ ldh.__ proto__ 指向Star原型对象prototype
 
 # 13 借用构造函数继承父类型属性
 
+![image-20220816180719807](ES6.assets/image-20220816180719807.png)
+
+​	
+
+**18_借用父构造函数继承属性.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //借用父构造函数继承属性
+      // 1.父构造函数
+      function Father(uname, age) {
+        // this 指向父构造函数的对象实例
+        this.uname = uname;
+        this.age = age;
+      }
+      // 2.子构造函数
+      function Son(uname, age, score) {
+        //this 指向子构造函数的对象实例
+        Father.call(this, uname, age);
+        this.score = score;
+      }
+      var son = new Son("刘德华", 18, 100);
+      console.log(son);
+
+      /* 
+            将Father中的this更换为Son this
+            借助Father 中的语句完成自己的this赋值
+        */
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 14 借用构造函数继承父类型方法 01
+
+# 15 借用构造函数继承父类型方法 02
+
+![image-20220816183503911](ES6.assets/image-20220816183503911.png)
+
+​	
+
+![image-20220816184550529](ES6.assets/image-20220816184550529.png)
+
+​	
+
+**19_借用原型对象继承方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //借用父构造函数继承属性
+      // 1.父构造函数
+      function Father(uname, age) {
+        // this 指向父构造函数的对象实例
+        this.uname = uname;
+        this.age = age;
+      }
+      Father.prototype.money = function () {
+        console.log(100000);
+      };
+      // 2.子构造函数
+      function Son(uname, age, score) {
+        //this 指向子构造函数的对象实例
+        Father.call(this, uname, age);
+        this.score = score;
+      }
+
+      // Son.prototype = Father.prototype;
+      //这样直接赋值会有问题 如果修改了子原型对象 父原型对象也会跟着一起变化
+
+      Son.prototype = new Father(); //这一步很关键！
+      //如果利用对象的形式修改了原型对象 别忘了利用constructor指回原来的构造函数
+      Son.prototype.constructor = Son;
+
+      //这个是子构造函数专门的方法
+      Son.prototype.exam = function () {
+        console.log("孩子要考试");
+      };
+      var son = new Son("刘德华", 18, 100);
+      // console.log(son);
+
+      /* 
+            将Father中的this更换为Son this
+            借助Father 中的语句完成自己的this赋值
+        */
+
+      console.log(son);
+      console.log(Father.prototype);
+      console.log(Son.prototype.constructor);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 16 ES5中的新增方法
+
+![image-20220816192943951](ES6.assets/image-20220816192943951.png)
+
+![image-20220816193006120](ES6.assets/image-20220816193006120.png)
+
+​	
+
+**20_forEach方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //forEach 贴袋（遍历）数组
+      var arr = [1, 2, 3];
+      var sum = 0;
+      arr.forEach(function (value, index, array) {
+        console.log("每个数组元素" + value);
+        console.log("每个数组元素的索引号" + index);
+        console.log("数组本身" + array);
+        sum += value;
+      });
+      console.log(sum);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 17 数组方法
+
+![image-20220816193850707](ES6.assets/image-20220816193850707.png)
+
+​	
+
+**21_fifter筛选数组.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //filter 筛选数组
+      var arr = [12, 66, 4, 88, 3, 7];
+
+      //filter是返回一个新数组 需要定义一个变量来接收
+      var newArr = arr.filter(function (value, index) {
+        // return value >= 20;
+        return value % 2 === 0;
+      });
+      console.log(newArr);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 18 数组方法some()
+
+![image-20220816194431908](ES6.assets/image-20220816194431908.png)
+
+跟前面两个数组方法一样 都有三个形参，不过没有用到的话 不写也没有关系
+
+​	
+
+**22_some查找数组中是否有满足条件的元素.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // some 查找数组中是否有满足条件的元素
+      var arr = [10, 30, 4];
+      var flag = arr.some(function (value) {
+        //后面还有两个形参 不过没用到也可以不用写
+        // return value >= 20;
+        return value < 3;
+      });
+      console.log(flag);
+      var arr1 = ["purple", "pink", "blue"];
+      var flag1 = arr1.some(function (value) {
+        return value == "pink";
+      });
+      console.log(flag1);
+      /* 
+        1 filter 是查找满足条件的元素 返回的是一个数组 而且是把所有满足条件的元素返回回来
+        2 some 是查找满足条件的元素是否存在 返回的是一个布尔值 如果查找到第一个满足条件的元素就终止循环
+      */
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 19 案例 查询商品01
+
+![image-20220816200115954](ES6.assets/image-20220816200115954.png)
+
+将数据渲染到页面中（forEach）
+
+​	
+
+# 20 案例 查询商品02
+
+# 21 案例 查询商品03
+
+根据价格显示数据（filter）
+
+​	
+
+# 22 案例 查询商品04
+
+根据商品名称显示数据（some）
+
+​	
+
+**23_利用数组新增方法操作数据.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* * {
+        border: 1px pink solid;
+      } */
+
+      table {
+        margin: 50px;
+      }
+
+      th {
+        display: inline-block;
+        margin: 20px;
+      }
+      td {
+        display: inline-block;
+        margin-left: 20px;
+        margin-right: 40px;
+      }
+
+      table,
+      tr,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        /* 
+        【问题】
+        1.table标签中只设置tr样式 没有显示其样式效果
+
+        【解决】
+        border-collapse: collapse; 是给table的
+        table标签样式没有设置collapse table tr无法显示border样式
+
+        当我们写一个完整的表格我们可以发现，单元格与单元格之间是有一定的间隙的。
+        边框是一个完整的线条，但是，现在一个完整的tr是由于多个td组合在一起得到的
+        这就是的无法给tr设置边框了
+
+        1.给table的css添加属性：border-collapse: collapse;
+            边框不合并的表格 行,列，行组是不具有border属性的  
+            因为每一个元素都有自己独立的边框 border属性便失效了
+
+            border-collapse
+            border-collapse CSS 属性是用来决定表格的边框是分开的还是合并的。
+            在分隔模式下，相邻的单元格都拥有独立的边框。在合并模式下，相邻单元格共享边框。
+         */
+      }
+
+      table tr {
+        border: 5px solid pink;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <div class="search">
+        按照价格查询：<input type="text" class="start" /> -
+        <input type="text" class="end" />
+        <button class="search-price">搜索</button> 按照商品名称查询：
+        <input type="text" class="product" />
+        <button class="search-pro">查询</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>产品名称</th>
+            <th>价格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 
+                第一步 把tbody的所有内容都给删掉 通过js来渲染 重新加载到页面中去
+            -->
+          <!-- <tr>
+            <td>1</td>
+            <td>小米</td>
+            <td>3999</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>oppo</td>
+            <td>999</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>荣耀</td>
+            <td>1299</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>华为</td>
+            <td>1999</td>
+          </tr> -->
+        </tbody>
+      </table>
+    </center>
+    <script>
+      //利用新增数组方法操作数据
+      var data = [
+        {
+          id: 1,
+          pname: "小米",
+          price: 3999,
+        },
+        {
+          id: 2,
+          pname: "oppo",
+          price: 999,
+        },
+        {
+          id: 3,
+          pname: "荣耀",
+          price: 1299,
+        },
+        {
+          id: 4,
+          pname: "华为",
+          price: 1999,
+        },
+      ];
+      // 1.获取相应的元素
+      var tbody = document.querySelector("tbody");
+      var search_price = document.querySelector(".search-price");
+      var start = document.querySelector(".start");
+      var end = document.querySelector(".end");
+      var product = document.querySelector(".product");
+      var search_pro = document.querySelector(".search-pro");
+      //这里有点粗心导致小错误 变量名是不可以用- 符号的 所以改成下划线
+      //而class属性是可以有- 进行连接的 因为是字符串 都可以用
+      //要注意的是 变量名用_ class属性可能用- 别只是复制粘贴忘了修改
+
+      setData(data);
+      // 2.把数据渲染到页面中
+      function setData(mydata) {
+        //先清空原来tbody 里面的数据
+        tbody.innerHTML = "";
+        mydata.forEach(function (value) {
+          // console.log(value);
+          var tr = document.createElement("tr");
+          tr.innerHTML =
+            "<td>" +
+            value.id +
+            "</td><td>" +
+            value.pname +
+            "</td><td>" +
+            value.price +
+            "</td>";
+          tbody.appendChild(tr);
+        });
+      }
+      // 3.根据价格查询商品
+      // 当我们点击了按钮 就可以根据我们的商品价格去筛选数组里面的对象
+      search_price.addEventListener("click", function () {
+        // alert(11);
+        var newData = data.filter(function (value) {
+          return value.price >= start.value && value.price <= end.value;
+        });
+        console.log(newData);
+        //把筛选完之后的对象渲染到页面中
+        setData(newData);
+      });
+      // 4.根据商品名称查找商品
+      // 如果查询数组中唯一的元素 用some方法更合适 因为它找到这个元素 就不再进行循环 效率更高
+      search_pro.addEventListener("click", function () {
+        var arr = [];
+        data.some(function (value) {
+          if (value.pname === product.value) {
+            // console.log(value);
+            arr.push(value);
+            return true; //return 后面必须写true
+            //return false是取消默认行为
+          }
+        });
+        //把拿到的数据渲染到页面中
+        setData(arr);
+      });
+
+      var d = new Date();
+      console.log(d);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 23 案例 查询商品05
+
+**24_forEach和some区别.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = ["red", "green", "blue", "pink"];
+      //1. forEach迭代 遍历
+      arr.forEach(function (value) {
+        if (value == "green") {
+          console.log("找到了该元素");
+          return true; // 在forEach里面 return 不会终止迭代
+        }
+        console.log(11);
+      });
+
+      // 如果查询数组中唯一的元素 用some方法更合适
+      arr.some(function (value) {
+        if (value == "green") {
+          console.log("找到了该元素");
+          return true; // 在some里面 遇到 return true 就是终止遍历 迭代效率更高
+        }
+        console.log(12);
+      });
+      arr.filter(function (value) {
+        if (value == "green") {
+          console.log("找到了该元素");
+          return true; // 在filter里面 return 不会终止迭代
+        }
+        console.log(13);
+      });
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 24 字符串方法
+
+![image-20220816235208915](ES6.assets/image-20220816235208915.png)
+
+​	
+
+**25_trim方法去除两侧空格.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" /><button>点击</button>
+    <div></div>
+    <script>
+      // trim 方法去除字符串两侧空格
+      var str = "    an  dy    ";
+      console.log(str);
+      var str1 = str.trim();
+      console.log(str1);
+      var input = document.querySelector("input");
+      var btn = document.querySelector("button");
+      var div = document.querySelector("div");
+      btn.onclick = function () {
+        // if (input.value.trim() === "") {
+        //   alert("请输入内容");
+        // } else {
+        //   //就是来到else里 为什么下面语句要加trim()呢？
+        //   //因为if只是排除掉空串 还有另一种可能是非空串但开头或结尾有空格
+        //   //   这种空格可能是无效的 不小心输入的 但也会被计入输入字符串的总长度里
+        //   console.log(input.value.trim()); //完美剔除掉前后的空格符
+        //   console.log(input.value.trim().length);
+
+        //   div.innerHTML = input.value;
+        // }
+
+        //我们可以用一个变量来承接
+        var str = input.value.trim();
+        if (str === "") {
+          alert("请输入内容");
+        } else {
+          console.log(str); //完美剔除掉前后的空格符
+          console.log(str.length);
+
+          div.innerHTML = str;
+        }
+      };
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 25 对象方法 01
