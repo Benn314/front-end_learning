@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul class="nav">
+      <li>榴莲</li>
+      <li>臭豆腐</li>
+      <li>鲱鱼罐头</li>
+      <li>大猪蹄子</li>
+    </ul>
+    <script>
+      // 闭包应用-点击li输出当前li的索引号
+      // 1.我们可以利用动态添加属性的方式
+      var lis = document.querySelector(".nav").querySelectorAll("li");
+      //   for (var i = 0; i < lis.length; i++) {
+      //     lis[i].index = i;
+      //     lis[i].onclick = function () {
+      //       //   console.log(i);
+      //       console.log(this.index);
+      //     };
+      //   }
+
+      // 2.利用闭包的方式得到当前小li的索引号
+      for (var i = 0; i < lis.length; i++) {
+        // 利用for循环创建了4个立即执行函数
+        // 立即执行函数也称为小闭包 因为立即执行函数里面的任何一个函数都可以使用它的 i 这个变量
+        (function (i) {
+          //   console.log(i);
+          lis[i].onclick = function () {
+            console.log(i);
+          };
+        })(i); //实参传给形参
+      }
+      /* 
+        for循环是同步操作 onclick是异步操作
+        所以没加立即执行函数前 点击事件得到的 i = 4
+        因为onclick里的输出语句是在点击后才执行
+
+        而加了立即执行函数后（也变成了一个闭包）
+        for循环和onclick同步进行 得到的 i 值是遍历过程值
+        不再是for循环条件终止时的值
+
+        
+        闭包有坏处 因为延长了变量的生命周期 没有及时销毁 存在内存泄漏的问题 
+        就像点击事件 在点击结束以前 变量都一直在不能被销毁
+        而且像做上面这种循环注册点击事件 使用 小闭包匿名函数 会额外开辟很多内存空间
+        每一次for遍历都会开辟一个匿名函数（上面例子） 在数量上来的时候 容易造成内存泄漏 
+
+        当然 闭包也有好处 有些场景就必须得需要闭包来解决（Google一下）
+      */
+    </script>
+  </body>
+</html>

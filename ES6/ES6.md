@@ -2392,3 +2392,504 @@ ldh.__ proto__ 指向Star原型对象prototype
 ​	
 
 # 07 bind方法 01
+
+![image-20220817173640631](ES6.assets/image-20220817173640631.png)
+
+​	
+
+**33_改变函数内this指向bind方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 改变函数内this指向 js提供了三种方法 call() apply() bind()
+
+      //3.bind() 绑定 捆绑的意思
+      var o = {
+        name: "andy",
+      };
+      function fn(a, b) {
+        console.log(this);
+        console.log(a + b);
+      }
+      var f = fn.bind(o, 1, 2);
+      f();
+      //1.不会调用原来的函数 可以改变原来函数内部的this 指向
+      //2.返回的是原函数改变this之后产生的新函数
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 08 bind方法 02
+
+bind()是我们日常使用最多的 比call和apply多
+
+​	
+
+**33_改变函数内this指向bind方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <script>
+      // 改变函数内this指向 js提供了三种方法 call() apply() bind()
+
+      //3.bind() 绑定 捆绑的意思
+      var o = {
+        name: "andy",
+      };
+      function fn(a, b) {
+        console.log(this);
+        console.log(a + b);
+      }
+      var f = fn.bind(o, 1, 2);
+      f();
+      //1.不会调用原来的函数 可以改变原来函数内部的this 指向
+      //2.返回的是原函数改变this之后产生的新函数
+      //3.如果有的函数我们不需要立即调用 但是又想改变这个函数内部的this指向此时用bind
+      //4.我们有一个按钮 当我们点击了之后 就禁用这个按钮 3秒钟之后开启这个按钮
+
+      //单个按钮的情况
+      //   var btn = document.querySelector("button");
+      //   btn.onclick = function () {
+      //     this.disabled = true; //这个this 指向的是 btn 这个按钮
+      //     // var that =this;  //可以用一个变量来存储btn的this 但这样不够方便
+      //     setTimeout(
+      //       function () {
+      //         // that.disabled=false; //定时器函数里面的this 指向的是window
+      //         this.disabled = false; //此时定时器函数里面的this 指向的是btn
+      //       }.bind(this),
+      //       3000
+      //     ); //this 指向的是btn 这个对象
+      //   };
+
+      // 多个按钮的情况 用for循环遍历获取
+      var btns = document.querySelectorAll("button");
+      //【注意】获取同一标签 多个标签(按钮)用querySelectorAll 单个标签(按钮)用querySelector
+
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].onclick = function () {
+          this.disabled = true;
+          //   console.log("已点击");
+          setTimeout(
+            function () {
+              this.disabled = false;
+            }.bind(this),
+            2000
+          );
+        };
+      }
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 09 call apply bind 总结
+
+![image-20220817184104108](ES6.assets/image-20220817184104108.png)
+
+​	
+
+​	
+
+# 10 严格模式
+
+![image-20220817203300423](ES6.assets/image-20220817203300423.png)
+
+![image-20220817203337128](ES6.assets/image-20220817203337128.png)
+
+![image-20220817203510061](ES6.assets/image-20220817203510061.png)
+
+![image-20220817203728605](ES6.assets/image-20220817203728605.png)
+
+​	
+
+**34_开启严格模式.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 为整个脚本（script标签）开启严格模式 -->
+    <script>
+      "use strict";
+      // 下面的js代码就会按照严格模式执行代码
+    </script>
+    <script>
+      (function () {
+        "use strict";
+      })();
+    </script>
+    <!-- 为某个函数开启严格模式 -->
+    <script>
+      // 此时只是给fn函数开启严格模式
+      function fn() {
+        "use strict";
+        // 下面的代码按照严格模式执行
+      }
+
+      function fun() {
+        // 里面的还是按照普通模式执行
+      }
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 11 严格模式中的变化
+
+![image-20220817205348757](ES6.assets/image-20220817205348757.png)
+
+![image-20220817205354966](ES6.assets/image-20220817205354966.png)
+
+![image-20220817210820337](ES6.assets/image-20220817210820337.png)
+
+![image-20220817210834126](ES6.assets/image-20220817210834126.png)
+
+​	
+
+**35_严格模式的变化.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      // 1 我们的变量名必须先声明再使用
+      // num=10;
+      // console.log(num);
+      // var num=10;
+      // console.log(num);
+
+      // 2 我们不能随意删除已经声明好的变量
+      // delete num;
+
+      //   3 严格模式下全局作用域中函数的 this 是 undefined
+      //   function fn() {
+      //     console.log(this); //undefined
+      //   }
+      //   fn();
+
+      // 4 严格模式下 如果 构造函数不加new调用 this 指向的是undefined 如果给它赋值 则会报错
+      //   function Star() {
+      //     this.sex = "男";
+      //   }
+      //   //   Star();
+      //   var ldh = new Star();
+      //   console.log(ldh.sex);
+
+      // 5 定时器 this 还是指向 window
+      //   setTimeout(function () {
+      //     console.log(this);
+      //   }, 2000);
+
+      //   a = 1;
+      //   a = 2;
+      // 6 严格模式下函数里面的函数不允许有重名
+      //   function fn(a, a) {
+      //     console.log(a + a);
+      //   }
+      //   fn(1, 2);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 12 高阶函数
+
+![image-20220817211938669](ES6.assets/image-20220817211938669.png)
+
+满足以上两个条件任意一个 就是高阶函数
+
+其实就是嵌套函数
+
+​	
+
+**36_高阶函数-函数可以作为参数传递.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      //高阶函数- 函数可以作为参数传递
+      function fn(a, b, callback) {
+        console.log(a + b);
+        callback && callback();
+      }
+      fn(1, 2, function () {
+        console.log("我是最后调用的");
+      });
+
+      $("div").animate(
+        {
+          left: 500,
+        },
+        function () {
+          $("div").css("backgroundColor", "purple");
+        }
+      );
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 13 闭包
+
+js中 闭包和异步被称为两大难点
+
+scope 作用域的意思
+
+![image-20220817214123327](ES6.assets/image-20220817214123327.png)
+
+![image-20220817214130132](ES6.assets/image-20220817214130132.png)
+
+![image-20220817214136508](ES6.assets/image-20220817214136508.png)
+
+满分理解闭包：
+
+> 一个作用域可以访问另一个函数作用域的局部变量，就有闭包的产生，而被访问的局部变量所在的函数，就是闭包函数
+
+​	
+
+**37_什么是闭包.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        闭包（closure）现象：指一个作用域有权访问另一个函数作用域中的变量
+        闭包：我们fun 这个函数作用域 访问了另外一个函数fn 里面的局部变量 num
+        */
+      function fn() {
+        var num = 10;
+        function fun() {
+          console.log(num);
+        }
+        fun();
+      }
+      fn();
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 14 闭包的作用
+
+​	
+
+**38_闭包的作用.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        闭包（closure）现象：指一个作用域有权访问另一个函数作用域中的变量
+        我们fn 外面的作用域可以访问fn内部的局部变量
+        闭包的主要作用：延伸了变量的作用范围
+        */
+      function fn() {
+        var num = 10;
+        // function fun() {
+        //   console.log(num);
+        // }
+        // return fun;
+        return function () {
+          console.log(num);
+        };
+      }
+      var f = fn();
+      f();
+      /* 
+        类似于
+        var f = function fun(){
+            console.log(num);
+        }
+        var f = function (){
+            console.log(num);
+        }
+      */
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 15 闭包的案例 01
+
+![image-20220818000024823](ES6.assets/image-20220818000024823.png)
+
+![image-20220818000115562](ES6.assets/image-20220818000115562.png)
+
+![image-20220817235142136](ES6.assets/image-20220817235142136.png)
+
+![image-20220818000122671](ES6.assets/image-20220818000122671.png)
+
+​	
+
+**39_闭包应用-点击li输出索引号.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul class="nav">
+      <li>榴莲</li>
+      <li>臭豆腐</li>
+      <li>鲱鱼罐头</li>
+      <li>大猪蹄子</li>
+    </ul>
+    <script>
+      // 闭包应用-点击li输出当前li的索引号
+      // 1.我们可以利用动态添加属性的方式
+      var lis = document.querySelector(".nav").querySelectorAll("li");
+      //   for (var i = 0; i < lis.length; i++) {
+      //     lis[i].index = i;
+      //     lis[i].onclick = function () {
+      //       //   console.log(i);
+      //       console.log(this.index);
+      //     };
+      //   }
+
+      // 2.利用闭包的方式得到当前小li的索引号
+      for (var i = 0; i < lis.length; i++) {
+        // 利用for循环创建了4个立即执行函数
+        // 立即执行函数也称为小闭包 因为立即执行函数里面的任何一个函数都可以使用它的 i 这个变量
+        (function (i) {
+          //   console.log(i);
+          lis[i].onclick = function () {
+            console.log(i);
+          };
+        })(i); //实参传给形参
+      }
+      /* 
+        for循环是同步操作 onclick是异步操作
+        所以没加立即执行函数前 点击事件得到的 i = 4
+        因为onclick里的输出语句是在点击后才执行
+
+        而加了立即执行函数后（也变成了一个闭包）
+        for循环和onclick同步进行 得到的 i 值是遍历过程值
+        不再是for循环条件终止时的值
+
+        
+        闭包有坏处 因为延长了变量的生命周期 没有及时销毁 存在内存泄漏的问题 
+        就像点击事件 在点击结束以前 变量都一直在不能被销毁
+        而且像做上面这种循环注册点击事件 使用 小闭包匿名函数 会额外开辟很多内存空间
+        每一次for遍历都会开辟一个匿名函数（上面例子） 在数量上来的时候 容易造成内存泄漏 
+
+        当然 闭包也有好处 有些场景就必须得需要闭包来解决（Google一下）
+      */
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 16 闭包的案例 02

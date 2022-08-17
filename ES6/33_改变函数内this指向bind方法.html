@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>按钮</button>
+    <button>按钮</button>
+    <button>按钮</button>
+    <script>
+      // 改变函数内this指向 js提供了三种方法 call() apply() bind()
+
+      //3.bind() 绑定 捆绑的意思
+      var o = {
+        name: "andy",
+      };
+      function fn(a, b) {
+        console.log(this);
+        console.log(a + b);
+      }
+      var f = fn.bind(o, 1, 2);
+      f();
+      //1.不会调用原来的函数 可以改变原来函数内部的this 指向
+      //2.返回的是原函数改变this之后产生的新函数
+      //3.如果有的函数我们不需要立即调用 但是又想改变这个函数内部的this指向此时用bind
+      //4.我们有一个按钮 当我们点击了之后 就禁用这个按钮 3秒钟之后开启这个按钮
+
+      //单个按钮的情况
+      //   var btn = document.querySelector("button");
+      //   btn.onclick = function () {
+      //     this.disabled = true; //这个this 指向的是 btn 这个按钮
+      //     // var that =this;  //可以用一个变量来存储btn的this 但这样不够方便
+      //     setTimeout(
+      //       function () {
+      //         // that.disabled=false; //定时器函数里面的this 指向的是window
+      //         this.disabled = false; //此时定时器函数里面的this 指向的是btn
+      //       }.bind(this),
+      //       3000
+      //     ); //this 指向的是btn 这个对象
+      //   };
+
+      // 多个按钮的情况 用for循环遍历获取
+      var btns = document.querySelectorAll("button");
+      //【注意】获取同一标签 多个标签(按钮)用querySelectorAll 单个标签(按钮)用querySelector
+
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].onclick = function () {
+          this.disabled = true;
+          //   console.log("已点击");
+          setTimeout(
+            function () {
+              this.disabled = false;
+            }.bind(this),
+            2000
+          );
+        };
+      }
+    </script>
+  </body>
+</html>
