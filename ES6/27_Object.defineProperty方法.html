@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        id: 1,
+        pname: "小米6",
+        price: 1999,
+      };
+
+      // 1.以前的对象添加和修改属性的方式
+      obj.num = 1000;
+      obj.price = 99;
+      console.log(obj);
+
+      // 2.Object.defineProperty() 定义新属性或修改原有的属性
+      Object.defineProperty(obj, "num", {
+        //第三个属性要以对象的形式 因为它内置有4个属性可以修改
+        value: 1000,
+      });
+      //   console.log(obj);
+      Object.defineProperty(obj, "price", {
+        value: 9.9,
+      });
+      //   console.log(obj);
+      Object.defineProperty(obj, "id", {
+        //如果值为false 不允许修改这个属性值 默认值也是false
+        writable: false,
+        // writable: true,
+      });
+      obj.id = 2;
+      //   console.log(obj);
+      Object.defineProperty(obj, "address", {
+        value: "中国台湾！",
+        // 如果值为false 不允许修改这个属性值 默认值也是false
+        writable: false,
+        //enumerable 如果值为false 则不允许遍历 默认的值是 false
+        enumerable: false,
+        // configurable 如果为false 则不允许删除这个属性 不允许再调用一次Object.defineProperty修改4个参数里面的特性 默认为false
+        configurable: false,
+      });
+      console.log(obj);
+      console.log(Object.keys(obj));
+      /* 
+        通过defineProperty添加的属性 默认不让遍历和修改值和删除
+        同时congigurable 如果是false 下面无法再通过defineProperty
+        修改同一对象属性的四大特性
+      */
+      delete obj.address;
+      console.log(obj);
+      delete obj.pname;
+      console.log(obj);
+
+      /* 
+      修改任意参数都会报错：27_Object.defineProperty方法.html:60 Uncaught TypeError: Cannot redefine property: address
+         at Function.defineProperty (<anonymous>)
+          at 27_Object.defineProperty方法.html:60:14
+      */
+
+      //   Object.defineProperty(obj, "address", {
+      //     value: "中国台湾！",
+      //     // 如果值为false 不允许修改这个属性值 默认值也是false
+      //     writable: false,
+      //     //enumerable 如果值为false 则不允许遍历 默认的值是 false
+      //     enumerable: false,
+      //     // configurable 如果为false 则不允许删除这个属性 不允许再修改第三个参数里面的特性 默认为false
+      //     configurable: false,
+      //   });
+      console.log(obj.address);
+    </script>
+  </body>
+</html>

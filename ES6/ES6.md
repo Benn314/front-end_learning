@@ -1906,3 +1906,489 @@ ldh.__ proto__ 指向Star原型对象prototype
 ​	
 
 # 25 对象方法 01
+
+![image-20220817085635578](ES6.assets/image-20220817085635578.png)
+
+​	
+
+**26_Object.keys遍历对象属性.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 用于获取对象自身所有的属性
+      var obj = {
+        id: 1,
+        pname: "小米",
+        price: 1999,
+        num: 2000,
+      };
+      var arr = Object.keys(obj);
+      console.log(arr);
+      arr.forEach(function (value) {
+        console.log(value);
+      });
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 26 对象方法 02
+
+![image-20220817090945390](ES6.assets/image-20220817090945390.png)
+
+![image-20220817090951175](ES6.assets/image-20220817090951175.png)
+
+​	
+
+**27_Object.defineProperty方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        id: 1,
+        pname: "小米",
+        price: 1999,
+      };
+      // 1.以前的对象添加和修改属性的方式
+      obj.num = 1000;
+      obj.price = 99;
+      console.log(obj);
+
+      // 2.Object.defineProperty() 定义新属性或修改原有的属性
+      Object.defineProperty(obj, "num", {
+        //第三个属性要以对象的形式 因为它内置有4个属性可以修改
+        value: 1000,
+      });
+      console.log(obj);
+      Object.defineProperty(obj, "price", {
+        value: 9.9,
+      });
+      console.log(obj);
+      Object.defineProperty(obj, "id", {
+        //如果值为false 不允许修改这个属性值 默认值也是false
+        writable: false,
+        // writable: true,
+      });
+      obj.id = 2;
+      console.log(obj);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 27 对象方法 03
+
+**27_Object.defineProperty方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        id: 1,
+        pname: "小米6",
+        price: 1999,
+      };
+
+      // 1.以前的对象添加和修改属性的方式
+      obj.num = 1000;
+      obj.price = 99;
+      console.log(obj);
+
+      // 2.Object.defineProperty() 定义新属性或修改原有的属性
+      Object.defineProperty(obj, "num", {
+        //第三个属性要以对象的形式 因为它内置有4个属性可以修改
+        value: 1000,
+      });
+      //   console.log(obj);
+      Object.defineProperty(obj, "price", {
+        value: 9.9,
+      });
+      //   console.log(obj);
+      Object.defineProperty(obj, "id", {
+        //如果值为false 不允许修改这个属性值 默认值也是false
+        writable: false,
+        // writable: true,
+      });
+      obj.id = 2;
+      //   console.log(obj);
+      Object.defineProperty(obj, "address", {
+        value: "中国台湾！",
+        // 如果值为false 不允许修改这个属性值 默认值也是false
+        writable: false,
+        //enumerable 如果值为false 则不允许遍历 默认的值是 false
+        enumerable: false,
+        // configurable 如果为false 则不允许删除这个属性 不允许再调用一次Object.defineProperty修改4个参数里面的特性 默认为false
+        configurable: false,
+      });
+      console.log(obj);
+      console.log(Object.keys(obj));
+      /* 
+        通过defineProperty添加的属性 默认不让遍历和修改值和删除
+        同时congigurable 如果是false 下面无法再通过defineProperty
+        修改同一对象属性的四大特性
+      */
+      delete obj.address;
+      console.log(obj);
+      delete obj.pname;
+      console.log(obj);
+
+      /* 
+      修改任意参数都会报错：27_Object.defineProperty方法.html:60 Uncaught TypeError: Cannot redefine property: address
+         at Function.defineProperty (<anonymous>)
+          at 27_Object.defineProperty方法.html:60:14
+      */
+
+      //   Object.defineProperty(obj, "address", {
+      //     value: "中国台湾！",
+      //     // 如果值为false 不允许修改这个属性值 默认值也是false
+      //     writable: false,
+      //     //enumerable 如果值为false 则不允许遍历 默认的值是 false
+      //     enumerable: false,
+      //     // configurable 如果为false 则不允许删除这个属性 不允许再修改第三个参数里面的特性 默认为false
+      //     configurable: false,
+      //   });
+      console.log(obj.address);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 01 函数进阶学习目标
+
+![image-20220817094933433](ES6.assets/image-20220817094933433.png)
+
+![image-20220817094946800](ES6.assets/image-20220817094946800.png)
+
+​	
+
+​	
+
+# 02 函数的定义
+
+![image-20220817110443026](ES6.assets/image-20220817110443026.png)
+
+![image-20220817110451050](ES6.assets/image-20220817110451050.png)
+
+​	
+
+**28_函数的定义和调用方式.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 函数的定义方式
+
+      //1.自定义函数（命名函数）
+      function fn() {}
+
+      //2.函数表达式（匿名函数）
+      var fun = function () {};
+
+      //3.利用 new Function("参数1","参数2",...,"函数体");
+      //    所有参数的书写都要以字符串的形式
+      var f = new Function("a", "b", "console.log(a + b);");
+      f(1, 2);
+
+      //4.所有函数都是Function的实例对象
+      console.dir(f);
+
+      //5. 函数也属于对象
+      console.log(f instanceof Object); //true
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 03 函数的调用
+
+![image-20220817112029051](ES6.assets/image-20220817112029051.png)
+
+​	
+
+**29_函数的调用方式.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //函数的调用方式
+
+      //1.普通函数
+      function fn() {
+        console.log("hello");
+      }
+      fn();
+      fn.call();
+
+      //2.对象的方法
+      var o = {
+        sayHi: function () {
+          console.log("hello");
+        },
+      };
+      o.sayHi();
+
+      //3.构造函数
+      function Star() {}
+      new Star();
+
+      //4.绑定事件函数
+      btn.onclick = function () {}; //点击了按钮就可以调用这个函数
+
+      //5.定时器函数
+      setInterval(function () {}, 1000); //这个函数是定时器自动1秒钟调用一次
+
+      //6.立即执行函数
+      (function () {
+        console.log("hello");
+      })();
+      //立即执行函数是自动调用 解释到该函数时便会直接调用运行
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 04 this指向问题
+
+![image-20220817113435932](ES6.assets/image-20220817113435932.png)
+
+​	
+
+**30_this的指向.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>点击</button>
+    <script>
+      //函数的不同调用方式决定了this的指向不同
+
+      //1.普通函数 this 指向window
+      function fn() {
+        console.log("普通函数的this" + this);
+      }
+      fn();
+      // fn.call();
+
+      //2.对象的方法 this 指向的是对象 o
+      var o = {
+        sayHi: function () {
+          console.log("对象方法的this" + this);
+        },
+      };
+      o.sayHi();
+
+      //3.构造函数 this 指向 ldh 这个实例对象 原型对象里面的this 指向的也是 ldh这个实例对象
+      function Star() {}
+      Star.prototype.sing = function () {
+        console.log("构造函数的this" + this);
+      }; //注意是sing 不是sing()
+      var ldh = new Star();
+
+      ldh.sing();
+
+      //4.绑定事件函数 this 指向的是函数的调用者 btn这个按钮对象
+      var btn = document.querySelector("button");
+      btn.onclick = function () {
+        console.log("绑定事件函数的this" + this);
+      }; //点击了按钮就可以调用这个函数
+
+      //5.定时器函数
+      setInterval(function () {
+        console.log("定时器的this" + this);
+      }, 1000); //这个函数是定时器自动1秒钟调用一次
+
+      //6.立即执行函数
+      (function () {
+        console.log("立即执行函数的this" + this);
+      })();
+      //立即执行函数是自动调用 解释到该函数时便会直接调用运行
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 05 函数内this的指向
+
+![image-20220817142531462](ES6.assets/image-20220817142531462.png)
+
+​	
+
+**31_改变函数内this指向.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 改变函数内this指向 js提供了三种方法 call() apply() bind()
+
+      //1.call()
+      var o = {
+        name: "andy",
+      };
+
+      function fn(a, b) {
+        console.log(this);
+        console.log(a + b);
+      }
+      fn.call(o, 1, 2);
+      //call 第一个可以调用函数 第二个可以改变函数内的this 指向
+      //call 的主要作用可以实现继承
+      function Father(uname, age, sex) {
+        this.uname = uname;
+        this.age = age;
+        this.sex = sex;
+      }
+
+      function Son(uname, age, sex) {
+        Father.call(this, uname, age, sex);
+      }
+      var son = new Son("刘德华", 18, "男");
+      console.log(son);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 06 改变函数内this的指向
+
+![image-20220817144342221](ES6.assets/image-20220817144342221.png)
+
+​	
+
+**32_改变函数内this指向apply方法.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 改变函数内this指向 js提供了三种方法 call() apply() bind()
+
+      //2.  apply() 应用 运用的意思
+      var o = {
+        name: "andy",
+      };
+
+      function fn(arr) {
+        console.log(this);
+        console.log(arr);
+      }
+      fn.apply(o, ["pink"]);
+      //1. 也是调用函数 第二个可以改变内部的this指向
+      //2. 但是她的参数必须是数组（伪数组）
+      //3. apply 的主要应用 比如说我们可以利用 apply 借助于数学内置对象求数组最大值
+      //Math.max()
+      var arr = [1, 66, 3, 99, 4];
+      //   var max = Math.max.apply(null, arr);
+      //第一个参数直接写null不太合适 还是写调用者的this 也就是Math比较好
+      var max = Math.max.apply(Math, arr);
+      var min = Math.min.apply(Math, arr);
+      console.log(max, min);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 07 bind方法 01
