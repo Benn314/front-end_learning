@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul class="nav">
+      <li>榴莲</li>
+      <li>臭豆腐</li>
+      <li>鲱鱼罐头</li>
+      <li>大猪蹄子</li>
+    </ul>
+    <script>
+      // 40_闭包应用-3秒钟之后 打印所有li元素的内容
+      var lis = document.querySelector(".nav").querySelectorAll("li");
+      for (var i = 0; i < lis.length; i++) {
+        // setTimeout(function () {
+        //   console.log(lis[i].innerHTML);
+        // }, 3000);
+        /*
+              setTimeout函数属于异步任务 for循环为同步任务
+              即使时间间隔为0ms，也要等到for循环执行完再执行
+              setTimeout 而这时候的 i 已经等于4了 超过最大索引值 所以报错
+          */
+
+        (function (i) {
+          setTimeout(function () {
+            console.log(lis[i].innerHTML);
+          }, 3000);
+        })(i);
+        //只要是在立即执行函数里的函数 都可以使用立即执行函数的变量
+      }
+    </script>
+    <script>
+      setTimeout(() => {
+        console.log("this is the first message");
+      }, 5000);
+      setTimeout(() => {
+        console.log("this is the second message");
+      }, 3000);
+      setTimeout(() => {
+        console.log("this is the third message");
+      }, 1000);
+
+      // Output:
+
+      // this is the third message  27 line
+      // this is the second message 24 line
+      // this is the first message  21 line
+      //因为是异步函数 所以三个定时器之间互不干扰 不用等待上面代码执行完 再执行下面的
+    </script>
+  </body>
+</html>

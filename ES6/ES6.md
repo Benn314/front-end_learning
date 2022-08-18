@@ -2667,6 +2667,7 @@ bind()是我们日常使用最多的 比call和apply多
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
     <style>
       div {
         position: absolute;
@@ -2678,6 +2679,30 @@ bind()是我们日常使用最多的 比call和apply多
   </head>
   <body>
     <div></div>
+    <!-- 
+        jQuery CDN来源
+        https://www.runoob.com/jquery/jquery-install.html
+
+        
+        什么是 jQuery ？
+
+            jQuery 是一个 JavaScript 函数库。
+
+            jQuery 是一个轻量级的"写的少，做的多"的 JavaScript 库。
+
+            jQuery 库包含以下功能：
+
+            HTML 元素选取
+            HTML 元素操作
+            CSS 操作
+            HTML 事件函数
+            JavaScript 特效和动画
+            HTML DOM 遍历和修改
+            AJAX
+            Utilities
+            提示： 除此之外，jQuery 还提供了大量的插件。
+     -->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
       //高阶函数- 函数可以作为参数传递
       function fn(a, b, callback) {
@@ -2688,21 +2713,36 @@ bind()是我们日常使用最多的 比call和apply多
         console.log("我是最后调用的");
       });
 
-      $("div").animate(
-        {
-          left: 500,
-        },
-        function () {
-          $("div").css("backgroundColor", "purple");
-        }
-      );
+      setTimeout(function () {
+        $("div").animate(
+          {
+            left: 500,
+          },
+          function () {
+            $("div").css("backgroundColor", "skyblue");
+          }
+        );
+      }, 2000);
+      //   $("div").animate(
+      //     {
+      //       left: 500,
+      //     },
+      //     function () {
+      //       $("div").css("backgroundColor", "purple");
+      //     }
+      //   );
     </script>
   </body>
 </html>
 
 ```
 
-​	
+```API
+jQuery CDN来源
+https://www.runoob.com/jquery/jquery-install.html
+```
+
+![div_css样式滑动效果](ES6.assets/div_css样式滑动效果.gif)
 
 ​	
 
@@ -2893,3 +2933,692 @@ scope 作用域的意思
 ​	
 
 # 16 闭包的案例 02
+
+**setTimeout-异步函数**
+
+```html
+    <script>
+      // 40_闭包应用-3秒钟之后 打印所有li元素的内容
+      var lis = document.querySelector(".nav").querySelectorAll("li");
+
+      setTimeout(() => {
+        console.log("this is the first message");
+      }, 5000);
+      setTimeout(() => {
+        console.log("this is the second message");
+      }, 3000);
+      setTimeout(() => {
+        console.log("this is the third message");
+      }, 1000);
+
+      // Output:
+
+      // this is the third message  27 line
+      // this is the second message 24 line
+      // this is the first message  21 line
+      //因为是异步函数 所以三个定时器之间互不干扰 不用等待上面代码执行完 再执行下面的
+    </script>
+```
+
+![image-20220818090110024](ES6.assets/image-20220818090110024.png)
+
+​	
+
+**40_闭包应用-定时器中的闭包.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul class="nav">
+      <li>榴莲</li>
+      <li>臭豆腐</li>
+      <li>鲱鱼罐头</li>
+      <li>大猪蹄子</li>
+    </ul>
+    <script>
+      // 40_闭包应用-3秒钟之后 打印所有li元素的内容
+      var lis = document.querySelector(".nav").querySelectorAll("li");
+      for (var i = 0; i < lis.length; i++) {
+        // setTimeout(function () {
+        //   console.log(lis[i].innerHTML);
+        // }, 3000);
+        /*
+              setTimeout函数属于异步任务 for循环为同步任务
+              即使时间间隔为0ms，也要等到for循环执行完再执行
+              setTimeout 而这时候的 i 已经等于4了 超过最大索引值 所以报错
+          */
+
+        (function (i) {
+          setTimeout(function () {
+            console.log(lis[i].innerHTML);
+          }, 3000);
+        })(i);
+        //只要是在立即执行函数里的函数 都可以使用立即执行函数的变量
+      }
+    </script>
+    <script>
+      setTimeout(() => {
+        console.log("this is the first message");
+      }, 5000);
+      setTimeout(() => {
+        console.log("this is the second message");
+      }, 3000);
+      setTimeout(() => {
+        console.log("this is the third message");
+      }, 1000);
+
+      // Output:
+
+      // this is the third message  27 line
+      // this is the second message 24 line
+      // this is the first message  21 line
+      //因为是异步函数 所以三个定时器之间互不干扰 不用等待上面代码执行完 再执行下面的
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 17 闭包的案例 03
+
+![image-20220818095607138](ES6.assets/image-20220818095607138.png)
+
+**41_闭包应用-打车价格.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        闭包应用-计算打车价格
+        打车起步价13（3公里内） 之后每多一公里增加5块钱 用户输入公里数就可以计算打车价格
+        如果有拥堵情况 总价格多收取10快钱拥堵费
+          */
+      //   function fn() {}
+      //   fn();
+      var car = (function (n) {
+        var start = 13; //起步价 局部变量
+        var total = 0; //总价   局部变量
+        return {
+          //正常的总价
+          price: function (n) {
+            if (n <= 3) {
+              total = start;
+            } else {
+              total = start + (n - 3) * 5;
+            }
+            return total;
+          },
+          yd: function (flag) {
+            return flag ? total + 10 : total;
+          }, //拥堵之后的费用
+        };
+      })();
+      console.log(car.price(5)); //23
+      console.log(car.yd(true)); //33
+
+      console.log(car.price(1)); //13
+      console.log(car.yd(false)); //13
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 18 思考题
+
+立即执行函数指向window
+
+**42_思考题.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 思考题 1
+      var name = "The Window";
+      var object = {
+        name: "My Object",
+        getNameFunc: function () {
+          return function () {
+            return this.name;
+            //没有闭包产生
+          };
+        },
+      };
+      //   console.log(object.getNameFunc()()); //The Window
+      //   var f = object.getNameFunc();
+      //   //类似于
+      //   var f = function () {
+      //     return this.name;
+      //   };
+      //   f();
+      /* 
+        object.getNameFunc()() 
+            第一个括号() 是获取getNameFunc里的function () {
+                                                return this.name;
+                                            };
+
+            第二个括号() 是执行嵌套的function 获取this.name
+       */
+
+      //思考题2
+      var name = "The Window";
+      var object = {
+        name: "My Object",
+        getNameFunc: function () {
+          var that = this;
+          return function () {
+            return that.name;
+            //有闭包产生
+          };
+        },
+      };
+      console.log(object.getNameFunc()()); //My Object
+      //   var f = object.getNameFunc();
+      //类似于
+      //   var f = function () {
+      //     return that.name;
+      //   };
+      //   f();
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 19 递归
+
+![image-20220818123807199](ES6.assets/image-20220818123807199.png)
+
+​	
+
+**43_什么是递归函数.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //递归函数：函数内部自己调用自己 这个函数就是递归函数
+      var num = 1;
+
+      function fn() {
+        console.log("我要打印6句话");
+        if (num == 6) {
+          return; //递归里面必须加退出条件
+        }
+        num++;
+        fn();
+      }
+      fn();
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 20 利用递归求数学题 01
+
+![image-20220818125548697](ES6.assets/image-20220818125548697.png)
+
+​	
+
+​	
+
+# 21 利用递归求数学题 02
+
+![image-20220818125822085](ES6.assets/image-20220818125822085.png)
+
+​	
+
+​	
+
+# 22 利用递归遍历数据 01
+
+​	
+
+**44_利用递归遍历数据.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var data = [
+        {
+          id: 1,
+          name: "家电",
+          goods: [
+            {
+              id: 11,
+              gname: "冰箱",
+            },
+            {
+              id: 12,
+              gname: "洗衣机",
+            },
+          ],
+        },
+        {
+          id: 2,
+          name: "服饰",
+        },
+      ];
+      // 我们需要做输入id号 就可以返回的数据对象
+      // 1 利用 forEach 去遍历里面的每一个对象
+      function getID(json, id) {
+        json.forEach(function (item) {
+          // 遍历外层数组
+          // console.log(item);  //2个数组元素
+          if (item.id == id) {
+            console.log(item);
+            // 2 我们想要得到里层的数据 11 12 可以利用递归函数
+            // 里面应该有goods这个数组并且数组的长度不为0
+          } else if (item.goods && item.goods.length > 0) {
+            //遍历里层数组
+            getID(item.goods, id);
+          }
+
+          /* 
+            这里不用加退出条件 是因为forEach遍历完了 也就退出递归了
+                */
+        });
+      }
+      getID(data, 1);
+      getID(data, 2);
+      getID(data, 11);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 23 利用递归遍历数据 02
+
+​	
+
+**44_利用递归遍历数据.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var data = [
+        {
+          id: 1,
+          name: "家电",
+          goods: [
+            {
+              id: 11,
+              gname: "冰箱",
+              goods: [
+                {
+                  id: 111,
+                  gname: "海尔",
+                },
+                {
+                  id: 112,
+                  gname: "美的",
+                },
+              ],
+            },
+            {
+              id: 12,
+              gname: "洗衣机",
+            },
+          ],
+        },
+        {
+          id: 2,
+          name: "服饰",
+        },
+      ];
+      // 我们需要做输入id号 就可以返回的数据对象
+      // 1 利用 forEach 去遍历里面的每一个对象
+      function getID(json, id) {
+        var o = {};
+        json.forEach(function (item) {
+          // 遍历外层数组
+          // console.log(item);  //2个数组元素
+          if (item.id == id) {
+            // console.log(item);
+            o = item;
+            return item;
+            // 2 我们想要得到里层的数据 11 12 可以利用递归函数
+            // 里面应该有goods这个数组并且数组的长度不为0
+          } else if (item.goods && item.goods.length > 0) {
+            //遍历里层数组
+            o = getID(item.goods, id);
+          }
+
+          /* 
+            这里不用加退出条件 是因为forEach遍历完了 也就退出递归了
+                */
+        });
+        return o;
+
+        /* 
+            解决一下疑惑：为什么 return item; 后还会执行 return o; ？
+                shab吧 这两个return处在不同的两个函数中 当然会执行这两个return阿
+                    看走眼以为是在同一个函数中 经过调试后发现原来是在不同的函数 一直理解不了同一函数执行两次return 醉~
+        */
+      }
+      console.log(getID(data, 1));
+      console.log(getID(data, 2));
+      console.log(getID(data, 11));
+      console.log(getID(data, 12));
+      console.log(getID(data, 111));
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 24 浅拷贝和深拷贝 01
+
+![image-20220818145035972](ES6.assets/image-20220818145035972.png)
+
+![image-20220818145054646](ES6.assets/image-20220818145054646.png)
+
+浅拷贝：里层的对象信息拷贝过去的只是地址
+
+二者共享同一块内存
+
+​	
+
+**45_深拷贝和浅拷贝.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //浅拷贝只是拷贝一层 更深层次对象级别的只拷贝引用
+      //深拷贝拷贝多层 每一级别的数据都会拷贝
+      var obj = {
+        id: 1,
+        name: "andy",
+        msg: {
+          age: 18,
+        },
+      };
+      var o = {};
+      //   for (var k in obj) {
+      //     //k 是属性名  obj[k] 属性值
+      //     o[k] = obj[k];
+      //   }
+      //   console.log(o);
+      //   o.msg.age = 20;
+      //   console.log(obj);
+
+      Object.assign(o, obj); //Object.assign() 做的是浅拷贝操作
+      console.log(o);
+      o.msg.age = 20;
+      console.log(obj);
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 25 浅拷贝和深拷贝 02
+
+![image-20220818151253958](ES6.assets/image-20220818151253958.png)
+
+​	
+
+**46_深拷贝和浅拷贝.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //浅拷贝只是拷贝一层 更深层次对象级别的只拷贝引用
+      //深拷贝拷贝多层 每一级别的数据都会拷贝
+      var obj = {
+        id: 1,
+        name: "andy",
+        msg: {
+          age: 18,
+        },
+        color: ["pink", "red"],
+      };
+      var o = {};
+
+      //封装函数
+      function deepCopy(newobj, oldobj) {
+        for (var k in oldobj) {
+          //判断我们的属性值属于那种数据类型
+          // 1.获取属性值 oldobj[k]
+          var item = oldobj[k];
+          // 2.判断这个值是否是数组
+          /* 
+           这里判断条件 把Array写在Object前面的原因是
+            Array也是Object 所以先写Object就检测不到数组了
+            毕竟数组字面量是 []，而对象是 {}
+          */
+          if (item instanceof Array) {
+            newobj[k] = [];
+            deepCopy(newobj[k], item); //再来一轮内层遍历
+          } else if (item instanceof Object) {
+            // 3 判断这个值是否是对象
+            newobj[k] = {};
+            deepCopy(newobj[k], item);
+          } else {
+            // 4 属于简单数据类型
+            newobj[k] = item;
+          }
+        }
+      }
+      deepCopy(o, obj);
+      // console.log(JSON.stringify(o));//这叫做一次快照，或者叫序列化
+      // 解决输出结果不正确的情况
+      console.log(o);
+
+      var arr = [];
+      console.log(arr instanceof Object); // true 验证数组是对象
+
+      o.msg.age = 20;
+      console.log(obj);
+
+      // var obj_test = {
+      //   name: 1,
+      // };
+      // console.log(obj_test);
+      // obj_test.name = 2;
+      // console.log(obj_test);
+      /* 
+      问题描述：
+        想问一下 为什么我后面对 对象的属性值做出修改 会影响到前面的输出语句？
+
+        控制台I/O延迟 （异步化）解决
+          ① 通过控制台断点调试 看其监视表达式
+          ② 把对象序列化到一个字符串中 以强制执行一次 "快照" 
+              比如通过 JSON.stringify(..)
+      */
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 01 正则表达式学习目标
+
+![image-20220818160331067](ES6.assets/image-20220818160331067.png)
+
+​	
+
+​	
+
+# 02 正则表达式概述
+
+![image-20220818161007415](ES6.assets/image-20220818161007415.png)
+
+![image-20220818161012901](ES6.assets/image-20220818161012901.png)
+
+​	
+
+​	
+
+# 03 正则表达式在js中的使用
+
+![image-20220818161723048](ES6.assets/image-20220818161723048.png)
+
+![image-20220818161728209](ES6.assets/image-20220818161728209.png)
+
+![image-20220818161732910](ES6.assets/image-20220818161732910.png)
+
+![image-20220818163925803](ES6.assets/image-20220818163925803.png)
+
+​	
+
+​	
+
+# 04 正则表达式中的特殊字符 01
+
+![image-20220818171013524](ES6.assets/image-20220818171013524.png)
+
+![image-20220818171019494](ES6.assets/image-20220818171019494.png)
+
+![image-20220818171030636](ES6.assets/image-20220818171030636.png)
+
+​	
+
+​	
+
+# 05 正则表达式中的特殊字符 02
+
+![image-20220818172135107](ES6.assets/image-20220818172135107.png)
+
+![image-20220818172141395](ES6.assets/image-20220818172141395.png)
+
+![image-20220818172147620](ES6.assets/image-20220818172147620.png)
+
+​	
+
+​	
+
+# 06 正则表达式中的特殊字符 03
+
+![image-20220818172719066](ES6.assets/image-20220818172719066.png)
+
+![image-20220818172724806](ES6.assets/image-20220818172724806.png)
+
+![image-20220818172729217](ES6.assets/image-20220818172729217.png)
+
+​	
+
+​	
+
+# 07 正则表达式中量词符 01
+
+![image-20220818174218406](ES6.assets/image-20220818174218406.png)
+
+![image-20220818174228023](ES6.assets/image-20220818174228023.png)
+
+![image-20220818174236191](ES6.assets/image-20220818174236191.png)
+
+![image-20220818174239728](ES6.assets/image-20220818174239728.png)
+
+![image-20220818174244835](ES6.assets/image-20220818174244835.png)
+
+​	
+
+​	
+
+# 08 正则表达式中量词符 02
+
+![image-20220818173532407](ES6.assets/image-20220818173532407.png)
+
+​	
+
+​	
+
+# 09 案例：用户名验证
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 思考题 1
+      var name = "The Window";
+      var object = {
+        name: "My Object",
+        getNameFunc: function () {
+          return function () {
+            return this.name;
+            //没有闭包产生
+          };
+        },
+      };
+      //   console.log(object.getNameFunc()()); //The Window
+      //   var f = object.getNameFunc();
+      //   //类似于
+      //   var f = function () {
+      //     return this.name;
+      //   };
+      //   f();
+      /* 
+        object.getNameFunc()() 
+            第一个括号() 是获取getNameFunc里的function () {
+                                                return this.name;
+                                            };
+
+            第二个括号() 是执行嵌套的function 获取this.name
+       */
+
+      //思考题2
+      var name = "The Window";
+      var object = {
+        name: "My Object",
+        getNameFunc: function () {
+          var that = this;
+          return function () {
+            return that.name;
+            //有闭包产生
+          };
+        },
+      };
+      console.log(object.getNameFunc()()); //My Object
+      //   var f = object.getNameFunc();
+      //类似于
+      //   var f = function () {
+      //     return that.name;
+      //   };
+      //   f();
+    </script>
+  </body>
+</html>

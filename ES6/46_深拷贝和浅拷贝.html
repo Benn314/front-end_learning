@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //浅拷贝只是拷贝一层 更深层次对象级别的只拷贝引用
+      //深拷贝拷贝多层 每一级别的数据都会拷贝
+      var obj = {
+        id: 1,
+        name: "andy",
+        msg: {
+          age: 18,
+        },
+        color: ["pink", "red"],
+      };
+      var o = {};
+
+      //封装函数
+      function deepCopy(newobj, oldobj) {
+        for (var k in oldobj) {
+          //判断我们的属性值属于那种数据类型
+          // 1.获取属性值 oldobj[k]
+          var item = oldobj[k];
+          // 2.判断这个值是否是数组
+          /* 
+           这里判断条件 把Array写在Object前面的原因是
+            Array也是Object 所以先写Object就检测不到数组了
+            毕竟数组字面量是 []，而对象是 {}
+          */
+          if (item instanceof Array) {
+            newobj[k] = [];
+            deepCopy(newobj[k], item); //再来一轮内层遍历
+          } else if (item instanceof Object) {
+            // 3 判断这个值是否是对象
+            newobj[k] = {};
+            deepCopy(newobj[k], item);
+          } else {
+            // 4 属于简单数据类型
+            newobj[k] = item;
+          }
+        }
+      }
+      deepCopy(o, obj);
+      // console.log(JSON.stringify(o));//这叫做一次快照，或者叫序列化
+      // 解决输出结果不正确的情况
+      console.log(o);
+
+      var arr = [];
+      console.log(arr instanceof Object); // true 验证数组是对象
+
+      o.msg.age = 20;
+      console.log(obj);
+
+      // var obj_test = {
+      //   name: 1,
+      // };
+      // console.log(obj_test);
+      // obj_test.name = 2;
+      // console.log(obj_test);
+      /* 
+      问题描述：
+        想问一下 为什么我后面对 对象的属性值做出修改 会影响到前面的输出语句？
+
+        控制台I/O延迟 （异步化）解决
+          ① 通过控制台断点调试 看其监视表达式
+          ② 把对象序列化到一个字符串中 以强制执行一次 "快照" 
+              比如通过 JSON.stringify(..)
+      */
+    </script>
+  </body>
+</html>
