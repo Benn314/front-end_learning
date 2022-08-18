@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      span {
+        color: #aaa;
+        font-size: 14px;
+      }
+      .right {
+        color: green;
+      }
+      .wrong {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+        onblur 事件
+            事件对象参考手册 事件对象
+
+            实例
+            当用户离开input输入框时执行一段Javascript代码：
+
+            <input type="text" onblur="myFunction()">
+
+            尝试一下 »
+            定义和用法
+            onblur 事件会在对象失去焦点时发生。
+
+            Onblur 经常用于Javascript验证代码，一般用于表单输入框。
+
+            提示：onblur 相反事件为 onfocus 事件 。
+     -->
+    <input type="text" class="uname" /> <span>请输入用户名</span>
+    <script>
+      // 量词是设定某个模式出现的次数
+      var reg = /^[a-zA-Z0-9_-]{6,16}$/; //这个模式用户只能输入英文字母 数字 下划线 短横线
+      //但是有边界符和[] 这就限定了只能多选1
+      // {6,16}   中间不能有空格 不然是错误的
+
+      var uname = document.querySelector(".uname");
+      var span = document.querySelector("span");
+      uname.onblur = function () {
+        if (reg.test(this.value)) {
+          //input标签输入的内容便是value  这里的this指的是uname
+          console.log("正确的");
+          span.className = "right";
+          span.innerHTML = "用户名格式输入正确";
+        } else {
+          console.log("错误的");
+          span.className = "wrong";
+          span.innerHTML = "用户名格式输入不正确";
+        }
+      };
+    </script>
+  </body>
+</html>

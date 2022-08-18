@@ -3622,3 +3622,215 @@ scope 作用域的意思
 
 # 09 案例：用户名验证
 
+## onblur 事件
+
+[![事件对象参考手册](https://www.runoob.com/images/up.gif) 事件对象](https://www.runoob.com/jsref/dom-obj-event.html)
+
+**实例**
+
+当用户离开input输入框时执行一段Javascript代码：
+
+<input type="text" onblur="myFunction()">
+
+
+[尝试一下 »](https://www.runoob.com/try/try.php?filename=tryjsref_onblur)
+
+------
+
+**定义和用法**
+
+onblur 事件会在对象失去焦点时发生。
+
+Onblur 经常用于Javascript验证代码，一般用于表单输入框。
+
+**提示：**onblur 相反事件为 [onfocus](https://www.runoob.com/jsref/event-onfocus.html) 事件 。
+
+​	
+
+![image-20220818175945071](ES6.assets/image-20220818175945071.png)
+
+![image-20220818175952215](ES6.assets/image-20220818175952215.png)
+
+​	
+
+**47_用户名验证.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      span {
+        color: #aaa;
+        font-size: 14px;
+      }
+      .right {
+        color: green;
+      }
+      .wrong {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+        onblur 事件
+            事件对象参考手册 事件对象
+
+            实例
+            当用户离开input输入框时执行一段Javascript代码：
+
+            <input type="text" onblur="myFunction()">
+
+            尝试一下 »
+            定义和用法
+            onblur 事件会在对象失去焦点时发生。
+
+            Onblur 经常用于Javascript验证代码，一般用于表单输入框。
+
+            提示：onblur 相反事件为 onfocus 事件 。
+     -->
+    <input type="text" class="uname" /> <span>请输入用户名</span>
+    <script>
+      // 量词是设定某个模式出现的次数
+      var reg = /^[a-zA-Z0-9_-]{6,16}$/; //这个模式用户只能输入英文字母 数字 下划线 短横线
+      //但是有边界符和[] 这就限定了只能多选1
+      // {6,16}   中间不能有空格 不然是错误的
+
+      var uname = document.querySelector(".uname");
+      var span = document.querySelector("span");
+      uname.onblur = function () {
+        if (reg.test(this.value)) {
+          //input标签输入的内容便是value  这里的this指的是uname
+          console.log("正确的");
+          span.className = "right";
+          span.innerHTML = "用户名格式输入正确";
+        } else {
+          console.log("错误的");
+          span.className = "wrong";
+          span.innerHTML = "用户名格式输入不正确";
+        }
+      };
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+​	
+
+# 10 括号总结
+
+![image-20220818183026734](ES6.assets/image-20220818183026734.png)
+
+![image-20220818183045653](ES6.assets/image-20220818183045653.png)
+
+![image-20220818183050833](ES6.assets/image-20220818183050833.png)
+
+​	
+
+​	
+
+# 11 预定义类
+
+![image-20220818184347751](ES6.assets/image-20220818184347751.png)
+
+![image-20220818184356291](ES6.assets/image-20220818184356291.png)
+
+​	
+
+​	
+
+# 12 案例：表单验证 01
+
+![image-20220818185740148](ES6.assets/image-20220818185740148.png)
+
+​	
+
+​	
+
+# 13 案例：表单验证 02
+
+由于没有html和css源文件 这里只贴js源码
+
+![image-20220818190517248](ES6.assets/image-20220818190517248.png)
+
+获取元素
+
+![image-20220818190531342](ES6.assets/image-20220818190531342.png)
+
+表单验证函数
+
+![image-20220818190558876](ES6.assets/image-20220818190558876.png)
+
+​	
+
+​	
+
+# 14 案例：表单验证 03
+
+获取元素
+
+![image-20220818191129124](ES6.assets/image-20220818191129124.png)
+
+创建确认密码的失去焦点事件
+
+![image-20220818191151848](ES6.assets/image-20220818191151848.png)
+
+​	
+
+​	
+
+# 15 正则表达式中的替换
+
+![image-20220818192042188](ES6.assets/image-20220818192042188.png)
+
+![image-20220818192048558](ES6.assets/image-20220818192048558.png)
+
+​	
+
+**48_替换.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        border: 1px solid skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button>提交</button>
+    <div></div>
+    <script>
+      //替换 replace
+      //   var str = "andy和red";
+      //   //   var newStr = str.replace("andy", "baby");
+      //   var newStr = str.replace(/andy/, "baby");
+      //   console.log(newStr);
+      var text = document.querySelector("textarea");
+      var btn = document.querySelector("button");
+      var div = document.querySelector("div");
+      btn.onclick = function () {
+        div.innerHTML = text.value.replace(/激情|速度/g, "**");
+      };
+    </script>
+  </body>
+</html>
+
+```
+
+![image-20220818192734577](ES6.assets/image-20220818192734577.png)
