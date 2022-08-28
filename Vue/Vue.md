@@ -218,3 +218,43 @@ vue指令有下面这些
 
 # 08 本地应用 v-html指令
 
+![image-20220822182910430](Vue.assets/image-20220822182910430.png)
+
+![image-20220822183223914](Vue.assets/image-20220822183223914.png)
+
+![image-20220822183233340](Vue.assets/image-20220822183233340.png)
+
+v-on:monseenter 鼠标移入事件
+
+​	
+
+​	
+
+# 09 本地应用 v-on指令基础
+
+![image-20220822184255341](Vue.assets/image-20220822184255341.png)
+
+![image-20220822184300509](Vue.assets/image-20220822184300509.png)
+
+![image-20220822184305679](Vue.assets/image-20220822184305679.png)
+
+​	
+
+​	
+
+# 10 本地应用 计数器
+
+![image-20220822192842506](Vue.assets/image-20220822192842506.png)
+
+![image-20220822192846793](Vue.assets/image-20220822192846793.png)
+
+![image-20220822192852033](Vue.assets/image-20220822192852033.png)
+
+![image-20220822192856303](Vue.assets/image-20220822192856303.png)
+
+​	
+
+​	
+
+# 11 本地应用 v-show指令
+
