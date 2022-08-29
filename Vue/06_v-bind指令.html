@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-bind</title>
+    <style>
+      .active {
+        border: 1px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <img src="img/v-show.png" alt="" /> -->
+    <div id="app">
+      <img v-bind:src="imgSrc" alt="" />
+      <br />
+      <!-- 
+        三元运算符的写法
+        :class="isActive?'active':''" 
+      -->
+      <img
+        :src="imgSrc"
+        alt=""
+        :title="imgTitle+'!!!'"
+        :class="isActive?'active':''"
+        @click="toggleActive"
+      />
+      <br />
+      <!-- 
+        使用对象的方式来动态增删class属性
+        active:isActive
+       -->
+      <img
+        :src="imgSrc"
+        alt=""
+        :title="imgTitle+'!!!'"
+        :class="{active:isActive}"
+        @click="toggleActive"
+      />
+
+      <!-- 可以用字符串拼接 -->
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          imgSrc: "img/v-show.png",
+          imgTitle: "黑马程序员",
+          isActive: false,
+        },
+        methods: {
+          toggleActive: function () {
+            this.isActive = !this.isActive;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

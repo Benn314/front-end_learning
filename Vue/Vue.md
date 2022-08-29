@@ -258,3 +258,262 @@ v-on:monseenter 鼠标移入事件
 
 # 11 本地应用 v-show指令
 
+![image-20220828231434494](Vue.assets/image-20220828231434494.png)
+
+![image-20220828231442210](Vue.assets/image-20220828231442210.png)
+
+![image-20220828231504349](Vue.assets/image-20220828231504349.png)
+
+​	
+
+**05_v-show指令.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="button" value="切换显示状态" @click="changeIsShow" />
+      <input type="button" value="累加年龄" @click="addAge" />
+      <img v-show="isShow" src="img/v-show.png" alt="" />
+      <img v-show="age>=18" src="img/v-show.png" alt="" />
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          isShow: false,
+          age: 17,
+        },
+        methods: {
+          changeIsShow: function () {
+            this.isShow = !this.isShow;
+          },
+          addAge: function () {
+            this.age++;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220828232434134](Vue.assets/image-20220828232434134.png)
+
+​	
+
+​	
+
+# 12 本地应用 v-if指令
+
+![image-20220828233053651](Vue.assets/image-20220828233053651.png)
+
+![image-20220828233120114](Vue.assets/image-20220828233120114.png)
+
+![image-20220828233124697](Vue.assets/image-20220828233124697.png)
+
+​	
+
+> v-if 和 v-show的效果显示相同 但是 v-if 是将整个标签移除 而 v-show 是更改其标签的样式
+
+​	
+
+​	
+
+# 13 本地应用 v-bind指令
+
+![image-20220828235025126](Vue.assets/image-20220828235025126.png)
+
+![image-20220828235038298](Vue.assets/image-20220828235038298.png)
+
+![image-20220828235042514](Vue.assets/image-20220828235042514.png)
+
+​	
+
+![image-20220829000522744](Vue.assets/image-20220829000522744.png)
+
+> 动态增删class属性  建议使用对象的方式来写 true的话显示 false就移除
+
+​	
+
+**06_v-bind指令.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-bind</title>
+    <style>
+      .active {
+        border: 1px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <img src="img/v-show.png" alt="" /> -->
+    <div id="app">
+      <img v-bind:src="imgSrc" alt="" />
+      <br />
+      <!-- 
+        三元运算符的写法
+        :class="isActive?'active':''" 
+      -->
+      <img
+        :src="imgSrc"
+        alt=""
+        :title="imgTitle+'!!!'"
+        :class="isActive?'active':''"
+        @click="toggleActive"
+      />
+      <br />
+      <!-- 
+        使用对象的方式来动态增删class属性
+        active:isActive
+       -->
+      <img
+        :src="imgSrc"
+        alt=""
+        :title="imgTitle+'!!!'"
+        :class="{active:isActive}"
+        @click="toggleActive"
+      />
+
+      <!-- 可以用字符串拼接 -->
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          imgSrc: "img/v-show.png",
+          imgTitle: "黑马程序员",
+          isActive: false,
+        },
+        methods: {
+          toggleActive: function () {
+            this.isActive = !this.isActive;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220829000605836](Vue.assets/image-20220829000605836.png)
+
+​	
+
+​	
+
+# 14 本地应用 图片切换
+
+v-if是操作dom元素增加和删除 对性能消耗大
+
+![image-20220829125748460](Vue.assets/image-20220829125748460.png)
+
+![image-20220829125753606](Vue.assets/image-20220829125753606.png)
+
+​	
+
+**07_本地应用-图片切换.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="mask">
+      <div class="center">
+        <h2 class="title">
+          <img src="" alt="暂无图片" />
+        </h2>
+        <!-- 图片 -->
+        <!-- <img :src="img/00.JPG" alt="" /> -->
+        <img :src="imgArr[index]" alt="" />
+        <!-- 左箭头 v-show -->
+        <!-- <a
+          href="javascript:void(0)"
+          v-show="index!=0"
+          @click="prev"
+          class="left"
+        >
+          <img src="img/prev.jpg" alt="" />
+        </a> -->
+
+        <!-- 左箭头 v-if -->
+        <a href="javascript:void(0)" v-if="index!=0" @click="prev" class="left">
+          <img src="img/prev.jpg" alt="" />
+        </a>
+
+        <!-- 右箭头 -->
+        <a
+          href="javascript:void(0)"
+          v-show="index<imgArr.length-1"
+          @click="next"
+          class="right"
+        >
+          <img src="img/next.jpg" alt="" />
+        </a>
+      </div>
+    </div>
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+      var app = new Vue({
+        el: "#mask",
+        data: {
+          imgArr: ["./img/00.jpg", "./img/01.jpg", "./img/02.jpg"],
+          index: 0,
+        },
+        methods: {
+          prev: function () {
+            this.index--;
+          },
+          next: function () {
+            this.index++;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
+
+```
+
+​	
+
+![image-20220829131752426](Vue.assets/image-20220829131752426.png)
+
+​	
+
+​	
+
+# 15 本地应用 v-for指令
+
