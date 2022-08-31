@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <!-- View 层 -->
+    <div id="root">
+      <!-- v-model="todoValue"跟input的value属性绑定 -->
+      <input type="text" v-model="todoValue" />
+      <button v-on:click="handleBtnClick">提交</button>
+      <ul>
+        <!-- <li>第一课的内容</li> -->
+        <!-- <li v-for="item in list">{{item}}</li> -->
+        <todo-item v-bind:content="item" v-for="item in list"></todo-item>
+      </ul>
+    </div>
+
+    <script>
+      // 全局组件的使用
+      // Vue.component("TodoItem", {
+      //   props: ["content"],
+      //   // template: "<li>todo item</li>",  //这样写死了 每一项都是同样内容：todo item
+      //   // template: "<li>" + this.content + "</li>",  //这么写会有问题 要用差值表达式
+      //   template: "<li>{{content}}</li>",
+      // });
+
+      //局部组件的使用
+      var TodoItem = {
+        props: ["content"],
+        template: "<li>{{content}}</li>",
+      };
+
+      // Model 层
+      //components 组件的意思
+      var app = new Vue({
+        el: "#root",
+        components: {
+          TodoItem: TodoItem,
+        },
+        data: {
+          //   list: ["第一课的内容", "第二课的内容", "33333"],
+          list: [],
+          todoValue: "",
+        },
+        methods: {
+          handleBtnClick: function () {
+            // alert("click");
+            // alert(this.todoValue);
+            this.list.push(this.todoValue);
+            this.todoValue = "";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
