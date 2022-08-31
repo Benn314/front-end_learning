@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-model="inputValue"跟input的value属性绑定 -->
+      <input type="text" v-model="inputValue" />
+      <button v-on:click="handleBtnClick">提交</button>
+      <ul>
+        <!-- <li>第一课的内容</li> -->
+        <li v-for="item in list">{{item}}</li>
+      </ul>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          //   list: ["第一课的内容", "第二课的内容", "33333"],
+          list: [],
+          inputValue: "",
+        },
+        methods: {
+          handleBtnClick: function () {
+            // alert("click");
+            // alert(this.inputValue);
+            this.list.push(this.inputValue);
+            this.inputValue = "";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
