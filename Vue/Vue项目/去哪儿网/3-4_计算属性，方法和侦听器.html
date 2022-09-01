@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>计算属性，方法和侦听器</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- computed -->
+    <div id="app">{{fullName}} {{age}}</div>
+
+    <!-- methods 因为是fullName后面需要加()-->
+    <!-- <div id="app">{{fullName()}} {{age}}</div> -->
+
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          firstName: "Dell",
+          lastName: "Lee",
+          fullName: "Dell Lee",
+          age: 28,
+        },
+        /*
+            watch 监听器
+            用watch也能实现相关属性值改变
+            fullName才随之改变
+
+            但当watch、methods和computed
+            三者都能实现其功能时 优先选computed
+            因为语法既简洁、性能又高
+        */
+        watch: {
+          firstName: function () {
+            console.log("执行一次");
+            this.fullName = this.firstName + " " + this.lastName;
+          },
+          lastName: function () {
+            console.log("执行一次");
+            this.fullName = this.firstName + " " + this.lastName;
+          },
+        },
+
+        // 方法
+        // methods: {
+        //   /*
+        //         fullName写在methods方法里也行
+        //         但不如在computed中
+        //         因为页面只要重新渲染（例如改变age值）
+        //         fullName就会重新被执行一次
+        //     */
+        //   fullName: function () {
+        //     console.log("执行一次");
+        //     return this.firstName + " " + this.lastName;
+        //   },
+        // },
+
+        // 计算属性
+        // computed: {
+        //   fullName: function () {
+        //     console.log("执行一次");
+        //     // 计算属性：当computed依赖的属性值发生变化时 function会重新调用一次
+        //     return this.firstName + " " + this.lastName;
+        //   },
+        // },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue中的样式绑定</title>
+    <script src="vue.js"></script>
+    <style>
+      .activated {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <div @click="handleDivClick" :class="{activated: isActivated}"> -->
+      <div @click="handleDivClick" :class="[activated,activatedOne]">
+        Hello World
+      </div>
+    </div>
+
+    <div id="app1">
+      <!-- <div :style="styleObj" @click="handleDivClick">HELLO WORLD</div> -->
+      <!-- :style里是js表达式 要写fontSize  font-size是css的样式 -->
+      <div :style="[styleObj,{fontSize:'20px'}]" @click="handleDivClick">
+        HELLO WORLD
+      </div>
+      <!-- 无论通过 :class 或 :style 最后都是通过对象或数组来绑定 -->
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            isActivated: false,
+            activated: "",
+            activatedOne: "activated-one",
+          };
+        },
+        methods: {
+          handleDivClick: function () {
+            // this.isActivated = true;
+            // this.isActivated = !this.isActivated;
+            // this.activated = "activated";
+            // if (this.activated === "activated") {
+            //   this.activated = "";
+            // } else {
+            //   this.activated = "activated";
+            // }
+            this.activated = this.activated === "activated" ? "" : "activated";
+          },
+        },
+      });
+
+      var vm1 = new Vue({
+        el: "#app1",
+        data: {
+          styleObj: {
+            color: "black",
+          },
+        },
+        methods: {
+          handleDivClick: function () {
+            this.styleObj.color =
+              this.styleObj.color === "black" ? "red" : "black";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue中的条件渲染</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 
+            v-if 和 v-else 后面不添加key值的话
+            vue会尽量复用页面上的DOM
+            所以切换显示div input标签里的value未变
+            因为是同一个input
+
+            设置了key值后 标签唯一 如果两个标签key值不一样
+            vue便不会去尝试复用以前的这个input
+            虚拟DOM的知识
+         -->
+      <div v-if="show">用户名: <input type="text" key="username" /></div>
+      <div v-else="show">邮箱名: <input type="text" key="password" /></div>
+
+      <!-- 也是要连在一起写 不能被其他标签所分隔 -->
+      <!-- <div v-if="show==='a'">This is A</div>
+      <div v-else-if="show==='b'">This is B</div>
+      <div v-else>This is others</div> -->
+
+      <!-- 
+            注意 v-if 和 v-else 要紧贴在一起使用
+            否则程序无法正确解析 会报错
+          -->
+      <!-- <div v-if="show">{{message}}</div>
+      <div v-else>Bye World</div> -->
+
+      <!-- <div v-if="show" data-test="v-if">{{message}}</div> -->
+      <!-- 频繁切换显示隐藏用 v-show 因为它是调用了style的display:none 没有像v-if直接删除 -->
+      <!-- <div v-show="show" data-test="v-show">{{message}}</div> -->
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          show: false,
+          message: "Hello World",
+        },
+      });
+    </script>
+  </body>
+</html>

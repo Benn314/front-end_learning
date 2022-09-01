@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模板语法</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- {{}} 差值表达式也是js表达式 -->
+      <div>{{name + ' Lee'}}</div>
+      <div v-text="name+ ' Lee'"></div>
+      <div v-html="name+ ' Lee'"></div>
+      <!-- v-text原封不动输出js表达式
+            而v-html会解析js表达式里的标签效果 -->
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            name: "<strong> Dell </strong>",
+          };
+        },
+      });
+    </script>
+  </body>
+</html>
