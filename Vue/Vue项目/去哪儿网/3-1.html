@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue实例</title>
+    <!-- 两种引入都可以 但是文件必须为超链接形式-->
+    <!-- <script src="vue.js"></script> -->
+    <script src="./vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div @click="handleClick">{{message}}</div>
+      <item></item>
+    </div>
+
+    <script>
+      Vue.component("item", {
+        template: "<div>hello world1</div>",
+      });
+
+      var vm = new Vue({
+        el: "#root",
+        data: {
+          message: "hello world",
+        },
+        methods: {
+          handleClick: function () {
+            alert("hello");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
