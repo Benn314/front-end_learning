@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4-1 组件使用的细节点</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <!-- 解决标签渲染中会出现的小bug -->
+
+    <div id="root">
+      <!-- <table>
+        <tbody> -->
+      <!-- <tr>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>3</td>
+          </tr> -->
+
+      <!-- 
+            这便是一个正常的子组件的使用 
+            但这样tbody里没有tr会有bug，不知原因请自行google
+            tbody没检索到tr标签 会将其里面的标签移到外面
+            通过is属性来解决此bug
+          -->
+      <!-- <row></row>
+          <row></row>
+          <row></row> -->
+
+      <!-- 规定 tbody里面要有tr 否则会有bug  模板会在tbody外面 -->
+      <!-- <tr is="row"></tr>
+          <tr is="row"></tr>
+          <tr is="row"></tr> -->
+      <!-- 
+            知识点一：使用is属性解决标签渲染中会出现的小bug
+            可以用 is属性来解决 用is表示 这里虽然是一个tr
+            但它实际上是 row这么一个组件 这么写既能保证
+            tr里面即是我们的组件 又能让它符合H5的这么一个规范
+            这样就不会有bug啦
+           -->
+
+      <!-- 
+            而使用ul组件时，建议也不要直接row
+            有时在浏览器上也可能会有问题
+            ul支持的是li标签 在li中通过用is='row'来代替row组件
+            ol(里是 li)和select(里是 option)标签中也一样
+
+            使用is属性解决模板标签上出现bug的问题
+            -->
+      <!-- <ul>
+            <ol></ol>
+          </ul> -->
+      <!-- <ul is="row1"></ul> -->
+
+      <!-- <select name="" id="">
+            <option value="" ></option>
+          </select> -->
+      <!-- <select name="" id="" is="row2"></select> -->
+      <!-- </tbody>
+      </table> -->
+
+      <!-- 有一些复杂情况需要在Vue里操作DOM 可以用ref引入的形式来操作DOM -->
+      <!-- <div ref="hello" @click="handleClick">hello world</div> -->
+      <!-- 前面获取的是标签的dom元素 如果换成组件呢？(例如item) -->
+      <!-- <item ref="hello" @click="handleClick">hello world</item> -->
+
+      <!-- 知识点三：引用ref操作dom元素以及ref在标签和组件中引用的区别 -->
+      <!-- ref在标签上引用时 获取是标签的dom元素 
+            而在组件上引用时 获取的是该子组件的引用 -->
+      <counter ref="one" @change="handleChange"></counter>
+      <counter ref="two" @change="handleChange"></counter>
+      <div>{{total}}</div>
+    </div>
+
+    <script>
+      Vue.component("row", {
+        /* 
+            知识点二：component中的data属性必须是带有返回值的函数
+            在Vue实例中 将data定义成一个对象没有问题
+            但在全局Vue component中 data必须是函数
+            且带有return 返回值
+
+            这样设计是好处是子组件之间没有共享一套数据
+            可以传入不同的数据 且不相互影响
+        */
+        data: function () {
+          return {
+            content: "this is a row",
+            number: 0,
+          };
+        },
+        // template: "<tr><td>this is a row</td></tr>",
+        // template: "<tr><td>{{content}}</td></tr>",
+      });
+
+      //   Vue.component("row1", {
+      //     template: "<ul><ol>this is a row</ol></ul>",
+      //   });
+      //   Vue.component("row2", {
+      //     template: "<select><option>this is a row</option></select>",
+      //   });
+
+      Vue.component("counter", {
+        template: '<div @click="handleClick">{{number}}</div>',
+        data: function () {
+          return {
+            number: 0,
+          };
+        },
+        methods: {
+          handleClick: function () {
+            this.number++;
+            this.$emit("change");
+          },
+        },
+      });
+
+      var vm = new Vue({
+        el: "#root",
+        data: {
+          total: 0,
+        },
+        methods: {
+          handleClick: function () {
+            // alert("click");
+            console.log(this.$refs.hello); //获取该组件的dom节点
+            console.log(this.$refs.hello.innerHTML); //获取该组件的dom节点的内容
+          },
+          handleChange: function () {
+            // alert("change");
+            // console.log(this.$refs.one.number);
+            // console.log(this.$refs.two.number);
+            this.total = this.$refs.one.number + this.$refs.two.number;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
