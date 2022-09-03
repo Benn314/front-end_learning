@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4-4 给组件绑定原生事件</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- 
+        没加native是监听自定义事件 加了是监听原生事件 父组件的 
+
+        直接在@click后面加 .native 表示我监听的不是自定义事件
+        （监听自定义事件需要通过子组件的两层传递）而直接监听原生事件则不用
+      -->
+      <child @click.native="handleClick"></child>
+    </div>
+
+    <script>
+      Vue.component("child", {
+        template: "<div>Child</div>",
+        // template: "<div @click='handleChildClick'>Child</div>",
+        // methods: {
+        //   handleChildClick: function () {
+        //     // alert("child click");
+        //     this.$emit("click");
+        //     /*
+        //     父组件无法直接自定义事件的触发 子组件可以
+        //     父组件需要通过$emit监听事件来触发事件
+
+        //     就想监听原生的事件 需要通过子组件两层的传递太麻烦 我们可以这么做
+        //     */
+        //   },
+        // },
+      });
+
+      var vm = new Vue({
+        el: "#root",
+        methods: {
+          handleClick: function () {
+            alert("click");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

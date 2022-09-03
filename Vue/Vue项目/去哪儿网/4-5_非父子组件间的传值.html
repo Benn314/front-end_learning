@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4-5 非父子组件间的传值(Bus/总线/发布订阅模式/观察者模式)</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <child content="Dell"></child>
+      <child content="Lee"></child>
+      <child content="Lee1"></child>
+    </div>
+
+    <script>
+      // bus写在Vue的原型上 每一个Vue实例都会有一个bus
+      Vue.prototype.bus = new Vue();
+
+      Vue.component("child", {
+        /* 
+            因为Vue的单向数据流原因
+            我们需要对父组件传递过来的数据进行拷贝
+            才能修改其值 否则会Vue Warn
+        */
+        data: function () {
+          return {
+            selfContent: this.content,
+          };
+        },
+        props: {
+          content: String,
+        },
+        template: "<div @click='handleClick'>{{selfContent}}</div>",
+        methods: {
+          handleClick: function () {
+            // alert(this.content);
+            this.bus.$emit("change", this.selfContent);
+          },
+        },
+        // 生命周期钩子
+        mounted: function () {
+          var this_ = this;
+          // 监听到change 触发事件
+          // 这里一次点击会触发两次的原因是有两个模板标签的原型拥有bus属性 所以会导致两次触发事件
+          // 如果是三个拥有bus属性的标签就触发三次
+          this.bus.$on("change", function (msg) {
+            // alert(msg);
+            // this.content = msg;  //content无法被修改
+            // 原因：这里的content值没有发生变化是因为this作用域因为事件触发发生了改变
+            this_.selfContent = msg;
+
+            // 不解的是this作用域怎么发生改变，发生了怎么的改变
+            // 这里我们来尝试调试进行查看
+            /* 
+                目前的理解：
+                这里比如我点击了content="Dell"的组件 mounted里的this作用域就
+                变成全部指向Dell的作用域吗，所以其他组件content值没法得到修改？
+
+                这个本质属于组件传值的问题，还是不要在这个阶段去纠结这个东西
+                现在解决没有很多营养，脑子听过这个名词+基本的代码量就好了
+                我个人很讨厌这种bus通信
+                代码可维护性太差了
+                一般组件通信如果写成这种了，多半是组件设计就有问题
+
+                所以孙传爷实际开发是不允许的吗 传递也只能通过emit一层层传递？(效率低？)
+                    允许 前提是你设计的没问题
+            */
+            console.log(this_);
+            console.log(this);
+          });
+        },
+      });
+
+      var vm = new Vue({
+        el: "#root",
+      });
+    </script>
+  </body>
+</html>

@@ -17,8 +17,9 @@
             因为加了: count属性值便是一个js表达式了 不是字符串
         -->
       <!-- count值改成1和2 页面就会显示1和2 -->
-      <counter :count="1"></counter>
-      <counter :count="2"></counter>
+      <counter :count="1" @inc="handleIncrease"></counter>
+      <counter :count="2" @inc="handleIncrease"></counter>
+      <div>{{total}}</div>
     </div>
     <script>
       var counter = {
@@ -42,15 +43,36 @@
         template: "<div @click='handleClick'>{{number}}</div>",
         methods: {
           handleClick: function () {
-            this.number++;
+            // this.number++;
+            this.number = this.number + 2;
+
+            // $emit 向外触发change事件
+            // this.$emit("change", 2);
+            this.$emit("inc", 2);
           },
         },
       };
 
       var vm = new Vue({
         el: "#root",
+        data: {
+          total: 5,
+        },
         components: {
           counter: counter, //这里不太理解
+        },
+        methods: {
+          handleIncrease: function (step) {
+            // alert("inc");
+            // alert(step);
+            this.total += step;
+            /* 
+              父组件通过属性的形式向子组件进行传值
+              子组件通过事件触发的方式向父组件进行传值
+
+              这里的emit传递的参数可以被handleIncrease的参数接收
+            */
+          },
         },
       });
     </script>

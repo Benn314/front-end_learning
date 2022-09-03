@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4-3 组件参数校验与非props特性</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- <child :content="123"></child> -->
+      <!-- <child></child> -->
+
+      <!-- content只有4位 校验失败 报Vue Warn -->
+      <child content="hell"></child>
+    </div>
+
+    <script>
+      Vue.component("child", {
+        // props: ["content"], //没有约束的写法
+        // 父组件传递 子组件声明进行接收 这是props特性
+        // props: {
+        //   //   content: String, //有约束可以写成对象进行约束
+        //   //   content: Number, //要求传递过来是数字就这么写
+        //   //   content: [Number, String], //这么写的意思是子组件接收的数据类型要么是数字要么是字符串
+
+        //   //也可以通过对象的形式来约束
+        //   content: {
+        //     type: String,
+        //     // required: false, //required 表示是否一定要接收属性值
+        //     // default: "default value", //当标签的innerHTML没有内容时 默认使用default的值
+        //     // // validator 校验器
+        //     // validator: function (value) {
+        //     //   return value.length > 5;
+        //     // },
+        //   },
+        // },
+        // template: "<div>{{content}}</div>",
+        template: "<div>hello</div>",
+
+        /* 
+            非props的特性
+            1. 父组件传递 子组件用插值表达式接收不到 因为未声明
+            2.父组件设置的属性(例如这里的 content) 在页面dom渲染时会渲染到页面上
+        */
+      });
+
+      var vm = new Vue({
+        el: "#root",
+      });
+    </script>
+  </body>
+</html>
