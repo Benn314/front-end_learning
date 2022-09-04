@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>13 ES6 对象初始化简写及案例分析</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.js"></script>
+  </head>
+  <body>
+    <form action="">
+      <p>账号：<input type="text" id="account" /></p>
+      <p>密码：<input type="text" id="account" /></p>
+      <p><input type="button" value="登录" id="loginbtn" /></p>
+    </form>
+    <script>
+      let info = {
+        title: "广东学相伴",
+        link: "https://www.kuangstudey.com",
+        go: function () {
+          console.log("我骑着小蓝车来公司上班");
+        },
+      };
+
+      //es6简写
+      var title = "广东学相伴";
+      var link = "https://www.kuangstudey.com";
+      let info2 = {
+        title,
+        link,
+        go() {
+          console.log("我骑着小蓝车来公司上班");
+        },
+      };
+
+      //   console.log(info2);
+      //   console.log(info2.title);
+      //   console.log(info2.link);
+      //   info2.go();
+    </script>
+
+    <script>
+      // document.getElementById("loginbtn").onclick=function(){};
+      //   js中的 $ 是 document.getElementById 的简写
+      $("#loginbtn").on("click", function () {
+        var account = $("#account").val();
+        var password = $("password").val();
+        // 对象简写的应用场景
+        // var params={account:account,password:password};
+        var params = { account, password }; // 属性名和属性值相同 属性值可以省略不写 ES6特性
+        // 执行异步请求
+        $.ajax({
+          type: "post",
+          // data:{
+          //     account:account,
+          //     password:password,
+          // },
+          url: "xxx",
+          data: params,
+          //   success: function () {},
+          success() {}, //新语法里 function可以去掉
+        });
+      });
+    </script>
+  </body>
+</html>

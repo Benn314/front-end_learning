@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>49-箭头函数</title>
+  </head>
+  <body>
+    <script>
+      //箭头函数 - 重点（在未来的项目开发中：比如小程序，uniapp，一些常见的脚手架大量使用）
+      var sum = function (a, b) {
+        return a + b;
+      };
+
+      // 箭头函数 - 改进1
+      var sum = (a, b) => {
+        return a + b;
+      };
+
+      // 箭头函数 - 改进2
+      var sum = (a, b) => a + b;
+
+      /* 
+            通过上面的例子你找到什么规律
+                1：去掉function
+                2：在括号后面加箭头
+                3: 如果逻辑代码仅有return可以直接省去 （如果你是逻辑体 你就不能省略）比如sum2
+                4: 如果参数只有一个 可以把括号也省去（如果有多个参数就不能省去）
+
+      */
+      var sum2 = (a, b) => {
+        var num = a + b;
+        return num;
+      };
+
+      //   var sum = (a, b) => a + b;
+      var arr = [1, 2, 3, 4, 5, 6];
+      //   原始写法
+      //   var newarr = arr.map(function (obj) {
+      //     return obj * 2;
+      //   });
+
+      // 箭头函数
+      var newarr = arr.map((obj) => obj * 2); //obj的括号可以省去不写
+      console.log(newarr);
+
+      //   也要懂得如何还原
+      var minu = (a, b, c) => a - b - c;
+      //   var result = minu(5, 2, 1);
+      //   console.log(result);
+      var minus = function (a, b, c) {
+        return a - b - c;
+      };
+    </script>
+  </body>
+</html>

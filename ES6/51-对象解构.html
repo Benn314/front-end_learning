@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>51-对象解构</title>
+  </head>
+  <body>
+    <script>
+      /*
+            对象是key:value存在 获取对象属性和方法有两种
+            1: 通过 .
+            2: 通过 []
+        */
+      var title = "广东学相伴";
+      var link = "https://www.kuangstudey.com";
+      let info2 = {
+        title,
+        link,
+        go() {
+          console.log("我骑着小蓝车来公司上班");
+        },
+      };
+
+      // 通过.的方式
+      console.log(info2.title);
+      console.log(info2.link);
+      info2.go();
+
+      //通过[]的方式
+      console.log(info2["title"]);
+      console.log(info2["link"]);
+      info2["go"]();
+
+      // es6对象结构 - 其实就快速获取属性和方法的方式一种形式
+      var { title, link, go } = info2;
+      // 还原代码
+      // 快速把下面两行代码糅合成上面一行代码
+      var title = info2.title;
+      var link = info2.link;
+      console.log(title, link);
+      go();
+
+      /* 
+        js 为什么对象取值要提供两种方式?
+        总结： 点和中括号方式的区别
+            1.点方法后面跟的必须是一个指定的属性名称，中括号里面可以是变量
+            2.中括号里面的属性可以是数字，点方法后面的属性名不能是数字
+            3.动态为对象添加属性是，只能用中括号
+      */
+    </script>
+  </body>
+</html>

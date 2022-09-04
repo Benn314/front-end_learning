@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4-6 Vue中的插槽(slot)</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- <child content="<p>Dell</p>"></child> -->
+      <!-- 
+        而像我们传递的标签很多时，代码会变得难以阅读 而且下面圈出的div标签不是我们想要的
+        这时我们便可以通过插槽来解决
+       -->
+      <!-- <child
+        content="<p>Dell</p><p>Dell</p><p>Dell</p><p>Dell</p><p>Dell</p>
+        <p>Dell</p><p>Dell</p>"
+      ></child> -->
+
+      <body-content>
+        <!-- <h1>Dell</h1> -->
+        <!-- 
+            这里都是slot插槽的内容
+            这里一个<slot></slot>便会显示一遍header footer
+
+            给他们分别设置唯一标识便可以单独使用了
+
+            这里如果没有name为header的插槽 就会使用默认插槽 可以使其显示默认值
+         -->
+        <!-- <div class="header" slot="header">header</div> -->
+        <div class="footer" slot="footer">footer</div>
+      </body-content>
+    </div>
+
+    <script>
+      Vue.component("body-content", {
+        props: ["content"],
+        // 这么写有一个问题就是多出了一个div标签 而换成template也不行 该行标签直接消失了
+        // template: '<div><p>hello</p><div v-html="this.content"></div></div>',
+
+        /* 
+            使用slot插槽标签便可以使用父组件传递过来的数据了
+
+            所以通过插槽 我们可以更方便地向子组件传递dom元素
+            使用插槽也非常简单 使用slot标签即可
+            而slot也有一些新特性 我们可以在slot写默认的值
+
+            如果child模板标签里没有内容 slot标签就会显示默认内容
+        */
+        // template: "<div><p>hello</p><slot>默认内容</slot></div>",
+        template:
+          // 所以这里的header footer会显示两遍
+          //   "<div><slot></slot><div class='content'>content</div><slot></slot></div>",
+          // 用name属性接收一下slot标识
+          //   "<div><slot name='header'><h1>default header</h1></slot><div class='content'>content</div><slot name='footer'></slot></div>",
+          //   用模板字符串 ` (反引号) 可以多行编写标签
+          `<div>
+            <slot name='header'>
+                <h1>default header</h1>
+            </slot>
+            <div class='content'>
+                content
+            </div>
+            <slot name='footer'></slot>
+        </div>`,
+      });
+
+      var vm = new Vue({
+        el: "#root",
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>53-数组map</title>
+  </head>
+  <body>
+    <script>
+      // 要对arr数组每个元素*2
+      let arr = [1, 2, 3, 4, 5, 6, 7];
+      // 传统的方式
+      let newarr = [];
+      for (var i = 0; i < arr.length; i++) {
+        newarr.push(arr[i] * 2);
+      }
+      console.log(newarr);
+
+      // map -- 自带的循环 并且会把处理的值回填对应的位置
+      //   var newarr2 = arr.map(function (ele) {
+      //     return ele * 2;
+      //   });
+      //   var newarr2 = arr.map((ele) => ele * 2);
+      //   console.log(newarr2);
+      //   console.log(newarr); // 自身数组会被影响 发生改变
+
+      // map处理对象的数据
+      var users = [
+        { age: 10, name: "小学" },
+        { age: 12, name: "xiao'xiang" },
+        { age: 15, name: "小班" },
+      ];
+      //   var newusers = users.map(function (ele) {
+      //     ele.age += 1;
+      //     return ele;
+      //   });
+
+      //   这就是最简便的写法
+      var newusers = users.map((ele) => {
+        ele.age += 1;
+        ele.check = true; //这样可以为每一个元素对象添加一个check属性
+        return ele;
+      });
+      console.log(newusers);
+      /* 
+        map会遍历数组 然后将元素处理完回填到原来位置
+        可以打印输出一下arr看原数组有没有被修改
+      */
+    </script>
+  </body>
+</html>
