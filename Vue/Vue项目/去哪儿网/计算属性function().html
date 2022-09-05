@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="demo">{{ fullName }}</div>
+
+    <script>
+      /* 
+            在 Vue 中，computed 的属性可以被视为是 data 一样，可以读取和设值，
+            因此在 computed 中可以分成 getter（读取） 和 setter（设值），
+            一般情况下是没有 setter 的，computed 预设只有 getter ，也就是只能读取，不能改变设值。
+            vue.js计算属性默认只有 getter，因为是默认值所以我们也常常省略不写，如下代码：
+        */
+      var vm = new Vue({
+        el: "#demo",
+        data: {
+          firstName: "Foo",
+          lastName: "Bar",
+        },
+        // computed: {
+        //   fullName: function () {
+        //     return this.firstName + " " + this.lastName;
+        //   },
+        // },
+
+        // 这样写也是可以的 省略function和get(){} 没有报错
+        computed: {
+          fullName() {
+            return this.firstName + " " + this.lastName;
+          },
+        },
+
+        // computed: {
+        //   fullName: {
+        //     get() {
+        //       return this.firstName + " " + this.lastName;
+        //     },
+        //   },
+        // },
+      });
+    </script>
+  </body>
+</html>
