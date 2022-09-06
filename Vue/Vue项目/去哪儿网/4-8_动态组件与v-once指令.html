@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>动态组件与v-once指令</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- 除了刚才那种方式（传统方式） 我们还可以用动态组件来实现 -->
+      <!-- <component :is="type"></component> -->
+
+      <!-- 
+        传统方式 以视频为例 点击一次button 底层需要销毁当前的组件 然后创建新的组件并显示
+        当我们来回点击时 这是需要消耗一定的性能的 如果我们每一次切换显示的内容都一样
+        便可以为我们来回切换的组件加一个v-once指令
+       -->
+      <child-one v-if="type === 'child-one'"></child-one>
+      <child-two v-if="type === 'child-two'"></child-two>
+      <button @click="handleBtnClick">change</button>
+    </div>
+
+    <script>
+      Vue.component("child-one", {
+        /* 
+            有了v-once指令 点击change直接就放到内存里了
+            而切换回来时 并不需要重新创建一个child-one组件
+            直接从内存提取出来 它的性能会更高一些
+
+            其实就是空间换时间
+
+            所以我们知道 在vue中 通过v-once指令可以有效提高一些
+            静态内容的展示效率
+        */
+        template: "<div v-once>child-one</div>",
+      });
+      Vue.component("child-two", {
+        template: "<div v-once>child-two</div>",
+      });
+
+      var vm = new Vue({
+        el: "#root",
+        data: {
+          type: "child-one",
+        },
+        methods: {
+          handleBtnClick: function () {
+            this.type = this.type === "child-one" ? "child-two" : "child-one";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

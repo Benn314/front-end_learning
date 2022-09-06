@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5-3 在Vue中同时使用过渡和动画</title>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="animate.css" />
+
+    <!-- animate.css库跟我们自己用@keyframes没区别它只是封装起来而已 -->
+
+    <style>
+      .fade-enter,
+      .fade-leave-to {
+        opacity: 0;
+      }
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 安装 Animate.css 后，将类animate__animated与任何动画名称一起添加到元素（不要忘记animate__前缀！）： -->
+    <h1 class="animate__animated animate__bounce">An animated element</h1>
+    <div id="root">
+      <!-- 因为过渡动画和animate.css动画的时长不同，有时候vue自己也搞不明白
+            我们可以设置一个type来规定以哪一个动画时长为准 
+
+            当然我们也可以自定义动画时长 用自定义属性duration 单位是ms 毫秒
+            修改一下时长 可以到控制台检验样式 ctrl shift C选中元素查看网页源代码
+
+            也可以自定义入场动画和出场动画持续的时间 enter是入场动画 leave是出场动画
+            :duration="5000"    //默认是出场动画
+            :duration="{enter:5000,leave:10000}"
+        -->
+      <transition
+        :duration="{enter:5000,leave:10000}"
+        type="transition"
+        name="fade"
+        appear
+        enter-active-class="animate__animated animate__flip fade-enter-active"
+        leave-active-class="animate__animated animate__flipInY fade-leave-active"
+        appear-active-class="animate__animated animate__flip"
+      >
+        <div v-if="show">hello world</div>
+      </transition>
+
+      <button @click="handleClick">flip</button>
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el: "#root",
+        data: {
+          show: true,
+        },
+        methods: {
+          handleClick() {
+            this.show = !this.show;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

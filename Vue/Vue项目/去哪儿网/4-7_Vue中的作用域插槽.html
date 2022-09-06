@@ -7,5 +7,39 @@
     <title>4-7 Vue中的作用域插槽</title>
     <script src="vue.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div id="root">
+      <child>
+        <!-- 作用域插槽 template和slot固定搭配 -->
+        <template slot-scope="props">
+          <!-- props 可以使h1这个作用域插槽接收来自template的属性值 -->
+          <!-- <li>{{props.item}}</li> -->
+          <h1>{{props.item}}</h1>
+        </template>
+      </child>
+    </div>
+
+    <script>
+      Vue.component("child", {
+        data() {
+          return {
+            list: [1, 2, 3, 4],
+          };
+        },
+        // 内部只负责循环 传递什么参数/值由外部决定
+        template: `<div>
+                      <ul>
+                        <slot 
+                            v-for="item of list"
+                            :item=item
+                          ></slot>
+                      </ul>
+                   </div>`,
+      });
+
+      var vm = new Vue({
+        el: "#root",
+      });
+    </script>
+  </body>
 </html>

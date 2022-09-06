@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5-1 Vue中CSS动画原理</title>
+    <script src="vue.js"></script>
+    <style>
+      /* .fade-enter {
+        opacity: 0;
+      }
+      .fade-enter-active {
+        transition: opacity 1s;
+      } */
+      /* 
+      这样写动画也是可以的 默认前缀是v-  变成fade- 
+      只是我们给它起了个 name="fade" 
+      */
+      /* 显示动画 */
+      /* .v-enter {
+        opacity: 0;
+      }
+      .v-enter-active {
+        transition: opacity 1s;
+      } */
+      /* 隐藏动画 */
+      /* 
+        opacity（v-leave 开始）本来是1，通过v-leave-to（结果）设置为0
+        v-leave-active在过渡过程一直存在并监听 监听到opacity从1变为0
+        那么会有3s的过渡效果 
+      */
+      /* .v-leave-to {
+        opacity: 0;
+      }
+      .v-leave-active {
+        transition: opacity 1s;
+      } */
+      /* 可以对样式进行简写 */
+      .v-enter,
+      .v-leave-to {
+        opacity: 0;
+      }
+      .v-enter-active,
+      .v-leave-active {
+        transition: opacity 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- transition 它包裹的动画会有一个过渡效果 -->
+      <!-- <transition name="fade"> -->
+      <!-- 
+            然后这种是对transition包裹的所有标签都生效
+            如果只想对其中的某一个标签进行动画效果的话 
+            可以加一个name属性进行唯一身份标识 
+            再把"前缀v-" 换成"name值-" 就ok了
+         -->
+      <transition>
+        <!-- 这里用 v-show 还是 v-if 都可以 甚至可以在这里写动态组件
+             动态组件也会有动画效果 -->
+        <div v-if="show">hello world</div>
+      </transition>
+      <button @click="handleClick">切换</button>
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el: "#root",
+        data: {
+          show: true,
+        },
+        methods: {
+          handleClick() {
+            this.show = !this.show;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

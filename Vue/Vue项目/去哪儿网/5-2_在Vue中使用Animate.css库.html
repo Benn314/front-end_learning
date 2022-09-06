@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5-2_在Vue中使用Animate.css库</title>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="animate.css" />
+
+    <!-- 使用 CDN 将其直接添加到您的网页： -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    /> -->
+
+    <style>
+      @keyframes bounce-in {
+        0% {
+          transform: scale(0);
+        }
+        50% {
+          transform: scale(1.5);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .fade1-enter-active {
+        transform-origin: left center;
+        animation: bounce-in 1.5s;
+      }
+      .fade1-leave-active {
+        /* reverse 反转 反向执行
+      不加这个 动画运行可能有点问题 显示不出来  */
+        transform-origin: left center;
+        animation: bounce-in 1.5s reverse;
+      }
+      /* .active {
+        transform-origin: left center;
+        animation: bounce-in 1.5s;
+      }
+      .leave {
+        /* reverse 反转 反向执行 */
+      /* 不加这个 动画运行可能有点问题 显示不出来 
+        transform-origin: left center;
+        animation: bounce-in 1.5s reverse;
+      } */
+    </style>
+  </head>
+  <body>
+    <!-- 安装 Animate.css 后，将类animate__animated与任何动画名称一起添加到元素（不要忘记animate__前缀！）： -->
+    <h1 class="animate__animated animate__bounce">An animated element</h1>
+    <div id="root">
+      <!-- 可以这么命名 引入animate.css 在transition添加enter-active-class -->
+      <!-- 
+        enter-active-class="active"
+        leave-active-class="leave"
+        跟上面style样式进行关联
+       -->
+      <!-- <transition
+        name="fade"
+        enter-active-class="active"
+        leave-active-class="leave"
+      > -->
+      <!-- 
+            使用animate.css这个库 首先要使用自定义的属性enter/leave-active-class
+            第二 class类必须包含animated这个类 后面跟动画效果名
+         -->
+      <transition
+        name="fade"
+        enter-active-class="animate__animated animate__flip"
+        leave-active-class="animate__animated animate__flipInY"
+      >
+        <div v-if="show">hello world</div>
+      </transition>
+
+      <transition name="fade1">
+        <div v-if="show1">hello world</div>
+      </transition>
+
+      <button @click="handleClick">flip</button>
+      <button @click="handleClick1">bounce</button>
+    </div>
+
+    <script>
+      var vm = new Vue({
+        el: "#root",
+        data: {
+          show: true,
+          show1: true,
+        },
+        methods: {
+          handleClick() {
+            this.show = !this.show;
+          },
+          handleClick1() {
+            this.show1 = !this.show1;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
