@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5-5 Vue中多个元素或组件的过渡</title>
+    <script src="vue.js"></script>
+    <!-- <script src="velocity.js"></script> -->
+    <style>
+      .v-enter,
+      .v-leave-to {
+        opacity: 0;
+      }
+      .v-enter-active,
+      .v-leave-active {
+        transition: opacity 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- <transition mode="in-out"> -->
+      <transition mode="out-in">
+        <!-- 
+            transition中有两个div 因为vue会复用dom 导致多个div 动画效果失效了
+
+            让vue不去复用dom 在属性中添加key值就行了 
+
+            vue在transition中提供了mode 设置多个属性切换的效果
+
+            mode='in-out'   需要显示的元素先显示，后要隐藏的元素再隐藏
+                            先显示后隐藏
+                            可以看成：in是显示 out是隐藏 书写是有先后顺序的
+
+            mode='out-in'   out-in 要隐藏的元素先隐藏，需要展示的元素再进入
+                            小结：先隐藏再显示
+        -->
+        <!-- <div v-if="show" key="hello">Hello World</div>
+        <div v-else key="bye">Bye World</div> -->
+
+        <!-- 
+            多个组件的过渡动画有两种的方法 一种的把个个组件写清楚 采用if-else的结构 
+            第二种的使用动态组件component 在methods中可以使用三元运算符来进行动态组件的切换
+         -->
+
+        <component :is="type"></component>
+        <!-- <child v-if="show"></child>
+        <child-one v-else></child-one> -->
+      </transition>
+      <button @click="handleClick">toggle</button>
+    </div>
+
+    <script>
+      Vue.component("child", {
+        template: "<div>child</div>",
+      });
+      Vue.component("child-one", {
+        template: "<div>child-one</div>",
+      });
+
+      var vm = new Vue({
+        el: "#root",
+        data: {
+          //   show: true,
+          type: "child",
+        },
+        methods: {
+          handleClick() {
+            // this.show = !this.show;
+            this.type = this.type === "child" ? "child-one" : "child";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

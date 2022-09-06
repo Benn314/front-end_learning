@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5-6 Vue中的列表过渡</title>
+    <script src="vue.js"></script>
+    <style>
+      .v-enter,
+      .v-leave-to {
+        opacity: 0;
+      }
+      .v-enter-active,
+      .v-leave-active {
+        transition: opacity 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <transition-group>
+        <!-- <div v-for="(item,index) of list" :key="index"> -->
+        <div v-for="item of list" :key="item.id">
+          <!-- 能不用index做为key值的话尽量不用，会降低性能且可能出现问题 -->
+          {{item.title}}
+        </div>
+      </transition-group>
+      <button @click="handleBtnClick">Add</button>
+    </div>
+
+    <script>
+      var count = 0;
+
+      var vm = new Vue({
+        el: "#root",
+        data: {
+          list: [],
+        },
+        methods: {
+          handleBtnClick() {
+            this.list.push({
+              id: count++,
+              title: "hello world",
+            });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
