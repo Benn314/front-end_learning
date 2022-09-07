@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5-7 Vue中的动画封装</title>
+    <script src="vue.js"></script>
+    <!-- style 可以不用 直接封装样式 -->
+    <!-- <style>
+      .v-enter,
+      .v-leave-to {
+        opacity: 0;
+      }
+      .v-enter-active,
+      .v-leave-active {
+        transition: opacity 1s;
+      }
+    </style> -->
+  </head>
+  <body>
+    <div id="root">
+      <fade :show="show">
+        <div>hello world</div>
+      </fade>
+      <fade :show="show">
+        <h1>hello world</h1>
+      </fade>
+
+      <button @click="handleBtnClick">toggle</button>
+    </div>
+
+    <script>
+      // 通过组件对动画进行封装
+      Vue.component("fade", {
+        props: ["show"],
+        // 这里用v-show会失效 why？
+        template: `
+            <transition @before-enter='handleBeforeEnter'
+                @enter='handleEnter'>
+                <slot v-if='show'></slot>
+            </transition>
+            `,
+        methods: {
+          handleBeforeEnter(el) {
+            el.style.color = "red";
+          },
+          handleEnter(el, done) {
+            setTimeout(() => {
+              el.style.color = "green";
+              done();
+            }, 2000);
+          },
+          //   这种动画封装是比较推荐的一种，外部只需写模板标签
+        },
+      });
+
+      var vm = new Vue({
+        el: "#root",
+        data: {
+          show: false,
+        },
+        methods: {
+          handleBtnClick: function () {
+            this.show = !this.show;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
