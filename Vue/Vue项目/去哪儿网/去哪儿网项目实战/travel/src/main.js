@@ -3,8 +3,13 @@
 import Vue from 'vue'
 import App from './App' // 这里后缀都是没写的 先找App.vue
 import router from './router'
+// eslint-disable-next-line
+import fastClick from 'fastclick'
+import './assets/styles/reset.css'
+import './assets/styles/border.css'
 
 Vue.config.productionTip = false
+fastClick.attach(document.body) // 这样 fastClick就设置完成咯 移动端点击的300ms问题就被解决了
 
 /* eslint-disable no-new */
 new Vue({
