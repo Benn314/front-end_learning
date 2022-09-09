@@ -1,8 +1,8 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App' // 这里后缀都是没写的 先找App.vue
-import router from './router'
+import App from './App' // 这里后缀都是没写的 先找App.vue 这里面有Vue_logo.png显示在根路径
+import router from './router' // router的index.js里导入了Home.vue 所以Vue_logo.png和Home.vue的信息会一起显示在根路径中
 import fastClick from 'fastclick'
 // 不知道为什么style里的这三个css文件运行会报错 找不到dependency依赖
 // 原因 视频源码的css文件的存放路径跟你不同 所谓的dependency依赖 就是没找到这个文件

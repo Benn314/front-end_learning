@@ -1,7 +1,8 @@
 <template>
   <div>
     <div>
-      hello world
+      <!-- hello world -->
+      <home-header></home-header>
     </div>
     <!-- <router-link to="/list" class="home">列表页</router-link> -->
     <!--
@@ -13,8 +14,12 @@
 </template>
 
 <script>
+import HomeHeader from './components/Header'
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: {
+    HomeHeader // ES6的写法
+  }
 }
 </script>
 
