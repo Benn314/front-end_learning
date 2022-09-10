@@ -3,6 +3,7 @@
     <div>
       <!-- hello world -->
       <home-header></home-header>
+      <home-swiper></home-swiper>
     </div>
     <!-- <router-link to="/list" class="home">列表页</router-link> -->
     <!--
@@ -15,10 +16,12 @@
 
 <script>
 import HomeHeader from './components/Header'
+import HomeSwiper from './components/Swiper'
 export default {
   name: 'Home',
   components: {
-    HomeHeader // ES6的写法
+    HomeHeader, // ES6的写法
+    HomeSwiper
   }
 }
 </script>
