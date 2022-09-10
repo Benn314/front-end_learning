@@ -31,7 +31,7 @@ export default {
     line-height: .86rem
     background: $bgColor
     color: #fff
-    width: 400px
+    // width: 400px
     border-radius: .1rem
     margin:auto
     .header-left
