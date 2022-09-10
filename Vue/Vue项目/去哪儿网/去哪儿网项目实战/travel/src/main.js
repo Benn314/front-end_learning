@@ -6,9 +6,9 @@ import router from './router' // router的index.js里导入了Home.vue 所以Vue
 import fastClick from 'fastclick'
 // 不知道为什么style里的这三个css文件运行会报错 找不到dependency依赖
 // 原因 视频源码的css文件的存放路径跟你不同 所谓的dependency依赖 就是没找到这个文件
-import './assets/styles/reset.css' // 适配移动端不同机型 正常显示1倍屏的数据在不同倍屏的情况下
-import './assets/styles/border.css'
-import './assets/styles/iconfont.css'
+import 'styles/reset.css' // 适配移动端不同机型 正常显示1倍屏的数据在不同倍屏的情况下
+import 'styles/border.css'
+import 'styles/iconfont.css'
 
 Vue.config.productionTip = false
 fastClick.attach(document.body) // 这样 fastClick就设置完成咯 移动端点击的300ms问题就被解决了
