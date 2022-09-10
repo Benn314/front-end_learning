@@ -17,7 +17,9 @@ fastClick.attach(document.body) // 这样 fastClick就设置完成咯 移动端�
 new Vue({
   el: '#app', // main.js上的挂载点app指的就是index.html中的app
   router,
-  components: { App }, // ES6的写法 {App : App}
+  components: {
+    App
+  }, // ES6的写法 {App : App}
   template: '<App/>'
 })
 
