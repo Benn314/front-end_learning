@@ -3,7 +3,7 @@
     <div class="title">热销推荐</div>
       <ul>
         <!-- 多出一像素边框 写一个border-bottom的类就好了 -->
-        <li class="item border-bottom" v-for="item of recommendList" :key="item.id">
+        <li class="item border-bottom" v-for="item of list" :key="item.id">
           <!-- <div class="item-img-wrapper"></div> img-wrapper 图片外层包裹 用来撑开我们的图片 防止页面抖动 -->
             <img class="item-img" :src="item.imgUrl" />
             <div class="item-info">
@@ -19,26 +19,29 @@
 <script>
 export default {
   name: 'HomeRecommend',
-  data () {
-    return {
-      recommendList: [{
-        id: '0001',
-        imgUrl: 'https://s2.loli.net/2022/09/11/jQwfHdSNi84oVr7.png',
-        title: '大连圣亚海洋世界',
-        desc: '浪漫大连首战，浪漫的海洋主题乐园'
-      }, {
-        id: '0002',
-        imgUrl: 'https://s2.loli.net/2022/09/11/jQwfHdSNi84oVr7.png',
-        title: '大连圣亚海洋世界',
-        desc: '浪漫大连首战，浪漫的海洋主题乐园'
-      }, {
-        id: '0003',
-        imgUrl: 'https://s2.loli.net/2022/09/11/jQwfHdSNi84oVr7.png',
-        title: '大连圣亚海洋世界',
-        desc: '浪漫大连首战，浪漫的海洋主题乐园'
-      }]
-    }
+  props: {
+    list: Array
   }
+  // data () {
+  //   return {
+  //     recommendList: [{
+  //       id: '0001',
+  //       imgUrl: 'https://s2.loli.net/2022/09/11/jQwfHdSNi84oVr7.png',
+  //       title: '大连圣亚海洋世界',
+  //       desc: '浪漫大连首战，浪漫的海洋主题乐园'
+  //     }, {
+  //       id: '0002',
+  //       imgUrl: 'https://s2.loli.net/2022/09/11/jQwfHdSNi84oVr7.png',
+  //       title: '大连圣亚海洋世界',
+  //       desc: '浪漫大连首战，浪漫的海洋主题乐园'
+  //     }, {
+  //       id: '0003',
+  //       imgUrl: 'https://s2.loli.net/2022/09/11/jQwfHdSNi84oVr7.png',
+  //       title: '大连圣亚海洋世界',
+  //       desc: '浪漫大连首战，浪漫的海洋主题乐园'
+  //     }]
+  //   }
+  // }
 }
 </script>
 

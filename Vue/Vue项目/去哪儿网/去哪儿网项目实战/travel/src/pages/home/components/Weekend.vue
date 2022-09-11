@@ -22,26 +22,30 @@
 <script>
 export default {
   name: 'HomeWeekend',
-  data () {
-    return {
-      list: [{
-        id: '0001',
-        imgUrl: 'http://img1.qunarzz.com/sight/source/1505/9f/f585152825459.jpg_r_640x214_5d46e4cc.jpg',
-        title: '大连圣亚海洋世界',
-        desc: '浪漫大连首战，浪漫的海洋主题乐园'
-      }, {
-        id: '0002',
-        imgUrl: 'http://img1.qunarzz.com/sight/source/1505/9f/f585152825459.jpg_r_640x214_5d46e4cc.jpg',
-        title: '大连圣亚海洋世界',
-        desc: '浪漫大连首战，浪漫的海洋主题乐园'
-      }, {
-        id: '0003',
-        imgUrl: 'http://img1.qunarzz.com/sight/source/1505/9f/f585152825459.jpg_r_640x214_5d46e4cc.jpg',
-        title: '大连圣亚海洋世界',
-        desc: '浪漫大连首战，浪漫的海洋主题乐园'
-      }]
-    }
+  // 数据由外部传入 本地的数据data可以删除 我这里是注释掉了
+  props: {
+    list: Array
   }
+  // data () {
+  //   return {
+  //     recommendlist: [{
+  //       id: '0001',
+  //       imgUrl: 'http://img1.qunarzz.com/sight/source/1505/9f/f585152825459.jpg_r_640x214_5d46e4cc.jpg',
+  //       title: '大连圣亚海洋世界',
+  //       desc: '浪漫大连首战，浪漫的海洋主题乐园'
+  //     }, {
+  //       id: '0002',
+  //       imgUrl: 'http://img1.qunarzz.com/sight/source/1505/9f/f585152825459.jpg_r_640x214_5d46e4cc.jpg',
+  //       title: '大连圣亚海洋世界',
+  //       desc: '浪漫大连首战，浪漫的海洋主题乐园'
+  //     }, {
+  //       id: '0003',
+  //       imgUrl: 'http://img1.qunarzz.com/sight/source/1505/9f/f585152825459.jpg_r_640x214_5d46e4cc.jpg',
+  //       title: '大连圣亚海洋世界',
+  //       desc: '浪漫大连首战，浪漫的海洋主题乐园'
+  //     }]
+  //   }
+  // }
 }
 </script>
 
