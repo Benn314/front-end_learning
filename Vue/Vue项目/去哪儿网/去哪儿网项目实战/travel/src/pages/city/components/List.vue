@@ -24,8 +24,13 @@
             <!-- 这里父级的key值让他等于key就好了 因为abcd是不会重名的
                 只要单层层级不重复就好了 和下一层或上一层重复是没关系的
              -->
-            <div class="area" v-for="(item, key) of cities" :key="key">
-                <div class="title border-topbottom">A</div>
+            <div
+                class="area"
+                v-for="(item, key) of cities"
+                :key="key"
+                :ref="key"
+            >
+                <div class="title border-topbottom">{{key}}</div>
                 <div class="item-list">
                     <div class="item border-bottom"
                     v-for="innerItem of item"
@@ -45,10 +50,22 @@ export default {
   name: 'CityList',
   props: {
     hot: Array,
-    cities: Object
+    cities: Object,
+    letter: String
   },
   mounted () {
     this.scroll = new Bscroll(this.$refs.warpper)
+  },
+  watch: {
+    letter () {
+    //   console.log(this.letter)
+      if (this.letter) {
+        const element = this.$refs[this.letter][0]
+        // console.log(element) // element 是一个数组 我们需要的是一个dom元素/dom选择器
+        // 在this.letter后面加一个[0]就是获取数组第一位 也就变成dom元素了
+        this.scroll.scrollToElement(element)
+      }
+    }
   }
 }
 </script>

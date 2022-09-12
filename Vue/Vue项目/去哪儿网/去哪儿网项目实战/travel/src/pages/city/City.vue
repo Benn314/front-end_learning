@@ -2,8 +2,15 @@
     <div>
         <city-header></city-header>
         <city-search></city-search>
-        <city-list :cities="cities" :hot="hotCities"></city-list>
-        <city-alphabet :cities="cities"></city-alphabet>
+        <city-list
+          :cities="cities"
+          :hot="hotCities"
+          :letter="letter"
+        ></city-list>
+        <city-alphabet
+        :cities="cities"
+        @change="handleLetterChange"
+        ></city-alphabet>
     </div>
 </template>
 
@@ -24,7 +31,8 @@ export default {
   data () {
     return {
       cities: {}, // 名字可以自定义 比如写成Allcities
-      hotCities: []
+      hotCities: [],
+      letter: ''
     }
   },
   methods: {
@@ -40,6 +48,11 @@ export default {
         this.cities = data.cities
         this.hotCities = data.hotCities
       }
+    },
+    handleLetterChange (letter) {
+      // console.log(letter)
+      // 当接收到子组件传递过来的letter的时候 我让父组件自定义的letter等于子组件传递过来letter
+      this.letter = letter
     }
   },
   mounted () {

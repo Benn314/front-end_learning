@@ -31,34 +31,66 @@ export default {
   /* @import '../../../assets/styles/varibles.styl' */
   /* @import '~@/assets/styles/varibles.styl' */
   @import '~styles/varibles.styl'
+  // .header
+  //   display:flex
+  //   line-height: $headerHeight
+  //   background: $bgColor
+  //   color: #fff
+  //   // width: 400px
+  //   border-radius: .1rem
+  //   margin:auto
+  //   .header-left
+  //     width: .64rem
+  //     float: left
+  //     width 1.24rem
+  //   .header-input
+  //     flex:1
+  //     line-height: .64rem
+  //     height: .64rem
+  //     margin-top: .12rem
+  //     background: #fff
+  //     border-radius: .1rem
+  //     color: #ccc
+  //     text-align: left
+  //     padding-left: .2rem
+  //   .header-right
+  //     width 1.24rem
+  //     float:right
+  //     text-align: center
+  //     color: #fff
+  //     .arrow-icon
+  //       margin-left: -.02rem
+  //       font-size: .24rem
+
+// 视频源码
   .header
-    display:flex
+    display: flex
     line-height: $headerHeight
     background: $bgColor
     color: #fff
-    // width: 400px
-    border-radius: .1rem
-    margin:auto
     .header-left
       width: .64rem
       float: left
-      width 1.24rem
+      .back-icon
+        text-align: center
+        font-size: .4rem
     .header-input
-      flex:1
-      line-height: .64rem
+      flex: 1
       height: .64rem
+      line-height: .64rem
       margin-top: .12rem
+      margin-left: .2rem
+      padding-left: .2rem
       background: #fff
       border-radius: .1rem
       color: #ccc
-      text-align: left
-      padding-left: .2rem
     .header-right
-      width 1.24rem
-      float:right
+      min-width: 1.04rem
+      padding: 0 .1rem
+      float: right
       text-align: center
       color: #fff
       .arrow-icon
-        margin-left: -.02rem
+        margin-left: -.04rem
         font-size: .24rem
 </style>
