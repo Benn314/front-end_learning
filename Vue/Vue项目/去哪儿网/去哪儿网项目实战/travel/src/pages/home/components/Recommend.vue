@@ -2,16 +2,22 @@
   <div class="wrapper">
     <div class="title">热销推荐</div>
       <ul>
-        <!-- 多出一像素边框 写一个border-bottom的类就好了 -->
-        <li class="item border-bottom" v-for="item of list" :key="item.id">
-          <!-- <div class="item-img-wrapper"></div> img-wrapper 图片外层包裹 用来撑开我们的图片 防止页面抖动 -->
-            <img class="item-img" :src="item.imgUrl" />
-            <div class="item-info">
-              <p class="item-title">{{item.title}}</p>
-              <p class="item-desc">{{item.desc}}</p>
-              <button class="item-button">查看详情</button>
-            </div>
-          </li>
+          <!-- 多出一像素边框 写一个border-bottom的类就好了 -->
+          <router-link
+            tag="li"
+            class="item border-bottom"
+            v-for="item of list"
+            :key="item.id"
+            :to="'/detail/' + item.id"
+          >
+            <!-- <div class="item-img-wrapper"></div> img-wrapper 图片外层包裹 用来撑开我们的图片 防止页面抖动 -->
+              <img class="item-img" :src="item.imgUrl" />
+              <div class="item-info">
+                <p class="item-title">{{item.title}}</p>
+                <p class="item-desc">{{item.desc}}</p>
+                <button class="item-button">查看详情</button>
+              </div>
+          </router-link>
       </ul>
   </div>
 </template>

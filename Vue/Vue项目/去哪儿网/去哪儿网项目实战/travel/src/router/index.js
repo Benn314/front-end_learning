@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from '@/pages/home/Home'
 // eslint-disable-next-line no-unused-vars
 import City from '@/pages/city/City'
+import Detail from '@/pages/detail/Detail'
 
 Vue.use(Router)
 
@@ -18,6 +19,10 @@ export default new Router({
       path: '/city',
       name: 'City',
       component: City
+    }, {
+      path: '/detail/:id', // 这便是动态路由前面的路径必须是反斜杠/ 后面可以带一个参数 参数可以放到id参数里面
+      name: 'Detail',
+      component: Detail
     }
   ]
 })
