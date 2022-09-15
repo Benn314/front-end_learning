@@ -5,7 +5,10 @@
                 <div class="title border-topbottom" >当前城市</div>
                 <div class="button-list">
                     <div class="button-wrapper">
-                        <div class="button">北京</div>
+                        <div class="button">
+                          <!-- {{this.$store.state.city}} -->
+                          {{this.currentCity}}
+                          </div>
                     </div>
                 </div>
             </div>
@@ -15,6 +18,7 @@
                     <div class="button-wrapper"
                         v-for="item of hot"
                         :key="item.id"
+                        @click="handleCityClick(item.name)"
                     >
                         <div class="button">{{item.name}}</div>
                     </div>
@@ -35,6 +39,7 @@
                     <div class="item border-bottom"
                     v-for="innerItem of item"
                     :key="innerItem.id"
+                    @click="handleCityClick(innerItem.name)"
                     >
                         {{innerItem.name}}
                     </div>
@@ -46,6 +51,8 @@
 
 <script>
 import Bscroll from 'better-scroll'
+import {mapMutations, mapState} from 'vuex'
+
 export default {
   name: 'CityList',
   props: {
@@ -53,8 +60,25 @@ export default {
     cities: Object,
     letter: String
   },
-  mounted () {
-    this.scroll = new Bscroll(this.$refs.warpper)
+  computed: {
+    ...mapState({
+      // 传递给mapState可以是一个数组也可以是一个对象
+      currentCity: 'city'
+      /*
+        翻译一下这句话的意思:
+        我想把vuex中city的这个数据映射到我这个组件的计算属性里,映射过来的名字叫做currentCity
+      */
+    })
+  },
+  methods: {
+    handleCityClick (city) {
+      // alert(city)
+      // this.$store.dispatch('changeCity', city) // 因为只是修改一个state值 没有异步操作和批量操作 没必要转发dispatch调用actions，直接用mutations调用commits就行了
+      // this.$store.commit('changeCity', city) // 77行的代码等同于81+78行的代码
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
   },
   watch: {
     letter () {
@@ -66,6 +90,9 @@ export default {
         this.scroll.scrollToElement(element)
       }
     }
+  },
+  mounted () {
+    this.scroll = new Bscroll(this.$refs.warpper)
   }
 }
 </script>

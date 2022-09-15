@@ -12,7 +12,9 @@
                 <li
                   class="search-item border-bottom"
                   v-for="item of list"
-                  :key="item.id">{{item.name}}</li>
+                  :key="item.id"
+                  @click="handleCityClick(item.name)"
+                  >{{item.name}}</li>
                 <li
                  class="search-item border-bottom"
                  v-show="hasNoData">没有找到匹配数据</li>
@@ -22,6 +24,7 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
 import Bscroll from 'better-scroll'
 export default {
   name: 'CitySearch',
@@ -61,6 +64,24 @@ export default {
         this.list = result
       }, 100)
     }
+  },
+  methods: {
+    // 原来的写法
+    // handleCityClick (city) {
+    //   this.$store.commit('changeCity', city)
+    //   this.$router.push('/')
+    // }
+
+    // 优化上面代码 使用vuex的mapMutations
+    handleCityClick (city) {
+      // alert(city)
+      // this.$store.dispatch('changeCity', city) // 因为只是修改一个state值 没有异步操作和批量操作 没必要转发dispatch调用actions，直接用mutations调用commits就行了
+      // this.$store.commit('changeCity', city) // 77行的代码等同于81+78行的代码
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
+
   },
   mounted () {
     this.scroll = new Bscroll(this.$refs.search)

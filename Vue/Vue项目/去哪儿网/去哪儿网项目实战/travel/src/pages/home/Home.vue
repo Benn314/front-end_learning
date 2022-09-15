@@ -2,7 +2,9 @@
   <div>
     <div>
       <!-- hello world -->
-      <home-header :city="city"></home-header>
+      <!-- <home-header :city="city"></home-header> -->
+      <!-- 以前首页的头部属性city是从外部传递进去的 现在不需要外部传递进去了 -->
+      <home-header></home-header>
       <home-swiper :list="swiperList"></home-swiper>
       <home-icons :list="iconList"></home-icons>
       <home-recommend :list="recommendList"></home-recommend>
@@ -37,7 +39,7 @@ export default {
   },
   data () {
     return {
-      city: '',
+      // city: '', // 以前是Ajax传过来的数据 现在改为由前端传递数据给我们
       swiperList: [],
       iconList: [],
       recommendList: [],
