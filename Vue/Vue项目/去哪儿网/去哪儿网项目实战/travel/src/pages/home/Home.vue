@@ -27,6 +27,7 @@ import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
 // 所有组件都在Home里 所以把axios写在这里最合适
 import axios from 'axios'
+import {mapState} from 'vuex'
 
 export default {
   name: 'Home',
@@ -39,6 +40,7 @@ export default {
   },
   data () {
     return {
+      lastCity: '',
       // city: '', // 以前是Ajax传过来的数据 现在改为由前端传递数据给我们
       swiperList: [],
       iconList: [],
@@ -46,9 +48,12 @@ export default {
       weekendList: []
     }
   },
+  computed: {
+    ...mapState(['city'])
+  },
   methods: {
     getHomeInfo () {
-      axios.get('/api/index.json')
+      axios.get('/api/index.json?city=' + this.city)
         .then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc (res) {
@@ -65,7 +70,19 @@ export default {
     }
   },
   mounted () {
+    // lastCity在这里是临时缓冲变量
+    this.lastCity = this.city
+    // 页面被第一次加载的时候 mounted一定会被执行
+    // console.log('mounted')
     this.getHomeInfo()
+  },
+  activated () {
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      this.getHomeInfo()
+    }
+    // activated是页面被(重新)显示的时候 会被执行
+    // console.log('activated')
   }
 }
 </script>
