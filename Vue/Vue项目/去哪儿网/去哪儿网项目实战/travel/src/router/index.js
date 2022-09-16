@@ -23,6 +23,10 @@ export default new Router({
       path: '/detail/:id', // 这便是动态路由前面的路径必须是反斜杠/ 后面可以带一个参数 参数可以放到id参数里面
       name: 'Detail',
       component: Detail
-    }
-  ]
+    }],
+  scrollBehavior (to, from, savedPosition) {
+    // 始终滚动到顶部
+    return { x: 0, y: 0 }
+  }
+
 })

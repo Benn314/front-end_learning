@@ -8,7 +8,7 @@
         不需要你去重新渲染这个组件 去重新执行mounted钩子函数
         从内存里把以前的东西拿出来显示就可以 就不会再去调用Ajax请求了
        -->
-      <keep-alive>
+      <keep-alive exclude="Detail">
         <router-view/>
       </keep-alive>
 
