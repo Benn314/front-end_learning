@@ -34,6 +34,7 @@ export default {
   },
   methods: {
     handleScroll () {
+    //   console.log('scroll')
       const top = document.documentElement.scrollTop
       if (top > 60) {
         let opacity = top / 140 // 因为top是随着坐标位置信息不断变化的，所以复制给opacity也是不断变化 达到一个渐隐渐显的效果
@@ -45,10 +46,16 @@ export default {
       }
     }
   },
-  mounted () {
+  //   mounted () {
+  //     window.addEventListener('scroll', this.handleScroll)
+  //   },
+  //   unmounted () {
+  //     window.removeEventListener('scroll', this.handleScroll)
+  //   }
+  activated () {
     window.addEventListener('scroll', this.handleScroll)
   },
-  unmounted () {
+  deactivated () {
     window.removeEventListener('scroll', this.handleScroll)
   }
 }
