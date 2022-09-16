@@ -5,24 +5,23 @@
       :bannerImg="bannerImg"
       :bannerImgs="gallaryImgs"
     ></detail-banner>
-    <!-- <detail-header></detail-header>
+    <detail-header></detail-header>
     <div class="content">
       <detail-list :list="list"></detail-list>
     </div>
-    detail -->
   </div>
 </template>
 
 <script>
 import DetailBanner from './components/Banner'
-// import DetailHeader from './components/Header'
+import DetailHeader from './components/Header'
 // import DetailList from './components/List'
 // import axios from 'axios'
 export default {
   name: 'Detail',
   components: {
-    DetailBanner
-    // DetailHeader,
+    DetailBanner,
+    DetailHeader
     // DetailList
   },
   data () {
