@@ -17,26 +17,25 @@
         </div>
       </div>
     </div>
-    <!-- <fade-animation>
+    <fade-animation>
       <common-gallary
         :imgs="bannerImgs"
         v-show="showGallary"
         @close="handleGallaryClose"
       ></common-gallary>
-    </fade-animation> -->
-    <common-gallary
+    </fade-animation>
+    <!-- <common-gallary
       :imgs="bannerImgs"
       v-show="showGallary"
       @close='handleGallaryClose'
       >
-      </common-gallary>
+      </common-gallary> -->
   </div>
 </template>
 
 <script>
-
 import CommonGallary from 'common/gallary/Gallary'
-// import FadeAnimation from 'common/fade/FadeAnimation'
+import FadeAnimation from 'common/fade/FadeAnimation'
 export default {
   name: 'DetailBanner',
   data () {
@@ -47,8 +46,8 @@ export default {
     }
   },
   components: {
-    CommonGallary
-    //     FadeAnimation
+    CommonGallary,
+    FadeAnimation
   },
   props: {
     sightName: String,
