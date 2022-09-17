@@ -39,3 +39,13 @@ https://learn.cuixueshe.com/detail/p_62762a97e4b09dda1264f68b/6?product_id=p_627
 百度网盘下载破解
 https://www.cnblogs.com/softxmm/p/13972678.html#aria2
 https://blog.csdn.net/qq_45368632/article/details/124644200?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522166112899116782390549926%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=166112899116782390549926&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-124644200-null-null.142^v42^pc_rank_34_2,185^v2^control&utm_term=%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98&spm=1018.2226.3001.4187
+
+---------------------------
+【2022.09.17】腾讯会议
+除了前端学习路线（这个是应届生的要求），还有如下东西要学：vue3源码 tailwindcss vue3的API typescript node.js LeetCode
+
+JSON对比工具
+Native UI
+Vite
+
+小米商城后可做-todoContains
